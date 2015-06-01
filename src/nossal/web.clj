@@ -63,7 +63,7 @@
 
 (defn robots []
   (-> (r/response (clojure.string/join "\n" ["User-agent: *" "" "Disallow: /js/" "Disallow: /a/"]))
-      (r/header "Content-Type" "text; charset=utf-8"))))
+      (r/header "Content-Type" "text; charset=utf-8")))
 
 (defroutes app
   (GET "/" []
