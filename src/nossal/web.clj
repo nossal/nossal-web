@@ -4,6 +4,7 @@
             [compojure.route :as route]
             [clojure.java.io :as io]
             [ring.adapter.jetty :as jetty]
+            [ring.util.response :as r]
             [environ.core :refer [env]]
             [hiccup.core :as h]
             [hiccup.page :as page]))
@@ -60,10 +61,15 @@
          ]
         "console.log('Oi!')"))
 
+(defn robots []
+  (-> (r/response (clojure.string/join "\n" ["User-agent: *" "" "Disallow: /js/" "Disallow: /a/"]))
+      (r/header "Content-Type" "text; charset=utf-8"))))
+
 (defroutes app
   (GET "/" []
        (index))
   (route/resources "/")
+  (GET "/robots.txt" [] (robots))
   (ANY "*" []
        (route/not-found (slurp (io/resource "404.html")))))
 
