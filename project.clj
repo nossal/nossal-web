@@ -9,7 +9,8 @@
                  [environ "1.0.3"]
                  [hiccup "1.0.5"]
                  [org.clojure/clojurescript "1.9.36"]
-                 [garden "1.3.2"]]
+                 [garden "1.3.2"]
+                 [clj-http "3.1.0"]]
 
   :ring {:handler nossal.web/app :auto-refresh? true}
   :min-lein-version "2.0.0"

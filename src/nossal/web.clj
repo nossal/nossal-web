@@ -3,8 +3,10 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [clojure.string :as s]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as res]
+            [clj-http.client :as client]
             [environ.core :refer [env]]
             [hiccup.core :as h]
             [hiccup.page :as page]))
@@ -68,7 +70,21 @@
 
 
 (defn dot [req]
-  (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
+  (let [user-agent (get (:headers req) "user-agent")]
+    (if (s/includes? user-agent "curl")
+      (do
+        (client/post "http://www.google-analytics.com/collect"
+          {:form-params {:v "1"
+                         :tid "UA-11532471-6"
+                         :cid "555"
+                         :t "pageview"
+                         :dh "noss.al"
+                         :dp "/dot"
+                         :dt "dotfiles"}})
+        (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
+      (base "dotfiles" ""
+        [[:h1 "dotfiles"]] ""))))
+
 
 
 (defroutes app
