@@ -4,6 +4,7 @@
             [compojure.route :as route]
             [clojure.java.io :as io]
             [ring.adapter.jetty :as jetty]
+            [ring.util.response :as res]
             [environ.core :refer [env]]
             [hiccup.core :as h]
             [hiccup.page :as page]))
@@ -67,7 +68,7 @@
 
 
 (defn dot [req]
-  (str req))
+  (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/dot"))
 
 
 (defroutes app
