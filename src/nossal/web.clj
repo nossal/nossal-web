@@ -80,7 +80,7 @@
                          :t "pageview"
                          :dh "noss.al"
                          :dp "/dot"
-                         :dt "dotfiles"}})
+                         :dt "dotfiles-install"}})
         (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
       (base "dotfiles" ""
         [[:h1 "dotfiles"]] ""))))
