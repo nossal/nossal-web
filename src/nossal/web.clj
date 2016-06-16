@@ -68,7 +68,7 @@
 
 
 (defn dot [req]
-  (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/dot"))
+  (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
 
 
 (defroutes app
