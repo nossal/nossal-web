@@ -35,9 +35,9 @@
       [:style css]]
     [:body (seq body)
     [:footer
-      [:span.made "Handmade with full stack "
+      [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
         [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
-        [:span.heart " ♥ "] " in "
+        [:span.heart " ♥ "] " at "
         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]
     [:script {:type "text/javascript"} js-code] google-analytics]))
 
