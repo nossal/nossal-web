@@ -83,12 +83,14 @@
       (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
     (base "dotfiles" ""
       [[:header [:h1 "dotfiles"]
-        [:span "A terminal configuration system"]]
+        [:p.catch "A terminal configuration system"]]
        [:section [:div.terminal "eval " [:span.string "\"$(curl -fsL noss.al/dot)\""]]]] "")))
 
 (defroutes app
   (GET "/" []
     (index))
+  (GET "/p" request
+    (str request))
   (GET "/dot" request
     (dot request))
   (route/resources "/")

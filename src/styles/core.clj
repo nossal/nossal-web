@@ -20,7 +20,7 @@
   [:section :header
     {:margin-top "10em"
      :text-align "center"}
-    [:span {:color "#74f893"
+    [:p.catch {:color "#e0c583"
             :letter-spacing "0.08em"}]]
   [:.terminal {:display "inline-block"
                :padding "1em"
@@ -43,12 +43,12 @@
        :display "inline-block"}]]
 
   [:footer
-    {:font-family "PT Sans Narrow, Arial Narrow, sans-serif"
+    {:font-family "sans-serif"
      :text-transform "uppercase"
      :text-align "center"
      :letter-spacing (em 0.03)
      :font-size (px 10)
-     :color "#ffffff"
+     :color "#747f90"
      :background-color (rgba 255 255 255 0.3)
      :line-height (px 20)
      :position "absolute"
