@@ -70,22 +70,21 @@
 
 
 (defn dot [req]
-  (let [user-agent (get (:headers req) "user-agent")]
-    (if (s/includes? user-agent "curl")
-      (do
-        (client/post "http://www.google-analytics.com/collect"
-          {:form-params {:v "1"
-                         :tid "UA-11532471-6"
-                         :cid "555"
-                         :t "pageview"
-                         :dh "noss.al"
-                         :dp "/dot"
-                         :dt "dotfiles-install"}})
-        (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
-      (base "dotfiles" ""
-        [[:h1 "dotfiles"]] ""))))
-
-
+  (if (s/includes? (get (:headers req) "user-agent") "curl")
+    (do
+      (client/post "http://www.google-analytics.com/collect"
+        {:form-params {:v "1"
+                       :tid "UA-11532471-6"
+                       :cid "555"
+                       :t "pageview"
+                       :dh "noss.al"
+                       :dp "/dot"
+                       :dt "dotfiles-install"}})
+      (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
+    (base "dotfiles" ""
+      [[:header [:h1 "dotfiles"]
+        [:span "A terminal configuration system"]]
+       [:section [:div.terminal "eval " [:span.string "\"$(curl -fsL noss.al/dot)\""]]]] "")))
 
 (defroutes app
   (GET "/" []

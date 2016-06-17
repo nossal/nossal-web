@@ -18,14 +18,23 @@
     [:&:after {:background-image "linear-gradient(135deg, #d38312, #002f4b)" }]]
 
   [:section :header
-    {:margin-top "10em"}]
-
+    {:margin-top "10em"
+     :text-align "center"}
+    [:span {:color "#74f893"
+            :letter-spacing "0.08em"}]]
+  [:.terminal {:display "inline-block"
+               :padding "1em"
+               :color "#4eb355"
+               :font-family "monospace"
+               :background-color "#282b35"}
+    [:.string {:color "#d28e5d"}]]
   [:h1
     {:font-family "sans-serif"
      :font-size (em 3.5)
      :text-transform "uppercase"
      :letter-spacing "0.05em"
      :font-weight "100"
+     :margin-bottom "0.3em"
      :text-align "center"
      :text-shadow "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)" }
     [:span
