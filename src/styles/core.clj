@@ -46,7 +46,7 @@
      :letter-spacing (em 0.03)
      :font-size (px 10)
      :color "#5d6571"
-     :background-color (rgba 255 255 255 0.3)
+     :background-color "rgba(255, 255, 255, 0.3)"
      :line-height (px 20)
      :position "absolute"
      :width (percent 100)
