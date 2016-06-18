@@ -5,7 +5,6 @@
             [garden.stylesheet :refer [at-import]]
             [styles.reset :refer [reset]]))
 
-;; Change defstylesheet to defstyles.
 (defstyles screen
   [reset]
   [:body
@@ -46,13 +45,13 @@
      :text-align "center"
      :letter-spacing (em 0.03)
      :font-size (px 10)
-     :color "#747f90"
+     :color "#5d6571"
      :background-color (rgba 255 255 255 0.3)
      :line-height (px 20)
      :position "absolute"
      :width (percent 100)
      :bottom (px 0)}
-    [:a {:color "#3c5b90"
+    [:a {:color "#5570a0"
          :text-decoration "none"
          :margin "0 0.5em"}
       [:&:hover {:text-decoration "underline"}]]

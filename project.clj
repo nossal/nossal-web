@@ -49,4 +49,4 @@
                                 :output-to "resources/public/css/screen.css"
                                 :vendors ["moz" "webkit"]
                                 ;; Compress the output?
-                                :pretty-print? true}}]})
+                                :pretty-print? false}}]})

@@ -36,7 +36,7 @@
       [:style css]]
     [:body (seq body)
      [:footer
-       [:span.made env "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
+       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
          [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
          [:span.heart " ♥ "] " at "
          [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]
@@ -90,11 +90,15 @@
 (defroutes app
   (GET "/" []
     (index))
+
   (GET "/p" request
     (str request))
+
   (GET "/dot" request
     (dot request))
+
   (route/resources "/")
+
   (ANY "*" []
     (route/not-found (slurp (io/resource "404.html")))))
 
