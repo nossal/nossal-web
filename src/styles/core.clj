@@ -15,13 +15,13 @@
      :font-size (px 16)
      :background-color "#747f90"
      :color "#FFF"}
-    [:&:after {:background-image "linear-gradient(135deg, #d38312, #002f4b)" }]]
+    [:&:after {:background-image "linear-gradient(135deg, #d38312, #002f4b)"}]]
 
   [:section :header
     {:margin-top "10em"
      :text-align "center"}
     [:p.catch {:color "#e0c583"
-            :letter-spacing "0.08em"}]]
+               :letter-spacing "0.08em"}]]
   [:.terminal {:display "inline-block"
                :padding "1em"
                :color "#4eb355"
@@ -36,7 +36,7 @@
      :font-weight "100"
      :margin-bottom "0.3em"
      :text-align "center"
-     :text-shadow "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)" }
+     :text-shadow "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)"}
     [:span
       {:border "0.1em solid white"
        :padding "0.3em 0.5em 0.2em"
@@ -53,7 +53,7 @@
      :line-height (px 20)
      :position "absolute"
      :width (percent 100)
-     :bottom (px 0) }
+     :bottom (px 0)}
     [:a {:color "#3c5b90"
          :text-decoration "none"
          :margin "0 0.5em"}
@@ -61,4 +61,4 @@
     [:.heart
       {:color "#ff4e4e"
        :font-family "sans-serif"
-       :font-size (px 14) }]])
+       :font-size (px 14)}]])

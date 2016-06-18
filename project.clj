@@ -25,8 +25,7 @@
   :uberjar-name "nossal.jar"
   :profiles {:production {:env {:production true}}}
   ;:prep-tasks [["garden" "once"]]
-  :figwheel {
-    :css-dirs [ "resources/public/css" ]}
+  :figwheel {:css-dirs [ "resources/public/css"]}
 
  :cljsbuild {:builds [{:id "nossal"
                        :source-paths ["src/"]

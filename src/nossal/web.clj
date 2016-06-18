@@ -34,38 +34,38 @@
       [:link {:rel "stylesheet" :href "/css/screen.css" :type "text/css"}]
       [:style css]]
     [:body (seq body)
-    [:footer
-      [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
-        [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
-        [:span.heart " ♥ "] " at "
-        [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]
-    [:script {:type "text/javascript"} js-code] google-analytics]))
+     [:footer
+       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
+         [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
+         [:span.heart " ♥ "] " at "
+         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]
+     [:script {:type "text/javascript"} js-code] google-analytics]))
 
 
 (defn index []
   (base "Rodrigo Nossal" "lll"
     [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]]
-    [:section#me [:div#tweetwidget]
-      [:a.start {:href "#"}
-        [:svg {:width "60" :height "30" :xmlns "http://www.w3.org/2000/svg"}
-          [:g#svg_1
-            [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
-            [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
-    [:div.divisor]
-    [:section#facebook]
-    #_[:section#photos
-      [:h2 "Minhas 	Fotos"]
-      [:div#instaphotos.gallery]
-      [:div#flickrphotos.gallery]]
-    #_[:section#contact
-      [:form {:method "POST"}
-        [:h2 "Vamos conversar!"]
-        [:input {:type "email" :name "email" :placeHolder "seu@email.com"}]
-        [:textarea {:name "message" :rows "5"}]
-        [:input {:type "submit" :value "Enviar Mensagem"}]]]
-    #_[:section#end [:div.end "Fim."]]
-    ]
+     [:section#me [:div#tweetwidget]
+       [:a.start {:href "#"}
+         [:svg {:width "60" :height "30" :xmlns "http://www.w3.org/2000/svg"}
+           [:g#svg_1
+             [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
+             [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
+     [:div.divisor]
+     [:section#facebook]
+     #_[:section#photos
+        [:h2 "Minhas 	Fotos"]
+        [:div#instaphotos.gallery]
+        [:div#flickrphotos.gallery]]
+     #_[:section#contact
+        [:form {:method "POST"}
+          [:h2 "Vamos conversar!"]
+          [:input {:type "email" :name "email" :placeHolder "seu@email.com"}]
+          [:textarea {:name "message" :rows "5"}]
+          [:input {:type "submit" :value "Enviar Mensagem"}]]]
+     #_[:section#end [:div.end "Fim."]]]
+
     "console.log('Oi!')"))
 
 
