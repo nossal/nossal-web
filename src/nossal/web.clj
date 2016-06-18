@@ -9,7 +9,8 @@
             [clj-http.client :as client]
             [environ.core :refer [env]]
             [hiccup.core :as h]
-            [hiccup.page :as page]))
+            [hiccup.page :as page]
+            [environ.core :refer [env]]))
 
 
 (def google-analytics [:script "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,7 +36,7 @@
       [:style css]]
     [:body (seq body)
      [:footer
-       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
+       [:span.made env "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
          [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
          [:span.heart " ♥ "] " at "
          [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]

@@ -24,10 +24,10 @@
   :hooks [environ.leiningen.hooks]
   :uberjar-name "nossal.jar"
   :profiles {:production {:env {:production true}}}
-  ;:prep-tasks [["garden" "once"]]
+  :prep-tasks [["garden" "once"]]
   :figwheel {:css-dirs [ "resources/public/css"]}
 
- :cljsbuild {:builds [{:id "nossal"
+  :cljsbuild {:builds [{:id "nossal"}
                        :source-paths ["src/"]
                        :figwheel {:on-jsload "nossal.web/fig-reload"}
                        :compiler {:main "nossal.web"
@@ -36,7 +36,7 @@
                                   :optimizations :none
                                   :source-map true
                                   :source-map-timestamp true
-                                  :asset-path "js/out"}}]}
+                                  :asset-path "js/out"}]}
 
   :garden {:builds [{;; Optional name of the build:
                      :id "screen1"

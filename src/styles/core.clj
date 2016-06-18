@@ -2,14 +2,12 @@
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
-            [garden.stylesheet :refer [at-import]]))
+            [garden.stylesheet :refer [at-import]]
+            [styles.reset :refer [reset]]))
 
 ;; Change defstylesheet to defstyles.
 (defstyles screen
-  (at-import "reset.css")
-  ; [:html
-  ;   {:height (percent 100)
-  ;    :weight (percent 100)}]
+  [reset]
   [:body
     {:font-family "sans-serif"
      :font-size (px 16)
