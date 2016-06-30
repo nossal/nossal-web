@@ -9,8 +9,7 @@
             [clj-http.client :as client]
             [environ.core :refer [env]]
             [hiccup.core :as h]
-            [hiccup.page :as page]
-            [environ.core :refer [env]]))
+            [hiccup.page :as page]))
 
 
 (def google-analytics [:script "if(['localhost', '127.0.0.1'].indexOf(window.location.hostname) < 0){
@@ -89,6 +88,11 @@
        [:section [:div.terminal "eval " [:span.string "\"$(curl -fsL noss.al/dot)\""]]]] "")))
 
 
+(defn robots []
+  (-> (r/response (clojure.string/join "\n" ["User-agent: *" "" "Disallow: /js/" "Disallow: /p/"]))
+      (r/header "Content-Type" "text; charset=utf-8")))
+
+
 (defroutes app
   (GET "/" []
     (index))
@@ -100,6 +104,8 @@
     (dot request))
 
   (route/resources "/")
+
+  (GET "/robots.txt" [] (robots))
 
   (ANY "*" []
     (route/not-found (slurp (io/resource "404.html")))))
