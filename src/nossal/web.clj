@@ -13,12 +13,13 @@
             [environ.core :refer [env]]))
 
 
-(def google-analytics [:script "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(def google-analytics [:script "if(['localhost', '127.0.0.1'].indexOf(window.location.hostname) < 0){
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-11532471-6', 'auto');
-  ga('send', 'pageview');"])
+  ga('send', 'pageview');}"])
 
 
 (defn base [title css body js-code]
@@ -32,7 +33,7 @@
       [:meta {:name "description" :content "Site pessoal de Rodrigo Nossal"}]
       [:meta {:name "google-site-verification" :content "ljuFr_e6LgEvNLMWoyGBPxvcmCQQQkwY28VpiKz3Eb8"}]
       [:title title]
-      [:link {:rel "stylesheet" :href "/css/screen.css" :type "text/css"}]
+      (page/include-css "/css/screen.css")
       [:style css]]
     [:body (seq body)
      [:footer
@@ -86,6 +87,7 @@
       [[:header [:h1 "dotfiles"]
         [:p.catch "A terminal configuration system"]]
        [:section [:div.terminal "eval " [:span.string "\"$(curl -fsL noss.al/dot)\""]]]] "")))
+
 
 (defroutes app
   (GET "/" []
