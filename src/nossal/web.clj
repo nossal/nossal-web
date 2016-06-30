@@ -88,11 +88,6 @@
        [:section [:div.terminal "eval " [:span.string "\"$(curl -fsL noss.al/dot)\""]]]] "")))
 
 
-(defn robots []
-  (-> (r/response (clojure.string/join "\n" ["User-agent: *" "" "Disallow: /js/" "Disallow: /p/"]))
-      (r/header "Content-Type" "text; charset=utf-8")))
-
-
 (defroutes app
   (GET "/" []
     (index))
@@ -104,8 +99,6 @@
     (dot request))
 
   (route/resources "/")
-
-  (GET "/robots.txt" [] (robots))
 
   (ANY "*" []
     (route/not-found (slurp (io/resource "404.html")))))
