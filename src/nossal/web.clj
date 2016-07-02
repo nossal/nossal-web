@@ -9,8 +9,7 @@
             [clj-http.client :as client]
             [environ.core :refer [env]]
             [hiccup.core :as h]
-            [hiccup.page :as page]
-            [environ.core :refer [env]]))
+            [hiccup.page :as page]))
 
 
 (def google-analytics [:script "if(['localhost', '127.0.0.1'].indexOf(window.location.hostname) < 0){
@@ -39,7 +38,7 @@
      [:footer
        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
          [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
-         [:span.heart " ♥ "] " at "
+         [:span.heart " "] " at "
          [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]
      [:script {:type "text/javascript"} js-code] google-analytics]))
 
@@ -47,7 +46,8 @@
 (defn index []
   (base "Rodrigo Nossal" "lll"
     [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
-      [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]]
+      [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
+      [:p.about-line "Full-Stack Developer"]]
      [:section#me [:div#tweetwidget]
        [:a.start {:href "#"}
          [:svg {:width "60" :height "30" :xmlns "http://www.w3.org/2000/svg"}
@@ -86,7 +86,7 @@
     (base "dotfiles" ""
       [[:header [:h1 "dotfiles"]
         [:p.catch "A terminal configuration system"]]
-       [:section [:div.terminal "eval " [:span.string "\"$(curl -fsL noss.al/dot)\""]]]] "")))
+       [:section [:div.terminal "eval " [:span.string "\"$(curl -sL noss.al/dot)\""]]]] "")))
 
 
 (defroutes app
