@@ -1,5 +1,5 @@
 
-# noss.al
+# http://noss.al
 
 ### Libraries used
 - [compojure](https://github.com/weavejester/compojure)
