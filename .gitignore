@@ -1,4 +1,6 @@
 pom.xml
+resources/public/css
+resources/public/js
 *jar
 /classes/
 /.lein-deps-sum

@@ -14,9 +14,12 @@
      :color "#FFF"}
     [:&:after {:background-image "linear-gradient(135deg, #d38312, #002f4b)"}]]
 
-  [:section :header
-    {:margin-top "10em"
-     :text-align "center"}
+  [:header
+    {:padding-top "10em"
+     :text-align "center"
+     :background-image "url('/images/backdrop.jpg')"
+     :background-size "cover"
+     :background-repeat "no-repeat"}
     [:p.catch {:color "#e0c583"
                :letter-spacing "0.08em"}]]
   [:.terminal {:display "inline-block"
