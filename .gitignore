@@ -1,13 +1,42 @@
-pom.xml
+!.gitignore
+!.editorconfig
+
+# Specific
 resources/public/css
 resources/public/js
-*jar
-/classes/
+
+# Generic
+*.log
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+*.so
+.Trash-*
+
+# Windows
+$RECYCLE.BIN/
+Thumbs.db
+Desktop.ini
+*.lnk
+*.msi
+*.exe
+
+# Java/Scala/Clojure
+build/
+target/
+*.class
+*.jar
+*.war
+/.gradle
+/.env
+/.lein-env
+/.lein-repl-history
 /.lein-deps-sum
 /.lein-failures
-/.lein-env
-/checkouts
-/.env
-/target
-/.lein-repl-history
 /.nrepl-port
