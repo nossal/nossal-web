@@ -45,18 +45,18 @@
                  :color "#ddbca8"}]
 
   [:footer
-    {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"
+    {:font-family "PT Sans Narrow,Arial Narrow,Arial,sans-serif"
      :text-transform "uppercase"
      :text-align "center"
-     :letter-spacing (em 0.06)
-     :font-size (px 10)
-     :color "#2d3036"
+     :letter-spacing (em 0.025)
+     :font-size (px 9)
+     :color "#45484e"
      :background-color "rgba(255, 255, 255, 0.3)"
      :line-height (px 20)
      :position "fixed"
      :width (percent 100)
      :bottom (px 0)}
-    [:a {:color "#3137ad"
+    [:a {:color "#d4d9e4"
          :text-decoration "none"
          :margin "0 0.3em"}
       [:&:hover {:text-decoration "underline"}]]
