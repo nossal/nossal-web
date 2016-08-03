@@ -50,7 +50,7 @@
      :text-align "center"
      :letter-spacing (em 0.025)
      :font-size (px 9)
-     :color "#45484e"
+     :color "#555961"
      :background-color "rgba(255, 255, 255, 0.3)"
      :line-height (px 20)
      :position "fixed"
