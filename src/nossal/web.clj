@@ -89,9 +89,16 @@
        [:section [:div.terminal "eval " [:span.string "\"$(curl -sL noss.al/dot)\""]]]] "")))
 
 
+(defn cert [req]
+  (env :cert-value))
+
+
 (defroutes app
   (GET "/" []
     (index))
+
+  (GET "/.well-known/acme-challenge/"(env :cert-key) request
+    (cert request))
 
   (GET "/p" request
     (str request))
