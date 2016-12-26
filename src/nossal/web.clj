@@ -29,7 +29,8 @@
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}]
       [:meta {:name "keywords" :content "java, clojure, clojurescript, javascript, python, programming, development, html5, html, css, ajax, device orientation, instant, fast, dinherin, dinher.in"}]
-      [:meta {:name "description" :content "Site pessoal de Rodrigo Nossal"}]
+      [:meta {:name "description" :content "Rodrigo Nossal's personal website"}]
+      [:meta {:name "theme-color" :content "#747f90"}]
       [:meta {:name "google-site-verification" :content "ljuFr_e6LgEvNLMWoyGBPxvcmCQQQkwY28VpiKz3Eb8"}]
       [:title title]
       (page/include-css "/css/screen.css")
