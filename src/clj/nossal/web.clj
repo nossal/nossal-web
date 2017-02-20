@@ -44,7 +44,7 @@
 
 
 (defn index []
-  (base "Rodrigo Nossal" "css"
+  (base "Nossal, Rodrigo Nossal" "css"
     [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
       [:p.about-line "Full-Stack Developer"]
@@ -56,8 +56,7 @@
               [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
       [:div.divisor]
       [:section#facebook]
-      [:section#end [:div.end "Fim."]]]]
-
+      [:section#end [:div.end "Fin."]]]]
     "console.log('Oi!')"))
 
 
