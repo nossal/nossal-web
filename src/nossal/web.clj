@@ -45,7 +45,7 @@
 
 
 (defn index []
-  (base "Rodrigo Nossal" "lll"
+  (base "Nossal, Rodrigo Nossal" ""
     [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
       [:p.about-line "Full-Stack Developer"]]
