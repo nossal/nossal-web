@@ -1,1 +1,1 @@
-(ns nossal.app)
+(ns clj.nossal.app)

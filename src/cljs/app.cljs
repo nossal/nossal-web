@@ -1,4 +1,4 @@
-(ns nossal.cljs.app
+(ns cljs.app
 
  (:require-macros [cljs.core.async.macros :refer [go]])
  (:require [goog.events :as events]

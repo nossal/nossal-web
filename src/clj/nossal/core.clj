@@ -1,2 +1,2 @@
-(ns nossal.core)
+(ns clj.nossal.core)
 

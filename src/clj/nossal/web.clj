@@ -1,4 +1,4 @@
-(ns nossal.web
+(ns clj.nossal.web
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
@@ -44,29 +44,19 @@
 
 
 (defn index []
-  (base "Rodrigo Nossal" "lll"
+  (base "Rodrigo Nossal" "css"
     [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
-      [:p.about-line "Full-Stack Developerrrr"]
-     [:section#me [:div#tweetwidget]
-       [:a.start {:href "#"}
-         [:svg {:width "60" :height "30" :xmlns "http://www.w3.org/2000/svg"}
-           [:g#svg_1
-             [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
-             [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
-     [:div.divisor]
-     [:section#facebook]
-     #_[:section#photos
-        [:h2 "Minhas 	Fotos"]
-        [:div#instaphotos.gallery]
-        [:div#flickrphotos.gallery]]
-     #_[:section#contact
-        [:form {:method "POST"}
-          [:h2 "Vamos conversar!"]
-          [:input {:type "email" :name "email" :placeHolder "seu@email.com"}]
-          [:textarea {:name "message" :rows "5"}]
-          [:input {:type "submit" :value "Enviar Mensagem"}]]]
-     #_[:section#end [:div.end "Fim."]]]
+      [:p.about-line "Full-Stack Developer"]
+      [:section#me [:div#tweetwidget]
+        [:a.start {:href "#"}
+          [:svg {:width "60" :height "30" :xmlns "http://www.w3.org/2000/svg"}
+            [:g#svg_1
+              [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
+              [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
+      [:div.divisor]
+      [:section#facebook]
+      [:section#end [:div.end "Fim."]]]]
 
     "console.log('Oi!')"))
 

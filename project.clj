@@ -1,6 +1,6 @@
 (defproject nossal "1.0.1-SNAPSHOT"
   :description "Nossal's personal web app"
-  :url "nossal.herokuapp.com"
+  :url "http://noss.al"
   :license {:name "Eclipse Public License v1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
@@ -22,17 +22,17 @@
 
   :min-lein-version "2.7.0"
 
-  :ring {:handler nossal.web/app :auto-refresh? true}
+  :ring {:handler clj.nossal.web/app :auto-refresh? true}
   :hooks [environ.leiningen.hooks]
   :uberjar-name "nossal.jar"
-  :profiles {:production {:env {:production true}}}
+  :profiles {:production {:env {:production false}}}
   :prep-tasks [["garden" "once"]]
   :figwheel {:css-dirs [ "resources/public/css"]}
 
   :cljsbuild {:builds [{:id "nossal"}
-                       :source-paths ["src/cljs"]
-                       :figwheel {:on-jsload "nossal.web/fig-reload"}
-                       :compiler {:main "nossal.clj.app"
+                       :source-paths ["src/"]
+                       :figwheel {:on-jsload "clj.nossal.web/fig-reload"}
+                       :compiler {:main "clj.nossal.app"
                                   :output-to "resources/public/js/app.js"
                                   :output-dir "resources/public/js/out"
                                   :optimizations :none
@@ -43,7 +43,7 @@
   :garden {:builds [{;; Optional name of the build:
                      :id "screen1"
                      ;; Source paths where the stylesheet source code is
-                     :source-paths ["src/styles"]
+                     :source-paths ["src/"]
                      ;; The var containing your stylesheet:
                      :stylesheet styles.core/screen
                      ;; Compiler flags passed to `garden.core/css`:
