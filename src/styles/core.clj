@@ -14,9 +14,12 @@
      :color "#FFF"}
     [:&:after {:background-image "linear-gradient(135deg, #d38312, #002f4b)"}]]
 
-  [:section :header
-    {:margin-top "10em"
-     :text-align "center"}
+  [:header
+    {:padding-top "10em"
+     :text-align "center"
+    ;  :background-image "url('/images/backdrop.jpg')"
+     :background-size "cover"
+     :background-repeat "no-repeat"}
     [:p.catch {:color "#e0c583"
                :letter-spacing "0.08em"}]]
   [:.terminal {:display "inline-block"
@@ -42,26 +45,27 @@
   [:.about-line {:letter-spacing (em 0.05)
                  :font-size (em 1.1)
                  :font-weight 100
-                 :color "#ddbca8"}]
+                 :color "#deb149"}]
+  [:.end {:color "#bbb"}]
 
   [:footer
-    {:font-family "PT Sans Narrow,Arial Narrow,Arial,sans-serif"
+    {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"
      :text-transform "uppercase"
      :text-align "center"
-     :letter-spacing (em 0.025)
+     :letter-spacing (em 0.06)
      :font-size (px 9)
-     :color "#555961"
-     :background-color "rgba(255, 255, 255, 0.3)"
+     :color "#484848"
+     :background-color "rgba(255, 255, 255, 0.12)"
      :line-height (px 20)
      :position "fixed"
      :width (percent 100)
      :bottom (px 0)}
-    [:a {:color "#d4d9e4"
+    [:a {:color "#28459c"
          :text-decoration "none"
          :margin "0 0.3em"}
       [:&:hover {:text-decoration "underline"}]]
     [:.heart
-      {:background-color "rgba(255, 78, 78, 0.72)"
+      {:background-color "rgba(203, 59, 206, 0.72)"
        :position "relative"
        :width (px 6)
        :height (px 10)
@@ -77,5 +81,5 @@
                   :left 0
                   :bottom 0
                   :content "\"\""
-                  :background-color "rgba(255, 78, 78, 0.72)"
+                  :background-color "rgba(226, 77, 153, 0.72)"
                   :border-radius "0 3px 3px 0"}]]])

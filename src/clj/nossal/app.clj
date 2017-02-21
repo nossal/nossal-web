@@ -1,0 +1,1 @@
+(ns clj.nossal.app)
