@@ -39,7 +39,7 @@
        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
          [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
          [:span.heart " "] " at "
-         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]
+         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav"]]]
      [:script {:type "text/javascript"} js-code] google-analytics]))
 
 
@@ -56,7 +56,7 @@
               [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
       [:div.divisor]
       [:section#facebook]
-      [:section#end [:div.end "Fin."]]]]
+      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure on weekends."]]]]
     "console.log('Oi!')"))
 
 
