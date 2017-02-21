@@ -20,14 +20,17 @@
     ;  :background-image "url('/images/backdrop.jpg')"
      :background-size "cover"
      :background-repeat "no-repeat"}
-    [:p.catch {:color "#e0c583"
+    [:p.catch {:color "#efc664"
                :letter-spacing "0.08em"}]]
-  [:.terminal {:display "inline-block"
-               :padding "1em"
-               :color "#4eb355"
-               :font-family "monospace"
-               :background-color "#282b35"}
-    [:.string {:color "#d28e5d"}]]
+  [:section
+    {:text-align "center"}
+    [:.terminal {:display "inline-block"
+                 :margin-top (em 8);
+                 :padding "1em"
+                 :color "#4eb355"
+                 :font-family "monospace"
+                 :background-color "#282b35"}
+      [:.string {:color "#d28e5d"}]]]
   [:h1
     {:font-family "sans-serif"
      :font-size (em 3.5)
