@@ -12,13 +12,7 @@
             [hiccup.page :as page]))
 
 
-(def google-analytics [:script "if(['localhost', '127.0.0.1'].indexOf(window.location.hostname) < 0){
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-11532471-6', 'auto');
-  ga('send', 'pageview');}"])
+(def google-analytics [:script (slurp (io/resource "analytics-code.js"))])
 
 
 (defn base [title css body js-code]
@@ -44,7 +38,7 @@
 
 
 (defn index []
-  (base "Nossal, Rodrigo Nossal" "css"
+  (base "Nossal, Rodrigo Nossal" ""
     [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
       [:p.about-line "Full-Stack Developer"]
@@ -77,6 +71,11 @@
         [:p.catch "A terminal configuration system"]]
        [:section [:div.terminal "eval " [:span.string "\"$(curl -sL noss.al/dot)\""]]]] "")))
 
+(defn log [req]
+  (base "Nossal's logs" ""
+    [[:header
+      [:h1 "logs"]]] ""))
+
 
 (defroutes app
   (GET "/" []
@@ -87,6 +86,9 @@
 
   (GET "/dot" request
     (dot request))
+
+  (GET "/log" request
+    (log request))
 
   (route/resources "/")
 
