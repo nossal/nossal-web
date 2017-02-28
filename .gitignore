@@ -30,6 +30,10 @@ Desktop.ini
 # Java/Scala/Clojure
 build/
 target/
+.settings/
+pom.xml
+.classpath
+.project
 *.class
 *.jar
 *.war
