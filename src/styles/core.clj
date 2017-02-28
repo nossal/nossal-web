@@ -30,7 +30,11 @@
                  :color "#4eb355"
                  :font-family "monospace"
                  :background-color "#282b35"}
-      [:.string {:color "#d28e5d"}]]]
+      [:.string {:color "#d28e5d"}]
+      [:.normal {:color "#c7c7c7"}]]]
+  [:section.weeks
+    {:background "white"
+     :color "#555"}]
   [:h1
     {:font-family "sans-serif"
      :font-size (em 3.5)

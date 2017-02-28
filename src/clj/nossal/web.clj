@@ -69,13 +69,47 @@
       (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
     (base "dotfiles" ""
       [[:header [:h1 "dotfiles"]
-        [:p.catch "A terminal configuration system"]]
-       [:section [:div.terminal "eval " [:span.string "\"$(curl -sL noss.al/dot)\""]]]] "")))
+        [:p.catch "ZSH terminal presets"]]
+       [:section [:div.terminal "zsh " [:span.normal "<(curl -sL noss.al/dot)"]]]] "")))
+
 
 (defn log [req]
-  (base "Nossal's logs" ""
+  (base "Weekly" ""
     [[:header
-      [:h1 "logs"]]] ""))
+       [:h1 "Weekly"]]
+     [:section.weeks
+       [:h2 "Week 7, 2017"]
+       [:ul
+        [:li
+         [:h3 "JavaScript Without Loops"]
+         [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+         [:div "JAMES M SNELL"]
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
+        [:li
+         [:h3 "JavaScript Without Loops"]
+         [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+         [:div "JAMES M SNELL"]
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
+        [:li
+         [:h3 "JavaScript Without Loops"]
+         [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+         [:div "JAMES M SNELL"]
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
+        [:li
+         [:h3 "JavaScript Without Loops"]
+         [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+         [:div "JAMES M SNELL"]
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
+        [:li
+         [:h3 "JavaScript Without Loops"]
+         [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+         [:div "JAMES M SNELL"]
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
+        [:li
+         [:h3 "JavaScript Without Loops"]
+         [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+         [:div "JAMES M SNELL"]
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] ""))
 
 
 (defroutes app
@@ -88,7 +122,7 @@
   (GET "/dot" request
     (dot request))
 
-  (GET "/log" request
+  (GET "/weekly" request
     (log request))
 
   (route/resources "/")
