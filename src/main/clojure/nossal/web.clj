@@ -1,4 +1,4 @@
-(ns clj.nossal.web
+(ns nossal.web
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
@@ -111,26 +111,3 @@
          [:div "JAMES M SNELL"]
          [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] ""))
 
-
-(defroutes app
-  (GET "/" []
-    (index))
-
-  (GET "/p" request
-    (str request))
-
-  (GET "/dot" request
-    (dot request))
-
-  (GET "/weekly" request
-    (log request))
-
-  (route/resources "/")
-
-  (ANY "*" []
-    (route/not-found (slurp (io/resource "404.html")))))
-
-
-(defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty (site #'app) {:port port :join? false})))

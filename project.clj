@@ -15,40 +15,33 @@
                  [clj-http "3.1.0"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
-            [lein-cljsbuild "1.1.3"]
+            [lein-cljsbuild "1.1.4"]
             [lein-figwheel "0.5.9"]
             [lein-garden "0.3.0"]
             [lein-ring "0.11.0"]]
 
   :min-lein-version "2.7.0"
 
-  :ring {:handler clj.nossal.web/app :auto-refresh? true}
+  :ring {:handler clj.nossal.app/app :auto-refresh? true}
   :hooks [environ.leiningen.hooks]
   :uberjar-name "nossal.jar"
   :profiles {:production {:env {:production false}}}
-  :prep-tasks [["garden" "once"]]
-  :figwheel {:css-dirs [ "resources/public/css"]}
+  ; :prep-tasks [["garden" "once"]]
 
-  :cljsbuild {:builds [{:id "nossal"}
-                       :source-paths ["src/"]
-                       :figwheel {:on-jsload "clj.nossal.web/fig-reload"}
-                       :compiler {:main "clj.nossal.app"
-                                  :output-to "resources/public/js/app.js"
-                                  :output-dir "resources/public/js/out"
-                                  :optimizations :none
-                                  :source-map true
-                                  :source-map-timestamp true
-                                  :asset-path "js/out"}]}
+  :figwheel {:css-dirs ["resources/public/css"]}
 
-  :garden {:builds [{;; Optional name of the build:
-                     :id "screen1"
-                     ;; Source paths where the stylesheet source code is
-                     :source-paths ["src/"]
-                     ;; The var containing your stylesheet:
-                     :stylesheet styles.core/screen
-                     ;; Compiler flags passed to `garden.core/css`:
-                     :compiler {;; Where to save the file:
-                                :output-to "resources/public/css/screen.css"
-                                :vendors ["moz" "webkit"]
-                                ;; Compress the output?
-                                :pretty-print? false}}]})
+  :source-paths ["src/main/clojure"]
+
+  :cljsbuild {:builds {:dev {:source-paths ["src/main/clojurescript"]
+                             :figwheel true
+                             :compiler {:output-to "resources/public/js/app.js"
+                                        :output-dir "resources/public/js/out"
+                                        :optimizations :none
+                                        :source-map true
+                                        :source-map-timestamp true}}}}
+
+  :garden {:builds {:dev {:source-paths ["src/styles"]
+                          :stylesheet styles.core/screen
+                          :compiler {:output-to "resources/public/css/screen.css"
+                                     :vendors ["moz" "webkit"]
+                                     :pretty-print? false}}}})
