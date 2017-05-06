@@ -15,18 +15,18 @@
                  [clj-http "3.1.0"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
-            [lein-cljsbuild "1.1.4"]
+            [lein-cljsbuild "1.1.4" :exclusions [org.clojure/clojure]]
             [lein-figwheel "0.5.9"]
             [lein-garden "0.3.0"]
             [lein-ring "0.11.0"]]
 
   :min-lein-version "2.7.0"
 
-  :ring {:handler clj.nossal.app/app :auto-refresh? true}
+  :ring {:handler nossal.app/app :auto-refresh? true}
   :hooks [environ.leiningen.hooks]
   :uberjar-name "nossal.jar"
-  :profiles {:production {:env {:production false}}}
-  ; :prep-tasks [["garden" "once"]]
+  ; :profiles {:production {:env {:production false}}}
+  :prep-tasks [["garden" "once"]]
 
   :figwheel {:css-dirs ["resources/public/css"]}
 
@@ -40,8 +40,8 @@
                                         :source-map true
                                         :source-map-timestamp true}}}}
 
-  :garden {:builds {:dev {:source-paths ["src/styles"]
-                          :stylesheet styles.core/screen
-                          :compiler {:output-to "resources/public/css/screen.css"
-                                     :vendors ["moz" "webkit"]
-                                     :pretty-print? false}}}})
+  :garden {:builds [{:source-paths ["src"]
+                     :stylesheet styles.core/screen
+                     :compiler {:output-to "resources/public/css/screen.css"
+                                :vendors ["moz" "webkit"]
+                                :pretty-print? false}}]})

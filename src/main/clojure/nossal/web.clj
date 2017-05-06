@@ -1,13 +1,8 @@
 (ns nossal.web
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [compojure.handler :refer [site]]
-            [compojure.route :as route]
-            [clojure.java.io :as io]
+  (:require [clojure.java.io :as io]
             [clojure.string :as s]
-            [ring.adapter.jetty :as jetty]
             [ring.util.response :as res]
             [clj-http.client :as client]
-            [environ.core :refer [env]]
             [hiccup.core :as h]
             [hiccup.page :as page]))
 
@@ -22,7 +17,7 @@
       [:meta {:http-equiv "cleartype" :content "on"}]
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}]
-      [:meta {:name "keywords" :content "java, clojure, clojurescript, javascript, python, programming, development, html5, html, css, ajax, device orientation, instant, fast, dinherin, dinher.in"}]
+      [:meta {:name "keywords" :content "React, ML, Java, Clojure, ClojureScript, JavaScript, Python, ES6, Scala, programming, functional, HTML, CSS"}]
       [:meta {:name "description" :content "Rodrigo Nossal's personal website"}]
       [:meta {:name "theme-color" :content "#747f90"}]
       [:meta {:name "google-site-verification" :content "ljuFr_e6LgEvNLMWoyGBPxvcmCQQQkwY28VpiKz3Eb8"}]
@@ -51,7 +46,7 @@
               [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
       [:div.divisor]
       [:section#facebook]
-      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure on weekends."]]]]
+      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]]
     "console.log('Oi!')"))
 
 

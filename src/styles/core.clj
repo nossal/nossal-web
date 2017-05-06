@@ -45,14 +45,14 @@
      :text-align "center"
      :text-shadow "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)"}
     [:span
-      {:border "0.1em solid white"
+      {:border "0.1em solid #8b969f"
        :padding "0.3em 0.5em 0.2em"
        :display "inline-block"}]]
 
   [:.about-line {:letter-spacing (em 0.05)
                  :font-size (em 1.1)
                  :font-weight 100
-                 :color "#deb149"}]
+                 :color "#05eb36"}]
   [:.end {:color "#bbb"}]
 
   [:footer
@@ -61,18 +61,18 @@
      :text-align "center"
      :letter-spacing (em 0.06)
      :font-size (px 9)
-     :color "#484848"
+     :color "#353535"
      :background-color "rgba(255, 255, 255, 0.12)"
      :line-height (px 20)
      :position "fixed"
      :width (percent 100)
      :bottom (px 0)}
-    [:a {:color "#28459c"
+    [:a {:color "#0506ff"
          :text-decoration "none"
          :margin "0 0.3em"}
       [:&:hover {:text-decoration "underline"}]]
     [:.heart
-      {:background-color "rgba(203, 59, 206, 0.72)"
+      {:background-color "rgba(206, 36, 168, 0.72)"
        :position "relative"
        :width (px 6)
        :height (px 10)
@@ -88,5 +88,5 @@
                   :left 0
                   :bottom 0
                   :content "\"\""
-                  :background-color "rgba(226, 77, 153, 0.72)"
+                  :background-color "rgba(226, 47, 98, 0.72)"
                   :border-radius "0 3px 3px 0"}]]])
