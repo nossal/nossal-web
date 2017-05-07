@@ -30,9 +30,9 @@
 
   :figwheel {:css-dirs ["resources/public/css"]}
 
-  :source-paths ["src/main/clojure"]
+  :source-paths ["src/clojure"]
 
-  :cljsbuild {:builds {:dev {:source-paths ["src/main/clojurescript"]
+  :cljsbuild {:builds {:dev {:source-paths ["src/clojurescript"]
                              :figwheel true
                              :compiler {:output-to "resources/public/js/app.js"
                                         :output-dir "resources/public/js/out"
