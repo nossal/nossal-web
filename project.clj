@@ -26,7 +26,7 @@
   :hooks [environ.leiningen.hooks]
   :uberjar-name "nossal.jar"
   ; :profiles {:production {:env {:production false}}}
-  ; :prep-tasks [["garden" "once"]]
+  :prep-tasks [["garden" "once"]]
 
   :figwheel {:css-dirs ["resources/public/css"]}
 
