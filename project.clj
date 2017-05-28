@@ -7,7 +7,8 @@
                  [compojure "1.5.2"]
                  [hiccup "1.0.5"]
                  [environ "1.0.3"]
-                 [ring/ring-jetty-adapter "1.5.0"]
+                 [ring/ring-jetty-adapter "1.6.1" :exlcusions [org.eclipse.jetty/jetty-server]]
+                 [org.eclipse.jetty/jetty-server "9.4.3.v20170317"]
 
                  [org.clojure/clojurescript "1.9.456"]
                  [reagent "0.6.0"]

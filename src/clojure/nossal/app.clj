@@ -5,7 +5,8 @@
             [ring.adapter.jetty :as jetty]
             [environ.core :refer [env]]
             [clojure.java.io :as io]
-            [compojure.handler :refer [site]]))
+            [compojure.handler :refer [site]])
+  (:import [org.eclipse.jetty.server.handler.gzip GzipHandler]))
 
 
 (defroutes app
@@ -27,6 +28,19 @@
     (route/not-found (slurp (io/resource "404.html")))))
 
 
+(defn- add-gzip-handler [server]
+  (.setHandler server
+               (doto (GzipHandler.)
+                 (.setIncludedMimeTypes (into-array ["text/css"
+                                                     "text/plain"
+                                                     "text/javascript"
+                                                     "application/javascript"
+                                                     "application/json"
+                                                     "image/svg+xml"]))
+                 (.setMinGzipSize 1024)
+                 (.setHandler (.getHandler server)))))
+
+
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty (site #'app) {:port port :join? false})))
+    (jetty/run-jetty (site #'app) {:port port :join? false :configurator add-gzip-handler})))
