@@ -1,36 +1,41 @@
-(ns nossal.web
-  (:require [clojure.java.io :as io]
-            [clojure.string :as s]
-            [ring.util.response :as res]
-            [clj-http.client :as client]
-            [hiccup.core :as h]
-            [hiccup.page :as page]))
+  (ns nossal.web
+   (:require [clojure.java.io :as io]
+             [clojure.string :as s]
+             [ring.util.response :as res]
+             [clj-http.client :as client]
+             [hiccup.core :as h]
+             [hiccup.page :as page]))
 
 
-(def google-analytics [:script (slurp (io/resource "analytics-code.js"))])
+(def google-analytics [:script {:async true} (slurp (io/resource "analytics-code.js"))])
 
 
 (defn base [title css body js-code]
-  (page/html5 {:lang "pt-br"}
+  (page/html5 {:⚡ true :lang "en"}
     [:head
       [:meta {:charset "UTF-8"}]
-      [:meta {:http-equiv "cleartype" :content "on"}]
-      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}]
+      ; [:meta {:http-equiv "cleartype" :content "on"}]
+      ; [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0 maximum-scale=1.0, user-scalable=0"}]
       [:meta {:name "keywords" :content "React, ML, Java, Clojure, ClojureScript, JavaScript, Python, ES6, Scala, programming, functional, HTML, CSS"}]
       [:meta {:name "description" :content "Rodrigo Nossal's personal website"}]
       [:meta {:name "theme-color" :content "#747f90"}]
       [:meta {:name "google-site-verification" :content "ljuFr_e6LgEvNLMWoyGBPxvcmCQQQkwY28VpiKz3Eb8"}]
+      [:link {:rel "canonical" :href "http://noss.al"}]
+      [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
       [:title title]
-      (page/include-css "/css/screen.css")
-      [:style css]]
+      [:style {:amp-boilerplate true} " body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}} "]
+      [:noscript
+        [:style {:amp-boilerplate true} " body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]
+      [:style css]
+      (page/include-css "/css/screen.css")]
     [:body (seq body)
      [:footer
        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
          [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
          [:span.heart " "] " at "
-         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]]
-     [:script {:type "text/javascript"} js-code] google-analytics]))
+         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]
+      google-analytics]]))
 
 
 (defn index []
@@ -105,4 +110,3 @@
          [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
          [:div "JAMES M SNELL"]
          [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] ""))
-

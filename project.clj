@@ -22,7 +22,7 @@
 
   :min-lein-version "2.7.0"
 
-  :ring {:handler nossal.app/app :auto-refresh? true}
+  :ring {:handler nossal.app/app :auto-refresh? false}
   :hooks [environ.leiningen.hooks]
   :uberjar-name "nossal.jar"
   ; :profiles {:production {:env {:production false}}}
