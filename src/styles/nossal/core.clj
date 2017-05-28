@@ -49,11 +49,13 @@
        :padding "0.3em 0.5em 0.2em"
        :display "inline-block"}]]
 
-  [:.about-line {:letter-spacing (em 0.05)
-                 :font-size (em 1.1)
+  [:.about-line {:font-size (em 1.1)
                  :font-weight 100
-                 :color "#05eb36"}]
-  [:.end {:color "#bbb"}]
+                 :color "#646d7c"
+                 :display "inline-block"
+                 :padding "0.5em 1em"
+                 :background "#8b969f"}]
+  [:.end {:color "#dcdcdc"}]
 
   [:footer
     {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"
@@ -67,7 +69,7 @@
      :position "fixed"
      :width (percent 100)
      :bottom (px 0)}
-    [:a {:color "#0506ff"
+    [:a {:color "#000"
          :text-decoration "none"
          :margin "0 0.3em"}
       [:&:hover {:text-decoration "underline"}]]

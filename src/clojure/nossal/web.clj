@@ -3,14 +3,12 @@
              [clojure.string :as s]
              [ring.util.response :as res]
              [clj-http.client :as client]
+             [environ.core :refer [env]]
              [hiccup.core :as h]
              [hiccup.page :as page]))
 
 
-(def google-analytics [:script {:async true} (slurp (io/resource "analytics-code.js"))])
-
-
-(defn base [title css body js-code]
+(defn base [title css body]
   (page/html5 {:⚡ true :lang "en"}
     [:head
       [:meta {:charset "UTF-8"}]
@@ -20,22 +18,24 @@
       [:meta {:name "keywords" :content "React, ML, Java, Clojure, ClojureScript, JavaScript, Python, ES6, Scala, programming, functional, HTML, CSS"}]
       [:meta {:name "description" :content "Rodrigo Nossal's personal website"}]
       [:meta {:name "theme-color" :content "#747f90"}]
-      [:meta {:name "google-site-verification" :content "ljuFr_e6LgEvNLMWoyGBPxvcmCQQQkwY28VpiKz3Eb8"}]
+      [:meta {:name "google-site-verification" :content (env :google-site-verification)}]
       [:link {:rel "canonical" :href "http://noss.al"}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
+      [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
       [:title title]
-      [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css"))]
-      [:style {:amp-boilerplate true} " body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}} "]
+      [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
+      [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
       [:noscript
-        [:style {:amp-boilerplate true} " body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]
-      [:style css]]
+        [:style {:amp-boilerplate true} " body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
     [:body (seq body)
+      [:amp-analytics {:type "googleanalytics"}
+        [:script {:type "application/json"} (format "{\"vars\": {\"account\": \"%s\"},\"triggers\": {\"trackPageview\": {\"on\": \"visible\",\"request\": \"pageview\"}}}"
+                                              (env :google-analytics))]]
      [:footer
-       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank"} "entirely"] " in "
-         [:a {:href "http://clojure.org" :target "_blank"} "Clojure"] " and "
+       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
+         [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
          [:span.heart " "] " at "
-         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank"} "Grav."]]
-      google-analytics]]))
+         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Grav."]]]]))
 
 
 (defn index []
@@ -44,15 +44,14 @@
       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
       [:p.about-line "Full-Stack Developer"]
       [:section#me [:div#tweetwidget]
-        [:a.start {:href "#"}
+        [:a.start {:href "#" :title "start"}
           [:svg {:width "60" :height "30" :xmlns "http://www.w3.org/2000/svg"}
             [:g#svg_1
               [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
               [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
       [:div.divisor]
       [:section#facebook]
-      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]]
-    "console.log('Oi!')"))
+      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]]))
 
 
 (defn dot [req]
@@ -60,7 +59,7 @@
     (do
       (client/post "http://www.google-analytics.com/collect"
         {:form-params {:v "1"}
-                      :tid "UA-11532471-6"
+                      :tid (env :google-analytics)
                       :cid "555"
                       :t "pageview"
                       :dh "noss.al"
@@ -69,8 +68,8 @@
       (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
     (base "dotfiles" ""
       [[:header [:h1 "dotfiles"]
-        [:p.catch "ZSH terminal presets"]]]
-      [:section [:div.terminal "zsh " [:span.normal "<(curl -sL noss.al/dot)"]]] "")))
+        [:p.catch "ZSH terminal presets"]]
+       [:section [:div.terminal "zsh " [:span.normal "<(curl -sL noss.al/dot)"]]]])))
 
 
 (defn log [req]
@@ -109,4 +108,4 @@
          [:h3 "JavaScript Without Loops"]
          [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
          [:div "JAMES M SNELL"]
-         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] ""))
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]]))
