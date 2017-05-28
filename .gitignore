@@ -4,6 +4,7 @@
 # Specific
 resources/public/css
 resources/public/js
+/.vscode
 
 # Generic
 *.log
@@ -44,3 +45,4 @@ pom.xml
 /.lein-deps-sum
 /.lein-failures
 /.nrepl-port
+/.nrepl-history

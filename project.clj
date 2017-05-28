@@ -26,7 +26,7 @@
   :hooks [environ.leiningen.hooks]
   :uberjar-name "nossal.jar"
   ; :profiles {:production {:env {:production false}}}
-  :prep-tasks [["garden" "once"]]
+  ; :prep-tasks [["garden" "once"]]
 
   :figwheel {:css-dirs ["resources/public/css"]}
 
@@ -38,10 +38,14 @@
                                         :output-dir "resources/public/js/out"
                                         :optimizations :none
                                         :source-map true
-                                        :source-map-timestamp true}}}}
+                                        :incremental true
+                                        :source-map-timestamp true}}
+                       :main {:source-paths ["src/clojurescript"]
+                              :compiler {:output-to "resources/public/js/app.js"
+                                         :optimizations :advanced}}}}
 
-  :garden {:builds [{:source-paths ["src"]
-                     :stylesheet styles.core/screen
+  :garden {:builds [{:source-paths ["src/styles"]
+                     :stylesheet nossal.core/screen
                      :compiler {:output-to "resources/public/css/screen.css"
                                 :vendors ["moz" "webkit"]
                                 :pretty-print? false}}]})

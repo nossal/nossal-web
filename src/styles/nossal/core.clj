@@ -1,9 +1,9 @@
-(ns styles.core
+(ns nossal.core
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
             [garden.stylesheet :refer [at-import]]
-            [styles.reset :refer [reset]]))
+            [nossal.reset :refer [reset]]))
 
 (defstyles screen
   [reset]

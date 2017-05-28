@@ -1,4 +1,4 @@
-(ns styles.reset
+(ns nossal.reset
   (:require [garden.def :refer [defstyles]]))
 
 
