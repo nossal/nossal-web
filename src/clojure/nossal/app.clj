@@ -9,8 +9,8 @@
 
 
 (defroutes app
-  (GET "/" []
-    (index))
+  (GET "/" request
+    (index request))
 
   (GET "/p" request
     (str request))

@@ -5,10 +5,11 @@
              [clj-http.client :as client]
              [environ.core :refer [env]]
              [hiccup.core :as h]
-             [hiccup.page :as page]))
+             [hiccup.page :as page]
+             [nossal.core :as core]))
 
 
-(defn base [title css body]
+(defn base [title css body req]
   (page/html5 {:⚡ true :lang "en"}
     [:head
       [:meta {:charset "UTF-8"}]
@@ -19,7 +20,7 @@
       [:meta {:name "description" :content "Rodrigo Nossal's personal website"}]
       [:meta {:name "theme-color" :content "#747f90"}]
       [:meta {:name "google-site-verification" :content (env :google-site-verification)}]
-      [:link {:rel "canonical" :href "http://noss.al"}]
+      [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
       [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
       [:title title]
@@ -31,14 +32,14 @@
       [:amp-analytics {:type "googleanalytics"}
         [:script {:type "application/json"} (format "{\"vars\": {\"account\": \"%s\"},\"triggers\": {\"trackPageview\": {\"on\": \"visible\",\"request\": \"pageview\"}}}"
                                               (env :google-analytics))]]
-     [:footer
-       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
-         [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
-         [:span.heart " "] " at "
-         [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Grav."]]]]))
+      [:footer
+        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
+          [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
+          [:span.heart " "] " at "
+          [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Grav."]]]]))
 
 
-(defn index []
+(defn index [req]
   (base "Nossal, Rodrigo Nossal" ""
     [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
@@ -51,7 +52,7 @@
               [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
       [:div.divisor]
       [:section#facebook]
-      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]]))
+      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]] req))
 
 
 (defn dot [req]
@@ -69,7 +70,7 @@
     (base "dotfiles" ""
       [[:header [:h1 "dotfiles"]
         [:p.catch "ZSH terminal presets"]]
-       [:section [:div.terminal "zsh " [:span.normal "<(curl -sL noss.al/dot)"]]]])))
+       [:section [:div.terminal "zsh " [:span.normal "<(curl -sL noss.al/dot)"]]]] req)))
 
 
 (defn log [req]
@@ -108,4 +109,4 @@
          [:h3 "JavaScript Without Loops"]
          [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
          [:div "JAMES M SNELL"]
-         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]]))
+         [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] req))

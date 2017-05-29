@@ -2,7 +2,7 @@
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
-            [garden.stylesheet :refer [at-import]]
+            [garden.stylesheet :refer [at-import at-media]]
             [nossal.reset :refer [reset]]))
 
 (defstyles screen
@@ -15,13 +15,14 @@
     [:&:after {:background-image "linear-gradient(135deg, #d38312, #002f4b)"}]]
 
   [:header
-    {:padding-top "10em"
+    {:padding-top (em 10)
      :text-align "center"
     ;  :background-image "url('/images/backdrop.jpg')"
      :background-size "cover"
      :background-repeat "no-repeat"}
     [:p.catch {:color "#efc664"
                :letter-spacing "0.08em"}]]
+
   [:section
     {:text-align "center"}
     [:.terminal {:display "inline-block"
@@ -51,7 +52,7 @@
 
   [:.about-line {:font-size (em 1.1)
                  :font-weight 100
-                 :color "#646d7c"
+                 :color "#535d6d"
                  :display "inline-block"
                  :padding "0.5em 1em"
                  :background "#8b969f"}]
@@ -91,4 +92,8 @@
                   :bottom 0
                   :content "\"\""
                   :background-color "rgba(226, 47, 98, 0.72)"
-                  :border-radius "0 3px 3px 0"}]]])
+                  :border-radius "0 3px 3px 0"}]]]
+
+  (at-media {:max-width (px 736)}
+    [:header {:padding-top (em 3)}]
+    [:h1 {:font-size (em 3) :margin (em 0.5)}]))
