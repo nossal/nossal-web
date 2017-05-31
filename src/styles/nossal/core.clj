@@ -7,6 +7,7 @@
 
 (defstyles screen
   [reset]
+  [:html {:background-color "#747f90"}]
   [:body
     {:font-family "sans-serif"
      :font-size (px 16)
@@ -33,9 +34,11 @@
                  :background-color "#282b35"}
       [:.string {:color "#d28e5d"}]
       [:.normal {:color "#c7c7c7"}]]]
+
   [:section.weeks
     {:background "white"
      :color "#555"}]
+
   [:h1
     {:font-family "sans-serif"
      :font-size (em 3.5)
@@ -51,7 +54,7 @@
        :display "inline-block"}]]
 
   [:.about-line {:font-size (em 1.1)
-                 :font-weight 100
+                 :font-weight 300
                  :color "#535d6d"
                  :display "inline-block"
                  :padding "0.5em 1em"
@@ -91,7 +94,7 @@
                   :left 0
                   :bottom 0
                   :content "\"\""
-                  :background-color "rgba(226, 47, 98, 0.72)"
+                  :background-color "rgba(226, 47, 98, 0.5)"
                   :border-radius "0 3px 3px 0"}]]]
 
   (at-media {:max-width (px 736)}
