@@ -23,7 +23,8 @@
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href "/manifest.json"}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-      [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
+      (if-not (contains? #{"localhost" "127.0.0.1"} (:server-name req))
+        [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
       [:title title]
       [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
       [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
