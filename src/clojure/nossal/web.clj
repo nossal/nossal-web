@@ -1,12 +1,13 @@
-  (ns nossal.web
-   (:require [clojure.java.io :as io]
-             [clojure.string :as s]
-             [ring.util.response :as res]
-             [clj-http.client :as client]
-             [environ.core :refer [env]]
-             [hiccup.core :as h]
-             [hiccup.page :as page]
-             [nossal.core :as core]))
+(ns nossal.web
+  (:require [clojure.java.io :as io]
+            [clojure.string :as s]
+            [ring.util.response :as res]
+            [clj-http.client :as client]
+            [environ.core :refer [env]]
+            [hiccup.core :as h]
+            [hiccup.page :as page]
+            [nossal.data :as dat]
+            [nossal.core :as core]))
 
 
 (defn base [title css body req]
@@ -30,10 +31,10 @@
       [:noscript
         [:style {:amp-boilerplate true} " body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
     [:body [:div.container (seq body)]
-      [:script {:type "application/ld+json"} (slurp(io/resource "structured-data-website.json"))]
+      [:script {:type "application/ld+json"} dat/data-website]
       [:amp-analytics {:type "googleanalytics"}
-        [:script {:type "application/json"} (format "{\"vars\": {\"account\": \"%s\"},\"triggers\": {\"trackPageview\": {\"on\": \"visible\",\"request\": \"pageview\"}}}"
-                                              (env :google-analytics))]]
+        [:script {:type "application/json"} dat/data-analytics]]
+
       [:footer
         [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
           [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
@@ -59,7 +60,7 @@
      [:section#facebook]
 
      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]
-     [:script {:type "application/ld+json"} (slurp(io/resource "structured-data-person.json"))]]
+     [:script {:type "application/ld+json"} dat/data-person]]
     req))
 
 
