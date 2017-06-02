@@ -15,8 +15,8 @@
       [:meta {:charset "UTF-8"}]
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-      [:meta {:name "keywords" :content "React, ML, Java, Clojure, ClojureScript, JavaScript, Python, ES6, Scala, programming, functional, HTML, CSS"}]
-      [:meta {:name "description" :content "Rodrigo Nossal's personal website"}]
+      [:meta {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}]
+      [:meta {:name "description" :content "Nossal is a software development lover, and this is his personal website."}]
       [:meta {:name "theme-color" :content "#747f90"}]
       [:meta {:name "msapplication-TileColor" :content "#747f90"}]
       [:meta {:name "google-site-verification" :content (env :google-site-verification)}]
@@ -43,9 +43,9 @@
 
 (defn index [req]
   (base "Nossal, Rodrigo Nossal" ""
-    [[:header {:itemscope "" :itemtype "http://data-vocabulary.org/Person"}
-       [:span.name [:h1 {:itemprop "name"} [:span "Rodrigo Nossal"]]]
-       [:p.about-line "Full-Stack Developer"]]
+    [[:header
+       [:span.name [:h1 [:span "Rodrigo Nossal"]]]
+       [:p.about-line "Full-Stack Web Developer"]]
 
      [:section#me [:div#tweetwidget]
        [:a.start {:href "#" :title "start"}
