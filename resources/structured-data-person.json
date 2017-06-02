@@ -1,0 +1,18 @@
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "Rodrigo Nossal",
+  "url": "http://noss.al",
+  "sameAs": [
+    "http://facebook.com/nossal",
+    "http://instagram.com/nossal",
+    "http://twitter.com/nossal",
+    "http://github.com/nossal",
+    "http://soundcloud.com/nossal",
+    "http://linkedin.com/in/nossal",
+    "http://flickr.com/photos/nossal",
+    "http://last.fm/user/nossal",
+    "http://slideshare.net/nossal",
+    "http://about.me/nossal"
+  ]
+}

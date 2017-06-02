@@ -30,6 +30,7 @@
       [:noscript
         [:style {:amp-boilerplate true} " body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
     [:body [:div.container (seq body)]
+      [:script {:type "application/ld+json"} (slurp(io/resource "structured-data-website.json"))]
       [:amp-analytics {:type "googleanalytics"}
         [:script {:type "application/json"} (format "{\"vars\": {\"account\": \"%s\"},\"triggers\": {\"trackPageview\": {\"on\": \"visible\",\"request\": \"pageview\"}}}"
                                               (env :google-analytics))]]
@@ -57,7 +58,10 @@
 
      [:section#facebook]
 
-     [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]] req))
+     [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]
+     [:script {:type "application/ld+json"} (slurp(io/resource "structured-data-person.json"))]]
+    req))
+
 
 
 (defn dot [req]
