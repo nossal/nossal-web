@@ -12,7 +12,8 @@
                  [org.clojure/clojurescript "1.9.456"]
                  [reagent "0.6.0"]
                  [garden "1.3.2"]
-                 [clj-http "3.1.0"]]
+                 [clj-http "3.1.0"]
+                 [org.clojure/data.json "0.2.6"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-cljsbuild "1.1.4" :exclusions [org.clojure/clojure]]

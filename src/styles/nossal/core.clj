@@ -5,9 +5,11 @@
             [garden.stylesheet :refer [at-import at-media]]
             [nossal.reset :refer [reset]]))
 
+(def bgcolor "#747f90")
+
 (defstyles screen
   [reset]
-  [:html {:background-color "#747f90"}]
+  [:html {:background-color bgcolor}]
   [:body
     {:font-family "sans-serif"
      :font-size (px 16)
