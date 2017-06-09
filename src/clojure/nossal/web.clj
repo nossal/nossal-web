@@ -21,6 +21,8 @@
       [:meta {:name "theme-color" :content "#747f90"}]
       [:meta {:name "msapplication-TileColor" :content "#747f90"}]
       [:meta {:name "google-site-verification" :content (env :google-site-verification)}]
+      [:link {:rel "shortcut icon" :type "image/png" :href "/launcher-icon-2x.png" :sizes "96x96"}]
+      [:link {:rel "shortcut icon apple-touch-icon image_src" :type "image/png" :href "/launcher-icon-4x.png" :sizes "192x192"}]
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href "/manifest.json"}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
@@ -45,7 +47,8 @@
 
 (defn index [req]
   (base "Nossal, Rodrigo Nossal" ""
-    [[:header
+    [[:nav.nav]
+     [:header
        [:span.name [:h1 [:span "Rodrigo Nossal"]]]
        [:p.about-line "Full-Stack Web Developer"]]
 

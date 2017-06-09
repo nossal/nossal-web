@@ -5,17 +5,26 @@
             [garden.stylesheet :refer [at-import at-media]]
             [nossal.reset :refer [reset]]))
 
-(def bgcolor "#747f90")
+(def bgcolor "linear-gradient(45deg,#747f90,#485569)")
 
 (defstyles screen
   [reset]
-  [:html {:background-color bgcolor}]
+  [:html {:background bgcolor :height "100%"}]
   [:body
     {:font-family "sans-serif"
      :font-size (px 16)
-     :background-color "#747f90"
-     :color "#FFF"}
-    [:&:after {:background-image "linear-gradient(135deg, #d38312, #002f4b)"}]]
+     :background bgcolor
+     :color "#FFF"
+     :height "100%"}]
+
+
+  [:nav
+    {:background "#fff"
+     :width (em 2.5)
+     :height (px 1000)
+     :display "block"
+     :position "absolute"
+     :box-shadow "0 1rem 5rem rgba(0,0,0,0.3)"}]
 
   [:header
     {:padding-top (em 10)
