@@ -70,7 +70,7 @@
      :letter-spacing (em 0.06)
      :font-size (px 9)
      :color "#353535"
-     :background-color "rgba(255, 255, 255, 0.12)"
+     :background-color "#8b969f"
      :line-height (px 20)
      :position "fixed"
      :width (percent 100)
@@ -101,4 +101,6 @@
 
   (at-media {:max-width (px 736)}
     [:header {:padding-top (em 3)}]
-    [:h1 {:font-size (em 3) :margin (em 0.5)}]))
+    [:h1 {:font-size (em 3) :margin (em 0.5)}])
+  (at-media {:max-height (px 400)}
+    [:header {:padding-top (em 1)}]))

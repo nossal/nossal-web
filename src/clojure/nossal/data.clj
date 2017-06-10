@@ -9,24 +9,26 @@
                                    :alternateName "Rodrigo Nossal"
                                    :url "http://noss.al"}))
 
-(def public-profiles #{"http://facebook.com/nossal"
-                       "http://instagram.com/nossal"
-                       "http://twitter.com/nossal"
-                       "http://github.com/nossal"
-                       "http://soundcloud.com/nossal"
-                       "http://linkedin.com/in/nossal"
-                       "http://flickr.com/photos/nossal"
-                       "http://last.fm/user/nossal"
-                       "http://slideshare.net/nossal"
-                       "http://about.me/nossal"
-                       "http://medium.com/@nossal"
-                       "http://ello.co/nossal"})
+(def public-profiles {"Facebook"   "http://facebook.com/nossal"
+                      "Twitter"    "http://twitter.com/nossal"
+                      "Instagram"  "http://instagram.com/nossal"
+                      "GitHub"     "http://github.com/nossal"
+                      "linkedin"   "http://linkedin.com/in/nossal"
+                      "Spotify"    "https://open.spotify.com/user/nossal"
+                      "SoundCloud" "http://soundcloud.com/nossal"
+                      "Last.fm"    "http://last.fm/user/nossal"
+                      "Medium"     "http://medium.com/@nossal"
+                      "Flickr"     "http://flickr.com/photos/nossal"
+                      "SlideShare" "http://slideshare.net/nossal"
+                      "Google+"    "http://google.com/+RodrigoNossal"
+                      "Ello"       "http://ello.co/nossal"
+                      "About.me"   "http://about.me/nossal"})
 
 (def data-person (json/write-str {"@context" "http://schema.org"
                                   "@type" "Person"
                                   :name "Rodrigo Nossal"
                                   :url "http://noss.al"
-                                  :sameAs public-profiles}))
+                                  :sameAs (vals public-profiles)}))
 
 (def data-analytics (json/write-str {:vars {:account (env :google-analytics)}
                                      :triggers {:trackPageview {:on "visible" :request "pageview"}}}))
