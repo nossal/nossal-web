@@ -1,23 +1,23 @@
 {
-  "name": "nossal, Rodrigo Nossal",
-  "short_name": "NOSSAL",
+  "name": "Nossal, Rodrigo Nossal",
+  "short_name": "nossal",
   "description": "Rodrigo Nossal's personal website",
   "display": "browser",
   "theme_color": "#747f90",
   "background_color": "#747f90",
   "icons": [
     {
-      "src": "launcher-icon-2x.png",
+      "src": "icon-96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "launcher-icon-3x.png",
+      "src": "icon-144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "launcher-icon-4x.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
