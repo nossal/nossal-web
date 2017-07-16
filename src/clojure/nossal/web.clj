@@ -10,52 +10,62 @@
             [nossal.core :as core]))
 
 
-(defn base [title css body req]
-  (page/html5 {:⚡ true :lang "en"}
-    [:head
-      [:meta {:charset "UTF-8"}]
-      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-      [:meta {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}]
-      [:meta {:name "description" :content "Nossal is a software development lover, and this is his personal website."}]
-      [:meta {:name "theme-color" :content "#747f90"}]
-      [:meta {:name "msapplication-TileColor" :content "#747f90"}]
-      [:meta {:name "google-site-verification" :content (env :google-site-verification)}]
+(defn base
+  ([title css body req]
+   (base title
+         {:keywords ""
+          :desciption ""
+          :meta []
+          :manifest "manifest"
+          :icon "icon"}
+         css body req))
+  ([title options css body req]
+   (page/html5 {:⚡ true :lang "en"}
+     [:head
+       [:meta {:charset "UTF-8"}]
+       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
+       [:meta {:name "keywords" :content (options :keywords)}]
+       [:meta {:name "description" :content (options :desciption)}]
+       (map (fn [o] [:meta o]) (options :meta))
+       (map (fn [s]
+              [:link {:rel "icon" :type "image/png" :href (s/join ["/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
+            [48 96 144 192])
+       [:link {:rel "canonical" :href (core/cannonical-url req)}]
+       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
+       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
+       (if-not (contains? #{"localhost" "127.0.0.1"} (:server-name req))
+         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+       [:title title]
+       [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
+       [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
+       [:noscript
+         [:style {:amp-boilerplate true} " body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
+     [:body [:div.container (seq body)]
+       [:script {:type "application/ld+json"} dat/data-website]
+       [:amp-analytics {:type "googleanalytics"}
+         [:script {:type "application/json"} dat/data-analytics]]
 
-      [:link {:rel "icon" :type "image/png" :href "/icon-32.png" :sizes "32x32"}]
-      [:link {:rel "icon" :type "image/png" :href "/icon-48.png" :sizes "48x48"}]
-      [:link {:rel "icon" :type "image/png" :href "/icon-96.png" :sizes "96x96"}]
-      [:link {:rel "icon" :type "image/png" :href "/icon-144.png" :sizes "144x144"}]
-      [:link {:rel "icon" :type "image/png" :href "/icon-192.png" :sizes "192x192"}]
-
-      [:link {:rel "canonical" :href (core/cannonical-url req)}]
-      [:link {:rel "manifest" :href "/manifest.json"}]
-      [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-      (if-not (contains? #{"localhost" "127.0.0.1"} (:server-name req))
-        [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-      [:title title]
-      [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
-      [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
-      [:noscript
-        [:style {:amp-boilerplate true} " body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
-    [:body [:div.container (seq body)]
-      [:script {:type "application/ld+json"} dat/data-website]
-      [:amp-analytics {:type "googleanalytics"}
-        [:script {:type "application/json"} dat/data-analytics]]
-
-      [:footer
-        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
-          [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
-          [:span.heart " "] " at "
-          [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Grav."]]]]))
+       [:footer
+         [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
+           [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
+           [:span.heart " "] " at "
+           [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Grav."]]]])))
 
 
 (defn index [req]
-  (base "Nossal, Rodrigo Nossal" ""
+  (base "Nossal, Rodrigo Nossal"
+        {:keywords "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"
+         :desciption "Nossal is a software development lover, and this is his personal website."
+         :manifest "manifest"
+         :icon "icon"
+         :meta [{:name "theme-color" :content "#747f90"}
+                {:name "msapplication-TileColor" :content "#747f90"}]}
+        ""
     [[:nav.nav]
      [:header
        [:span.name [:h1 [:span "Rodrigo Nossal"]]]
-       [:p.about-line "Full-Stack Web Developer"]]
+       [:p.about-line "\"Full-Stack\" Web Developer"]]
 
      [:section#me [:div#tweetwidget]
        [:a.start {:href "#" :title "start"}
@@ -72,6 +82,17 @@
      [:script {:type "application/ld+json"} dat/data-person]]
     req))
 
+
+(defn breakout [req]
+  (base "Breakout"
+    {:keywords "game, breakout, arkanoid"
+     :description "That's Breakout!"
+     :manifest "breakout-manifest"
+     :icon "bkt-icon"}
+    ""
+    [[:div.container
+      [:canvas#viewport]]]
+    req))
 
 
 (defn dot [req]
