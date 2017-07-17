@@ -5,26 +5,30 @@
             [garden.stylesheet :refer [at-import at-media]]
             [nossal.reset :refer [reset]]))
 
-(def bgcolor "linear-gradient(45deg,#747f90,#485569)")
+(def bgcolor "linear-gradient(45deg, #747f90, #6a7588)")
 
 (defstyles screen
   [reset]
-  [:html {:background bgcolor :height "100%"}]
   [:body
     {:font-family "sans-serif"
      :font-size (px 16)
      :background bgcolor
      :color "#FFF"
-     :height "100%"}]
+     :display "flex"
+     :flex-direction "column"
+     :min-height "100vh"}]
 
+  [:nav {:background "#fff" :color "#444"}]
 
-  [:nav
-    {:background "#fff"
-     :width (em 2.5)
-     :height (px 1000)
-     :display "block"
-     :position "absolute"
-     :box-shadow "0 1rem 5rem rgba(0,0,0,0.3)"}]
+  [:.main
+   {:flex 1
+    :display "flex"}]
+
+  [:article
+   {:display "flex"
+    :flex-direction "column"
+    :margin (em 0.5)
+    :width "100%"}]
 
   [:header
     {:padding-top (em 10)
@@ -55,7 +59,7 @@
      :font-size (em 3.5)
      :text-transform "uppercase"
      :letter-spacing "0.05em"
-     :font-weight "100"
+     :font-weight "400"
      :margin-bottom "0.3em"
      :text-align "center"
      :text-shadow "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)"}
@@ -64,6 +68,7 @@
        :padding "0.3em 0.5em 0.2em"
        :display "inline-block"}]]
 
+  [:.accent {:color "#7250af"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
                  :color "#535d6d"
@@ -78,13 +83,11 @@
      :text-align "center"
      :letter-spacing (em 0.06)
      :font-size (px 9)
-     :color "#353535"
-     :background-color "#8b969f"
+     :color "#bbb"
+     :background-color "rgba(255, 255, 255, 0.1)"
      :line-height (px 20)
-     :position "fixed"
-     :width (percent 100)
-     :bottom (px 0)}
-    [:a {:color "#000"
+     :width (percent 100)}
+    [:a {:color "#ccc"
          :text-decoration "none"
          :margin "0 0.3em"}
       [:&:hover {:text-decoration "underline"}]]
@@ -111,5 +114,6 @@
   (at-media {:max-width (px 736)}
     [:header {:padding-top (em 3)}]
     [:h1 {:font-size (em 3) :margin (em 0.5)}])
+
   (at-media {:max-height (px 400)}
     [:header {:padding-top (em 1)}]))
