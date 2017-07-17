@@ -5,7 +5,7 @@
             [garden.stylesheet :refer [at-import at-media]]
             [nossal.reset :refer [reset]]))
 
-(def bgcolor "linear-gradient(45deg, #747f90, #6a7588)")
+(def bgcolor "linear-gradient(45deg, #837490, #6a7988)")
 
 (defstyles screen
   [reset]
