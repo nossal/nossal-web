@@ -68,7 +68,7 @@
        :padding "0.3em 0.5em 0.2em"
        :display "inline-block"}]]
 
-  [:.accent {:color "#7250af"}]
+  [:.accent {:color "#3f229c"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
                  :color "#535d6d"
