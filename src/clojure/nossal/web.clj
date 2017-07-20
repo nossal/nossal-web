@@ -116,6 +116,19 @@
        [:section [:div.terminal "zsh " [:span.normal "<(curl -sL noss.al/dot)"]]]] req)))
 
 
+(defn coupom [service req]
+  (base "Coupom"
+    {:keywords "Uber, Cabify, cupom, desconto, free ride, corriga grátis"
+     :desciption ""
+     :manifest "manifest"
+     :icon "icon"
+     :meta [{:name "theme-color" :content "#747f90"}
+            {:name "msapplication-TileColor" :content "#747f90"}]}
+    ""
+    [[:header [:h1 "UBER"]]
+     [:div.coupom [:a {:href "https://get.uber.com/invite/ubernossal"} "ubernossal"]]] req))
+
+
 (defn log [req]
   (base "Weekly" ""
     [[:header

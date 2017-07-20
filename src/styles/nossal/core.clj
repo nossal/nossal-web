@@ -58,7 +58,7 @@
     {:font-size (em 3.5)
      :text-transform "uppercase"
      :letter-spacing "0.05em"
-     :font-weight "100"
+     :font-weight "300"
      :margin-bottom "0.3em"
      :text-align "center"
      :color "#ccc"

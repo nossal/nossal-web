@@ -1,5 +1,5 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout]]
+  (:require [nossal.web :refer [index dot log breakout coupom]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [ring.adapter.jetty :as jetty]
@@ -20,6 +20,9 @@
 
   (GET "/weekly" request
     (log request))
+
+  (GET "/coupom/:service" [service :as request]
+    (coupom service request))
 
   (GET "/breakout" request
     (breakout request))
