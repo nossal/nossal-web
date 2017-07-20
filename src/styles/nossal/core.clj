@@ -10,7 +10,7 @@
 (defstyles screen
   [reset]
   [:body
-    {:font-family "sans-serif"
+    {:font-family "\"Lucida Sans Unicode\", \"Lucida Grande\", Sans-Serif"
      :font-size (px 16)
      :background bgcolor
      :color "#FFF"
@@ -55,25 +55,27 @@
      :color "#555"}]
 
   [:h1
-    {:font-family "sans-serif"
-     :font-size (em 3.5)
+    {:font-size (em 3.5)
      :text-transform "uppercase"
      :letter-spacing "0.05em"
-     :font-weight "400"
+     :font-weight "100"
      :margin-bottom "0.3em"
      :text-align "center"
-     :text-shadow "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)"}
-    [:span
-      {:border "0.1em solid #8b969f"
+     :color "#ccc"
+     :text-shadow "0 1px 5px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.24)"}
+    [:span.dim {:color "#b1b1b1"}]
+    [:span.border
+      {:border "0.1em solid #858c9c"
        :padding "0.3em 0.5em 0.2em"
        :display "inline-block"}]]
 
-  [:.accent {:color "#3f229c"}]
+  [:.accent {:color "rgba(166, 109, 206, 0.84)"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
-                 :color "#535d6d"
+                 :color "rgba(125, 128, 152, 0.84)"
                  :display "inline-block"
                  :padding "0.5em 1em"
+                 :text-shadow "1px 4px 6px #8b969f, 0 0 0 #000, 1px 4px 6px #8b969f"
                  :background "#8b969f"}]
   [:.end {:color "#dcdcdc"}]
 
@@ -81,11 +83,12 @@
     {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"
      :text-transform "uppercase"
      :text-align "center"
-     :letter-spacing (em 0.06)
+     :letter-spacing (em 0.07)
      :font-size (px 9)
      :color "#bbb"
      :background-color "rgba(255, 255, 255, 0.1)"
      :line-height (px 20)
+     :text-shadow "1px 1px 3px rgba(0, 0, 0, 0.2)"
      :width (percent 100)}
     [:a {:color "#ccc"
          :text-decoration "none"

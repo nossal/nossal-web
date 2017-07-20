@@ -67,7 +67,7 @@
     [
      [:article
       [:header
-       [:span.name [:h1 [:span "Rodrigo Nossal"]]]
+       [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
        [:p.about-line [:span.accent "\"Full-Stack\""] " Web Developer"]]
 
       [:section#me [:div#tweetwidget]
@@ -81,11 +81,11 @@
 
       [:section#facebook]
 
-      [:section#end [:div.end "Java, Python, JavaScript on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]
+      [:section#end [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] " on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]
      [:script {:type "application/ld+json"} dat/data-person]]
     req))
 
-
+; [:span.java "Java"] ", " [:span.python "Python"]
 (defn breakout [req]
   (base "Breakout"
     {:keywords "game, breakout, arkanoid"
