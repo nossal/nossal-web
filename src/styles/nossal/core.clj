@@ -10,7 +10,7 @@
 (defstyles screen
   [reset]
   [:body
-    {:font-family "\"Lucida Sans Unicode\", \"Lucida Grande\", Sans-Serif"
+    {:font-family "\"Helvetica Neue\", Sans-Serif"
      :font-size (px 16)
      :background bgcolor
      :color "#FFF"
