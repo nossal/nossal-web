@@ -33,6 +33,8 @@
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
+      [:script {:async true :scr "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}]
+      [:script "(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: \"ca-pub-9207695243671092\",enable_page_level_ads: true});"]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
       (if-not (contains? #{"localhost" "127.0.0.1"} (:server-name req))
         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
