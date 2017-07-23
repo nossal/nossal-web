@@ -7,7 +7,8 @@
             [hiccup.core :as h]
             [hiccup.page :as page]
             [nossal.data :as dat]
-            [nossal.core :as core]))
+            [nossal.core :as core]
+            [nossal.styles :refer [bgcolor]]))
 
 
 (defn base
@@ -26,6 +27,7 @@
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
       [:meta {:name "keywords" :content (options :keywords)}]
+      [:title title]
       [:meta {:name "description" :content (options :desciption)}]
       (map (fn [o] [:meta o]) (options :meta))
       (map (fn [s]
@@ -34,9 +36,8 @@
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-      (if-not (contains? #{"localhost" "127.0.0.1"} (:server-name req))
+      (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-      [:title title]
       [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
       [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
       [:noscript
@@ -117,16 +118,34 @@
 
 
 (defn coupom [service req]
-  (base "Coupom"
-    {:keywords "Uber, Cabify, cupom, desconto, free ride, corriga grátis"
-     :desciption ""
-     :manifest "manifest"
-     :icon "icon"
-     :meta [{:name "theme-color" :content "#747f90"}
-            {:name "msapplication-TileColor" :content "#747f90"}]}
-    ""
-    [[:header [:h1 "UBER"]]
-     [:div.coupom [:a {:href "https://get.uber.com/invite/ubernossal"} "ubernossal"]]] req))
+  (page/html5 {:⚡ true :lang "pt-br"}
+    (let [cdata (dat/coupom-codes service)]
+     (seq [[:head
+            [:meta {:charset "UTF-8"}]
+            [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+            [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
+            [:meta {:name "keywords" :content "(options :keywords)"}]
+            [:meta {:name "description" :content "(options :desciption)"}]
+            [:title "Desconto " (s/upper-case service)]
+            [:link {:rel "canonical" :href (core/cannonical-url req)}]
+            [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
+            (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
+              [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+            [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
+            [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
+            [:noscript
+              [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
+           [:body.coupom
+            [:div.container
+             [:h1 "Cupom de desconto " (s/upper-case service) "."]
+             [:div.intro
+               [:p  (cdata :text)]
+               [:p "Faça seu cadastro e ganhe já"]]
+             [:a.button {:href (cdata :url)} (cdata :code)]]
+
+            [:script {:type "application/ld+json"} dat/data-website]
+            [:amp-analytics {:type "googleanalytics"}]
+            [:script {:type "application/json"} dat/data-analytics]]]))))
 
 
 (defn log [req]

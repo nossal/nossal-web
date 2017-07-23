@@ -1,4 +1,4 @@
-(ns nossal.core
+(ns nossal.styles
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
@@ -10,7 +10,7 @@
 (defstyles screen
   [reset]
   [:body
-    {:font-family "\"Lucida Sans Unicode\", \"Lucida Grande\", Sans-Serif"
+    {:font-family "\"SF Pro Display\",\"SF Pro Icons\",\"Helvetica Neue\",\"Helvetica\",\"Arial\",sans-serif"
      :font-size (px 16)
      :background bgcolor
      :color "#FFF"

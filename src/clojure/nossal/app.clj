@@ -21,7 +21,7 @@
   (GET "/weekly" request
     (log request))
 
-  (GET "/coupom/:service" [service :as request]
+  (GET "/cupons/:service" [service :as request]
     (coupom service request))
 
   (GET "/breakout" request
