@@ -2,10 +2,11 @@
   (:require [nossal.web :refer [index dot log breakout coupom]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [compojure.handler :refer [site]]
             [ring.adapter.jetty :as jetty]
+            [ring.util.response :as response]
             [environ.core :refer [env]]
-            [clojure.java.io :as io]
-            [compojure.handler :refer [site]]))
+            [clojure.java.io :as io]))
 
 
 (defroutes app
@@ -21,11 +22,15 @@
   (GET "/weekly" request
     (log request))
 
-  (GET "/cupons/:service" [service :as request]
-    (coupom service request))
-
   (GET "/breakout" request
     (breakout request))
+
+
+  (GET "/cupons/:service" [service :as request]
+    (coupom service request))
+  (GET "/cupons" []
+    (response/redirect "/cupons/uber"))
+
 
   (route/resources "/")
 

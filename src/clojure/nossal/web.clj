@@ -15,7 +15,7 @@
   ([title css body req]
    (base title
          {:keywords ""
-          :desciption ""
+          :description ""
           :meta []
           :manifest "manifest"
           :icon "icon"}
@@ -28,7 +28,7 @@
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
       [:meta {:name "keywords" :content (options :keywords)}]
       [:title title]
-      [:meta {:name "description" :content (options :desciption)}]
+      [:meta {:name "description" :content (options :description)}]
       (map (fn [o] [:meta o]) (options :meta))
       (map (fn [s]
              [:link {:rel "icon" :type "image/png" :href (s/join ["/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
@@ -61,7 +61,7 @@
 (defn index [req]
   (base "Nossal, Rodrigo Nossal"
     {:keywords "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"
-     :desciption "Nossal is a software development lover, and this is his personal website."
+     :description "Nossal is a software development lover, and this is his personal website."
      :manifest "manifest"
      :icon "icon"
      :meta [{:name "theme-color" :content "#747f90"}
@@ -126,24 +126,33 @@
             [:meta {:charset "UTF-8"}]
             [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
             [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-            [:meta {:name "keywords" :content "(options :keywords)"}]
-            [:meta {:name "description" :content "(options :desciption)"}]
-            [:title "Desconto " (s/upper-case service)]
+            [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, viagem, corrida, cupom, coupom, código de desconto"}]
+            [:meta {:name "description" :content (format "Use este cupom de desconto da %s e %s" (s/upper-case service) (cdata :description))}]
+            [:title "💲 Cupom de Desconto " (s/upper-case service)]
+            (map (fn [s]
+                  [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
+                 [16 32 48 96 144])
             [:link {:rel "canonical" :href (core/cannonical-url req)}]
-            [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
+            [:script {:async "true" :src "https://cdn.ampproject.org/v0.js"}]
             (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
-              [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-            [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
-            [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
+              [:script {:async "true" :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+            [:style {:amp-custom "true"} (slurp (io/resource "public/css/simple.css"))]
+            [:style {:amp-boilerplate "true"} (slurp (io/resource "amp-css.css"))]
             [:noscript
-              [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
+              [:style {:amp-boilerplate "true"} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
            [:body.coupom
-            [:div.container
+            [:amp-analytics {:type "googleanalytics"}
+             [:script {:type "application/json"} dat/data-analytics]]
+            [:section
+             [:amp-img {:src (format "/images/%s_logo.png" service) :alt (str service " logo") :height "100" :width "265"}]
              [:h1 "Cupom de desconto " (s/upper-case service) "."]
              [:div.intro
-               [:p  (cdata :text)]
-               [:p "Faça seu cadastro e ganhe já"]]
-             [:a.button {:href (cdata :url)} (cdata :code)]]
+               [:p (cdata :text)]
+               [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
+             [:a.call-button {:href (cdata :url)} (cdata :code)]
+             [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]]
+            [:footer
+              [:p "Este é um presente do fundo do meu 💖 para você."]]
 
             [:script {:type "application/ld+json"} dat/data-website]
             [:amp-analytics {:type "googleanalytics"}]
