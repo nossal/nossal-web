@@ -35,15 +35,13 @@
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
-      [:script {:async "true" :scr "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}]
-      [:script "(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: \"ca-pub-9207695243671092\",enable_page_level_ads: true});"]
-      [:script {:async "true" :src "https://cdn.ampproject.org/v0.js"}]
+      [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
       (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
-        [:script {:async "true" :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-      [:style {:amp-custom "true"} (slurp (io/resource "public/css/screen.css")) css]
-      [:style {:amp-boilerplate "true"} (slurp (io/resource "amp-css.css"))]
+        [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+      [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
+      [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
       [:noscript
-       [:style {:amp-boilerplate "true"} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
+       [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
      [:body
       [:script {:type "application/ld+json"} dat/data-website]
       [:amp-analytics {:type "googleanalytics"}
@@ -133,13 +131,13 @@
                   [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
                  [16 32 48 96 144])
             [:link {:rel "canonical" :href (core/cannonical-url req)}]
-            [:script {:async "true" :src "https://cdn.ampproject.org/v0.js"}]
+            [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
             (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
-              [:script {:async "true" :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-            [:style {:amp-custom "true"} (slurp (io/resource "public/css/simple.css"))]
-            [:style {:amp-boilerplate "true"} (slurp (io/resource "amp-css.css"))]
+              [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+            [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
+            [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
             [:noscript
-              [:style {:amp-boilerplate "true"} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
+              [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
            [:body.coupom
             [:amp-analytics {:type "googleanalytics"}
              [:script {:type "application/json"} dat/data-analytics]]
