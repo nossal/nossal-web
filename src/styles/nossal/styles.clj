@@ -1,4 +1,4 @@
-(ns nossal.core
+(ns nossal.styles
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
@@ -10,7 +10,7 @@
 (defstyles screen
   [reset]
   [:body
-    {:font-family "\"Helvetica Neue\", Sans-Serif"
+    {:font-family "\"SF Pro Display\",\"SF Pro Icons\",\"Helvetica Neue\",\"Helvetica\",\"Arial\",sans-serif"
      :font-size (px 16)
      :background bgcolor
      :color "#FFF"
@@ -58,7 +58,7 @@
     {:font-size (em 3.5)
      :text-transform "uppercase"
      :letter-spacing "0.05em"
-     :font-weight "100"
+     :font-weight "300"
      :margin-bottom "0.3em"
      :text-align "center"
      :color "#ccc"
