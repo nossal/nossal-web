@@ -31,7 +31,7 @@
 
   :figwheel {:css-dirs ["resources/public/css"]}
 
-  :source-paths ["src/clojure"]
+  :source-paths ["src/clojure", "src/styles"]
 
   :cljsbuild {:builds {:dev {:source-paths ["src/clojurescript"]
                              :figwheel true
@@ -46,7 +46,12 @@
                                          :optimizations :advanced}}}}
 
   :garden {:builds [{:source-paths ["src/styles"]
-                     :stylesheet nossal.core/screen
+                     :stylesheet nossal.styles/screen
                      :compiler {:output-to "resources/public/css/screen.css"
+                                :vendors ["moz" "webkit"]
+                                :pretty-print? false}}
+                    {:source-paths ["src/styles"]
+                     :stylesheet nossal.simple/simple
+                     :compiler {:output-to "resources/public/css/simple.css"
                                 :vendors ["moz" "webkit"]
                                 :pretty-print? false}}]})
