@@ -149,14 +149,14 @@
              [:div.intro
                [:p (cdata :text)]
                [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
-             [:a.call-button {:href (cdata :url)} (cdata :code)]
+             [:a#get-coupom {:href (cdata :url)} (cdata :code)]
              [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]]
             [:footer
               [:p "Este é um presente do fundo do meu 💖 para você."]]
 
             [:script {:type "application/ld+json"} dat/data-website]
-            [:amp-analytics {:type "googleanalytics"}]
-            [:script {:type "application/json"} dat/data-analytics]]]))))
+            [:amp-analytics {:type "googleanalytics"}
+             [:script {:type "application/json"} dat/data-analytics]]]]))))
 
 
 (defn log [req]

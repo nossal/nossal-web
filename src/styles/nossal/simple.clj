@@ -34,8 +34,9 @@
   [:p.call-to-action
     {:font-size (em 1.2)
      :margin-top (em 1.5)}]
-  [:.call-button
+  [:#get-coupom
     {:border "1px solid"
+     :border-radius (px 2)
      :display "inline-block"
      :padding ".2em .4em"
      :color "#0070c9"

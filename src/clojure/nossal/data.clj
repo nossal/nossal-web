@@ -31,8 +31,12 @@
                                   :sameAs (vals public-profiles)}))
 
 (def data-analytics (json/write-str {:vars {:account (env :google-analytics)}
-                                     :triggers {:trackPageview {:on "visible" :request "pageview"}}}))
-
+                                     :triggers {:trackPageview {:on "visible" :request "pageview"}
+                                                :trackClickOnClick {:on "click"
+                                                                    :selector "#get-coupom"
+                                                                    :request "event"
+                                                                    :vars {:eventCategory "ui-components"
+                                                                           :eventAction "get-coupom"}}}}))
 (def coupom-codes {"cabify" {:code "rodrigon361"
                              :url "https://cabify.com/i/rodrigon361"
                              :description "💲 Ganhe R$20,00 de desconto na sua primeira corrida! ✅"
