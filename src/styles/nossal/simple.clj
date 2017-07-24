@@ -23,7 +23,7 @@
    {:background "#fff"
     :padding (em 5)
     :text-align "center"
-    :margin-top (em 5)}]
+    :margin-top (em 1)}]
   [:strong {:font-weight "bold"}]
   [:h1
    {:font-size (em 3)
@@ -70,7 +70,7 @@
     :font-size (em 0.7)}]
 
   (at-media {:max-width (px 736)}
-    [:section {:padding (em 1) :padding-bottom (em 5) :margin-top (em 2)}]
+    [:section {:padding (em 1) :padding-bottom (em 5)}]
     [:h1 {:font-size (em 2.3)}]
     [:footer {:margin-top (em 1)}]
     [:.call-button {:margin-top (em 0.5)}]))
