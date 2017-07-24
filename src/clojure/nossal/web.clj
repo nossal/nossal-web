@@ -147,10 +147,10 @@
              [:amp-img {:src (format "/images/%s_logo.png" service) :alt (str service " logo") :height "100" :width "265"}]
              [:h1 "Cupom de desconto " (s/upper-case service) "."]
              [:div.intro
-               [:p (cdata :text)]
-               [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
+               [:p (cdata :text)]]
              [:a#get-coupom {:href (cdata :url)} (cdata :code)]
-             [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]]
+             [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]
+             [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
             [:footer
               [:p "Este é um presente do fundo do meu 💖 para você."]]
 

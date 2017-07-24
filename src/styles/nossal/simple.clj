@@ -40,7 +40,6 @@
      :display "inline-block"
      :padding ".2em .4em"
      :color "#0070c9"
-     :margin-top (em 1)
      :text-decoration "none"
      :font-size (em 3)}]
   [:p.link-description
