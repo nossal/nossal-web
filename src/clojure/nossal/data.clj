@@ -39,11 +39,11 @@
                                                                            :eventAction "get-coupom"}}}}))
 (def coupom-codes {"cabify" {:code "rodrigon361"
                              :url "https://cabify.com/i/rodrigon361"
-                             :description "💲 Ganhe R$20,00 de desconto na sua primeira corrida! ✅"
+                             :description "💲 Ganhe R$20,00 de desconto na sua primeira viagem! ✅"
                              :text [:p "Ganhe " [:span.value "R$20,00"] " de desconto na sua primeira corrida! &#x1F389;"
                                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira viagem."]]}
                    "uber"   {:code "ubernossal"
                              :url "https://www.uber.com/invite/ubernossal"
-                             :description "💲 Ganhe R$10,00 de desconto nas suas 2 primeiras corridas! ✅"
+                             :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
                              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! &#x1F389; "
                                     [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}})
