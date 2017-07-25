@@ -150,7 +150,7 @@
              [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]
              [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
             [:footer
-              [:p "Este é um presente do fundo do meu 💖 para você."]]
+              [:p "Este é um presente do fundo " [:a {:href "http://noss.al/"} "do meu 💖"] " para você."]]
 
             [:script {:type "application/ld+json"} dat/data-website]
             [:amp-analytics {:type "googleanalytics"}

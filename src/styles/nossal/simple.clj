@@ -66,7 +66,9 @@
     :color "#d527c7"
     :margin-bottom (em 3)
     :text-align "center"
-    :font-size (em 0.7)}]
+    :font-size (em 0.7)}
+   [:a {:color "#570084" :text-decoration "none"}
+    [:&:hover {:text-decoration "underline"}]]]
 
   (at-media {:max-width (px 736)}
     [:section {:padding (em 1) :padding-bottom (em 5)}]
