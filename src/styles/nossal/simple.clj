@@ -48,7 +48,7 @@
   [:#get-coupom
     {:border "1px solid"
      :border-radius (px 2)
-     :display "inline-block"
+     :max-width (px 360)
      :padding ".2em .4em"
      :color "#0070c9"
      :text-decoration "none"
@@ -80,6 +80,10 @@
     :font-size (em 0.7)}
    [:a {:color "#570084" :text-decoration "none"}
     [:&:hover {:text-decoration "underline"}]]]
+
+
+  (at-media {:max-width (px 360)}
+    [:#get-coupom.code99 {:font-size (em 2)}])
 
   (at-media {:max-width (px 736)}
     [:section {:padding (em 1) :padding-bottom (em 5)}]

@@ -146,7 +146,7 @@
              [:h1 "Cupom de desconto " (s/capitalize service) "."]
              [:div.intro
                [:p (cdata :text)]]
-             [:a#get-coupom {:href (cdata :url)} (cdata :code)]
+             [:a#get-coupom {:href (cdata :url) :class (str "code" service)} (cdata :code)]
              [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]
              [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
             [:section.others
