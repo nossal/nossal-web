@@ -46,4 +46,9 @@
                              :url "https://www.uber.com/invite/ubernossal"
                              :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
                              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! &#x1F389; "
-                                    [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}})
+                                    [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
+                   "99"     {:code "RODRIGONOSSAL"
+                             :url "http://ssqt.co/mecBdsK"
+                             :description "💲 Ganhe R$20,00 de desconto na primeira corrida 99! ✅"
+                             :text [:p "Ganhe " [:span.value "R$20,00"]" de desconto na sua " [:strong "primeira"] " corrida 99! &#x1F389; "
+                                    [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}})
