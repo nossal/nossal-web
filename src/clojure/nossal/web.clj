@@ -126,7 +126,7 @@
             [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
             [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, viagem, corrida, cupom, coupom, código de desconto"}]
             [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s e %s" (s/upper-case (cdata :code)) (s/capitalize service) (cdata :description))}]
-            [:title (s/upper-case (cdata :code)) "🤑 Cupom de Desconto " (s/capitalize service)]
+            [:title (s/upper-case (cdata :code)) " 🤑 Cupom de Desconto " (s/capitalize service)]
             (map (fn [s]
                   [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
                  [16 32 48 96 144])
