@@ -41,7 +41,7 @@
                              :url "https://cabify.com/i/rodrigon361"
                              :description "💲 Ganhe R$15,00 de desconto na sua primeira viagem! ✅"
                              :text [:p "Ganhe " [:span.value "R$15,00"] " de desconto na sua primeira corrida! &#x1F389;"
-                                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira viagem."]]}
+                                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira viagem. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
                    "uber"   {:code "ubernossal"
                              :url "https://www.uber.com/invite/ubernossal"
                              :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"

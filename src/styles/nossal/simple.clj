@@ -22,6 +22,7 @@
   [:section
    {:background "#fff"
     :padding (em 5)
+    :padding-top (em 2)
     :text-align "center"
     :margin-top (em 1)}]
   [:strong {:font-weight "bold"}]
