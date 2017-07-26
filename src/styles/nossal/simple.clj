@@ -25,6 +25,16 @@
     :padding-top (em 2)
     :text-align "center"
     :margin-top (em 1)}]
+  [:section.others
+   [:a
+    {:color "#0070c9"
+     :margin (em 0.5)
+     :display "inline-block"
+     :border "1px solid"
+     :text-decoration "none"
+     :padding "0.3em 0.6em"}
+    [:&:after {:content "'✔️'" :padding-left (em 0.3)}]]];}]]]
+
   [:strong {:font-weight "bold"}]
   [:h1
    {:font-size (em 3)
@@ -49,7 +59,7 @@
       :color "#969696"}]
 
   [:.intro
-    {:display "blok"
+    {:display "block"
      :font-size (em 1.4)
      :max-width "60vw"
      :margin "auto"

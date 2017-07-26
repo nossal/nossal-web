@@ -149,6 +149,10 @@
              [:a#get-coupom {:href (cdata :url)} (cdata :code)]
              [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]
              [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
+            [:section.others
+             [:p.intro "Quer mais descontos?"]
+
+             [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Código " (s/capitalize x)]) (keep #(if (not= service %) %) (keys dat/coupom-codes)))]]
             [:footer
               [:p "Este é um presente do fundo " [:a {:href "http://noss.al/"} "do meu 💖"] " para você."]]
 
