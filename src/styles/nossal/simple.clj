@@ -82,8 +82,9 @@
     [:&:hover {:text-decoration "underline"}]]]
 
 
-  (at-media {:max-width (px 360)}
-    [:#get-coupom.code99 {:font-size (em 2)}])
+  (at-media {:max-width (px 375)}
+    [:#get-coupom.code99 {:font-size (em 2)}]
+    [:#get-coupom.code99pop {:font-size (em 2)}])
 
   (at-media {:max-width (px 736)}
     [:section {:padding (em 1) :padding-bottom (em 5)}]

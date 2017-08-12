@@ -82,7 +82,7 @@
 
       [:section#facebook]
 
-      [:section#end [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] " on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]
+      [:section#end [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]
      [:script {:type "application/ld+json"} dat/data-person]]
     req))
 
@@ -126,7 +126,7 @@
             [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
             [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, 99, viagem, corrida, cupom, coupom, código de desconto"}]
             [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (s/capitalize service) (cdata :description))}]
-            [:title (s/upper-case (cdata :code)) " 🤑 Cupom de Desconto " (s/capitalize service)]
+            [:title "Cupom de Desconto 🤑 " (s/capitalize service) " - " (s/upper-case (cdata :code))]
             (map (fn [s]
                   [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
                  [16 32 48 96 144])
@@ -147,7 +147,7 @@
              [:div.intro
                [:p (cdata :text)]]
              [:a#get-coupom {:href (cdata :url) :class (str "code" service)} (cdata :code)]
-             [:p.link-description "Clique ou copie o código acima e aproveite o seu desconto."]
+             [:p.link-description "Clique no código acima e aproveite o seu desconto."]
              [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
             [:section.others
              [:p.intro "Quer mais descontos?"]

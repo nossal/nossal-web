@@ -56,4 +56,9 @@
                              :url "http://ssqt.co/mecBdsK"
                              :description "💲 Ganhe R$20,00 de desconto na primeira corrida 99! ✅"
                              :text [:p "Ganhe " [:span.value "R$20,00"]" de desconto na sua " [:strong "primeira"] " corrida 99! &#x1F389; "
-                                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}})
+                                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
+                   "99pop"  {:code "RhJemrf3mHV"
+                             :url "https://d.99taxis.mobi/RhJemrf3mHV"
+                             :description "💲 Ganhe R$15,00 de desconto na viagem corrida 99POP! ✅"
+                             :text [:p "Ganhe " [:span.value "R$15,00"]" de desconto na sua " [:strong "primeira"] " corrida 99POP! &#x1F389; "
+                                     [:small"Aceite meu convite e experimente já o 99POP. <br>Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}})
