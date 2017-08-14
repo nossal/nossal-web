@@ -42,13 +42,18 @@
                              :description "💲 Ganhe R$15,00 de desconto na sua primeira viagem! ✅"
                              :text [:p "Ganhe " [:span.value "R$15,00"] " de desconto na sua primeira corrida! &#x1F389;"
                                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira viagem. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
-                   "uber"   {:code "ubernossal"
-                             :url "https://www.uber.com/invite/ubernossal"
-                             :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
-                             :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! &#x1F389; "
-                                    [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
+                  ;  "uber"   {:code "ubernossal"
+                  ;            :url "https://www.uber.com/invite/ubernossal"
+                  ;            :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
+                  ;            :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! &#x1F389; "
+                  ;                   [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
                    "Uber"   {:code "0018f1"
                              :url "https://www.uber.com/invite/0018f1"
+                             :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
+                             :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! &#x1F389; "
+                                     [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
+                   "uber"   {:code "rafaeln1002ue"
+                             :url "https://www.uber.com/invite/rafaeln1002ue"
                              :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
                              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! &#x1F389; "
                                      [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
