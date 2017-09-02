@@ -142,7 +142,7 @@
             [:amp-analytics {:type "googleanalytics"}
              [:script {:type "application/json"} dat/data-analytics]]
             [:section
-             [:amp-img {:src (format "/images/%s_logo.png" service) :alt (str service " logo") :height "100" :width "265"}]
+             [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case service)) :alt (str service " logo") :height "100" :width "265"}]
              [:h1 "Cupom de desconto " (s/capitalize service) "."]
              [:div.intro
                [:p (cdata :text)]]
