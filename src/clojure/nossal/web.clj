@@ -125,8 +125,8 @@
             [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
             [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
             [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, 99, viagem, corrida, cupom, coupom, código de desconto"}]
-            [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (s/capitalize service) (cdata :description))}]
-            [:title "Cupom de Desconto 🤑 " (s/capitalize service) " - " (s/upper-case (cdata :code))]
+            [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (cdata :title) (cdata :description))}]
+            [:title "Cupom de Desconto 🤑 " (cdata :title) " - " (s/upper-case (cdata :code))]
             (map (fn [s]
                   [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
                  [16 32 48 96 144])
@@ -142,8 +142,8 @@
             [:amp-analytics {:type "googleanalytics"}
              [:script {:type "application/json"} dat/data-analytics]]
             [:section
-             [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case service)) :alt (str service " logo") :height "100" :width "265"}]
-             [:h1 "Cupom de desconto " (s/capitalize service) "."]
+             [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (cdata :title))) :alt (str (cdata :title) " logo") :height "100" :width "265"}]
+             [:h1 "Cupom de desconto " (cdata :title) "."]
              [:div.intro
                [:p (cdata :text)]]
              [:a#get-coupom {:href (cdata :url) :class (str "code" service)} (cdata :code)]
