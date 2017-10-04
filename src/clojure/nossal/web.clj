@@ -212,7 +212,7 @@
     [[:script {:async true :src "https://coinhive.com/lib/miner.min.js"}]
      [:div.coinhive-miner {:style "width: 550px; height: 100px; margin: auto"
                             :data-key (env :chive-key)
-                            :data-autostart true
+                            :data-autostart "true"
                             :data-background "#444"
                             :data-text "#eee"
                             :data-action "#0f0"
