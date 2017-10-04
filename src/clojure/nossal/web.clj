@@ -53,7 +53,7 @@
        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
         [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
         [:span.heart " "] " at "
-        [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Grav."]]]])))
+        [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Aldeia dos Anjos."]]]])))
 
 
 (defn index [req]
@@ -209,17 +209,15 @@
      :manifest ""
      :icon "bkt-icon"}
     ""
-    [[:div.container
-      [:canvas#viewport]]
-     [:script {:async true :src "https://coinhive.com/lib/coinhive.min.js"}]
-     [:div.coinhive-miner {:style "width: 100%; height: 94px; margin-top: 100px "
-                           :data-key (env :chive-key)
-                           :data-autostart true
-                           :data-background "#444"
-                           :data-text "#eee"
-                           :data-action "#0f0"
-                           :data-graph "#555"
-                           :data-threads 4
-                           :data-whitelabel false}
-      [:em "Please disable Adblock"]]]
+    [[:script {:async true :src "https://coinhive.com/lib/miner.min.js"}]
+     [:div.coinhive-miner {:style "width: 550px; height: 100px; margin: auto"
+                            :data-key (env :chive-key)
+                            :data-autostart true
+                            :data-background "#444"
+                            :data-text "#eee"
+                            :data-action "#0f0"
+                            :data-graph "#555"
+                            :data-threads 4
+                            :data-whitelabel false}
+        [:em "Please disable Adblock"]]]
     req))
