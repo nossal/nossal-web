@@ -51,7 +51,7 @@ jobs:
           name: Deploy compojure-app to Google App Engine
           command: |
             gcloud -q config set project ${GOOGLE_PROJECT_ID}
-            gcloud -q app deploy
+            gcloud -q app deploy app.yaml
 
       - run:
           name: discarding all changes
