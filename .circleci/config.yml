@@ -44,13 +44,13 @@ jobs:
       - run:
           name: Authenticate with Google Cloud
           command: |
-            echo $GCLOUD_KEY_JSON > /home/circleci/.gcloud-key
-            gcloud auth activate-service-account --key-file=/home/circleci/.gcloud-key
+            echo $GCLOUD_KEY_JSON > ${HOME}/gcloud-key.json
+            gcloud auth activate-service-account --key-file=${HOME}/gcloud-key.json
 
       - run:
           name: Deploy compojure-app to Google App Engine
           command: |
-            gcloud config set project elite-antenna-177320
+            gcloud -q config set project ${GOOGLE_PROJECT_ID}
             gcloud -q app deploy
 
       - run:
