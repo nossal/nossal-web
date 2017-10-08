@@ -1,11 +1,11 @@
 #!/bin/bash
 
 set -ex
-export JAVA_OPTS="-Xms50m -Xmx100m"
+export JVM_OPTS="-Xmx300m -Xss512k -Dfile.encoding=UTF-8"
 
 if [ "$1" = "start" ]
 then
-  exec lein ring server-headless
+  exec java $JVM_OPTS -cp target/nossal.jar clojure.main -m nossal.app
 fi
 
 exec "$@"

@@ -19,7 +19,7 @@
             [lein-cljsbuild "1.1.4" :exclusions [org.clojure/clojure]]
             [lein-figwheel "0.5.9"]
             [lein-garden "0.3.0"]
-            [lein-ring "0.11.0"]]
+            [lein-ring "0.12.1"]]
 
   :min-lein-version "2.7.0"
 
