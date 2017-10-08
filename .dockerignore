@@ -1,0 +1,7 @@
+.git
+.vscode
+.settings
+.gitignore
+.editorconfig
+.lein-env
+.DS_Store

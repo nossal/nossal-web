@@ -50,7 +50,7 @@ jobs:
       - run:
           name: Deploy compojure-app to Google App Engine
           command: |
-            gcloud config set project clojure-sample-project
+            gcloud config set project elite-antenna-177320
             gcloud app deploy
 
       - run:
@@ -70,3 +70,4 @@ workflows:
       - deploy:
           requires:
             - build
+

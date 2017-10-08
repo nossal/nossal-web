@@ -3,12 +3,6 @@
             [environ.core :refer [env]]))
 
 
-(def data-website (json/write-str {"@context" "http://schema.org"
-                                   "@type" "WebSite"
-                                   :name "NOSSAL"
-                                   :alternateName "Rodrigo Nossal"
-                                   :url "http://noss.al"}))
-
 (def public-profiles {"Facebook"   "https://facebook.com/nossal"
                       "Twitter"    "https://twitter.com/nossal"
                       "Instagram"  "https://instagram.com/nossal"
@@ -24,11 +18,17 @@
                       "Ello"       "https://ello.co/nossal"
                       "About.me"   "https://about.me/nossal"})
 
-(def data-person (json/write-str {"@context" "http://schema.org"
+(def data-person (json/write-str {"@context" "https://schema.org"
                                   "@type" "Person"
                                   :name "Rodrigo Nossal"
-                                  :url "http://noss.al"
+                                  :url "https://noss.al"
                                   :sameAs (vals public-profiles)}))
+
+(def data-website (json/write-str {"@context" "https://schema.org"
+                                   "@type" "WebSite"
+                                   :name "NOSSAL"
+                                   :alternateName "Rodrigo Nossal"
+                                   :url "https://noss.al"}))
 
 (def data-analytics (json/write-str {:vars {:account (env :google-analytics)}
                                      :triggers {:trackPageview {:on "visible" :request "pageview"}
@@ -37,6 +37,7 @@
                                                                     :request "event"
                                                                     :vars {:eventCategory "ui-components"
                                                                            :eventAction "get-coupom"}}}}))
+
 (def coupom-codes {"cabify" {:code "rodrigon361"
                              :title "Cabify"
                              :url "https://cabify.com/i/rodrigon361"

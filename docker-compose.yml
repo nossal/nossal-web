@@ -3,7 +3,7 @@ services:
   compojure:
     build: .
     ports:
-      - "3000:3000"
+      - "8080:8080"
     volumes:
-      - .:/c/Users/Rodrigo/code/noss.al
+      - .:/code
       - ~/.m2:/root/.m2/
