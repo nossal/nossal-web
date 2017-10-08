@@ -51,7 +51,7 @@ jobs:
           name: Deploy compojure-app to Google App Engine
           command: |
             gcloud config set project elite-antenna-177320
-            gcloud app deploy
+            gcloud -q app deploy
 
       - run:
           name: discarding all changes

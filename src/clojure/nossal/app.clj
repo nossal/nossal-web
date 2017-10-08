@@ -28,6 +28,8 @@
   (GET "/miner" request
     (miner request))
 
+  (GET "/_ah/health" request
+    (str "👌"))
 
   (GET "/cupons/:service" [service :as request]
     (coupom service request))
