@@ -9,20 +9,20 @@
                                    :alternateName "Rodrigo Nossal"
                                    :url "http://noss.al"}))
 
-(def public-profiles {"Facebook"   "http://facebook.com/nossal"
-                      "Twitter"    "http://twitter.com/nossal"
-                      "Instagram"  "http://instagram.com/nossal"
-                      "GitHub"     "http://github.com/nossal"
-                      "linkedin"   "http://linkedin.com/in/nossal"
+(def public-profiles {"Facebook"   "https://facebook.com/nossal"
+                      "Twitter"    "https://twitter.com/nossal"
+                      "Instagram"  "https://instagram.com/nossal"
+                      "GitHub"     "https://github.com/nossal"
+                      "linkedin"   "https://linkedin.com/in/nossal"
                       "Spotify"    "https://open.spotify.com/user/nossal"
-                      "SoundCloud" "http://soundcloud.com/nossal"
-                      "Last.fm"    "http://last.fm/user/nossal"
-                      "Medium"     "http://medium.com/@nossal"
-                      "Flickr"     "http://flickr.com/photos/nossal"
-                      "SlideShare" "http://slideshare.net/nossal"
-                      "Google+"    "http://google.com/+RodrigoNossal"
-                      "Ello"       "http://ello.co/nossal"
-                      "About.me"   "http://about.me/nossal"})
+                      "SoundCloud" "https://soundcloud.com/nossal"
+                      "Last.fm"    "https://last.fm/user/nossal"
+                      "Medium"     "https://medium.com/@nossal"
+                      "Flickr"     "https://flickr.com/photos/nossal"
+                      "SlideShare" "https://slideshare.net/nossal"
+                      "Google+"    "https://google.com/+RodrigoNossal"
+                      "Ello"       "https://ello.co/nossal"
+                      "About.me"   "https://about.me/nossal"})
 
 (def data-person (json/write-str {"@context" "http://schema.org"
                                   "@type" "Person"
