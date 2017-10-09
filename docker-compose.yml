@@ -1,9 +1,9 @@
-version: "2"
+version: "3"
 services:
-  compojure:
+  nossal:
     build: .
     ports:
       - "8080:8080"
     volumes:
-      - .:/code
+      # - .:/code
       - ~/.m2:/root/.m2/
