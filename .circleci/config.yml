@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: clojure:alpine
-    working_directory: /home/circleci/compojure-app
+    working_directory: ${HOME}/compojure-app
     steps:
       - checkout
 
@@ -14,16 +14,16 @@ jobs:
       - run:
           name: Download dependencies
           command: lein deps
-          working_directory: /home/circleci/compojure-app
+          working_directory: ${HOME}/compojure-app
 
       - run:
           name: Run server tests
           command: lein test
-          working_directory: /home/circleci/compojure-app
+          working_directory: ${HOME}/compojure-app
       - save_cache:
           key: compojure-app-jars-v1-{{ checksum "project.clj" }}
           paths:
-            - /home/circleci/.m2
+            - ${HOME}/.m2
 
   deploy:
     filters:
@@ -32,7 +32,7 @@ jobs:
           - master
     docker:
       - image: google/cloud-sdk:alpine
-    working_directory: /home/circleci/compojure-app
+    working_directory: ${HOME}/compojure-app
     steps:
       - checkout
 
@@ -49,6 +49,7 @@ jobs:
 
       - run:
           name: Deploy compojure-app to Google App Engine
+          no_output_timeout: 3600
           command: |
             gcloud -q config set project ${GOOGLE_PROJECT_ID}
             gcloud -q app deploy app.yaml
@@ -60,7 +61,7 @@ jobs:
       - save_cache:
           key: compojure-app-jars-v1-{{ checksum "project.clj" }}
           paths:
-            - /home/circleci/.m2
+            - ${HOME}/.m2
 
 workflows:
   version: 2
