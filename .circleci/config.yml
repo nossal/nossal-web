@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: clojure:alpine
-    working_directory: ${HOME}/compojure-app
+    working_directory: /tmp/nossal
     steps:
       - checkout
 
@@ -14,12 +14,12 @@ jobs:
       - run:
           name: Download dependencies
           command: lein deps
-          working_directory: ${HOME}/compojure-app
+          working_directory: /tmp/nossal
 
       - run:
           name: Run server tests
           command: lein test
-          working_directory: ${HOME}/compojure-app
+          working_directory: /tmp/nossal
       - save_cache:
           key: compojure-app-jars-v1-{{ checksum "project.clj" }}
           paths:
@@ -32,7 +32,7 @@ jobs:
           - master
     docker:
       - image: google/cloud-sdk:alpine
-    working_directory: ${HOME}/compojure-app
+    working_directory: /tmp/nossal
     steps:
       - checkout
 
