@@ -49,6 +49,7 @@
 
       [:div.main (seq body)]
 
+      [:a.p "π"]
       [:footer
        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
         [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "

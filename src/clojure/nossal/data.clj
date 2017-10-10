@@ -32,11 +32,16 @@
 
 (def data-analytics (json/write-str {:vars {:account (env :google-analytics)}
                                      :triggers {:trackPageview {:on "visible" :request "pageview"}
-                                                :trackClickOnClick {:on "click"
-                                                                    :selector "#get-coupom"
-                                                                    :request "event"
-                                                                    :vars {:eventCategory "ui-components"
-                                                                           :eventAction "get-coupom"}}}}))
+                                                :trackClickOnCoupom {:on "click"
+                                                                     :selector "#get-coupom"
+                                                                     :request "event"
+                                                                     :vars {:eventCategory "ui-components"
+                                                                            :eventAction "get-coupom"}}
+                                                :trackClickOnPI {:on "click"
+                                                                 :selector "a.p"
+                                                                 :request "event"
+                                                                 :vars {:eventCategory "ui-components"
+                                                                        :eventAction "the-net"}}}}))
 
 (def coupom-codes {"cabify" {:code "rodrigon361"
                              :title "Cabify"

@@ -90,6 +90,13 @@
                  :background "#8b969f"}]
   [:.end {:color "#dcdcdc"}]
 
+  [:a.p {:color "#444"
+         :font-size "11px"
+         :display "block"
+         :position "absolute"
+         :right (px 5)
+         :bottom (px 25)}]
+
   [:footer
     {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"
      :text-transform "uppercase"
