@@ -43,8 +43,6 @@
     (route/not-found (slurp (io/resource "404.html")))))
 
 
-(assoc secure-site-defaults :proxy true)
-
 (def app
   (routes (-> app-routes (wrap-routes wrap-defaults secure-site-defaults))))
 
