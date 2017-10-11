@@ -10,7 +10,7 @@ export CHIVE_KEY="kBClwk1fEiyo3wGiPT7g4dfbVpTuoIlz"
 
 if [ "$1" = "start" ]
 then
-  exec java $JVM_OPTS -cp target/nossal.jar clojure.main -m nossal.app
+  exec java -cp target/nossal.jar clojure.main -m nossal.app
 fi
 
 exec "$@"
