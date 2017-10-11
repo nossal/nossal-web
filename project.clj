@@ -8,7 +8,6 @@
                  [hiccup "1.0.5"]
                  [environ "1.0.3"]
                  [ring/ring-jetty-adapter "1.5.0"]
-                 [ring/ring-defaults "0.3.1"]
 
                  [org.clojure/clojurescript "1.9.456"]
                  [reagent "0.6.0"]
