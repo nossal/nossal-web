@@ -22,8 +22,19 @@
   [:section
    {:background "#fff"
     :padding (em 5)
+    :padding-top (em 2)
     :text-align "center"
-    :margin-top (em 5)}]
+    :margin-top (em 1)}]
+  [:section.others
+   [:a
+    {:color "#0070c9"
+     :margin (em 0.5)
+     :display "inline-block"
+     :border "1px solid"
+     :text-decoration "none"
+     :padding "0.3em 0.6em"}
+    [:&:after {:content "'✔️'" :padding-left (em 0.3)}]]];}]]]
+
   [:strong {:font-weight "bold"}]
   [:h1
    {:font-size (em 3)
@@ -34,12 +45,12 @@
   [:p.call-to-action
     {:font-size (em 1.2)
      :margin-top (em 1.5)}]
-  [:.call-button
+  [:#get-coupom
     {:border "1px solid"
-     :display "inline-block"
+     :border-radius (px 2)
+     :max-width (px 360)
      :padding ".2em .4em"
      :color "#0070c9"
-     :margin-top (em 1)
      :text-decoration "none"
      :font-size (em 3)}]
   [:p.link-description
@@ -48,7 +59,7 @@
       :color "#969696"}]
 
   [:.intro
-    {:display "blok"
+    {:display "block"
      :font-size (em 1.4)
      :max-width "60vw"
      :margin "auto"
@@ -66,10 +77,17 @@
     :color "#d527c7"
     :margin-bottom (em 3)
     :text-align "center"
-    :font-size (em 0.7)}]
+    :font-size (em 0.7)}
+   [:a {:color "#570084" :text-decoration "none"}
+    [:&:hover {:text-decoration "underline"}]]]
+
+
+  (at-media {:max-width (px 375)}
+    [:#get-coupom.code99 {:font-size (em 2)}]
+    [:#get-coupom.code99pop {:font-size (em 2)}])
 
   (at-media {:max-width (px 736)}
-    [:section {:padding (em 1) :padding-bottom (em 5) :margin-top (em 2)}]
+    [:section {:padding (em 1) :padding-bottom (em 5)}]
     [:h1 {:font-size (em 2.3)}]
     [:footer {:margin-top (em 1)}]
     [:.call-button {:margin-top (em 0.5)}]))

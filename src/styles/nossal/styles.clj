@@ -1,5 +1,5 @@
 (ns nossal.styles
-  (:require [garden.def :refer [defstylesheet defstyles]]
+  (:require [garden.def :refer [defstylesheet defstyles defkeyframes]]
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
             [garden.stylesheet :refer [at-import at-media]]
@@ -7,8 +7,14 @@
 
 (def bgcolor "linear-gradient(45deg, #837490, #6a7988)")
 
+(defkeyframes DEFACTO
+  [:0%   {:background-position "0% 50%"}]
+  [:50%  {:background-position "100% 50%"}]
+  [:100% {:background-position "0% 50%"}])
+
+
 (defstyles screen
-  [reset]
+  DEFACTO reset
   [:body
     {:font-family "\"SF Pro Display\",\"SF Pro Icons\",\"Helvetica Neue\",\"Helvetica\",\"Arial\",sans-serif"
      :font-size (px 16)
@@ -63,7 +69,12 @@
      :text-align "center"
      :color "#ccc"
      :text-shadow "0 1px 5px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.24)"}
-    [:span.dim {:color "#b1b1b1"}]
+    [:span
+      {:background "linear-gradient(270deg,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d)"
+       :background-size "700% 200%"
+       :-webkit-text-fill-color "transparent"
+       :-webkit-background-clip "text"
+       :animation [[DEFACTO "120s linear infinite"]]}]
     [:span.border
       {:border "0.1em solid #858c9c"
        :padding "0.3em 0.5em 0.2em"
@@ -78,6 +89,13 @@
                  :text-shadow "1px 4px 6px #8b969f, 0 0 0 #000, 1px 4px 6px #8b969f"
                  :background "#8b969f"}]
   [:.end {:color "#dcdcdc"}]
+
+  [:a.p {:color "#444"
+         :font-size "11px"
+         :display "block"
+         :position "absolute"
+         :right (px 5)
+         :bottom (px 25)}]
 
   [:footer
     {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"
@@ -120,3 +138,4 @@
 
   (at-media {:max-height (px 400)}
     [:header {:padding-top (em 1)}]))
+

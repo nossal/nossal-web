@@ -1,0 +1,9 @@
+version: "3"
+services:
+  nossal:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      # - .:/code
+      - ~/.m2:/root/.m2/

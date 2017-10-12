@@ -8,6 +8,8 @@ resources/public/js
 
 # Generic
 *.log
+Thumbs.db
+.DS_Store
 
 # Java/Scala/Clojure
 build/

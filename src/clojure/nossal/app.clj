@@ -1,5 +1,5 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout coupom]]
+  (:require [nossal.web :refer [index dot log breakout coupom miner]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
@@ -25,6 +25,11 @@
   (GET "/breakout" request
     (breakout request))
 
+  (GET "/miner" request
+    (miner request))
+
+  (GET "/_ah/health" request
+    (str "👌"))
 
   (GET "/cupons/:service" [service :as request]
     (coupom service request))
@@ -39,5 +44,5 @@
 
 
 (defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))]
+  (let [port (Integer. (or port (env :port) 3000))]
     (jetty/run-jetty (site #'app) {:port port :join? false})))

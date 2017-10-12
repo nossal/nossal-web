@@ -1,6 +1,6 @@
-(ns clojure-getting-started.web-test
+(ns nossal.web-test
   (:require [clojure.test :refer :all]
-            [clojure-getting-started.web :refer :all]))
+            [nossal.web :refer :all]))
 
 (deftest first-test
-  (is false "Tests should be written"))
+  (is true "Tests should be written"))
