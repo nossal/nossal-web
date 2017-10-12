@@ -35,6 +35,7 @@
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
+      [:script {:async true :src "/js/app.js"}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
       (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
