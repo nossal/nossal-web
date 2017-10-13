@@ -11,6 +11,8 @@
                  [hiccup "1.0.5"]
                  [environ "1.1.0"]
                  [ring/ring-jetty-adapter "1.6.2"]
+                 [bk/ring-gzip "0.2.1"]
+                 [ring/ring-defaults "0.3.1"]
 
                  [org.clojure/clojurescript "1.9.946"]
                  [garden "1.3.3"]
@@ -23,9 +25,11 @@
             [lein-garden "0.3.0"]
             [lein-ring "0.12.1"]]
 
+
   :hooks [leiningen.cljsbuild]
   :uberjar-name "nossal.jar"
   ; :prep-tasks [["garden" "once"] ["cljsbuild" "once" "uberjar"]]
+  :prep-tasks [["garden" "once"] ["cljsbuild" "once" "main"]]
 
   :ring {:handler nossal.app/app :auto-refresh? true}
 
@@ -34,17 +38,12 @@
 
   :source-paths ["src/clojure", "src/styles"]
 
-  :cljsbuild {:builds {:dev {:source-paths ["src/clojurescript"]
-                             :figwheel true
-                             :incremental true
-                             :compiler {:output-to "resources/public/js/app.js"
-                                        :output-dir "resources/public/js/out"
-                                        :optimizations :whitespace}}
+  :minify-assets [[:js {:source ["resources/public/js/app.js"] :target "resources/public/js/app.min.js"}]]
 
-                       :uberjar {:source-paths ["src/clojurescript"]
-                                 :jar true
-                                 :compiler {:output-to "resources/public/js/app.js"
-                                            :optimizations :advanced}}}}
+  :cljsbuild {:builds {:main {:source-paths ["src/clojurescript"]
+                              :compiler {:output-to "resources/public/js/app.js"
+                                         :pretty-print false
+                                         :optimizations :advanced}}}}
 
   :garden {:builds [{:source-paths ["src/styles"]
                      :stylesheet nossal.styles/screen
@@ -57,4 +56,18 @@
                                 :vendors ["moz" "webkit"]
                                 :pretty-print? false}}]}
 
-  :profiles {:production {:env {:production true}}})
+  :profiles {:production {:env {:production true}}
+             :dev {:clean-targets ^{:protect false} ["resources/public/js"
+                                                     "resources/public/css"
+                                                     "target"]
+                   :env {:dev true,
+                          :production false}
+                   :cljsbuild {:builds
+                               {:dev {:source-paths ["src/clojurescript"]
+                                      :figwheel true
+                                      :incremental true
+                                      :compiler {:output-to "resources/public/js/app.js"
+                                                 :output-dir "resources/public/js/out"
+                                                 :source-map-timestamp true
+                                                 :pretty-print true
+                                                 :optimizations :whitespace}}}}}})
