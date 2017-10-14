@@ -25,10 +25,10 @@
             [lein-garden "0.3.0"]
             [lein-ring "0.12.1"]]
 
+  :source-paths ["src/clojure", "src/styles"]
 
   :hooks [leiningen.cljsbuild]
   :uberjar-name "nossal.jar"
-  ; :prep-tasks [["garden" "once"] ["cljsbuild" "once" "uberjar"]]
   :prep-tasks [["garden" "once"] ["cljsbuild" "once" "main"]]
 
   :ring {:handler nossal.app/app :auto-refresh? true}
@@ -36,9 +36,10 @@
   :figwheel {:ring-handler nossal.app/app
              :css-dirs ["resources/public/css"]}
 
-  :source-paths ["src/clojure", "src/styles"]
 
-  :minify-assets [[:js {:source ["resources/public/js/app.js"] :target "resources/public/js/app.min.js"}]]
+  :clean-targets ^{:protect false} ["resources/public/js"
+                                    "resources/public/css"
+                                    "target"]
 
   :cljsbuild {:builds {:main {:source-paths ["src/clojurescript"]
                               :compiler {:output-to "resources/public/js/app.js"
@@ -56,12 +57,9 @@
                                 :vendors ["moz" "webkit"]
                                 :pretty-print? false}}]}
 
-  :profiles {:production {:env {:production true}}
-             :dev {:clean-targets ^{:protect false} ["resources/public/js"
-                                                     "resources/public/css"
-                                                     "target"]
-                   :env {:dev true,
-                          :production false}
+  :profiles {:production {:env {:dev false :production true}}
+
+             :dev {:env {:dev true, :production false}
                    :cljsbuild {:builds
                                {:dev {:source-paths ["src/clojurescript"]
                                       :figwheel true

@@ -10,4 +10,4 @@
 
 
 (defn cannonical-url [req]
-  (apply format "%s://%s%s" (requested-url req)))
+  (apply format "https://%s%s" (rest (requested-url req))))
