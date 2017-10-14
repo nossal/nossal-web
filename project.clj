@@ -11,8 +11,6 @@
                  [hiccup "1.0.5"]
                  [environ "1.1.0"]
                  [ring/ring-jetty-adapter "1.6.2"]
-                 [bk/ring-gzip "0.2.1"]
-                 [ring/ring-defaults "0.3.1"]
 
                  [org.clojure/clojurescript "1.9.946"]
                  [garden "1.3.3"]
@@ -29,7 +27,7 @@
 
   :hooks [leiningen.cljsbuild]
   :uberjar-name "nossal.jar"
-  :prep-tasks [["garden" "once"] ["cljsbuild" "once" "main"]]
+  :prep-tasks [["garden" "once"] ["cljsbuild" "once" "app" "sw"]]
 
   :ring {:handler nossal.app/app :auto-refresh? true}
 
@@ -39,9 +37,9 @@
 
   :clean-targets ^{:protect false} ["resources/public/js"
                                     "resources/public/css"
-                                    "target"]
+                                    :target-path]
 
-  :cljsbuild {:builds {:main {:source-paths ["src/clojurescript"]
+  :cljsbuild {:builds {:app {:source-paths ["src/clojurescript"]
                               :compiler {:output-to "resources/public/js/app.js"
                                          :pretty-print false
                                          :optimizations :advanced}}}}
@@ -66,6 +64,5 @@
                                       :incremental true
                                       :compiler {:output-to "resources/public/js/app.js"
                                                  :output-dir "resources/public/js/out"
-                                                 :source-map-timestamp true
                                                  :pretty-print true
-                                                 :optimizations :whitespace}}}}}})
+                                                 :optimizations :none}}}}}})
