@@ -12,6 +12,7 @@
                  [environ "1.1.0"]
                  [ring/ring-jetty-adapter "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
+                 [com.cemerick/url "0.1.1"]
 
                  [org.clojure/clojurescript "1.9.946"]
                  [garden "1.3.3"]

@@ -1,8 +1,9 @@
-(ns nossal.sw)
+(ns nossal.sw
+  (:require [cemerick.url :as url]))
 
 (def app-cache-name "nossal-app-cache")
 
-(def files-to-cache ["/js/app.js"])
+(def files-to-cache ["/js/app.js" "/"])
 
 (defn- install-service-worker [e]
   (js/console.log "[ServiceWorker] Installing...")
@@ -14,9 +15,18 @@
     (.then (fn []
              (js/console.log "[ServiceWorker] Successfully Installed")))))
 
+(defn- fetch [request]
+  (-> js/caches
+    (.match request)
+    (.then (fn [response]
+             (or response (js/fetch request))))))
+
+             ;(if (= "GET" (.-method e))
 (defn- fetch-event [e]
-  (js/console.log "[ServiceWorker] Fetch" (-> e .-request .-url))
-  (js/fetch (.-request e)))
+  (let [request (.-request e)
+        url (-> request .-url url/url)]
+    (case (:host url)
+      ("localhost" "noss.al" "nossal.com.br") (fetch request))))
 
 (defn- purge-old-caches [e]
   (js/console.log "[ServiceWorker] activate"))

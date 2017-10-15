@@ -14,4 +14,4 @@
 
 (js/console.log "WOW! It Works!!")
 
-(register-service-worker "sw.js")
+(register-service-worker "js/sw.js")
