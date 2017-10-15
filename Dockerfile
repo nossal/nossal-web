@@ -4,7 +4,7 @@ ADD . /code
 WORKDIR /code
 
 # Build release.
-RUN lein uberjar
+RUN lein with-profile production ring uberjar
 
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
 CMD ["start"]

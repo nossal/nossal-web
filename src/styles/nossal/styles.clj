@@ -39,7 +39,6 @@
   [:header
     {:padding-top (em 10)
      :text-align "center"
-    ;  :background-image "url('/images/backdrop.jpg')"
      :background-size "cover"
      :background-repeat "no-repeat"}
     [:p.catch {:color "#efc664"
@@ -90,12 +89,14 @@
                  :background "#8b969f"}]
   [:.end {:color "#dcdcdc"}]
 
-  [:a.p {:color "#444"
+  [:a.p {:color "#434245"
          :font-size "11px"
          :display "block"
          :position "absolute"
-         :right (px 5)
-         :bottom (px 25)}]
+         :cursor "default"
+         :padding (px 2)
+         :right (px 2)
+         :bottom (px 20)}]
 
   [:footer
     {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"

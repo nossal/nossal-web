@@ -36,7 +36,7 @@
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-      (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
+      (if (= "true" (env :production))
         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
       [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
       [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
@@ -50,11 +50,14 @@
       [:div.main (seq body)]
 
       [:a.p "π"]
+
       [:footer
-       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "
-        [:a {:href "http://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
-        [:span.heart " "] " at "
-        [:a {:href "//pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Aldeia dos Anjos."]]]])))
+       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "]
+       [:a {:href "https://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
+       [:span.heart " "] " at "
+       [:a {:href "https://pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Aldeia dos Anjos."]]
+
+      [:script {:async (true? (= "true" (env :production))) :src "/js/app.js"}]])))
 
 
 (defn index [req]

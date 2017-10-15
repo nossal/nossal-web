@@ -75,7 +75,3 @@ workflows:
             branches:
               only: master
 
-general:
-  branches:
-    only:
-      - master
