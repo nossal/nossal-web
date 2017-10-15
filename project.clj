@@ -11,6 +11,7 @@
                  [hiccup "1.0.5"]
                  [environ "1.1.0"]
                  [ring/ring-jetty-adapter "1.6.2"]
+                 [ring/ring-defaults "0.3.1"]
 
                  [org.clojure/clojurescript "1.9.946"]
                  [garden "1.3.3"]
@@ -30,7 +31,7 @@
 
   :ring {:handler nossal.app/app :auto-refresh? true}
 
-  :figwheel {:ring-handler nossal.app/app
+  :figwheel {:ring-handler nossal.app/dev-app
              :css-dirs ["resources/public/css"]}
 
 
@@ -41,14 +42,13 @@
   :cljsbuild {:builds {:app {:source-paths ["src/clojurescript/nossal/app"]
                               :compiler {:output-to "resources/public/js/app.js"
                                          :pretty-print false
+                                         :parallel-build true
                                          :optimizations :advanced}}
-
                        :sw {:source-paths ["src/clojurescript/nossal/sw"]
                              :compiler {:output-to "resources/public/js/sw.js"
                                         :pretty-print false
+                                        :parallel-build true
                                         :optimizations :advanced}}}}
-
-
 
   :garden {:builds [{:source-paths ["src/styles"]
                      :stylesheet nossal.styles/screen
@@ -65,18 +65,25 @@
                           :prep-tasks [["garden" "once"] ["cljsbuild" "once" "app" "sw"]]}
 
              :dev {:env {:dev true, :production false}
+                   :prep-tasks [["garden" "once"]]
                    :cljsbuild {:builds
                                {:app {:source-paths ["src/clojurescript/nossal/app"]
                                       :figwheel true
                                       :incremental true
                                       :compiler {:output-to "resources/public/js/app.js"
-                                                 :output-dir "resources/public/js/out-app"
+                                                 :output-dir "resources/public/js/app-out"
+                                                 :main "nossal.app"
+                                                 :asset-path "js/app-out"
+                                                 :parallel-build true
                                                  :pretty-print true
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
                                      :figwheel true
                                      :incremental true
                                      :compiler {:output-to "resources/public/js/sw.js"
-                                                :output-dir "resources/public/js/out-sw"
+                                                :output-dir "resources/public/js/sw-out"
+                                                :main "nossal.sw"
+                                                :asset-path "js/out-app"
+                                                :parallel-build true
                                                 :pretty-print true
                                                 :optimizations :none}}}}}})

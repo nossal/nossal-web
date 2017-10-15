@@ -1,3 +1,3 @@
-(ns nossal.frontend.sw)
+(ns nossal.sw)
 
-(js/console.log "This is Service Worker!!!")
+(js/console.log "This is Service Worker!!")

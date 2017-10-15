@@ -1,4 +1,4 @@
-(ns nossal.frontend.app)
+(ns nossal.app)
 
 (defn is-service-worker-supported?
   []
@@ -13,4 +13,4 @@
           (.then #(js/console.log (str "Service Worker Registered[" path-to-sw ""))))))
 
 (js/console.log "WOW! It Works!!")
-(register-service-worker "sw.js")
+(register-service-worker "js/sw.js")

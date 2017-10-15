@@ -89,7 +89,7 @@
                  :background "#8b969f"}]
   [:.end {:color "#dcdcdc"}]
 
-  [:a.p {:color "#444"
+  [:a.p {:color "#434245"
          :font-size "11px"
          :display "block"
          :position "absolute"

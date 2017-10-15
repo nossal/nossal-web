@@ -57,7 +57,7 @@
        [:span.heart " "] " at "
        [:a {:href "https://pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Aldeia dos Anjos."]]
 
-      [:script {:async true :src "/js/app.js"}]])))
+      [:script {:src "/js/app.js"}]])))
 
 
 (defn index [req]

@@ -1,10 +1,11 @@
 (ns nossal.app
   (:require [nossal.web :refer [index dot log breakout coupom miner]]
             [compojure.route :as route]
-            [compojure.core :refer [defroutes routes wrap-routes GET PUT POST DELETE ANY]]
+            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
+            [ring.middleware.reload :refer [wrap-reload]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.adapter.jetty :as jetty]
-            [ring.middleware.defaults :refer :all]
             [ring.util.response :as response]
             [environ.core :refer [env]]
             [clojure.java.io :as io]))
@@ -44,9 +45,10 @@
     (route/not-found (slurp (io/resource "404.html")))))
 
 
-(def app
-  (-> app-routes
-    (wrap-defaults site-defaults)))
+(def app (wrap-defaults #'app-routes site-defaults))
+
+
+(def dev-app (wrap-reload (wrap-defaults #'app-routes site-defaults)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
