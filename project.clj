@@ -81,5 +81,7 @@
                                      :figwheel true
                                      :incremental true
                                      :compiler {:output-to "resources/public/js/sw.js"
+                                                :output-dir "resources/public/js/sw-out"
+                                                :source-map "resources/public/js/sw.js.map"
                                                 :parallel-build true
                                                 :optimizations :advanced}}}}}})
