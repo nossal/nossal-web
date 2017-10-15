@@ -81,9 +81,5 @@
                                      :figwheel true
                                      :incremental true
                                      :compiler {:output-to "resources/public/js/sw.js"
-                                                :output-dir "resources/public/js/sw-out"
-                                                :main "nossal.sw"
-                                                :asset-path "js/out-app"
                                                 :parallel-build true
-                                                :pretty-print true
-                                                :optimizations :none}}}}}})
+                                                :optimizations :advanced}}}}}})

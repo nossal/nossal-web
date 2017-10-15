@@ -10,7 +10,8 @@
       (-> js/navigator
           .-serviceWorker
           (.register path-to-sw)
-          (.then #(js/console.log (str "Service Worker Registered[" path-to-sw ""))))))
+          (.then #(js/console.log (str "Service Worker Registered [" path-to-sw "]"))))))
 
 (js/console.log "WOW! It Works!!")
-(register-service-worker "js/sw.js")
+
+(register-service-worker "sw.js")

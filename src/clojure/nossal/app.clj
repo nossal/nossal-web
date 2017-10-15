@@ -15,6 +15,9 @@
   (GET "/" request
     (index request))
 
+  (GET "/sw.js" []
+    (response/resource-response "sw.js" {:root "public/js"}))
+
   (GET "/p" request
     (str request))
 
@@ -33,10 +36,10 @@
   (GET "/_ah/health" request
     (str "👌"))
 
-  (GET "/cupons/:service" [service :as request]
-    (coupom service request))
   (GET "/cupons" []
     (response/redirect "/cupons/uber"))
+  (GET "/cupons/:service" [service :as request]
+    (coupom service request))
 
 
   (route/resources "/")
