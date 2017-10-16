@@ -84,5 +84,6 @@
                                      :compiler {:output-to "resources/public/js/sw.js"
                                                 :output-dir "resources/public/js/sw-out"
                                                 :source-map "resources/public/js/sw.js.map"
+                                                :asset-path "js/sw-out"
                                                 :parallel-build true
                                                 :optimizations :advanced}}}}}})

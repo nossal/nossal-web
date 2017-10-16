@@ -11,12 +11,15 @@
             [clojure.java.io :as io]))
 
 
+(defn service-worker [mod]
+  (response/resource-response (str "sw.js" mod) {:root "public/js"}))
+
 (defroutes app-routes
   (GET "/" request
     (index request))
 
-  (GET "/sw.js" []
-    (response/resource-response "sw.js" {:root "public/js"}))
+  (GET "/sw.js" [] (service-worker ""))
+  (GET "/sw.js.map" [] (service-worker ".map"))
 
   (GET "/p" request
     (str request))
