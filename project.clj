@@ -44,10 +44,12 @@
                               :compiler {:output-to "resources/public/js/app.js"
                                          :pretty-print false
                                          :parallel-build true
+                                         :language-in :ecmascript5
                                          :optimizations :advanced}}
                        :sw {:source-paths ["src/clojurescript/nossal/sw"]
                              :compiler {:output-to "resources/public/js/sw.js"
                                         :pretty-print false
+                                        :language-in :ecmascript5
                                         :parallel-build true
                                         :optimizations :advanced}}}}
 
@@ -76,6 +78,7 @@
                                                  :main "nossal.app"
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
+                                                 :language-in :ecmascript5
                                                  :pretty-print true
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
@@ -85,4 +88,5 @@
                                                 :output-dir "resources/public/js/sw-out"
                                                 :source-map "resources/public/js/sw.js.map"
                                                 :parallel-build true
+                                                :language-in :ecmascript5
                                                 :optimizations :advanced}}}}}})
