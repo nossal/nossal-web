@@ -8,8 +8,9 @@
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
             [environ.core :refer [env]]
-            [clojure.java.io :as io])
-  (use clojure.string))
+            [clojure.java.io :as io]
+            [clojure.string :refer [ends-with?]]))
+
 
 
 (defn ignore-trailing-slash [handler]

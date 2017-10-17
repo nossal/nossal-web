@@ -8,6 +8,7 @@
             [hiccup.page :as page]
             [nossal.data :as dat]
             [nossal.core :as core]
+            [nossal.util.web :refer [not-found]]
             [nossal.styles :refer [bgcolor]]))
 
 
@@ -122,45 +123,47 @@
 
 
 (defn coupom [service req]
-  (page/html5 {:⚡ true :lang "pt-br"}
-    (let [cdata (dat/coupom-codes service)]
-     (seq [[:head
-            [:meta {:charset "UTF-8"}]
-            [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-            [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-            [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, 99, viagem, corrida, cupom, coupom, código de desconto"}]
-            [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (cdata :title) (cdata :description))}]
-            [:title "Cupom de Desconto 🤑 " (cdata :title) " - " (s/upper-case (cdata :code))]
-            (map (fn [s]
-                  [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
-                 [16 32 48 96 144])
-            [:link {:rel "canonical" :href (core/cannonical-url req)}]
-            [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-            (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
-              [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-            [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
-            [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
-            [:noscript
-              [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
-           [:body.coupom
-            [:section
-             [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (cdata :title))) :alt (str (cdata :title) " logo") :height "100" :width "265"}]
-             [:h1 "Cupom de desconto " (cdata :title) "."]
-             [:div.intro
-               [:p (cdata :text)]]
-             [:a#get-coupom {:href (cdata :url) :class (str "code" service)} (cdata :code)]
-             [:p.link-description "Clique no código acima e aproveite o seu desconto."]
-             [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
-            [:section.others
-             [:p.intro "Quer mais descontos?"]
+  (if (not (nil? (dat/coupom-codes service)))
+    (page/html5 {:⚡ true :lang "pt-br"}
+      (let [cdata (dat/coupom-codes service)]
+        (seq [[:head
+                [:meta {:charset "UTF-8"}]
+                [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+                [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
+                [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, 99, viagem, corrida, cupom, coupom, código de desconto"}]
+                [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (cdata :title) (cdata :description))}]
+                [:title "Cupom de Desconto 🤑 " (cdata :title) " - " (s/upper-case (cdata :code))]
+                (map (fn [s]
+                      [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
+                    [16 32 48 96 144])
+                [:link {:rel "canonical" :href (core/cannonical-url req)}]
+                [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
+                (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
+                  [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+                [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
+                [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
+                [:noscript
+                  [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
+              [:body.coupom
+                [:section
+                  [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (cdata :title))) :alt (str (cdata :title) " logo") :height "100" :width "265"}]
+                  [:h1 "Cupom de desconto " (cdata :title) "."]
+                  [:div.intro
+                    [:p (cdata :text)]]
+                  [:a#get-coupom {:href (cdata :url) :class (str "code" service)} (cdata :code)]
+                  [:p.link-description "Clique no código acima e aproveite o seu desconto."]
+                  [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
+                [:section.others
+                  [:p.intro "Quer mais descontos?"]
 
-             [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Código " (s/capitalize x)]) (keep #(if (not= service %) %) (keys dat/coupom-codes)))]]
-            [:footer
-              [:p "Este é um presente do fundo " [:a {:href "http://noss.al/"} "do meu 💖"] " para você."]]
+                  [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Código " (s/capitalize x)]) (keep #(if (not= service %) %) (keys dat/coupom-codes)))]]
+                [:footer
+                  [:p "Este é um presente do fundo " [:a {:href "http://noss.al/"} "do meu 💖"] " para você."]]
 
-            [:script {:type "application/ld+json"} dat/data-website]
-            [:amp-analytics {:type "googleanalytics"}
-             [:script {:type "application/json"} dat/data-analytics]]]]))))
+                [:script {:type "application/ld+json"} dat/data-website]
+                [:amp-analytics {:type "googleanalytics"}
+                  [:script {:type "application/json"} dat/data-analytics]]]])))
+    not-found))
 
 
 (defn log [req]
