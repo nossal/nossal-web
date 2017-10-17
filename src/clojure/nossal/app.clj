@@ -8,8 +8,18 @@
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
             [environ.core :refer [env]]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [clojure.string :refer [ends-with?]]))
 
+
+
+(defn ignore-trailing-slash [handler]
+  (fn [request]
+    (let [uri (:uri request)]
+      (handler (assoc request :uri (if (and (not (= "/" uri))
+                                            (ends-with? uri "/"))
+                                     (subs uri 0 (dec (count uri)))
+                                     uri))))))
 
 (defn service-worker [mod]
   (response/resource-response (str "sw.js" mod) {:root "public/js"}))
@@ -51,10 +61,12 @@
     (route/not-found (slurp (io/resource "404.html")))))
 
 
-(def app (wrap-defaults #'app-routes site-defaults))
+(def app
+  (-> app-routes
+      (wrap-defaults site-defaults)
+      (ignore-trailing-slash)))
 
-
-(def dev-app (wrap-reload (wrap-defaults #'app-routes site-defaults)))
+(def dev-app (wrap-reload app))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
