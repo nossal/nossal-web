@@ -19,7 +19,6 @@
                     js/Promise.all)))))
 
 (defn- add-cache [request response]
-  (js/console.log "add cache" request)
   (-> js/caches
       (.open app-cache-name)
       (.then (fn [cache]
