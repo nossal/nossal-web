@@ -12,7 +12,6 @@
                  [environ "1.1.0"]
                  [ring/ring-jetty-adapter "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
-                 [com.cemerick/url "0.1.1"]
 
                  [org.clojure/clojurescript "1.9.946"]
                  [garden "1.3.3"]
@@ -44,10 +43,12 @@
                               :compiler {:output-to "resources/public/js/app.js"
                                          :pretty-print false
                                          :parallel-build true
+                                         :language-in :ecmascript5
                                          :optimizations :advanced}}
                        :sw {:source-paths ["src/clojurescript/nossal/sw"]
                              :compiler {:output-to "resources/public/js/sw.js"
                                         :pretty-print false
+                                        :language-in :ecmascript5
                                         :parallel-build true
                                         :optimizations :advanced}}}}
 
@@ -76,6 +77,7 @@
                                                  :main "nossal.app"
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
+                                                 :language-in :ecmascript5
                                                  :pretty-print true
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
@@ -86,4 +88,5 @@
                                                 :source-map "resources/public/js/sw.js.map"
                                                 :asset-path "js/sw-out"
                                                 :parallel-build true
+                                                :language-in :ecmascript5
                                                 :optimizations :advanced}}}}}})
