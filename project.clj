@@ -61,7 +61,12 @@
                      :stylesheet nossal.simple/simple
                      :compiler {:output-to "resources/public/css/simple.css"
                                 :vendors ["moz" "webkit"]
-                                :pretty-print? false}}]}
+                                :pretty-print? false}}
+                    {:source-paths ["src/styles"]
+                     :stylesheet nossal.reboot/reset
+                     :compiler {:output-to "resources/public/css/reboot.css"
+                                :vendors ["moz" "webkit" "ms"
+                                           :pretty-print? true]}}]}
 
   :profiles {:production {:env {:dev false :production true}
                           :prep-tasks [["garden" "once"] ["cljsbuild" "once" "app" "sw"]]}

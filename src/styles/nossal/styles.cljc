@@ -3,7 +3,7 @@
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
             [garden.stylesheet :refer [at-import at-media]]
-            [nossal.reset :refer [reset]]))
+            [nossal.reboot :refer [reset]]))
 
 (def bgcolor "linear-gradient(45deg, #837490, #6a7988)")
 
@@ -67,9 +67,10 @@
      :margin-bottom "0.3em"
      :text-align "center"
      :color "#ccc"
-     :text-shadow "0 1px 5px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.24)"}
-    [:span
-      {:background "linear-gradient(270deg,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d)"
+     :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
+    [:>span
+      {:background "linear-gradient(270deg,#3b3b4b,#16479c,#961d99,#3b3b4b,#16479c,#961d99,#3b3b4b,#16479c,#961d99)"
+      ;:background "linear-gradient(270deg,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d)"
        :background-size "700% 200%"
        :-webkit-text-fill-color "transparent"
        :-webkit-background-clip "text"
@@ -79,15 +80,16 @@
        :padding "0.3em 0.5em 0.2em"
        :display "inline-block"}]]
 
-  [:.accent {:color "rgba(166, 109, 206, 0.84)"}]
+  [:.accent {:color "rgba(130, 96, 195, 0.8)"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
-                 :color "rgba(125, 128, 152, 0.84)"
+                 :color "rgba(119, 122, 147, 0.8)"
                  :display "inline-block"
                  :padding "0.5em 1em"
-                 :text-shadow "1px 4px 6px #8b969f, 0 0 0 #000, 1px 4px 6px #8b969f"
+                 :text-shadow "1px 4px 4px #8b969f, 0 0 0 #000, 1px 4px 6px #8b969f"
                  :background "#8b969f"}]
-  [:.end {:color "#dcdcdc"}]
+  [:.end {:color "#d4d4d4"
+          :text-shadow "1px 1px 3px rgba(0,0,0,0.2)"}]
 
   [:a.p {:color "#434245"
          :font-size "11px"
