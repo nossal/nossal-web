@@ -78,7 +78,7 @@
 
       [:section#me [:div#tweetwidget]
        [:a.start {:href "#" :title "start"}
-        [:svg {:width "60" :height "30" :xmlns "http://www.w3.org/2000/svg"}
+        [:svg {:width "60" :height "30" :xmlns "https://www.w3.org/2000/svg"}
          [:g#svg_1
           [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
           [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
@@ -107,7 +107,7 @@
 (defn dot [req]
   (if (s/includes? (get (:headers req) "user-agent") "curl")
     (do
-      (client/post "http://www.google-analytics.com/collect"
+      (client/post "https://www.google-analytics.com/collect"
         {:form-params {:v "1"}
                       :tid (env :google-analytics)
                       :cid "555"
@@ -158,7 +158,7 @@
 
                   [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Código " (s/capitalize x)]) (keep #(if (not= service %) %) (keys dat/coupom-codes)))]]
                 [:footer
-                  [:p "Este é um presente do fundo " [:a {:href "http://noss.al/"} "do meu 💖"] " para você."]]
+                  [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu 💖"] " para você."]]
 
                 [:script {:type "application/ld+json"} dat/data-website]
                 [:amp-analytics {:type "googleanalytics"}
