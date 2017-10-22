@@ -9,6 +9,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.6.0"]
                  [hiccup "1.0.5"]
+                 [image-resizer "0.1.10"]
                  [environ "1.1.0"]
                  [ring/ring-jetty-adapter "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
@@ -52,21 +53,22 @@
                                         :parallel-build true
                                         :optimizations :advanced}}}}
 
+
   :garden {:builds [{:source-paths ["src/styles"]
                      :stylesheet nossal.styles/screen
                      :compiler {:output-to "resources/public/css/screen.css"
-                                :vendors ["moz" "webkit"]
+                                :vendors ["moz" "webkit" "ms" "o"]
                                 :pretty-print? false}}
                     {:source-paths ["src/styles"]
                      :stylesheet nossal.simple/simple
                      :compiler {:output-to "resources/public/css/simple.css"
-                                :vendors ["moz" "webkit"]
-                                :pretty-print? false}}
-                    {:source-paths ["src/styles"]
-                     :stylesheet nossal.reboot/reset
-                     :compiler {:output-to "resources/public/css/reboot.css"
-                                :vendors ["moz" "webkit" "ms"
-                                           :pretty-print? true]}}]}
+                                :vendors ["moz" "webkit" "ms" "o"]
+                                :pretty-print? false}}]}
+                    ; {:source-paths ["src/styles"]
+                    ;  :stylesheet nossal.reboot/reset
+                    ;  :compiler {:output-to "resources/public/css/reboot.css"
+                    ;             :vendors ["moz" "webkit" "ms"]
+                    ;             :pretty-print? true}}]}
 
   :profiles {:production {:env {:dev false :production true}
                           :prep-tasks [["garden" "once"] ["cljsbuild" "once" "app" "sw"]]}
@@ -83,6 +85,7 @@
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
                                                  :language-in :ecmascript5
+                                                 :language-out :ecmascript5
                                                  :pretty-print true
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
@@ -94,4 +97,5 @@
                                                 :asset-path "js/sw-out"
                                                 :parallel-build true
                                                 :language-in :ecmascript5
+                                                :language-out :ecmascript5
                                                 :optimizations :advanced}}}}}})

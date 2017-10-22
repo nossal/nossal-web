@@ -3,6 +3,19 @@
             [environ.core :refer [env]]))
 
 
+(def pwa-manifest
+  (json/write-str {:name "Nossal, Rodrigo Nossal"
+                   :short_name "nossal"
+                   :description "Rodrigo Nossal's personal website"
+                   :display "fullscreen"
+                   :theme_color "#747f90"
+                   :background_color "#747f90"
+                   :lang "pt-br"
+                   :start_url "https://noss.al/"
+                   :icons (map (fn [s]
+                                 {:src (str "image/icon-" s ".png") :sizes (str s "x" s) :type "image/png"})
+                               [48 72 76 96 120 144 152 180 192 512 1024])}))
+
 (def public-profiles {"Facebook"   "https://facebook.com/nossal"
                       "Twitter"    "https://twitter.com/nossal"
                       "Instagram"  "https://instagram.com/nossal"
