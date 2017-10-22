@@ -50,7 +50,7 @@
 
       [:div.main (seq body)]
 
-      [:a.p "π"]
+      [:a#p "π"]
 
       [:footer
        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "]
@@ -87,7 +87,7 @@
 
       [:section#facebook]
 
-      [:section#end [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]
+      [:section#end [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]
      [:script {:type "application/ld+json"} dat/data-person]]
     req))
 
