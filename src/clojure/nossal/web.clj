@@ -32,7 +32,7 @@
       [:meta {:name "description" :content (options :description)}]
       (map (fn [o] [:meta o]) (options :meta))
       (map (fn [s]
-             [:link {:rel "icon" :type "image/png" :href (s/join ["/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
+             [:link {:rel "icon" :type "image/png" :href (s/join ["/images/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
@@ -134,7 +134,7 @@
                 [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (cdata :title) (cdata :description))}]
                 [:title "Cupom de Desconto 🤑 " (cdata :title) " - " (s/upper-case (cdata :code))]
                 (map (fn [s]
-                      [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
+                      [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
                     [16 32 48 96 144])
                 [:link {:rel "canonical" :href (core/cannonical-url req)}]
                 [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
