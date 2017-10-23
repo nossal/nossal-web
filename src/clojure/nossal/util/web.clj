@@ -10,9 +10,10 @@
 
 
 (defn resize-image [image size format]
-  (if (and (not (nil? (io/resource (str image "." format))))
-           (contains? dat/allowed-image-sizes size))
-    (-> (response/response (format/as-stream (resize (io/file (io/resource (str image "." format))) size size) format))
+  (if (and (contains? dat/allowed-image-sizes size)
+           (not (nil? (io/resource (str image "." format)))))
+
+    (-> (response/response (format/as-stream (resize (io/resource (str image "." format)) size size) format))
         (response/content-type (str "image/" format))
         (response/header "Cache-Control" "immutable, public, max-age=31536000"))
     not-found))
