@@ -12,9 +12,26 @@
   [:50%  {:background-position "100% 50%"}]
   [:100% {:background-position "0% 50%"}])
 
+(defkeyframes show-mov
+  [:from {:transform "translateY(10px)"
+          :opacity 0}]
+  [:to   {:transform "translateY(0)"
+          :opacity 1}])
+
+(defkeyframes dismiss-mov
+  [:from {:transform "translateY(0)"
+          :opacity 1}]
+  [:to   {:transform "translateY(10px)"
+          :opacity 0}])
+
+(def show-anim [[show-mov "200ms ease-in forwards"]])
+(def dismiss-anim [[dismiss-mov "200ms ease-out 5s forwards"]])
 
 (defstyles screen
-  DEFACTO reset
+  DEFACTO
+  dismiss-mov
+  show-mov
+  reset
   [:body
     {:font-family "\"SF Pro Display\",\"SF Pro Icons\",\"Helvetica Neue\",\"Helvetica\",\"Arial\",sans-serif"
      :font-size (px 16)
@@ -133,6 +150,14 @@
                   :content "\"\""
                   :background-color "rgba(226, 47, 98, 0.5)"
                   :border-radius "0 3px 3px 0"}]]]
+
+  [:alert-box {:display "block"
+               :padding "5px 2px"
+               :background "#666"
+               :color "#eee"}]
+  [:.online {:animation show-anim}]
+
+  [:.offline {:animation dismiss-anim}]
 
   (at-media {:max-width (px 736)}
     [:header {:padding-top (em 3)}]
