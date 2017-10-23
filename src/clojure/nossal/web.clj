@@ -32,7 +32,7 @@
       [:meta {:name "description" :content (options :description)}]
       (map (fn [o] [:meta o]) (options :meta))
       (map (fn [s]
-             [:link {:rel "icon" :type "image/png" :href (s/join ["/images/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
+             [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]

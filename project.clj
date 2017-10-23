@@ -83,8 +83,8 @@
                                                  :main "nossal.app"
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
-                                                 :language-in :ecmascript5
-                                                 :language-out :ecmascript5
+                                                 :language-in :ecmascript6
+                                                 :language-out :ecmascript6
                                                  :pretty-print true
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
@@ -95,6 +95,6 @@
                                                 :source-map "resources/public/js/sw.js.map"
                                                 :asset-path "js/sw-out"
                                                 :parallel-build true
-                                                :language-in :ecmascript5
-                                                :language-out :ecmascript5
+                                                :language-in :ecmascript6
+                                                :language-out :ecmascript6
                                                 :optimizations :advanced}}}}}})
