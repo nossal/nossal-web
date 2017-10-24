@@ -29,7 +29,7 @@
   :hooks [leiningen.cljsbuild]
   :uberjar-name "nossal.jar"
 
-  :ring {:handler nossal.app/app :auto-refresh? true}
+  :ring {:handler nossal.app/dev-app :auto-refresh? true}
 
   :figwheel {:ring-handler nossal.app/dev-app
              :css-dirs ["resources/public/css"]}
@@ -56,12 +56,12 @@
   :garden {:builds [{:source-paths ["src/styles"]
                      :stylesheet nossal.styles/screen
                      :compiler {:output-to "resources/public/css/screen.css"
-                                :vendors ["moz" "webkit" "ms" "o"]
+                                :vendors ["moz" "webkit" "ms"]
                                 :pretty-print? false}}
                     {:source-paths ["src/styles"]
                      :stylesheet nossal.simple/simple
                      :compiler {:output-to "resources/public/css/simple.css"
-                                :vendors ["moz" "webkit" "ms" "o"]
+                                :vendors ["moz" "webkit" "ms"]
                                 :pretty-print? false}}]}
                     ; {:source-paths ["src/styles"]
                     ;  :stylesheet nossal.reboot/reset
@@ -70,10 +70,10 @@
                     ;             :pretty-print? true}}]}
 
   :profiles {:production {:env {:dev false :production true}
-                          :prep-tasks [["garden" "once"] ["cljsbuild" "once" "app" "sw"]]}
+                          :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
              :dev {:env {:dev true, :production false}
-                   :prep-tasks [["garden" "once"]]
+                  ;  :prep-tasks [["garden" "once"]]
                    :cljsbuild {:builds
                                {:app {:source-paths ["src/clojurescript/nossal/app"]
                                       :figwheel true
@@ -83,8 +83,6 @@
                                                  :main "nossal.app"
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
-                                                 :language-in :ecmascript6
-                                                 :language-out :ecmascript6
                                                  :pretty-print true
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
@@ -95,6 +93,4 @@
                                                 :source-map "resources/public/js/sw.js.map"
                                                 :asset-path "js/sw-out"
                                                 :parallel-build true
-                                                :language-in :ecmascript6
-                                                :language-out :ecmascript6
                                                 :optimizations :advanced}}}}}})
