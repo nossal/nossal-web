@@ -9,10 +9,10 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.6.0"]
                  [hiccup "1.0.5"]
+                 [image-resizer "0.1.10"]
                  [environ "1.1.0"]
                  [ring/ring-jetty-adapter "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
-
                  [org.clojure/clojurescript "1.9.946"]
                  [garden "1.3.3"]
                  [clj-http "3.7.0"]
@@ -52,21 +52,22 @@
                                         :parallel-build true
                                         :optimizations :advanced}}}}
 
+
   :garden {:builds [{:source-paths ["src/styles"]
                      :stylesheet nossal.styles/screen
                      :compiler {:output-to "resources/public/css/screen.css"
-                                :vendors ["moz" "webkit"]
+                                :vendors ["moz" "webkit" "ms" "o"]
                                 :pretty-print? false}}
                     {:source-paths ["src/styles"]
                      :stylesheet nossal.simple/simple
                      :compiler {:output-to "resources/public/css/simple.css"
-                                :vendors ["moz" "webkit"]
-                                :pretty-print? false}}
-                    {:source-paths ["src/styles"]
-                     :stylesheet nossal.reboot/reset
-                     :compiler {:output-to "resources/public/css/reboot.css"
-                                :vendors ["moz" "webkit" "ms"
-                                           :pretty-print? true]}}]}
+                                :vendors ["moz" "webkit" "ms" "o"]
+                                :pretty-print? false}}]}
+                    ; {:source-paths ["src/styles"]
+                    ;  :stylesheet nossal.reboot/reset
+                    ;  :compiler {:output-to "resources/public/css/reboot.css"
+                    ;             :vendors ["moz" "webkit" "ms"]
+                    ;             :pretty-print? true}}]}
 
   :profiles {:production {:env {:dev false :production true}
                           :prep-tasks [["garden" "once"] ["cljsbuild" "once" "app" "sw"]]}
@@ -82,7 +83,8 @@
                                                  :main "nossal.app"
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
-                                                 :language-in :ecmascript5
+                                                 :language-in :ecmascript6
+                                                 :language-out :ecmascript6
                                                  :pretty-print true
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
@@ -93,5 +95,6 @@
                                                 :source-map "resources/public/js/sw.js.map"
                                                 :asset-path "js/sw-out"
                                                 :parallel-build true
-                                                :language-in :ecmascript5
+                                                :language-in :ecmascript6
+                                                :language-out :ecmascript6
                                                 :optimizations :advanced}}}}}})

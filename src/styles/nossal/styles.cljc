@@ -12,9 +12,26 @@
   [:50%  {:background-position "100% 50%"}]
   [:100% {:background-position "0% 50%"}])
 
+(defkeyframes show-mov
+  [:from {:transform "translateY(10px)"
+          :opacity 0}]
+  [:to   {:transform "translateY(0)"
+          :opacity 1}])
+
+(defkeyframes dismiss-mov
+  [:from {:transform "translateY(0)"
+          :opacity 1}]
+  [:to   {:transform "translateY(10px)"
+          :opacity 0}])
+
+(def show-anim [[show-mov "200ms ease-in forwards"]])
+(def dismiss-anim [[dismiss-mov "200ms ease-out 5s forwards"]])
 
 (defstyles screen
-  DEFACTO reset
+  DEFACTO
+  dismiss-mov
+  show-mov
+  reset
   [:body
     {:font-family "\"SF Pro Display\",\"SF Pro Icons\",\"Helvetica Neue\",\"Helvetica\",\"Arial\",sans-serif"
      :font-size (px 16)
@@ -69,8 +86,7 @@
      :color "#ccc"
      :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
     [:>span
-      {:background "linear-gradient(270deg,#3b3b4b,#16479c,#961d99,#3b3b4b,#16479c,#961d99,#3b3b4b,#16479c,#961d99)"
-      ;:background "linear-gradient(270deg,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d,#511e50,#9d2d6e,#d7255d)"
+      {:background "linear-gradient(270deg,#76778c,#324f81,#961d99,#6f788a,#3b5789,#961d99,#6f788a,#315189,#961d99)"
        :background-size "700% 200%"
        :-webkit-text-fill-color "transparent"
        :-webkit-background-clip "text"
@@ -91,7 +107,7 @@
   [:.end {:color "#d4d4d4"
           :text-shadow "1px 1px 3px rgba(0,0,0,0.2)"}]
 
-  [:a.p {:color "#434245"
+  [:a#p {:color "#434245"
          :font-size "11px"
          :display "block"
          :position "absolute"
@@ -114,7 +130,7 @@
     [:a {:color "#ccc"
          :text-decoration "none"
          :margin "0 0.3em"}
-      [:&:hover {:text-decoration "underline"}]]
+      [:&:hover {:color "#ccc" :text-decoration "underline"}]]
     [:.heart
       {:background-color "rgba(206, 36, 168, 0.72)"
        :position "relative"
@@ -134,6 +150,14 @@
                   :content "\"\""
                   :background-color "rgba(226, 47, 98, 0.5)"
                   :border-radius "0 3px 3px 0"}]]]
+
+  [:alert-box {:display "block"
+               :padding "5px 2px"
+               :background "#666"
+               :color "#eee"}]
+  [:.online {:animation show-anim}]
+
+  [:.offline {:animation dismiss-anim}]
 
   (at-media {:max-width (px 736)}
     [:header {:padding-top (em 3)}]

@@ -61,5 +61,5 @@
 
 
 (.addEventListener js/self "install" #(.waitUntil % (on-install %)))
-(.addEventListener js/self "fetch" #(.respondWith % (on-fetch %)))
+(.addEventListener js/self "fetch" #(.respondWith % (on-fetch % 400)))
 (.addEventListener js/self "activate" #(.waitUntil % (on-activate %)))

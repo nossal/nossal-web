@@ -3,7 +3,7 @@
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
             [garden.stylesheet :refer [at-import at-media]]
-            [nossal.reset :refer [reset]]))
+            [nossal.reboot :refer [reset]]))
 
 (defstyles simple
   [reset]

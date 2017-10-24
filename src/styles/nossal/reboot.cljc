@@ -1,6 +1,6 @@
 (ns nossal.reboot
-  (:require [garden.def :refer [defstylesheet defstyles defrule]]
-            [garden.selectors :refer [attr attr= abbr a audio input button before after defpseudoclass defpseudoelement html not svg]]
+  (:require [garden.def :refer [defstylesheet defstyles]]
+            [garden.selectors :refer [attr attr= abbr a audio input button before after defselector defpseudoclass defpseudoelement html not svg]]
             [garden.units :as gu :refer [px em rem percent]]))
 
 (defpseudoelement -moz-focus-inner)
@@ -9,11 +9,11 @@
 (defpseudoelement -webkit-outer-spin-button)
 (defpseudoelement -webkit-search-cancel-button)
 (defpseudoelement -webkit-file-upload-button)
-(defrule star *)
+(defselector *)
 
 (defstyles reset
 
-  [(star before) (star after)
+  [:* (* before) (* after)
     {:box-sizing "border-box"}]
 
   [:html
@@ -44,7 +44,6 @@
   [(attr= :tabindex "-1")
    [:&:focus
      {:outline "none !important"}]]
-
 
 
   [:hr
@@ -79,6 +78,7 @@
     {:margin-top 0
      :margin-bottom (rem 1)}]
 
+
   [:ol
    [:ol
     {:margin-bottom 0}]]
@@ -91,6 +91,7 @@
   [:ul
    [:ol
     {:margin-bottom 0}]]
+
 
   [:dt
     {:font-weight "bold"}]

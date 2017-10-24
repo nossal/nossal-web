@@ -32,7 +32,7 @@
       [:meta {:name "description" :content (options :description)}]
       (map (fn [o] [:meta o]) (options :meta))
       (map (fn [s]
-             [:link {:rel "icon" :type "image/png" :href (s/join ["/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
+             [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
@@ -50,7 +50,7 @@
 
       [:div.main (seq body)]
 
-      [:a.p "π"]
+      [:a#p "π"]
 
       [:footer
        [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "]
@@ -87,7 +87,7 @@
 
       [:section#facebook]
 
-      [:section#end [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and ES6, Scala, Clojure, Go, Perl on weekends."]]]
+      [:section#end [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]
      [:script {:type "application/ld+json"} dat/data-person]]
     req))
 
@@ -134,7 +134,7 @@
                 [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (cdata :title) (cdata :description))}]
                 [:title "Cupom de Desconto 🤑 " (cdata :title) " - " (s/upper-case (cdata :code))]
                 (map (fn [s]
-                      [:link {:rel "icon" :type "image/png" :href (s/join ["/" "gift-icon-" s ".png"]) :sizes (s/join [s "x" s])}])
+                      [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
                     [16 32 48 96 144])
                 [:link {:rel "canonical" :href (core/cannonical-url req)}]
                 [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
@@ -214,13 +214,13 @@
     ""
     [[:script {:async true :src "https://coinhive.com/lib/miner.min.js"}]
      [:div.coinhive-miner {:style "width: 550px; height: 100px; margin: auto"
-                            :data-key (env :chive-key)
-                            :data-autostart "true"
-                            :data-background "#444"
-                            :data-text "#eee"
-                            :data-action "#0f0"
-                            :data-graph "#555"
-                            :data-threads 4
-                            :data-whitelabel false}
+                           :data-key (env :chive-key)
+                           :data-autostart "true"
+                           :data-background "#444"
+                           :data-text "#eee"
+                           :data-action "#0f0"
+                           :data-graph "#555"
+                           :data-threads 4
+                           :data-whitelabel false}
         [:em "Please disable Adblock"]]]
     req))

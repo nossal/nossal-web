@@ -1,5 +1,6 @@
 (ns nossal.app
   (:require [nossal.web :refer [index dot log breakout coupom miner]]
+            [nossal.util.web :refer [resize-image pwa-manifest]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
@@ -28,6 +29,9 @@
   (GET "/" request
     (index request))
 
+  (GET "/manifest.json" request
+    (pwa-manifest))
+
   (GET "/sw.js" [] (service-worker ""))
   (GET "/sw.js.map" [] (service-worker ".map"))
 
@@ -48,6 +52,9 @@
 
   (GET "/_ah/health" request
     (str "👌"))
+
+  (GET "/image/:name{[a-z_-]+}-:size{[0-9]+}.:format" [name size format]
+    (resize-image  name (int (read-string size)) format))
 
   (GET "/cupons" []
     (response/redirect "/cupons/uber"))
