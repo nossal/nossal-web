@@ -107,14 +107,14 @@
   [:.end {:color "#d4d4d4"
           :text-shadow "1px 1px 3px rgba(0,0,0,0.2)"}]
 
-  [:a#p {:color "#434245"
-         :font-size "11px"
-         :display "block"
-         :position "absolute"
-         :cursor "default"
-         :padding (px 2)
-         :right (px 2)
-         :bottom (px 20)}]
+  [:a#tnet {:color "#434245"
+            :font-size "11px"
+            :display "block"
+            :position "absolute"
+            :cursor "default"
+            :padding (px 2)
+            :right (px 2)
+            :bottom (px 20)}]
 
   [:footer
     {:font-family "PT Sans Narrow, Arial Narrow, Arial, sans-serif"

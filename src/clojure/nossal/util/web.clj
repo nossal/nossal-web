@@ -20,3 +20,9 @@
 (defn pwa-manifest []
   (-> (response/response dat/pwa-manifest)
       (response/content-type "application/json")))
+
+(defn a-out
+  ([url text]
+   (a-out url nil text))
+  ([url attrs text]
+   [:a (merge {:href url :data-vars-outbound-link url :target "_blank" :rel "noopener"} attrs) text]))

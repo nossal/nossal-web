@@ -8,7 +8,7 @@
             [hiccup.page :as page]
             [nossal.data :as dat]
             [nossal.core :as core]
-            [nossal.util.web :refer [not-found]]
+            [nossal.util.web :refer [not-found a-out]]
             [nossal.styles :refer [bgcolor]]))
 
 
@@ -50,13 +50,13 @@
 
       [:div.main (seq body)]
 
-      [:a#p "π"]
+      [:a#tnet "π"]
 
       [:footer
-       [:span.made "Handmade " [:a {:href "https://github.com/nossal/noss.al", :target "_blank" :rel "noopener"} "entirely"] " in "]
-       [:a {:href "https://clojure.org" :target "_blank" :rel "noopener"} "Clojure"] " and "
+       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " in "]
+       (a-out "https://clojure.org" "Clojure") " and "
        [:span.heart " "] " at "
-       [:a {:href "https://pt.wikipedia.org/wiki/Gravata%C3%AD" :target "_blank" :rel "noopener"} "Aldeia dos Anjos."]]
+       (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]
 
       [:script {:async (true? (= "true" (env :production))) :src "/js/app.js"}]])))
 
@@ -150,7 +150,7 @@
                   [:h1 "Cupom de desconto " (cdata :title) "."]
                   [:div.intro
                     [:p (cdata :text)]]
-                  [:a#get-coupom {:href (cdata :url) :class (str "code" service)} (cdata :code)]
+                  (a-out (cdata :url) {:id "get-coupom" :class (str "code" service)} (cdata :code))
                   [:p.link-description "Clique no código acima e aproveite o seu desconto."]
                   [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
                 [:section.others
