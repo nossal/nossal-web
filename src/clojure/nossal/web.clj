@@ -70,11 +70,10 @@
      :meta [{:name "theme-color" :content "#747f90"}
             {:name "msapplication-TileColor" :content "#747f90"}]}
     ""
-    [
-     [:article
+    [[:article
       [:header
        [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
-       [:p.about-line [:span.accent "\"Full-Stack\""] " Web Developer"]]
+       [:p.about-line [:span.accent "\"Full-Stack\"" {:title "Not Realy"}] " Web Developer"]]
 
       [:section#me [:div#tweetwidget]
        [:a.start {:href "#" :title "start"}
