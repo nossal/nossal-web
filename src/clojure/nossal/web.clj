@@ -28,6 +28,7 @@
       [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
       [:meta {:name "keywords" :content (options :keywords)}]
+      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
       [:title title]
       [:meta {:name "description" :content (options :description)}]
       (map (fn [o] [:meta o]) (options :meta))
