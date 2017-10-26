@@ -32,7 +32,8 @@
                       "Google+"    "https://google.com/+RodrigoNossal"
                       "Ello"       "https://ello.co/nossal"
                       "About.me"   "https://about.me/nossal"
-                      "myspace"    "https://myspace.com/nossal"})
+                      "myspace"    "https://myspace.com/nossal"
+                      "Pinterest"  "https://pinterest.com/thenossal"})
 
 (def data-person (json/write-str {"@context" "https://schema.org"
                                   "@type" "Person"
