@@ -74,7 +74,7 @@
     [[:article
       [:header
        [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
-       [:p.about-line [:span.accent "\"Full-Stack\"" {:title "Not Realy"}] " Web Developer"]]
+       [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
 
       [:section#me [:div#tweetwidget]
        [:a.start {:href "#" :title "start"}

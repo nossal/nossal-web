@@ -80,6 +80,7 @@
     {:font-size (em 3.5)
      :text-transform "uppercase"
      :letter-spacing "0.05em"
+     :line-height (em 1)
      :font-weight "300"
      :margin-bottom "0.3em"
      :text-align "center"
