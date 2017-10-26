@@ -54,7 +54,7 @@
     (str "👌"))
 
   (GET "/image/:name{[a-z_-]+}-:size{[0-9]+}.:format" [name size format]
-    (resize-image  name (int (read-string size)) format))
+    (resize-image name (int (read-string size)) format))
 
   (GET "/cupons" []
     (response/redirect "/cupons/uber"))
