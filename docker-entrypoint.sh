@@ -2,11 +2,10 @@
 
 set -ex
 
-export JVM_OPTS="-Xms50m -Xmx100m -Dfile.encoding=UTF-8"
+export JVM_OPTS="-server -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseTLAB -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=60 -XX:+DisableExplicitGC -Xms512m -Xmx512m"
 export PORT=8080
 export GOOGLE_ANALYTICS="UA-11532471-6"
 export CHIVE_KEY="kBClwk1fEiyo3wGiPT7g4dfbVpTuoIlz"
-
 
 if [ "$1" = "start" ]
 then
