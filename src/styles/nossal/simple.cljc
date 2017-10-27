@@ -3,14 +3,12 @@
             [garden.units :as gu :refer [px em percent]]
             [garden.color :as color :refer [rgba]]
             [garden.stylesheet :refer [at-import at-media]]
-            [nossal.reboot :refer [reset]]))
+            [nossal.reboot-simple :refer [reset]]))
 
 (defstyles simple
   [reset]
   [:body
-   {:font-family "\"SF Pro Display\",\"SF Pro Icons\",\"Helvetica Neue\",\"Helvetica\",\"Arial\",sans-serif"
-    :font-size (px 16)
-    :font-feature-settings "kern"
+   {:font-feature-settings "kern"
     :direction "ltr"
     :font-synthesis "none"
     :background "#efefef"

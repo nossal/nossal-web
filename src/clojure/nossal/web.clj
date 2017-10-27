@@ -37,6 +37,7 @@
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
+      [:script {:async (true? (= "true" (env :production))) :src "/js/app.js"}]
       [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
       (if (= "true" (env :production))
         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
@@ -57,9 +58,9 @@
        [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
        (a-out "https://clojure.org" "Clojure") " and "
        [:span.heart " "] " at "
-       (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]
+       (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]])))
 
-      [:script {:async (true? (= "true" (env :production))) :src "/js/app.js"}]])))
+
 
 
 (defn index [req]

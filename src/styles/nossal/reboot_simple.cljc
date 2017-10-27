@@ -1,14 +1,9 @@
-(ns nossal.reboot
+(ns nossal.reboot-simple
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.selectors :refer [attr attr= abbr a audio input button before after defselector defpseudoclass defpseudoelement html not svg]]
             [garden.units :as gu :refer [px em rem percent]]))
 
 (defpseudoelement -moz-focus-inner)
-(defpseudoelement -webkit-inner-spin-button)
-(defpseudoelement -webkit-search-decoration)
-(defpseudoelement -webkit-outer-spin-button)
-(defpseudoelement -webkit-search-cancel-button)
-(defpseudoelement -webkit-file-upload-button)
 (defselector *)
 
 (defstyles reset
@@ -60,34 +55,9 @@
     :cursor "help"
     :border-bottom 0}]
 
-  [:address
-    {:margin-bottom "1rem"
-     :font-style "normal"
-     :line-height "inherit"}]
-
   [:ol :ul :dl
     {:margin-top 0
      :margin-bottom (rem 1)}]
-
-  [:ol
-   [:ol
-    {:margin-bottom 0}]]
-  [:ol
-   [:ul
-    {:margin-bottom 0}]]
-  [:ul
-   [:ul
-    {:margin-bottom 0}]]
-  [:ul
-   [:ol
-    {:margin-bottom 0}]]
-
-  [:dt
-    {:font-weight "bold"}]
-
-  [:dd
-    {:margin-bottom (rem 0.5)
-     :margin-left 0}]
 
   [:blockquote
     {:margin "0 0 1rem"}]
@@ -100,18 +70,6 @@
 
   [:small
     {:font-size "80%"}]
-
-  [:sub :sup
-    {:position "relative"
-     :font-size "75%"
-     :line-height 0
-     :vertical-align "baseline"}]
-
-  [:sub
-    {:bottom (em -0.25)}]
-
-  [:sup
-    {:top (em -0.5)}]
 
   [:a
     {:color "#007bff"
@@ -165,13 +123,6 @@
   [:table
     {:border-collapse "collapse"}]
 
-  [:caption
-    {:padding-top (rem 0.75)
-     :padding-bottom (rem 0.75)
-     :color "#868e96"
-     :text-align "left"
-     :caption-side "bottom"}]
-
   [:th
     {:text-align "inherit"}]
 
@@ -183,8 +134,7 @@
     {:border-radius 0}]
 
   [:button:focus
-    {;:outline "1px dotted"
-     :outline "5px auto -webkit-focus-ring-color"}]
+    {:outline "5px auto -webkit-focus-ring-color"}]
 
   [:input :button :select :optgroup :textarea
     {:margin "0"
@@ -215,60 +165,9 @@
    {:box-sizing "border-box"
     :padding 0}]
 
-  [(input (attr= :type "date"))
-   (input (attr= :type "time"))
-   (input (attr= :type "datetime-local"))
-   (input (attr= :type "month"))
-   {:-webkit-appearance "listbox"}]
-
   [:textarea
     {:overflow "auto"
      :resize "vertical"}]
-
-  [:fieldset
-    {:min-width 0
-     :padding 0
-     :margin 0
-     :border 0}]
-
-  [:legend
-    {:display "block"
-     :width "100%"
-     :max-width "100%"
-     :padding 0
-     :margin-bottom (rem 0.5)
-     :font-size (rem 1.5)
-     :line-height "inherit"
-     :color "inherit"
-     :white-space "normal"}]
-
-  [:progress
-    {:vertical-align "baseline"}]
-
-  [((attr= :type "number") -webkit-inner-spin-button)
-   ((attr= :type "number") -webkit-outer-spin-button)
-   {:height "auto"}]
-
-  [(attr= :type "search")
-   {:outline-offset (px 2)
-    :-webkit-appearance :none}]
-
-  [((attr= :type "search") -webkit-search-cancel-button)
-   ((attr= :type "search") -webkit-search-decoration)
-   {:-webkit-appearance :none}]
-
-  [(-webkit-file-upload-button)
-   {:font "inherit"
-    :-webkit-appearance "button"}]
-
-  [:output
-    {:display "inline-block"}]
-
-  [:summary
-    {:display "list-item"}]
-
-  [:template
-    {:display :none}]
 
   [(attr "hidden")
    {:display "none !important"}])
