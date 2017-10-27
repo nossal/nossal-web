@@ -1,8 +1,9 @@
 (ns nossal.styles
   (:require [garden.def :refer [defstylesheet defstyles defkeyframes]]
-            [garden.units :as gu :refer [px em percent]]
+            [garden.units :as gu :refer [px em rem percent]]
             [garden.color :as color :refer [rgba]]
             [garden.stylesheet :refer [at-import at-media]]
+            [garden.selectors :refer [>]]
             [nossal.reboot :refer [reset]]))
 
 (def bgcolor "linear-gradient(45deg, #837490, #6a7988)")
@@ -72,6 +73,9 @@
       [:.string {:color "#d28e5d"}]
       [:.normal {:color "#c7c7c7"}]]]
 
+  [(> :section :div)
+   {:margin "0 1.5em"}]
+
   [:section.weeks
     {:background "white"
      :color "#555"}]
@@ -100,6 +104,7 @@
   [:.accent {:color "rgba(130, 96, 195, 0.8)"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
+                 :margin-top (rem 1)
                  :color "rgba(119, 122, 147, 0.8)"
                  :display "inline-block"
                  :padding "0.5em 1em"
@@ -108,13 +113,13 @@
   [:.end {:color "#d4d4d4"
           :text-shadow "1px 1px 3px rgba(0,0,0,0.2)"}]
 
-  [:a#tnet {:color "#434245"
+  [:a#tnet {:color "#4d5661"
             :font-size "11px"
             :display "block"
             :position "absolute"
             :cursor "default"
             :padding (px 2)
-            :right (px 2)
+            :right (px 4)
             :bottom (px 20)}]
 
   [:footer
@@ -164,6 +169,8 @@
     [:header {:padding-top (em 3)}]
     [:h1 {:font-size (em 3) :margin (em 0.5)}])
 
-  (at-media {:max-height (px 400)}
-    [:header {:padding-top (em 1)}]))
+  (at-media {:max-width (px 374)}
+    [:header {:padding-top (em 1.5)}]
+    [:h1 {:font-size (em 2.5)}]
+    [:footer [:.made [:a {:display :none}]]]))
 
