@@ -54,7 +54,7 @@
       [:a#tnet "π"]
 
       [:footer
-       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " in "]
+       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
        (a-out "https://clojure.org" "Clojure") " and "
        [:span.heart " "] " at "
        (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]
