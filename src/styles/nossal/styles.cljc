@@ -4,7 +4,7 @@
             [garden.color :as color :refer [rgba]]
             [garden.stylesheet :refer [at-import at-media]]
             [garden.selectors :refer [>]]
-            [nossal.reboot :refer [reset]]))
+            [nossal.reboot-simple :refer [reset]]))
 
 (def bgcolor "linear-gradient(45deg, #837490, #6a7988)")
 
@@ -34,9 +34,7 @@
   show-mov
   reset
   [:body
-    {:font-family "\"SF Pro Display\",\"SF Pro Icons\",\"Helvetica Neue\",\"Helvetica\",\"Arial\",sans-serif"
-     :font-size (px 16)
-     :background bgcolor
+    {:background bgcolor
      :color "#FFF"
      :display "flex"
      :flex-direction "column"
