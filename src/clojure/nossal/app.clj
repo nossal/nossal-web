@@ -22,8 +22,17 @@
                                      (subs uri 0 (dec (count uri)))
                                      uri))))))
 
+(defn site-defaults-options [site-defaults]
+  (if (= "true" (env :production))
+    (-> site-defaults
+        (assoc-in [:security :ssl-redirect] true)
+        (assoc-in [:security :frame-options] :sameorigin)
+        (assoc :proxy true))
+    site-defaults))
+
 (defn service-worker [mod]
   (response/resource-response (str "sw.js" mod) {:root "public/js"}))
+
 
 (defroutes app-routes
   (GET "/" request
@@ -57,7 +66,7 @@
     (resize-image name (int (read-string size)) format))
 
   (GET "/cupons" []
-    (response/redirect "/cupons/uber"))
+    (response/redirect "/cupons/cabify"))
   (GET "/cupons/:service" [service :as request]
     (coupom service request))
 
@@ -70,7 +79,7 @@
 
 (def app
   (-> app-routes
-      (wrap-defaults site-defaults)
+      (wrap-defaults (site-defaults-options site-defaults))
       (ignore-trailing-slash)))
 
 (def dev-app (wrap-reload app))

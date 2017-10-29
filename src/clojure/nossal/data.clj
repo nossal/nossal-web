@@ -3,7 +3,7 @@
             [environ.core :refer [env]]))
 
 
-(def allowed-image-sizes #{48 72 76 96 120 144 152 180 192 512 1024})
+(def allowed-image-sizes #{16 32 48 72 76 96 120 144 152 180 192 512 1024})
 
 (def pwa-manifest
   (json/write-str {:name "Nossal, Rodrigo Nossal"
@@ -16,7 +16,7 @@
                    :start_url "https://noss.al/"
                    :icons (map (fn [s]
                                  {:src (str "image/icon-" s ".png") :sizes (str s "x" s) :type "image/png"})
-                               allowed-image-sizes)}))
+                               (keep #(if (> % 32) %) allowed-image-sizes))}))
 
 (def public-profiles {"Facebook"   "https://facebook.com/nossal"
                       "Twitter"    "https://twitter.com/nossal"
