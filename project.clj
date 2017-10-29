@@ -6,23 +6,24 @@
 
   :min-lein-version "2.7.1"
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [compojure "1.6.0"]
-                 [hiccup "1.0.5"]
-                 [image-resizer "0.1.10"]
-                 [environ "1.1.0"]
-                 [ring/ring-jetty-adapter "1.6.2"]
-                 [ring/ring-defaults "0.3.1"]
+  :dependencies [[org.clojure/clojure       "1.8.0"]
+                 [compojure                 "1.6.0"]
+                 [hiccup                    "1.0.5"]
+                 [image-resizer             "0.1.10"]
+                 [environ                   "1.1.0"]
+                 [ring/ring-jetty-adapter   "1.6.2"]
+                 [ring/ring-defaults        "0.3.1"]
                  [org.clojure/clojurescript "1.9.946"]
-                 [garden "1.3.3"]
-                 [clj-http "3.7.0"]
-                 [org.clojure/data.json "0.2.6"]]
+                 [garden                    "1.3.3"]
+                 [clj-http                  "3.7.0"]
+                 [org.clojure/data.json     "0.2.6"]]
 
-  :plugins [[lein-environ "1.1.0"]
+  :plugins [[lein-environ   "1.1.0"]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
-            [lein-figwheel "0.5.14"]
-            [lein-garden "0.3.0"]
-            [lein-ring "0.12.1"]]
+            [lein-figwheel  "0.5.14"]
+            [lein-garden    "0.3.0"]
+            [lein-ancient   "0.6.14"]
+            [lein-ring      "0.12.1"]]
 
   :source-paths ["src/clojure", "src/styles"]
 
