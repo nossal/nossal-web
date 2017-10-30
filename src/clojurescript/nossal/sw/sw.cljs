@@ -30,12 +30,16 @@
       (.then (fn [response]
                (or response (js/Promise.reject (str "no-match: " (.-url request))))))))
 
-(defn- fetch [request]
-  (-> (js/fetch request)
-      (.then (fn [response]
-               (if (.-ok response)
-                 (add-cache request (.clone response)))
-               response))
+(defn- fetch [request timeout]
+  (-> (js/Promise. (fn [fulfill reject]
+                     (let [timer (js/setTimeout reject timeout)]
+                       (-> (js/fetch request)
+                           (.then (fn [response]
+                                    (js/clearTimeout timer)
+                                    (if (.-ok response)
+                                      (add-cache request (.clone response)))
+                                    (fulfill response)))
+                           (.catch (fn [] (from-cache request)))))))
       (.catch (fn [] (from-cache request)))))
 
 (defn- on-install [e]
@@ -51,7 +55,7 @@
 (defn- on-fetch [e]
   (let [request (.-request e)]
     (case (:host (parse-url (.-url request)))
-      ("localhost" "noss.al" "nossal.com.br") (fetch request)
+      ("localhost" "noss.al" "nossal.com.br") (fetch request 400)
       (js/fetch request))))
 
 (defn- on-activate [e]
@@ -61,5 +65,5 @@
 
 
 (.addEventListener js/self "install" #(.waitUntil % (on-install %)))
-(.addEventListener js/self "fetch" #(.respondWith % (on-fetch % 400)))
+(.addEventListener js/self "fetch" #(.respondWith % (on-fetch %)))
 (.addEventListener js/self "activate" #(.waitUntil % (on-activate %)))
