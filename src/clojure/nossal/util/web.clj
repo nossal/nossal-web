@@ -19,7 +19,7 @@
 
 (defn pwa-manifest []
   (-> (response/response dat/pwa-manifest)
-      (response/content-type "application/json")))
+      (response/content-type "application/manifest+json")))
 
 (defn a-out
   ([url text]
