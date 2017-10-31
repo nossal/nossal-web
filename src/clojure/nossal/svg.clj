@@ -1,4 +1,6 @@
-(ns nossal.svg)
+(ns nossal.svg
+  "SVG images/icons in hiccup style (clojure data structures)
+   Most of the icons are from: https://simpleicons.org")
 
 
 (defn- svg-icon [icon title path]
@@ -6,7 +8,6 @@
     [:svg {:aria-labelledby name :role "img" :viewBox "0 0 24 24" :xmlns "http://www.w3.org/2000/svg"}
       [:title {:id name} title]
       [:path path]]))
-
 
 (def twitter-icon
   (svg-icon "twitter-icon" "Twitter icon"
@@ -78,7 +79,7 @@
 
 
 (def chevron-down
-  [:svg {:viewBox "0 0 24 24" :xmlns "http://www.w3.org/2000/svg" :fill-rule "evenodd" :clip-rule "evenodd" :stroke-linecap "round" :stroke-linejoin "round" :stroke-miterlimit "1.5">}
+  [:svg {:viewBox "0 0 24 24" :xmlns "http://www.w3.org/2000/svg" :fill-rule "evenodd" :clip-rule "evenodd" :stroke-linecap "round" :stroke-linejoin "round" :stroke-miterlimit "1.5"}
     [:path {:d "M.5 8L12 16l11.5-8" :fill "none" :stroke "#000"}]])
 
 
@@ -86,8 +87,8 @@
    {:twitter        twitter-icon
     :stackoverflow  stackoverflow-icon
     :spotify        spotify-icon
-    :lastfm         lastfm-icon
-    :googleplus     googleplus-icon
+    :last.fm        lastfm-icon
+    :google+        googleplus-icon
     :github         github-icon
     :medium         medium-icon
     :myspace        myspace-icon
@@ -96,7 +97,7 @@
     :linkedin       linkedin-icon
     :soundcloud     soundcloud-icon
     :flickr         flickr-icon
-    :aboutme        aboutme-icon
+    :about.me       aboutme-icon
     :pinterest      pinterest-icon
     :ello           ello-icon
     :clojure        clojure-icon})

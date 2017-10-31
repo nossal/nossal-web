@@ -38,10 +38,10 @@
            [48 96 144 192])
       [:link {:rel "canonical" :href (core/cannonical-url req)}]
       [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
-      [:script {:async (true? (= "true" (env :production))) :src "/js/app.js"}]
-      [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
+      [:script {:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
+      [:script {:async true :charset "utf-8" :src "https://cdn.ampproject.org/v0.js"}]
       (if (= "true" (env :production))
-        [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+        [:script {:async true :custom-element "amp-analytics" :charset "utf-8" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
       [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
       [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
       [:noscript
@@ -136,9 +136,9 @@
                       [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
                     [16 32 48 96 144])
                 [:link {:rel "canonical" :href (core/cannonical-url req)}]
-                [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-                (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
-                  [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+                [:script {:async true :charset "utf-8" :src "https://cdn.ampproject.org/v0.js"}]
+                (if (= "true" (env :production))
+                  [:script {:async true :custom-element "amp-analytics" :charset "utf-8" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
                 [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
                 [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
                 [:noscript

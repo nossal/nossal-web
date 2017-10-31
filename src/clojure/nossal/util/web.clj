@@ -25,4 +25,4 @@
   ([url text]
    (a-out url nil text))
   ([url attrs text]
-   [:a (merge {:href url :data-vars-outbound-link url :target "_blank" :rel "noopener"} attrs) text]))
+   [:a (merge {:href url :data-vars-outbound-link url :target "_blank" :rel "noopener noreferrer"} attrs) text]))
