@@ -10,7 +10,7 @@
             [nossal.core :as core]
             [nossal.util.web :refer [not-found a-out]]
             [nossal.styles :refer [bgcolor]]
-            [nossal.svg :refer [all-icons]]))
+            [nossal.svg :refer [all-icons chevron-down]]))
 
 
 (defn base
@@ -80,10 +80,7 @@
 
       [:section#me [:div#tweetwidget]
        [:a.start {:href "#" :title "start"}
-        [:svg {:width "60" :height "30" :xmlns "https://www.w3.org/2000/svg"}
-         [:g#svg_1
-          [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
-          [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
+        chevron-down]]
 
       [:div.divisor]
 
