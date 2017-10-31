@@ -9,7 +9,8 @@
             [nossal.data :as dat]
             [nossal.core :as core]
             [nossal.util.web :refer [not-found a-out]]
-            [nossal.styles :refer [bgcolor]]))
+            [nossal.styles :refer [bgcolor]]
+            [nossal.svg :refer [all-icons]]))
 
 
 (defn base
@@ -86,7 +87,7 @@
 
       [:div.divisor]
 
-      [:section#facebook]
+      [:section]
 
       [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]
      [:script {:type "application/ld+json"} dat/data-person]]
