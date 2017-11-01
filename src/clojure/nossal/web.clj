@@ -13,7 +13,7 @@
             [nossal.svg :refer [all-icons chevron-down]]))
 
 
-(defn base
+(defn- base
   ([title css body req]
    (base title
          {:keywords ""
@@ -166,6 +166,18 @@
 
 
 (defn log [req]
+  (base "LOG" ""
+    [[:section
+       [:h1 "header 1"]
+       [:h2 "header 2"]
+       [:h3 "header 3"]
+       [:h4 "header 4"]
+       [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+       [:p "A simgle line of text"]]]
+    req))
+
+
+(defn weekly [req]
   (base "Weekly" ""
     [[:header
        [:h1 "Weekly"]]

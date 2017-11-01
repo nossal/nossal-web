@@ -25,7 +25,10 @@
 
   [:body
     {:margin 0
-     :font-family "-apple-system BlinkMacSystemFont \"Segoe UI\" Roboto \"Helvetica Neue\" Arial sans-serif \"Apple Color Emoji\" \"Segoe UI Emoji\" \"Segoe UI Symbol\""
+     :font-family "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
+     :font-feature-settings "kern"
+     :direction "ltr"
+     :font-synthesis "none"
      :font-size (rem 1)
      :font-weight "normal"
      :line-height 1.5

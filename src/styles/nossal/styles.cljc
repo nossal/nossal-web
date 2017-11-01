@@ -42,6 +42,10 @@
 
   [:nav {:background "#fff" :color "#444"}]
 
+  [:p {:font-size (em 1.5)
+       :font-weight 200
+       :letter-spacing (rem 0.05)}]
+
   [:.main
    {:flex 1
     :display "flex"}]

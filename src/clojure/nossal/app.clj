@@ -13,7 +13,6 @@
             [clojure.string :refer [ends-with?]]))
 
 
-
 (defn ignore-trailing-slash [handler]
   (fn [request]
     (let [uri (:uri request)]
@@ -50,7 +49,7 @@
   (GET "/dot" request
     (dot request))
 
-  (GET "/weekly" request
+  (GET "/log" request
     (log request))
 
   (GET "/breakout" request
