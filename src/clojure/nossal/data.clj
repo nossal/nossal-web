@@ -9,11 +9,11 @@
   (json/write-str
     {:name "Nossal, Rodrigo Nossal"
      :short_name "NOSSAL"
-     :description "Rodrigo Nossal's personal website"
+     :description "Rodrigo Nossal's Personal Website"
      :display "fullscreen"
      :theme_color "#747f90"
      :background_color "#747f90"
-     :lang "pt-br"
+     :lang "pt-BR"
      :orientation "portrait"
      :start_url "/?utm_source=web_app_manifest"
      :icons (map (fn [s]
