@@ -53,7 +53,10 @@
   [:article
    {:display "flex"
     :flex-direction "column"
-    :margin (em 0.5)
+    :background "#fff"
+    :color "#555"
+    :margin "1em 0 0"
+    :padding ".5em 1em"
     :width "100%"}]
 
   [:header

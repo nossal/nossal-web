@@ -167,13 +167,15 @@
 
 (defn log [req]
   (base "LOG" ""
-    [[:section
+    [[:article
        [:h1 "header 1"]
        [:h2 "header 2"]
        [:h3 "header 3"]
        [:h4 "header 4"]
        [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-       [:p "A simgle line of text"]]]
+       [:p "A simgle line of text"]]
+     [:article
+       [:p "Another article"]]]
     req))
 
 
