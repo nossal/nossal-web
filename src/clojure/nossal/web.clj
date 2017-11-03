@@ -8,72 +8,79 @@
             [hiccup.page :as page]
             [nossal.data :as dat]
             [nossal.core :as core]
-            [nossal.util.web :refer [not-found a-out]]
+            [nossal.util.web :refer [not-found a-out favicons-attrs]]
             [nossal.styles :refer [bgcolor]]
             [nossal.svg :refer [all-icons chevron-down]]))
 
 
-(defn- base
-  ([title css body req]
-   (base title
-         {:keywords ""
-          :description ""
-          :meta []
-          :manifest "manifest"
-          :icon "icon"}
-         css body req))
-  ([title options css body req]
-   (page/html5 {:⚡ true :lang "en"}
-     [:head
-      [:meta {:charset "UTF-8"}]
-      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-      [:meta {:name "keywords" :content (options :keywords)}]
-      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
-      [:title title]
-      [:meta {:name "description" :content (options :description)}]
-      (map (fn [o] [:meta o]) (options :meta))
-      (map (fn [s]
-             [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
-           [48 96 144 192])
-      [:link {:rel "canonical" :href (core/cannonical-url req)}]
-      [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
-      [:script {:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
-      [:script {:async true :charset "utf-8" :src "https://cdn.ampproject.org/v0.js"}]
-      (if (= "true" (env :production))
-        [:script {:async true :custom-element "amp-analytics" :charset "utf-8" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-      [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
-      [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
-      [:noscript
-       [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
-     [:body
-      [:script {:type "application/ld+json"} dat/data-website]
-      [:amp-analytics {:type "googleanalytics"}
-       [:script {:type "application/json"} dat/data-analytics]]
+(defn- base [title meta links scripts styles body options]
+  (page/html5 {:lang (get options :lang "en") :⚡ (get options :amp false)}
+    [:head
+     [:meta {:charset "UTF-8"}]
+     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
+     [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
+     [:meta {:name "theme-color" :content "#747f90"}]
+     [:meta {:name "msapplication-TileColor" :content "#747f90"}]
+     (map (fn [o] [:meta o]) meta)
+     [:title title]
+     [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
+     (map (fn [attr] [:link attr]) links)
+     (map (fn [attr] [:script attr]) scripts)
+     (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
+     [:noscript
+       (map (fn [node] node) (get options :noscript []))]]
+    [:body
+     [:script {:type "application/ld+json"} dat/data-website]
+     (seq body)
 
-      [:div.main (seq body)]
+     [:a#tnet "π"]
 
-      [:a#tnet "π"]
-
-      [:footer
-       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
-       (a-out "https://clojure.org" "Clojure") " and "
-       [:span.heart " "] " at "
-       (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]])))
+     [:footer
+      [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
+      (a-out "https://clojure.org" "Clojure") " and "
+      [:span.heart " "] " at "
+      (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]]))
 
 
+(defn- base-html
+  ([title meta links scripts styles body]
+   (base-html title meta links scripts styles body {}))
+  ([title meta links scripts styles body options]
+   (base title meta links scripts styles body options)))
+
+(defn- base-amp
+  ([title meta links scripts styles body]
+   (base-amp title meta links scripts styles body {}))
+  ([title meta links scripts styles body options]
+   (base-html
+     title meta links
+     (concat
+       [{:async true :charset "utf-8" :src "https://cdn.ampproject.org/v0.js"}]
+       (if (= "true" (env :production))
+         {:async true :custom-element "amp-analytics" :charset "utf-8" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"})
+       scripts)
+     (concat
+       [{:attr {:amp-boilerplate true} :content (slurp (io/resource "amp-css.css"))}]
+       (map #(assoc % :attr {:amp-custom true}) styles))
+     (into [[:amp-analytics {:type "googleanalytics"}
+             [:script {:type "application/json"} dat/data-analytics]]]
+           body)
+     (merge options {:amp true
+                     :noscript [[:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}"]]}))))
 
 
 (defn index [req]
-  (base "Nossal, Rodrigo Nossal"
-    {:keywords "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"
-     :description "Nossal is a software development lover, and this is his personal website."
-     :manifest "manifest"
-     :icon "icon"
-     :meta [{:name "theme-color" :content "#747f90"}
-            {:name "msapplication-TileColor" :content "#747f90"}]}
-    ""
-    [[:article
+  (base-amp
+    "Nossal, Rodrigo Nossal"
+    [{:name "description" :content "Nossal is a software development lover, and this is his personal website."}
+     {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}]
+    (concat [{:rel "canonical" :href (core/cannonical-url req)}] (favicons-attrs "icon"))
+    [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
+    [{:content (slurp (io/resource "public/css/screen.css"))}]
+
+    [[:script {:type "application/ld+json"} dat/data-person]
+     [:article
       [:header
        [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
        [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
@@ -86,9 +93,8 @@
 
       [:section]
 
-      [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]
-     [:script {:type "application/ld+json"} dat/data-person]]
-    req))
+      [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]]))
+
 
 ; [:span.java "Java"] ", " [:span.python "Python"]
 (defn breakout [req]
@@ -165,8 +171,9 @@
     not-found))
 
 
+; [title meta links scripts styles options body]
 (defn log [req]
-  (base "LOG" ""
+  (base "LOG" [] [] [] [] []
     [[:article
        [:h1 "header 1"]
        [:h2 "header 2"]
@@ -175,8 +182,8 @@
        [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
        [:p "A simgle line of text"]]
      [:article
-       [:p "Another article"]]]
-    req))
+       [:p "Another article"]]]))
+
 
 
 (defn weekly [req]

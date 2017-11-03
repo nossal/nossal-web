@@ -26,3 +26,8 @@
    (a-out url nil text))
   ([url attrs text]
    [:a (merge {:href url :data-vars-outbound-link url :target "_blank" :rel "noopener noreferrer"} attrs) text]))
+
+(defn favicons-attrs [icon]
+  (map (fn [size]
+           {:rel "icon" :type "image/png" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
+       [48 96 144 192]))

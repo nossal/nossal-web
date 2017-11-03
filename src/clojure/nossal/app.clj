@@ -22,12 +22,11 @@
                                      uri))))))
 
 (defn site-defaults-options [site-defaults]
-  (if (= "true" (env :production))
-    (-> site-defaults
-        (assoc-in [:security :ssl-redirect] true)
-        (assoc-in [:security :frame-options] :sameorigin)
-        (assoc :proxy true))
-    site-defaults))
+  (-> site-defaults
+      (assoc-in [:security :ssl-redirect] true)
+      (assoc-in [:security :frame-options] :sameorigin)
+      (assoc :proxy true)))
+
 
 (defn service-worker [mod]
   (response/resource-response (str "sw.js" mod) {:root "public/js"}))
@@ -81,7 +80,10 @@
       (wrap-defaults (site-defaults-options site-defaults))
       (ignore-trailing-slash)))
 
-(def dev-app (wrap-reload app))
+(def dev-app
+  (-> app-routes
+      (wrap-defaults site-defaults)
+      (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
