@@ -43,6 +43,9 @@
         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
       [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
       [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
+      [:script {:async true :src "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}]
+      [:script
+        "(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: \"ca-pub-9207695243671092\", enable_page_level_ads: true });"]
       [:noscript
        [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
      [:body
