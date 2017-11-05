@@ -80,7 +80,7 @@
 (defn index [req]
   (base-amp
     "Nossal, Rodrigo Nossal"
-     (let [description "------------"]
+     (let [description "Rodrigo Nossal Personal Website"]
        [{:name "description" :content description}
         {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}
         {:property "og:url" :content (core/cannonical-url req)}
@@ -166,7 +166,7 @@
                 [:section
                   [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (cdata :title))) :alt (str (cdata :title) " logo") :height "100" :width "265"}]
                   [:h1 "Cupom de desconto " (cdata :title) "."]
-                  [:div.intro
+                  [:div.intro.text
                     [:p (cdata :text)]]
                   (a-out (cdata :url) {:id "get-coupom" :class (str "code" service)} (cdata :code))
                   [:p.link-description "Clique no código acima e aproveite o seu desconto."]

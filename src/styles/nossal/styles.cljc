@@ -88,10 +88,10 @@
   [:h1
     {:font-size (em 3.5)
      :text-transform "uppercase"
-     :letter-spacing "0.05em"
+     :letter-spacing (em 0.05)
      :line-height (em 1)
-     :font-weight "300"
-     :margin-bottom "0.3em"
+     :font-weight 300
+     :margin-bottom (em 0.3)
      :text-align "center"
      :color "#ccc"
      :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
@@ -174,7 +174,7 @@
     [:header {:padding-top (em 3)}]
     [:h1 {:font-size (em 3) :margin (em 0.5)}])
 
-  (at-media {:max-width (px 374)}
+  (at-media {:max-width (px 383)}
     [:header {:padding-top (em 1.5)}]
     [:h1 {:font-size (em 2.5)}]
     [:footer [:.made [:a {:display :none}]]]))

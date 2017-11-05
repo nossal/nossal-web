@@ -39,7 +39,8 @@
     :font-weight 500
     :line-height 1.04167
     :letter-spacing (em 0.006)
-    :margin-top (em 0.7)}]
+    :margin-top (em 0.7)
+    :margin-bottom (em 1)}]
   [:p.call-to-action
     {:font-size (em 1.2)
      :margin-top (em 1.5)}]
@@ -59,7 +60,7 @@
   [:.intro
     {:display "block"
      :font-size (em 1.4)
-     :max-width "60vw"
+     :max-width "80vw"
      :margin "auto"
      :font-weight 300
      :line-height 1.45455
@@ -80,12 +81,15 @@
     [:&:hover {:text-decoration "underline"}]]]
 
 
-  (at-media {:max-width (px 375)}
-    [:#get-coupom.code99 {:font-size (em 2)}]
-    [:#get-coupom.code99pop {:font-size (em 2)}])
-
   (at-media {:max-width (px 736)}
-    [:section {:padding (em 1) :padding-bottom (em 5)}]
+    [:.text {:text-align "justify"}]
+    [:section {:padding (em 1) :padding-bottom (em 3)}]
     [:h1 {:font-size (em 2.3)}]
     [:footer {:margin-top (em 1)}]
-    [:.call-button {:margin-top (em 0.5)}]))
+    [:.call-button {:margin-top (em 0.5)}])
+
+  (at-media {:max-width (px 383)}
+    [:section {:padding (em 1) :padding-bottom (em 2.5)}]
+    [:#get-coupom.code99 {:font-size (em 2)}]
+    [:#get-coupom.code99pop {:font-size (em 2)}]))
+

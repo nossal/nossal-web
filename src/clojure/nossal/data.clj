@@ -9,7 +9,7 @@
   (json/write-str
     {:name "Nossal, Rodrigo Nossal"
      :short_name "NOSSAL"
-     :description "Rodrigo Nossal's Personal Website"
+     :description "Rodrigo Nossal Personal Website"
      :display "fullscreen"
      :theme_color "#747f90"
      :background_color "#747f90"
