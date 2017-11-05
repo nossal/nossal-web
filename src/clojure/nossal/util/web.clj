@@ -9,12 +9,17 @@
   (assoc (response/not-found (slurp (io/resource "404.html"))) :headers {"Content-Type" "text/html; charset=UTF-8"}))
 
 
-(defn resize-image [image width format]
+(defn resize-image [image width ext]
   (if (and (contains? dat/allowed-image-sizes width)
-           (not (nil? (io/resource (str image "." format)))))
-    (-> (response/response (format/as-stream (resize-to-width (io/resource (str image "." format)) width) format))
-        (response/content-type (str "image/" format))
-        (response/header "Cache-Control" "immutable, public, max-age=31536000"))
+           (not (nil? (io/resource (str image "." ext)))))
+    (let [file-name (str "/tmp/image-bucket/" image "-" width "." ext)]
+      (if-not (.exists (io/file file-name))
+        (do (io/make-parents file-name)
+            (format/as-file (resize-to-width (io/resource (str image "." ext)) width) file-name :verbatim)))
+
+      (-> (response/response (io/input-stream file-name))
+          (response/content-type (str "image/" ext))
+          (response/header "Cache-Control" "public, max-age=31536000")))
     not-found))
 
 (defn pwa-manifest []
@@ -28,6 +33,10 @@
    [:a (merge {:href url :data-vars-outbound-link url :target "_blank" :rel "noopener noreferrer"} attrs) text]))
 
 (defn favicons-attrs [icon]
-  (map (fn [size]
-           {:rel "icon" :type "image/png" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
-       [48 96 144 192]))
+  (concat
+    (map (fn [size]
+            {:rel "icon" :type "image/png" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
+         [48 96 144 192])
+    (map (fn [size]
+            {:rel "apple-touch-icon" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
+         [76 120 152 180])))

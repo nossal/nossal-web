@@ -19,9 +19,16 @@
      [:meta {:charset "UTF-8"}]
      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-     [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
+     [:meta {:name "author" :content "Rodrigo Nossal"}]
+     [:meta {:name "mobile-web-app-capable" :content "yes"}]
+     [:meta {:name "apple-mobile-web-app-capable" :content "yes"}]
+     [:meta {:name "apple-mobile-web-app-status-bar-style" :content "black-translucent"}]
+     [:meta {:name "format-detection" :content "telephone=no"}]
      [:meta {:name "theme-color" :content "#747f90"}]
      [:meta {:name "msapplication-TileColor" :content "#747f90"}]
+     [:meta {:name "twitter:card" :content "summary"}]
+     [:meta {:name "twitter:creator" :content "@nossal"}]
+     [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
      (map (fn [o] [:meta o]) meta)
      [:title title]
      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
@@ -73,27 +80,33 @@
 (defn index [req]
   (base-amp
     "Nossal, Rodrigo Nossal"
-    [{:name "description" :content "Nossal is a software development lover, and this is his personal website."}
-     {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}]
+     (let [description "------------"]
+       [{:name "description" :content description}
+        {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}
+        {:property "og:url" :content (core/cannonical-url req)}
+        {:property "og:title" :content "Nossal, Rodrigo Nossal"}
+        {:property "og:description" :content description}
+        {:property "og:image" :content "https://noss.al/image/icon-1024.png"}])
     (concat [{:rel "canonical" :href (core/cannonical-url req)}] (favicons-attrs "icon"))
     [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
     [{:content (slurp (io/resource "public/css/screen.css"))}]
 
     [[:script {:type "application/ld+json"} dat/data-person]
-     [:article
-      [:header
-       [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
-       [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
+     [:div.main
+      [:article
+       [:header
+        [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
+        [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
 
-      [:section#me [:div#tweetwidget]
-       [:a.start {:href "#" :title "start"}
-        chevron-down]]
+      ;  [:section#me [:div#tweetwidget]
+      ;   [:a.start {:href "#" :title "start"}
+      ;    chevron-down]]
 
-      [:div.divisor]
+       [:div.divisor]
 
-      [:section]
+       [:section]
 
-      [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]]))
+       [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]]]))
 
 
 ; [:span.java "Java"] ", " [:span.python "Python"]
@@ -128,7 +141,7 @@
 
 
 (defn coupom [service req]
-  (if (not (nil? (dat/coupom-codes service)))
+  (if-not (nil? (dat/coupom-codes service))
     (page/html5 {:⚡ true :lang "pt-br"}
       (let [cdata (dat/coupom-codes service)]
         (seq [[:head

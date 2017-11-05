@@ -53,7 +53,7 @@
   [:article
    {:display "flex"
     :flex-direction "column"
-    :background "#fff"
+    ; :background "#fff"
     :color "#555"
     :margin "1em 0 0"
     :padding ".5em 1em"
