@@ -13,7 +13,6 @@
             [clojure.string :refer [ends-with?]]))
 
 
-
 (defn ignore-trailing-slash [handler]
   (fn [request]
     (let [uri (:uri request)]
@@ -23,12 +22,11 @@
                                      uri))))))
 
 (defn site-defaults-options [site-defaults]
-  (if (= "true" (env :production))
-    (-> site-defaults
-        (assoc-in [:security :ssl-redirect] true)
-        (assoc-in [:security :frame-options] :sameorigin)
-        (assoc :proxy true))
-    site-defaults))
+  (-> site-defaults
+      (assoc-in [:security :ssl-redirect] true)
+      (assoc-in [:security :frame-options] :sameorigin)
+      (assoc :proxy true)))
+
 
 (defn service-worker [mod]
   (response/resource-response (str "sw.js" mod) {:root "public/js"}))
@@ -50,7 +48,7 @@
   (GET "/dot" request
     (dot request))
 
-  (GET "/weekly" request
+  (GET "/log" request
     (log request))
 
   (GET "/breakout" request
@@ -62,14 +60,16 @@
   (GET "/_ah/health" request
     (str "👌"))
 
-  (GET "/image/:name{[a-z_-]+}-:size{[0-9]+}.:format" [name size format]
-    (resize-image name (int (read-string size)) format))
+  (GET "/image/:name{[a-z_-]+}-:size{[0-9]+}.:ext" [name size ext]
+    (resize-image name (int (read-string size)) ext))
 
   (GET "/cupons" []
     (response/redirect "/cupons/cabify"))
   (GET "/cupons/:service" [service :as request]
     (coupom service request))
 
+  (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
+    (str "👉 " encoded-id))
 
   (route/resources "/")
 
@@ -82,7 +82,10 @@
       (wrap-defaults (site-defaults-options site-defaults))
       (ignore-trailing-slash)))
 
-(def dev-app (wrap-reload app))
+(def dev-app
+  (-> app-routes
+      (wrap-defaults site-defaults)
+      (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]

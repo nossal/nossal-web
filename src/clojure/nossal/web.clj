@@ -8,92 +8,106 @@
             [hiccup.page :as page]
             [nossal.data :as dat]
             [nossal.core :as core]
-            [nossal.util.web :refer [not-found a-out]]
-            [nossal.styles :refer [bgcolor]]))
+            [nossal.util.web :refer [not-found a-out favicons-attrs]]
+            [nossal.styles :refer [bgcolor]]
+            [nossal.svg :refer [all-icons chevron-down]]))
 
 
-(defn base
-  ([title css body req]
-   (base title
-         {:keywords ""
-          :description ""
-          :meta []
-          :manifest "manifest"
-          :icon "icon"}
-         css body req))
-  ([title options css body req]
-   (page/html5 {:⚡ true :lang "en"}
-     [:head
-      [:meta {:charset "UTF-8"}]
-      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-      [:meta {:name "keywords" :content (options :keywords)}]
-      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
-      [:title title]
-      [:meta {:name "description" :content (options :description)}]
-      (map (fn [o] [:meta o]) (options :meta))
-      (map (fn [s]
-             [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" (options :icon) "-" s ".png"]) :sizes (s/join [s "x" s])}])
-           [48 96 144 192])
-      [:link {:rel "canonical" :href (core/cannonical-url req)}]
-      [:link {:rel "manifest" :href (s/join ["/" (options :manifest) ".json"])}]
-      [:script {:async (true? (= "true" (env :production))) :src "/js/app.js"}]
-      [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-      (if (= "true" (env :production))
-        [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-      [:style {:amp-custom true} (slurp (io/resource "public/css/screen.css")) css]
-      [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
-      [:script {:async true :src "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}]
-      [:script
-        "(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: \"ca-pub-9207695243671092\", enable_page_level_ads: true });"]
-      [:noscript
-       [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
-     [:body
-      [:script {:type "application/ld+json"} dat/data-website]
-      [:amp-analytics {:type "googleanalytics"}
-       [:script {:type "application/json"} dat/data-analytics]]
+(defn- base [title meta links scripts styles body options]
+  (page/html5 {:lang (get options :lang "en") :⚡ (get options :amp false)}
+    [:head
+     [:meta {:charset "UTF-8"}]
+     [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
+     [:meta {:name "author" :content "Rodrigo Nossal"}]
+     [:meta {:name "mobile-web-app-capable" :content "yes"}]
+     [:meta {:name "apple-mobile-web-app-capable" :content "yes"}]
+     [:meta {:name "apple-mobile-web-app-status-bar-style" :content "black-translucent"}]
+     [:meta {:name "format-detection" :content "telephone=no"}]
+     [:meta {:name "theme-color" :content "#747f90"}]
+     [:meta {:name "msapplication-TileColor" :content "#747f90"}]
+     [:meta {:name "twitter:card" :content "summary"}]
+     [:meta {:name "twitter:creator" :content "@nossal"}]
+     [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
+     (map (fn [o] [:meta o]) meta)
+     [:title title]
+     [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
+     (map (fn [attr] [:link attr]) links)
+     (map (fn [attr] [:script attr]) scripts)
+     (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
+     [:noscript
+       (map (fn [node] node) (get options :noscript []))]]
+    [:body
+     [:script {:type "application/ld+json"} dat/data-website]
+     (seq body)
 
-      [:div.main (seq body)]
+     [:a#tnet "π"]
 
-      [:a#tnet "π"]
-
-      [:footer
-       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
-       (a-out "https://clojure.org" "Clojure") " and "
-       [:span.heart " "] " at "
-       (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]])))
+     [:footer
+      [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
+      (a-out "https://clojure.org" "Clojure") " and "
+      [:span.heart " "] " at "
+      (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]]))
 
 
+(defn- base-html
+  ([title meta links scripts styles body]
+   (base-html title meta links scripts styles body {}))
+  ([title meta links scripts styles body options]
+   (base title meta links scripts styles body options)))
+
+(defn- base-amp
+  ([title meta links scripts styles body]
+   (base-amp title meta links scripts styles body {}))
+  ([title meta links scripts styles body options]
+   (base-html
+     title meta links
+     (concat
+       [{:async true :charset "utf-8" :src "https://cdn.ampproject.org/v0.js"}]
+       (if (= "true" (env :production))
+         {:async true :custom-element "amp-analytics" :charset "utf-8" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"})
+       scripts)
+     (concat
+       [{:attr {:amp-boilerplate true} :content (slurp (io/resource "amp-css.css"))}]
+       (map #(assoc % :attr {:amp-custom true}) styles))
+     (into [[:amp-analytics {:type "googleanalytics"}
+             [:script {:type "application/json"} dat/data-analytics]]]
+           body)
+     (merge options {:amp true
+                     :noscript [[:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}"]]}))))
 
 
 (defn index [req]
-  (base "Nossal, Rodrigo Nossal"
-    {:keywords "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"
-     :description "Nossal is a software development lover, and this is his personal website."
-     :manifest "manifest"
-     :icon "icon"
-     :meta [{:name "theme-color" :content "#747f90"}
-            {:name "msapplication-TileColor" :content "#747f90"}]}
-    ""
-    [[:article
-      [:header
-       [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
-       [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
+  (base-amp
+    "Nossal, Rodrigo Nossal"
+     (let [description "Rodrigo Nossal Personal Website"]
+       [{:name "description" :content description}
+        {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}
+        {:property "og:url" :content (core/cannonical-url req)}
+        {:property "og:title" :content "Nossal, Rodrigo Nossal"}
+        {:property "og:description" :content description}
+        {:property "og:image" :content "https://noss.al/image/icon-1024.png"}])
+    (concat [{:rel "canonical" :href (core/cannonical-url req)}] (favicons-attrs "icon"))
+    [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
+    [{:content (slurp (io/resource "public/css/screen.css"))}]
 
-      [:section#me [:div#tweetwidget]
-       [:a.start {:href "#" :title "start"}
-        [:svg {:width "60" :height "30" :xmlns "https://www.w3.org/2000/svg"}
-         [:g#svg_1
-          [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "4" :stroke-linecap "round" :stroke-width "8"}]
-          [:line {:y2 "24" :x2 "30" :y1 "5" :x1 "56" :stroke-linecap "round" :stroke-width "8"}]]]]]
+    [[:script {:type "application/ld+json"} dat/data-person]
+     [:div.main
+      [:article
+       [:header
+        [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
+        [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
 
-      [:div.divisor]
+      ;  [:section#me [:div#tweetwidget]
+      ;   [:a.start {:href "#" :title "start"}
+      ;    chevron-down]]
 
-      [:section#facebook]
+       [:div.divisor]
 
-      [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]
-     [:script {:type "application/ld+json"} dat/data-person]]
-    req))
+       [:section]
+
+       [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]]]))
+
 
 ; [:span.java "Java"] ", " [:span.python "Python"]
 (defn breakout [req]
@@ -127,7 +141,7 @@
 
 
 (defn coupom [service req]
-  (if (not (nil? (dat/coupom-codes service)))
+  (if-not (nil? (dat/coupom-codes service))
     (page/html5 {:⚡ true :lang "pt-br"}
       (let [cdata (dat/coupom-codes service)]
         (seq [[:head
@@ -141,9 +155,9 @@
                       [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
                     [16 32 48 96 144])
                 [:link {:rel "canonical" :href (core/cannonical-url req)}]
-                [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-                (if-not (contains? #{"localhost" "127.0.0.1", "192.168"} (:server-name req))
-                  [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+                [:script {:async true :charset "utf-8" :src "https://cdn.ampproject.org/v0.js"}]
+                (if (= "true" (env :production))
+                  [:script {:async true :custom-element "amp-analytics" :charset "utf-8" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
                 [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
                 [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
                 [:noscript
@@ -152,7 +166,7 @@
                 [:section
                   [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (cdata :title))) :alt (str (cdata :title) " logo") :height "100" :width "265"}]
                   [:h1 "Cupom de desconto " (cdata :title) "."]
-                  [:div.intro
+                  [:div.intro.text
                     [:p (cdata :text)]]
                   (a-out (cdata :url) {:id "get-coupom" :class (str "code" service)} (cdata :code))
                   [:p.link-description "Clique no código acima e aproveite o seu desconto."]
@@ -170,7 +184,22 @@
     not-found))
 
 
+; [title meta links scripts styles options body]
 (defn log [req]
+  (base "LOG" [] [] [] [] []
+    [[:article
+       [:h1 "header 1"]
+       [:h2 "header 2"]
+       [:h3 "header 3"]
+       [:h4 "header 4"]
+       [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
+       [:p "A simgle line of text"]]
+     [:article
+       [:p "Another article"]]]))
+
+
+
+(defn weekly [req]
   (base "Weekly" ""
     [[:header
        [:h1 "Weekly"]]

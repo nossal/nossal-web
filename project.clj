@@ -30,7 +30,7 @@
   :hooks [leiningen.cljsbuild]
   :uberjar-name "nossal.jar"
 
-  :ring {:handler nossal.app/dev-app :auto-refresh? true}
+  :ring {:handler nossal.app/dev-app}
 
   :figwheel {:ring-handler nossal.app/dev-app
              :css-dirs ["resources/public/css"]}
@@ -85,13 +85,15 @@
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
                                                  :pretty-print true
+                                                 :language-in :ecmascript5
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
-                                     :figwheel true
+                                    ;  :figwheel true
                                      :incremental true
                                      :compiler {:output-to "resources/public/js/sw.js"
                                                 :output-dir "resources/public/js/sw-out"
                                                 :source-map "resources/public/js/sw.js.map"
                                                 :asset-path "js/sw-out"
+                                                :language-in :ecmascript5
                                                 :parallel-build true
                                                 :optimizations :advanced}}}}}})
