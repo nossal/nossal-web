@@ -3,7 +3,7 @@
             [environ.core :refer [env]]))
 
 
-(def allowed-image-sizes #{16 32 48 72 76 96 120 144 152 180 196 512 1024})
+(def allowed-image-sizes #{16 32 48 72 76 96 120 144 152 180 192 196 512 1024})
 
 (def pwa-manifest
   (json/write-str

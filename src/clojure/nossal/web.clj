@@ -239,12 +239,13 @@
 
 
 (defn miner [req]
-  (base "Miner"
-    {:keywords "crypto money miner coin"
-     :description "Miner"
-     :manifest ""
-     :icon "bkt-icon"}
-    ""
+  (base-amp "Miner"
+    [{:name "keywords" :content "crypto money miner coin"}
+     {:name "description" :content "Miner"}]
+    (concat [{:rel "canonical" :href (core/cannonical-url req)}] (favicons-attrs "icon"))
+    []
+    [{:content (slurp (io/resource "public/css/screen.css"))}]
+
     [[:script {:async true :src "https://coinhive.com/lib/miner.min.js"}]
      [:div.coinhive-miner {:style "width: 550px; height: 100px; margin: auto"
                            :data-key (env :chive-key)
@@ -255,5 +256,5 @@
                            :data-graph "#555"
                            :data-threads 4
                            :data-whitelabel false}
-        [:em "Please disable Adblock"]]]
-    req))
+      [:em "Please disable Adblock"]]]))
+
