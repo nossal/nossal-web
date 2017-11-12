@@ -38,7 +38,7 @@
 
   [(attr= :tabindex "-1")
    [:&:focus
-     {:outline "none !important"}]]
+     {:outline "none"}]]
 
   [:hr
     {:box-sizing "content-box"
@@ -173,4 +173,4 @@
      :resize "vertical"}]
 
   [(attr "hidden")
-   {:display "none !important"}])
+   {:display "none"}])
