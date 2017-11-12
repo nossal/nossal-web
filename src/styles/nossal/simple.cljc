@@ -31,7 +31,7 @@
      :border "1px solid"
      :text-decoration "none"
      :padding "0.3em 0.6em"}
-    [:&:after {:content "'✔️'" :padding-left (em 0.3)}]]];}]]]
+    [:&:after {:content "'✔️'" :padding-left (em 0.3)}]]]
 
   [:strong {:font-weight "bold"}]
   [:h1

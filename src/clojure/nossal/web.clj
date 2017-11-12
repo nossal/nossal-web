@@ -63,9 +63,9 @@
    (base-html
      title meta links
      (concat
-       [{:async true :charset "utf-8" :src "https://cdn.ampproject.org/v0.js"}]
+       [{:async true :src "https://cdn.ampproject.org/v0.js"}]
        (if (= "true" (env :production))
-         [{:async true :custom-element "amp-analytics" :charset "utf-8" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+         [{:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
        scripts)
      (concat
        [{:attr {:amp-boilerplate true} :content (slurp (io/resource "amp-css.css"))}]
