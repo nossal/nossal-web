@@ -3,7 +3,7 @@
             [environ.core :refer [env]]))
 
 
-(def allowed-image-sizes #{16 32 48 72 76 96 120 144 152 180 196 512 1024})
+(def allowed-image-sizes #{16 32 48 72 76 96 120 144 152 180 192 196 512 1024})
 
 (def pwa-manifest
   (json/write-str
@@ -13,9 +13,8 @@
      :display "fullscreen"
      :theme_color "#747f90"
      :background_color "#747f90"
-     :lang "pt-BR"
      :orientation "portrait"
-     :start_url "/?utm_source=web_app_manifest"
+     :start_url "/#utm_source=web_app_manifest"
      :icons (map (fn [s]
                    {:src (str "image/icon-" s ".png") :sizes (str s "x" s) :type "image/png"})
                  (keep #(if (> % 32) %) allowed-image-sizes))}))
