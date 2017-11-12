@@ -30,7 +30,7 @@
      [:meta {:name "twitter:creator" :content "@nossal"}]
      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
      (map (fn [o] [:meta o]) meta)
-     [:title title]
+     [:title (str title " - NOSSAL")]
      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
      (map (fn [attr] [:link attr]) links)
      (map (fn [attr] [:script attr]) scripts)
