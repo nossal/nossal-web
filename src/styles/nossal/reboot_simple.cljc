@@ -17,9 +17,6 @@
      :-ms-overflow-style "scrollbar"
      :-webkit-tap-highlight-color "transparent"}]
 
-  ["@-ms-viewport"
-    {:width "device-width"}]
-
   [:article :aside :dialog :figcaption :figure :footer :header :hgroup :main :nav :section
     {:display "block"}]
 
