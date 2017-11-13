@@ -29,11 +29,11 @@
      [:meta {:name "twitter:card" :content "summary"}]
      [:meta {:name "twitter:creator" :content "@nossal"}]
      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
-     (map :meta meta)
+     (map (fn [m] [:meta m]) meta)
      [:title (str title " - NOSSAL")]
      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
-     (map :link links)
-     (map :script scripts)
+     (map (fn [l] [:link l]) links)
+     (map (fn [s] [:script s]) scripts)
      (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
      [:noscript
        (map (fn [node] node) (get options :noscript []))]]
