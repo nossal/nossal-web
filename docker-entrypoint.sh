@@ -2,7 +2,7 @@
 
 set -ex
 
-export JVM_OPTS="-server -Xms128m -Xmx128m"
+export JVM_OPTS=""
 export PORT=8080
 export GOOGLE_ANALYTICS="UA-11532471-6"
 export CHIVE_KEY="kBClwk1fEiyo3wGiPT7g4dfbVpTuoIlz"
