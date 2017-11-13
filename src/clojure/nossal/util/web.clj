@@ -13,9 +13,9 @@
   (if (and (contains? dat/allowed-image-sizes width)
            (not (nil? (io/resource (str image "." ext)))))
     (let [file-name (str "/tmp/image-bucket/" image "-" width "." ext)]
-      (if-not (.exists (io/file file-name))
-        (do (io/make-parents file-name)
-            (format/as-file (resize-to-width (io/resource (str image "." ext)) width) file-name :verbatim)))
+      (when-not (.exists (io/file file-name))
+        (io/make-parents file-name)
+        (format/as-file (resize-to-width (io/resource (str image "." ext)) width) file-name :verbatim))
 
       (-> (response/response (io/input-stream file-name))
           (response/content-type (str "image/" ext))
@@ -23,8 +23,9 @@
     not-found))
 
 (defn pwa-manifest []
-  (-> (response/response dat/pwa-manifest)
-      (response/content-type "application/manifest+json")))
+  (response/content-type
+    (response/response dat/pwa-manifest)
+    "application/manifest+json"))
 
 (defn a-out
   ([url text]

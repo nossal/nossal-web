@@ -55,7 +55,7 @@
 (defn- on-fetch [e]
   (let [request (.-request e)]
     (case (:host (parse-url (.-url request)))
-      ("localhost" "noss.al" "nossal.com.br") (fetch request 400)
+      ("localhost" "noss.al" "nossal.com.br") (fetch request 1400)
       (js/fetch request))))
 
 (defn- on-activate [e]

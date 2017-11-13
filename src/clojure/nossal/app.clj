@@ -4,7 +4,6 @@
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
-            [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
@@ -16,7 +15,7 @@
 (defn ignore-trailing-slash [handler]
   (fn [request]
     (let [uri (:uri request)]
-      (handler (assoc request :uri (if (and (not (= "/" uri))
+      (handler (assoc request :uri (if (and (not= "/" uri)
                                             (ends-with? uri "/"))
                                      (subs uri 0 (dec (count uri)))
                                      uri))))))
