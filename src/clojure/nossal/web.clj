@@ -21,6 +21,8 @@
      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
      [:meta {:name "author" :content "Rodrigo Nossal"}]
      [:meta {:name "mobile-web-app-capable" :content "yes"}]
+     [:meta {:name "application-name" :content "NOSSAL"}]
+     [:meta {:name "apple-mobile-web-app-title" :content "NOSSAL"}]
      [:meta {:name "apple-mobile-web-app-capable" :content "yes"}]
      [:meta {:name "apple-mobile-web-app-status-bar-style" :content "black-translucent"}]
      [:meta {:name "format-detection" :content "telephone=no"}]
@@ -32,6 +34,7 @@
      (map (fn [m] [:meta m]) meta)
      [:title (str title " - NOSSAL")]
      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
+     [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
      (map (fn [l] [:link l]) links)
      (map (fn [s] [:script s]) scripts)
      (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
