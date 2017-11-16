@@ -51,6 +51,10 @@ jobs:
           name: Deploy compojure-app to Google App Engine
           no_output_timeout: 3600
           command: |
+            sed -i 's/DBNAME/'$DBNAME'/g' app.yaml
+            sed -i 's/DBUSER/'$DBUSER'/g' app.yaml
+            sed -i 's/DBPASS/'$DBPASS'/g' app.yaml
+
             gcloud -q config set project ${GOOGLE_PROJECT_ID}
             gcloud -q app deploy app.yaml
 

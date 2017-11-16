@@ -3,3 +3,7 @@ env: flex
 instance_class: B1
 manual_scaling:
   instances: 1
+env_variables:
+  DB_CONNECTION_NAME: DBNAME
+  DB_USER: DBUSER
+  DB_PASSWORD: DBPASS

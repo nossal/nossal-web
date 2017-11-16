@@ -32,7 +32,7 @@
      [:meta {:name "twitter:creator" :content "@nossal"}]
      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
      (map (fn [m] [:meta m]) meta)
-     [:title (str title " - NOSSAL")]
+     [:title (str title " – NOSSAL")]
      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
      [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
      (map (fn [l] [:link l]) links)
