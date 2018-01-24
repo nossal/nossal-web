@@ -5,7 +5,7 @@
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [ring.middleware.json :refer [wrap-json-body]]
             [compojure.handler :refer [site]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
             [environ.core :refer [env]]
@@ -84,12 +84,13 @@
 
 (def app
   (-> app-routes
-      (wrap-defaults (site-defaults-options site-defaults))
+      ; (wrap-defaults (site-defaults-options site-defaults) )
+      (wrap-json-body {:keywords? true :bigdecimals? true})
       (ignore-trailing-slash)))
 
 (def dev-app
   (-> app-routes
-      ; (wrap-defaults site-defaults)
+      ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
       (wrap-json-body {:keywords? true :bigdecimals? true})
       (ignore-trailing-slash)))
 
