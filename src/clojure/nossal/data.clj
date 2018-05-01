@@ -90,24 +90,18 @@
    "uber-1" {:code "0018f1"
              :title "Uber"
              :url "https://www.uber.com/invite/0018f1"
-             :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
+             :description "💲 Ganhe R$10,00 de desconto em 2 primeiras viagens! ✅"
              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! " [:ruby "🎉 " [:rt "ta-da!"]]
                      [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
    "uber-2" {:code "rafaeln1002ue"
              :title "Uber"
              :url "https://www.uber.com/invite/rafaeln1002ue"
-             :description "💲 Ganhe R$20,00 de desconto em 2 primeiras viagens! ✅"
+             :description "💲 Ganhe R$10,00 de desconto em 2 primeiras viagens! ✅"
              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! " [:ruby "🎉 " [:rt "ta-da!"]]
                      [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
-   "99"     {:code "RODRIGONOSSAL"
+   "99"     {:code "qlP2zNrIwOpOY"
              :title "99"
-             :url "http://ssqt.co/mecBdsK"
-             :description "💲 Ganhe R$20,00 de desconto na primeira corrida 99! ✅"
-             :text [:p "Ganhe " [:span.value "R$20,00"]" de desconto na sua " [:strong "primeira"] " corrida 99! " [:ruby "🎉 " [:rt "ta-da!"]]
-                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
-   "99pop"  {:code "RhJemrf3mHV"
-             :title "99POP"
-             :url "https://d.99taxis.mobi/RhJemrf3mHV"
-             :description "💲 Ganhe R$15,00 de desconto na viagem corrida 99POP! ✅"
-             :text [:p "Ganhe " [:span.value "R$15,00"]" de desconto na sua " [:strong "primeira"] " corrida 99POP! " [:ruby "🎉 " [:rt "ta-da!"]]
-                     [:small"Aceite meu convite e experimente já o 99POP. <br>Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}})
+             :url "https://d.didiglobal.com/qlP2zNrIwOpOY?t=twitter"
+             :description "💲 Ganhe R$15,00 de desconto na primeira corrida 99 (99POP também)! ✅"
+             :text [:p "Ganhe " [:span.value "R$15,00"]" de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
+                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}})
