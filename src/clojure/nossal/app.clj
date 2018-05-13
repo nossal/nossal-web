@@ -1,10 +1,11 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout coupom miner]]
+  (:require [nossal.web :refer [index dot log breakout coupom miner assistant]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [ring.middleware.json :refer [wrap-json-body]]
             [compojure.handler :refer [site]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
             [environ.core :refer [env]]
@@ -70,6 +71,11 @@
   (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
     (str "👉 " encoded-id))
 
+
+  (POST "/assistant" request
+    (assistant request))
+
+
   (route/resources "/")
 
   (ANY "*" []
@@ -78,12 +84,14 @@
 
 (def app
   (-> app-routes
-      (wrap-defaults (site-defaults-options site-defaults))
+      ; (wrap-defaults (site-defaults-options site-defaults) )
+      (wrap-json-body {:keywords? true :bigdecimals? true})
       (ignore-trailing-slash)))
 
 (def dev-app
   (-> app-routes
-      (wrap-defaults site-defaults)
+      ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
+      (wrap-json-body {:keywords? true :bigdecimals? true})
       (ignore-trailing-slash)))
 
 (defn -main [& [port]]

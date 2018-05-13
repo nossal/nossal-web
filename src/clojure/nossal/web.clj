@@ -1,6 +1,7 @@
 (ns nossal.web
   (:require [clojure.java.io :as io]
             [clojure.string :as s]
+            [clojure.data.json :as json]
             [ring.util.response :as res]
             [clj-http.client :as client]
             [environ.core :refer [env]]
@@ -260,4 +261,13 @@
                            :data-threads 4
                            :data-whitelabel false}
       [:em "Please disable Adblock"]]]))
+
+
+(defn assistant [request]
+  (prn (get request :body))
+
+  (-> (res/response (json/write-str (get request :body)))
+      (res/content-type "application/json")))
+
+
 
