@@ -1,5 +1,5 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout coupom miner assistant]]
+  (:require [nossal.web :refer [index dot log breakout coupom miner debug create-database]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
@@ -72,9 +72,11 @@
     (str "👉 " encoded-id))
 
 
-  (POST "/assistant" request
-    (assistant request))
+  (POST "/debug" request
+    (debug request))
 
+  (POST "/create-db" []
+    (create-database))
 
   (route/resources "/")
 
@@ -89,9 +91,10 @@
       (ignore-trailing-slash)))
 
 (def dev-app
-  (-> app-routes))
+  (-> app-routes
       ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-
+      (wrap-json-body {:keywords? true :bigdecimals? true})
+      (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]

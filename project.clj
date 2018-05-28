@@ -17,7 +17,10 @@
                  [garden                    "1.3.5"]
                  [clj-http                  "3.9.0"]
                  [org.clojure/data.json     "0.2.6"]
-                 [ring/ring-json            "0.4.0"]]
+                 [ring/ring-json            "0.4.0"]
+                 [org.clojure/java.jdbc     "0.7.6"]
+                 [org.postgresql/postgresql "42.1.4"]
+                 [com.layerware/hugsql      "0.4.9"]]
 
   :plugins [[lein-environ   "1.1.0"]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
@@ -74,7 +77,7 @@
   :profiles {:production {:env {:dev false :production true}
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
-             :dev {:env {:dev true, :production false}
+             :dev {:env {:dev "true", :production "false", :database-url "postgres://localhost/nossal"}
                   ;  :prep-tasks [["garden" "once"]]
                    :cljsbuild {:builds
                                {:app {:source-paths ["src/clojurescript/nossal/app"]
