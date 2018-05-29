@@ -266,14 +266,3 @@
       [:em "Please disable Adblock"]]]))
 
 
-(defn debug [request]
-  (prn (get request :body))
-
-  (-> (res/response (json/write-str (get request :body)))
-      (res/content-type "application/json")))
-
-
-(defn create-database []
-  (-> (res/response (data/create-urls-table db))
-      (res/content-type "text/plain")))
-

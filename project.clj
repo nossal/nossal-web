@@ -19,7 +19,7 @@
                  [org.clojure/data.json     "0.2.6"]
                  [ring/ring-json            "0.4.0"]
                  [org.clojure/java.jdbc     "0.7.6"]
-                 [org.postgresql/postgresql "42.1.4"]
+                 [org.postgresql/postgresql "42.2.2"]
                  [com.layerware/hugsql      "0.4.9"]]
 
   :plugins [[lein-environ   "1.1.0"]
