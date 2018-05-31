@@ -19,6 +19,8 @@
                  [org.clojure/data.json     "0.2.6"]
                  [ring/ring-json            "0.4.0"]]
 
+  :jvm-opts ^:replace ["-Xmx1g" "-server"]
+
   :plugins [[lein-environ   "1.1.0"]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
             [lein-figwheel  "0.5.16"]
