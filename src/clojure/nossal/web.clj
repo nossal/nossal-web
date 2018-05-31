@@ -11,7 +11,10 @@
             [nossal.core :as core]
             [nossal.util.web :refer [not-found a-out favicons-attrs]]
             [nossal.styles :refer [bgcolor]]
+            [nossal.db :refer [db]]
+            [nossal.db :as data]
             [nossal.svg :refer [all-icons chevron-down]]))
+
 
 
 (defn- base [title meta links scripts styles body options]
@@ -261,13 +264,5 @@
                            :data-threads 4
                            :data-whitelabel false}
       [:em "Please disable Adblock"]]]))
-
-
-(defn assistant [request]
-  (prn (get request :body))
-
-  (-> (res/response (json/write-str (get request :body)))
-      (res/content-type "application/json")))
-
 
 
