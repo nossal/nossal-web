@@ -12,10 +12,10 @@ CREATE TABLE "urls" (
 -- :name drop-urls-table :!
 DROP TABLE IF EXISTS "urls" CASCADE;
 
--- :name insert-url :! :n
+-- :name insert-url :<!
 -- :doc Insert a single url
 INSERT INTO "urls" ("url")
-VALUES (:url)
+VALUES (:url) RETURNING "id"
 
 -- :name all-urls :? :*
 SELECT "id", "url", "created_at" FROM "urls"

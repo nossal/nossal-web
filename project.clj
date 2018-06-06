@@ -36,7 +36,10 @@
   :hooks [leiningen.cljsbuild]
   :uberjar-name "nossal.jar"
 
-  :ring {:handler nossal.app/dev-app}
+  :ring {:handler nossal.app/dev-app
+         :auto-refresh? true
+         :auto-reload? true
+         :reload-paths ["src"]}
 
   :figwheel {:ring-handler nossal.app/dev-app
              :css-dirs ["resources/public/css"]}

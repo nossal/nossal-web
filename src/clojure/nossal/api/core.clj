@@ -2,7 +2,7 @@
   (:require [clojure.string :as s]
             [environ.core :refer [env]]
             [clojure.data.json :as json]
-            [ring.util.response :as res]
+            [ring.util.response :as res]))
 
 
 (defn debug [request]

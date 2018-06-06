@@ -1,18 +1,18 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout coupom miner]]
-            [nossal.api.core :refer [debug]]
-            [nossal.api.shortner :refer [create-database]]
-            [nossal.util.web :refer [resize-image pwa-manifest]]
-            [compojure.route :as route]
-            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+  (:require [clojure.java.io :as io]
+            [clojure.string :refer [ends-with?]]
             [ring.middleware.json :refer [wrap-json-body]]
-            [compojure.handler :refer [site]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
+            [compojure.route :as route]
+            [compojure.handler :refer [site]]
+            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [environ.core :refer [env]]
-            [clojure.java.io :as io]
-            [clojure.string :refer [ends-with?]]))
+            [nossal.util.web :refer [resize-image pwa-manifest]]
+            [nossal.web :refer [index dot log breakout coupom miner]]
+            [nossal.api.core :refer [debug]]
+            [nossal.api.shortner :refer [create-database new-url]]))
 
 
 (defn ignore-trailing-slash [handler]
@@ -77,8 +77,12 @@
   (POST "/debug" request
     (debug request))
 
-  (POST "/create-db" []
+
+  (POST "/short/create-db" []
     (create-database))
+
+  (POST "/short/new/:url" [url]
+    (new-url url))
 
   (route/resources "/")
 
