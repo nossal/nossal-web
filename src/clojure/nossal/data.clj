@@ -104,4 +104,13 @@
              :url "https://d.didiglobal.com/qlP2zNrIwOpOY?t=twitter"
              :description "💲 Ganhe R$15,00 de desconto na primeira corrida 99 (99POP também)! ✅"
              :text [:p "Ganhe " [:span.value "R$15,00"]" de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
-                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}})
+                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
+   "picpay" {:code "PKTA9D"
+             :title "PicPay"
+             :url "http://www.picpay.com/convite?!PKTA9D"
+             :description "💲 Ganhe de volta os primeiros R$10,00 que você gastar! ✅"
+             :text [:p "Crie sua conta com meu código e ganhe de volta os primeiros " [:span.value "R$10,00"]" que você " [:strong "gastar"] "! " [:ruby "🎉 " [:rt "ta-da!"]]
+                     [:small "Com o PicPay você pode pagar seus "[:strong "amigos, boletos, recarregar o celular, Steam"] " e muito mais."]]}})
+
+
+
