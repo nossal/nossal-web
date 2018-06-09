@@ -4,7 +4,7 @@
 
 (def alphabet "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 
-(defn encode [i, alphabet]
+(defn- encode-with [i, alphabet]
   (reduce #(str (nth alphabet (last %2)) %) ""
     (take-while
       #(not= [0 0] %)
@@ -16,9 +16,15 @@
               [(quot i x) (mod i x)]))
           [i 0])))))
 
-(defn decode [s, alphabet]
+(defn- decode-with [s, alphabet]
   (reduce
     (fn [val c]
       (+ (* (count alphabet) val) (.indexOf alphabet (str c))))
     0
     s))
+
+(defn encode [word]
+  (encode-with word alphabet))
+
+(defn decode [word]
+  (decode-with word alphabet))
