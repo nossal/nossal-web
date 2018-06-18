@@ -44,7 +44,7 @@
 
 (def data-website (json/write-str {"@context" "https://schema.org"
                                    "@type" "WebSite"
-                                   :name "NOSSAL"
+                                   :name "Nossal's"
                                    :alternateName "Rodrigo Nossal"
                                    :url "https://noss.al"}))
 

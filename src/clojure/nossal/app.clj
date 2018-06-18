@@ -99,8 +99,8 @@
 (def dev-app
   (-> app-routes
       ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-      (wrap-json-body {:keywords? true :bigdecimals? true})
-      (ignore-trailing-slash)))
+      (wrap-json-body {:keywords? true :bigdecimals? true})))
+      ; (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]

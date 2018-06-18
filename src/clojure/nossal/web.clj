@@ -86,7 +86,7 @@
 
 (defn index [req]
   (base-amp
-    "Nossal, Rodrigo Nossal"
+    "Nossal, Rodrigo"
      (let [description "Rodrigo Nossal Personal Website"]
        [{:name "description" :content description}
         {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}
@@ -111,9 +111,9 @@
 
        [:div.divisor]
 
-       [:section]
+       [:section "ロドリゴ・ノッサル"]
 
-       [:section#about [:div.end  [:span.java "Java"]  ", " [:span.python "Python"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]]]))
+       [:section#about [:div.end [:span.python "Python"] ", " [:span.java "Java"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Go, Perl on weekends."]]]]]))
 
 
 ; [:span.java "Java"] ", " [:span.python "Python"]
