@@ -99,7 +99,7 @@
              :description "💲 Ganhe R$10,00 de desconto em 2 primeiras viagens! ✅"
              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! " [:ruby "🎉 " [:rt "ta-da!"]]
                      [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
-   "99"     {:code "qlP2zNrIwOpOY"
+   "99"     {:code "qlP3zJuETY3Ar"
              :title "99"
              :url "https://d.didiglobal.com/qlP3zJuETY3Ar?t=copyLink"
              :description "💲 Ganhe R$15,00 de desconto na primeira corrida 99 (99POP também)! ✅"
