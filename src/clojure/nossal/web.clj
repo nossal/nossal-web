@@ -264,7 +264,7 @@
 
 
 (defn assistant [request]
-  (prn (get request :body))
+  (json/pprint (get request :body))
 
   (-> (res/response (json/write-str (get request :body)))
       (res/content-type "application/json")))
