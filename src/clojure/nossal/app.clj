@@ -75,7 +75,7 @@
   (POST "/assistant" request
     (assistant request))
 
-  (POST "/demo" request
+  (GET "/demo" request
     (iframe-demo request))
 
 
