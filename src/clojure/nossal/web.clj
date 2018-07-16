@@ -270,6 +270,6 @@
       (res/content-type "application/json")))
 
 
-(def iframe-demo [req]
-  (base-html 'title' [] [] [] []
+(defn iframe-demo [req]
+  (base-html "IFRAME" [] [] [] []
     [[:iframe {:src "https://nossal.github.io/iframe.html?b" :width "100%" :height "600px"}]]))
