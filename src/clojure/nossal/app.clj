@@ -43,7 +43,7 @@
   (GET "/sw.js.map" [] (service-worker ".map"))
 
   (GET "/p" request
-    (str request " DB:" (env :db-connection-name)))
+    (str request " DB:" (env :database-url)))
 
   (GET "/dot" request
     (dot request))
