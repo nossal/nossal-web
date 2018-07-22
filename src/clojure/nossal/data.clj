@@ -99,9 +99,9 @@
              :description "💲 Ganhe R$10,00 de desconto em 2 primeiras viagens! ✅"
              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto nas suas " [:strong "2 primeiras"] " corridas! " [:ruby "🎉 " [:rt "ta-da!"]]
                      [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
-   "99"     {:code "qlP2zNrIwOpOY"
+   "99"     {:code "qlP3zJuETY3Ar"
              :title "99"
-             :url "https://d.didiglobal.com/qlP2zNrIwOpOY?t=twitter"
+             :url "https://d.didiglobal.com/qlP3zJuETY3Ar?t=copyLink"
              :description "💲 Ganhe R$15,00 de desconto na primeira corrida 99 (99POP também)! ✅"
              :text [:p "Ganhe " [:span.value "R$15,00"]" de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
                      [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}

@@ -77,6 +77,9 @@
   (POST "/debug" request
     (debug request))
 
+  (GET "/demo" request
+    (iframe-demo request))
+
 
   (POST "/short/create-db" []
     (create-database))
