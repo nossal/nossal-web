@@ -264,10 +264,12 @@
 
 
 (defn assistant [request]
-  (prn (get request :body))
+  (json/pprint (get request :body))
 
   (-> (res/response (json/write-str (get request :body)))
       (res/content-type "application/json")))
 
 
-
+(defn iframe-demo [req]
+  (base-html "IFRAME" [] [] [] []
+    [[:iframe {:src "https://nossal.github.io/iframe.html?b" :width "100%" :height "600px"}]]))

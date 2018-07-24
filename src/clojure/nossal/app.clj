@@ -1,5 +1,5 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout coupom miner assistant]]
+  (:require [nossal.web :refer [index dot log breakout coupom miner assistant iframe-demo]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
@@ -43,7 +43,7 @@
   (GET "/sw.js.map" [] (service-worker ".map"))
 
   (GET "/p" request
-    (str request " DB:" (env :db-connection-name)))
+    (str request " DB:" (env :database-url)))
 
   (GET "/dot" request
     (dot request))
@@ -74,6 +74,9 @@
 
   (POST "/assistant" request
     (assistant request))
+
+  (GET "/demo" request
+    (iframe-demo request))
 
 
   (route/resources "/")
