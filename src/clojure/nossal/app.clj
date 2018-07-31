@@ -1,5 +1,6 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout coupom miner assistant iframe-demo]]
+  (:require [nossal.web :refer [index dot log breakout miner assistant iframe-demo]]
+            [nossal.coupons :refer [coupom]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]

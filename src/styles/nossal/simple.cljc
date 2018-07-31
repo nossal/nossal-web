@@ -28,10 +28,11 @@
     {:color "#0070c9"
      :margin (em 0.5)
      :display "inline-block"
-     :border "1px solid"
+     :border "1px solid #c292c9"
      :text-decoration "none"
+     :border-radius "1em"
      :padding "0.3em 0.6em"}
-    [:&:after {:content "'✔️'" :padding-left (em 0.3)}]]]
+    [:&:after {:content "'🚀'" :padding-left (em 0.3)}]]]
 
   [:strong {:font-weight "bold"}]
   [:h1
