@@ -63,6 +63,7 @@
      :font-size (em 1.4)
      :max-width "80vw"
      :margin "auto"
+     :margin-bottom (em 1)
      :font-weight 300
      :line-height 1.45455
      :letter-spacing (em 0.016)}
