@@ -1,7 +1,10 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout miner assistant iframe-demo]]
-            [nossal.coupons :refer [coupom]]
+  (:require [nossal.web :refer [index dot log breakout miner iframe-demo]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
+            [nossal.api.core :refer [debug]]
+            [nossal.api.shortner :refer [create-database new-url]]
+            [nossal.coupons :refer [coupom]]
+
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [ring.middleware.json :refer [wrap-json-body]]
