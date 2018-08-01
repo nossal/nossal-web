@@ -1,18 +1,17 @@
 (ns nossal.app
-  (:require [clojure.java.io :as io]
-            [clojure.string :refer [ends-with?]]
+  (:require [nossal.web :refer [index dot log breakout miner assistant iframe-demo]]
+            [nossal.coupons :refer [coupom]]
+            [nossal.util.web :refer [resize-image pwa-manifest]]
+            [compojure.route :as route]
+            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [ring.middleware.json :refer [wrap-json-body]]
+            [compojure.handler :refer [site]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
-            [compojure.route :as route]
-            [compojure.handler :refer [site]]
-            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [environ.core :refer [env]]
-            [nossal.util.web :refer [resize-image pwa-manifest]]
-            [nossal.web :refer [index dot log breakout coupom miner]]
-            [nossal.api.core :refer [debug]]
-            [nossal.api.shortner :refer [create-database new-url]]))
+            [clojure.java.io :as io]
+            [clojure.string :refer [ends-with?]]))
 
 
 (defn ignore-trailing-slash [handler]
@@ -31,7 +30,9 @@
 
 
 (defn service-worker [mod]
-  (response/resource-response (str "sw.js" mod) {:root "public/js"}))
+  (response/content-type
+    (response/resource-response (str "sw.js" mod) {:root "public/js"})
+    "text/javascript"))
 
 
 (defroutes app-routes
