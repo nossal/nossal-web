@@ -83,7 +83,7 @@
                 [:section.others
                   [:p.intro "Quer mais descontos?"]
 
-                  [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupom-codes x) :title)) " " [:span (rest ((coupom-codes x) :title))] ]) (keep #(if (not= service %) %) (keys coupom-codes)))]]
+                  [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupom-codes x) :title)) " " [:span (rest ((coupom-codes x) :title))] ]) (keep #(if (not= service %) %) (shuffle (keys coupom-codes))))]]
                 [:footer
                   [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu ❤️"] " para você."]]
 
