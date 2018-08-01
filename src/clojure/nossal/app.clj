@@ -30,7 +30,9 @@
 
 
 (defn service-worker [mod]
-  (response/resource-response (str "sw.js" mod) {:root "public/js"}))
+  (response/content-type
+    (response/resource-response (str "sw.js" mod) {:root "public/js"})
+    "text/javascript"))
 
 
 (defroutes app-routes
