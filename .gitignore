@@ -29,3 +29,5 @@ pom.xml
 /.lein-failures
 /.nrepl-port
 /.nrepl-history
+
+*.stackdump

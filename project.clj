@@ -11,6 +11,7 @@
                  [org.clojure/data.json     "0.2.6"]
                  [org.clojure/tools.logging "0.4.1"]
                  [org.clojure/java.jdbc     "0.7.6"]
+                 [org.clojure/core.cache    "0.7.1"]
                  [compojure                 "1.6.1"]
                  [hiccup                    "1.0.5"]
                  [garden                    "1.3.5"]

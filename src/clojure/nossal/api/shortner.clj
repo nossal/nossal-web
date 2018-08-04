@@ -20,9 +20,10 @@
   (-> (res/response (json/write-str (encode (:id (first (data/insert-url db {:url url}))))))
       (res/content-type "text/plain")))
 
+(def get-url (memoize (fn [id] (data/url-by-id db {:id (decode encoded-id)}))))
 
 (defn redirect [encoded-id]
-  (let [url (:url (data/url-by-id db {:id (decode encoded-id)}))]
+  (let [url (:url (get-url encoded-id))]
     (log/info url)
     (do
       (client/post "https://www.google-analytics.com/collect"
