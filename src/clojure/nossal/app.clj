@@ -94,6 +94,8 @@
   (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
     (redirect encoded-id))
 
+  (GET "/>:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; />:encoded-id
+    (redirect encoded-id))
 
   (route/resources "/")
 
