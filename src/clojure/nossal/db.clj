@@ -1,12 +1,13 @@
 (ns nossal.db
   (:require [hugsql.core :as hugsql]
             [clojure.string :as s]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]]
+            [heroku-database-url-to-jdbc.core :as h]))
 
 
 (def db {:classname "org.postgresql.Driver"
          :subprotocol "postgresql"
-         :connection-uri (s/replace (env :database-url) #"postgres" "jdbc:postgresql")})
+         :connection-uri (h/jdbc-connection-string (env :database-url))})
 
 
 (hugsql/def-db-fns "sql/schema.sql")

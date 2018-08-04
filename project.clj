@@ -21,7 +21,8 @@
                  [ring/ring-defaults        "0.3.1"]
                  [ring/ring-json            "0.4.0"]
                  [org.postgresql/postgresql "42.2.2"]
-                 [com.layerware/hugsql      "0.4.9"]]
+                 [com.layerware/hugsql      "0.4.9"]
+                 [heroku-database-url-to-jdbc "0.2.2"]]
 
   :jvm-opts ^:replace ["-Xmx1g" "-server"]
 
