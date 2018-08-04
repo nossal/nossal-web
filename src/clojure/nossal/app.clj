@@ -2,7 +2,7 @@
   (:require [nossal.web :refer [index dot log breakout miner iframe-demo]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
-            [nossal.api.shortner :refer [create-database new-url]]
+            [nossal.api.shortner :refer [create-database new-url redirect]]
             [nossal.coupons :refer [coupom]]
 
             [compojure.route :as route]
@@ -69,13 +69,12 @@
   (GET "/image/:name{[a-z_-]+}-:size{[0-9]+}.:ext" [name size ext]
     (resize-image name (int (read-string size)) ext))
 
+
   (GET "/cupons" []
     (response/redirect "/cupons/cabify"))
+
   (GET "/cupons/:service" [service :as request]
     (coupom service request))
-
-  (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
-    (str "👉 " encoded-id))
 
 
   (POST "/debug" request
@@ -90,6 +89,10 @@
 
   (POST "/short/new/:url" [url]
     (new-url url))
+
+  (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
+    (redirect encoded-id))
+
 
   (route/resources "/")
 

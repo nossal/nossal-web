@@ -1,8 +1,10 @@
 (ns nossal.api.shortner
   (:require [clojure.string :as s]
-            [environ.core :refer [env]]
             [clojure.data.json :as json]
+            [environ.core :refer [env]]
             [ring.util.response :as res]
+            [clj-http.client :as client]
+
             [nossal.util.base62 :refer [decode encode]]
             [nossal.db :as data]
             [nossal.db :refer [db]]))
@@ -16,3 +18,17 @@
 (defn new-url [url]
   (-> (res/response (json/write-str (encode (:id (first (data/insert-url db {:url url}))))))
       (res/content-type "text/plain")))
+
+
+(defn redirect [encoded-id]
+  (let [url (:url (first (data/url-by-id db {:id (decode  encoded-id)})))]
+    (do
+      (client/post "https://www.google-analytics.com/collect"
+        {:form-params {:v "1"
+                       :tid (env :google-analytics)
+                       :cid "555"
+                       :t "pageview"
+                       :dh "noss.al"
+                       :dp "/👉"
+                       :dt url}})
+      (res/redirect url))))
