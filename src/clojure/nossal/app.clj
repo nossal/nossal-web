@@ -1,20 +1,21 @@
 (ns nossal.app
-  (:require [nossal.web :refer [index dot log breakout miner iframe-demo]]
-            [nossal.util.web :refer [resize-image pwa-manifest]]
-            [nossal.api.core :refer [debug]]
-            [nossal.api.shortner :refer [create-database new-url redirect]]
-            [nossal.coupons :refer [coupom]]
-
-            [compojure.route :as route]
+  (:require [compojure.route :as route]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [ring.middleware.json :refer [wrap-json-body]]
             [compojure.handler :refer [site]]
+            [ring.middleware.json :refer [wrap-json-body]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
+
             [environ.core :refer [env]]
             [clojure.java.io :as io]
-            [clojure.string :refer [ends-with?]]))
+            [clojure.string :refer [ends-with?]]
+
+            [nossal.web :refer [index dot log breakout miner iframe-demo]]
+            [nossal.util.web :refer [resize-image pwa-manifest]]
+            [nossal.api.core :refer [debug]]
+            [nossal.api.shortner :refer [create-database new-url redirect]]
+            [nossal.coupons :refer [coupom]]))
 
 
 (defn ignore-trailing-slash [handler]

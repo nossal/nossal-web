@@ -1,6 +1,7 @@
 (ns nossal.api.shortner
   (:require [clojure.string :as s]
             [clojure.data.json :as json]
+            [clojure.tools.logging :as log]
             [environ.core :refer [env]]
             [ring.util.response :as res]
             [clj-http.client :as client]
@@ -21,7 +22,8 @@
 
 
 (defn redirect [encoded-id]
-  (let [url (:url (first (data/url-by-id db {:id (decode  encoded-id)})))]
+  (let [url (:url (data/url-by-id db {:id (decode encoded-id)}))]
+    (log/info url)
     (do
       (client/post "https://www.google-analytics.com/collect"
         {:form-params {:v "1"
