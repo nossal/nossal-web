@@ -67,6 +67,18 @@
      :font-weight 300
      :line-height 1.45455
      :letter-spacing (em 0.016)}
+
+    [:p.warn
+     {:color "#ff2400"
+      :padding (em 0.5)
+      :background "#fffde1"
+      :font-size (em 0.8)
+      :line-height (em 1.3)}
+
+     [:span {:font-weight "bold"
+             :color "#f00"
+             :text-transform "uppercase"}]]
+
     [:p {:margin-top (em 1)}]
     [:.value {:color "#f32b63" :font-weight 600}]
     [:small

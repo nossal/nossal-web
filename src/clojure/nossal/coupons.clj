@@ -46,7 +46,8 @@
              :url "http://www.picpay.com/convite?!PKTA9D"
              :description "💲 Ganhe de volta os primeiros R$10,00 que você gastar! ✅"
              :text [:p "Crie sua conta com meu código e ganhe de volta os primeiros " [:span.value "R$10,00"]" que você " [:strong "gastar"] "! " [:ruby "🎉 " [:rt "ta-da!"]]
-                     [:small "Com o PicPay você pode pagar seus "[:strong "amigos, boletos, recarregar o celular, Steam"] " e muito mais."]]}})
+                     [:small "Com o PicPay você pode pagar seus "[:strong "amigos, boletos, recarregar o celular, Steam"] " e muito mais."]
+                     [:p.warn [:span "Mas atenção"] ", você só ganha se fizer um pagamento em " [:strong "até 7 dias depois do seu cadastro."]]]}})
 
 
 (defn coupom [service req]

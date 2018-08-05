@@ -30,6 +30,6 @@
                        :cid "555"
                        :t "pageview"
                        :dh "noss.al"
-                       :dp "/👉"
+                       :dp "/sht"
                        :dt url}})
       (res/redirect url))))
