@@ -20,6 +20,7 @@
   (-> (res/response (json/write-str (encode (:id (first (data/insert-url db {:url url}))))))
       (res/content-type "text/plain")))
 
+
 (defn redirect [encoded-id]
   (let [url (:url (data/get-data data/url-by-id {:id (decode encoded-id)}))]
     (log/info url)
@@ -30,6 +31,6 @@
                        :cid "555"
                        :t "pageview"
                        :dh "noss.al"
-                       :dp "/sht"
-                       :dt url}})
+                       :dp (str "/sht/" encoded-id)
+                       :dt (str "Page " (decode encoded-id))}})
       (res/redirect url))))
