@@ -7,25 +7,33 @@
   :min-lein-version "2.8.1"
 
   :dependencies [[org.clojure/clojure       "1.9.0"]
-                 [org.clojure/clojurescript "1.10.238"]
                  [org.clojure/data.json     "0.2.6"]
                  [org.clojure/tools.logging "0.4.1"]
                  [org.clojure/java.jdbc     "0.7.6"]
                  [org.clojure/core.cache    "0.7.1"]
-                 [compojure                 "1.6.1"]
-                 [hiccup                    "1.0.5"]
+
+                 [org.clojure/clojurescript "1.10.339"]
+                 [bidi                      "2.1.3"]
+                 [kibu/pushy                "0.3.8"]
+                 [reagent                   "0.8.1"]
+                 [re-frame                  "0.10.5"]
                  [garden                    "1.3.5"]
-                 [image-resizer             "0.1.10"]
-                 [environ                   "1.1.0"]
-                 [clj-http                  "3.9.0"]
+                 [hiccup                    "1.0.5"]
+
+                 [compojure                 "1.6.1"]
                  [ring/ring-jetty-adapter   "1.6.3"]
                  [ring/ring-defaults        "0.3.1"]
                  [ring/ring-json            "0.4.0"]
+
+                 [image-resizer             "0.1.10"]
+                 [environ                   "1.1.0"]
+                 [clj-http                  "3.9.0"]
+
                  [org.postgresql/postgresql "42.2.2"]
                  [com.layerware/hugsql      "0.4.9"]
                  [heroku-database-url-to-jdbc "0.2.2"]]
 
-  :jvm-opts ^:replace ["-Xmx1g" "-server"]
+  :jvm-opts ^:replace ["-Xmx1g" "-XX:+UseConcMarkSweepGC" "-server"]
 
   :plugins [[lein-environ   "1.1.0"]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
@@ -34,9 +42,11 @@
             [lein-ancient   "0.6.15"]
             [lein-ring      "0.12.4"]]
 
-  :source-paths ["src/clojure", "src/styles"]
+  :source-paths ["src/clojure"]
 
+  :prep-tasks [["garden" "once"]]
   :hooks [leiningen.cljsbuild]
+
   :uberjar-name "nossal.jar"
 
   :ring {:handler nossal.app/dev-app
