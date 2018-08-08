@@ -1,4 +1,4 @@
-(ns nossal.sw)
+(ns nossal.sw.sw)
 
 
 (def app-cache-name "nossal-app-cache")
@@ -55,7 +55,7 @@
 (defn- on-fetch [e]
   (let [request (.-request e)]
     (case (:host (parse-url (.-url request)))
-      ("localhost" "noss.al" "nossal.com.br") (fetch request 1400)
+      ("noss.al" "nossal.com.br") (fetch request 1400)
       (js/fetch request))))
 
 (defn- on-activate [e]

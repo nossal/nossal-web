@@ -15,7 +15,8 @@
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
-            [nossal.coupons :refer [coupom]]))
+            [nossal.coupons :refer [coupom]]
+            [nossal.reviews :refer [reviews]]))
 
 
 (defn ignore-trailing-slash [handler]
@@ -36,7 +37,7 @@
 (defn service-worker [mod]
   (response/content-type
     (response/resource-response (str "sw.js" mod) {:root "public/js"})
-    "text/javascript"))
+    "application/x-javascript; charset=utf-8"))
 
 
 (defroutes app-routes
@@ -96,6 +97,11 @@
 
   (GET "/%3E:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; />:encoded-id
     (redirect encoded-id))
+
+
+  (ANY "/reviews/*" request
+    (reviews request))
+
 
   (route/resources "/")
 

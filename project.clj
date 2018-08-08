@@ -33,7 +33,7 @@
                  [com.layerware/hugsql      "0.4.9"]
                  [heroku-database-url-to-jdbc "0.2.2"]]
 
-  :jvm-opts ^:replace ["-Xmx1g" "-XX:+UseConcMarkSweepGC" "-server"]
+  :jvm-opts ^:replace ["-Xmx1g" "-server"]
 
   :plugins [[lein-environ   "1.1.0"]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
@@ -44,15 +44,15 @@
 
   :source-paths ["src/clojure"]
 
-  :prep-tasks [["garden" "once"]]
+  ; :prep-tasks [["garden" "once"]]
   :hooks [leiningen.cljsbuild]
 
   :uberjar-name "nossal.jar"
 
   :ring {:handler nossal.app/dev-app
-         :auto-refresh? true
+         :auto-refresh? false
          :auto-reload? true
-         :reload-paths ["src"]}
+         :reload-paths ["src/clojure"]}
 
   :figwheel {:ring-handler nossal.app/dev-app
              :css-dirs ["resources/public/css"]}
@@ -62,23 +62,14 @@
                                     "resources/public/css"
                                     :target-path]
 
-  :cljsbuild {:builds {:app {:source-paths ["src/clojurescript/nossal/app"]
-                              :compiler {:output-to "resources/public/js/app.js"
-                                         :pretty-print false
-                                         :parallel-build true
-                                         :language-in :ecmascript5
-                                         :optimizations :advanced}}
-                       :sw {:source-paths ["src/clojurescript/nossal/sw"]
-                             :compiler {:output-to "resources/public/js/sw.js"
-                                        :pretty-print false
-                                        :language-in :ecmascript5
-                                        :parallel-build true
-                                        :optimizations :advanced}}}}
-
-
   :garden {:builds [{:source-paths ["src/styles"]
                      :stylesheet nossal.styles/screen
                      :compiler {:output-to "resources/public/css/screen.css"
+                                :vendors ["moz" "webkit"]
+                                :pretty-print? false}}
+                    {:source-paths ["src/styles"]
+                     :stylesheet nossal.app/app
+                     :compiler {:output-to "resources/public/css/app.css"
                                 :vendors ["moz" "webkit"]
                                 :pretty-print? false}}
                     {:source-paths ["src/styles"]
@@ -93,28 +84,48 @@
                     ;             :pretty-print? true}}]}
 
   :profiles {:production {:env {:dev false :production true}
-                          :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
-             :dev {:env {:dev "true", :production "false", :database-url "postgres://nossal:nossal@localhost:5432/nossal"}
-                  ;  :prep-tasks [["garden" "once"]]
+                          :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]
+
+                          :cljsbuild {:builds
+                                      {:app {:source-paths ["src/clojurescript/nossal/app"]
+                                             :compiler {:output-to "resources/public/js/app.js"
+                                                        :source-map "resources/public/js/app.js.map"
+                                                        :pretty-print false
+                                                        :parallel-build true
+                                                        :language-in :ecmascript5
+                                                        :optimizations :advanced}}
+                                       :sw {:source-paths ["src/clojurescript/nossal/sw"]
+                                            :compiler {:output-to "resources/public/js/sw.js"
+                                                       :source-map "resources/public/js/sw.js.map"
+                                                       :pretty-print false
+                                                       :parallel-build true
+                                                       :language-in :ecmascript5
+                                                       :optimizations :advanced}}}}}
+
+             :dev {:env {:dev "true",
+                         :production "false",
+                         :database-url "postgres://nossal:nossal@localhost:5432/nossal"}
+                   :prep-tasks [["garden" "once"]]
                    :cljsbuild {:builds
                                {:app {:source-paths ["src/clojurescript/nossal/app"]
                                       :figwheel true
                                       :incremental true
                                       :compiler {:output-to "resources/public/js/app.js"
                                                  :output-dir "resources/public/js/app-out"
-                                                 :main "nossal.app"
+                                                 :main "nossal.app.app"
                                                  :asset-path "js/app-out"
                                                  :parallel-build true
                                                  :pretty-print true
                                                  :language-in :ecmascript5
                                                  :optimizations :none}}
                                 :sw {:source-paths ["src/clojurescript/nossal/sw"]
-                                    ;  :figwheel true
+                                     :figwheel true
                                      :incremental true
                                      :compiler {:output-to "resources/public/js/sw.js"
                                                 :output-dir "resources/public/js/sw-out"
-                                                :source-map "resources/public/js/sw.js.map"
+                                                :main "nossal.sw.sw"
+                                                :pretty-print true
+                                                :parallel-build true
                                                 :asset-path "js/sw-out"
                                                 :language-in :ecmascript5
-                                                :parallel-build true
-                                                :optimizations :advanced}}}}}})
+                                                :optimizations :none}}}}}})

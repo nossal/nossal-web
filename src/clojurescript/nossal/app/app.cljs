@@ -1,11 +1,11 @@
-(ns nossal.app)
+(ns nossal.app.app)
 
 
 (defn alert-me [what]
   (js/console.log what))
 
 (defn online-status [e]
-  (alert-me (if (.-navigator.onLine js/self) "ONLINE" "OFFLINE")))
+  (alert-me (if (.-navigator.onLine js/self) "ONLINE!" "OFFLINE!")))
 
 
 (defn is-service-worker-supported? []

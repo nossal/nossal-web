@@ -10,7 +10,7 @@
             [nossal.data :as dat]
             [nossal.core :as core]
             [nossal.util.web :refer [not-found a-out favicons-attrs]]
-            [nossal.styles :refer [bgcolor]]
+            ; [nossal.styles :refer [bgcolor]]
             [nossal.db :refer [db]]
             [nossal.db :as data]
             [nossal.svg :refer [all-icons chevron-down]]))
@@ -57,7 +57,7 @@
       (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]]))
 
 
-(defn- base-html
+(defn base-html
   ([title meta links scripts styles body]
    (base-html title meta links scripts styles body {}))
   ([title meta links scripts styles body options]
