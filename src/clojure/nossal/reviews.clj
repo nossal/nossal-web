@@ -7,4 +7,4 @@
   (base-html "Reviews" [] []
     [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
     [{:content (slurp (io/resource "public/css/app.css"))}]
-    [[:div#container ""]]))
+    [[:div#app-container ""]]))

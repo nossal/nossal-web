@@ -22,6 +22,6 @@
       (js/console.log "Download Firefox instead: https://www.mozilla.org/firefox/new/"))))
 
 (register-service-worker "sw.js" ".")
-(online-status)
+(online-status nil)
 (.addEventListener js/self "offline" #(online-status %))
 (.addEventListener js/self "online" #(online-status %))

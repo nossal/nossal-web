@@ -7,6 +7,7 @@
             [clj-http.client :as client]
 
             [nossal.util.base62 :refer [decode encode]]
+            [nossal.util.web :refer [not-found]]
             [nossal.db :as data]
             [nossal.db :refer [db]]))
 
@@ -22,9 +23,9 @@
 
 
 (defn redirect [encoded-id]
-  (let [url (:url (data/get-data data/url-by-id {:id (decode encoded-id)}))]
-    (log/info url)
+  (if-let [url (:url (data/get-data data/url-by-id {:id (decode encoded-id)}))]
     (do
+      (log/info url)
       (client/post "https://www.google-analytics.com/collect"
         {:form-params {:v "1"
                        :tid (env :google-analytics)
@@ -33,4 +34,5 @@
                        :dh "noss.al"
                        :dp (str "/sht/" encoded-id)
                        :dt (str "Page " (decode encoded-id))}})
-      (res/redirect url))))
+      (res/redirect url))
+    not-found))

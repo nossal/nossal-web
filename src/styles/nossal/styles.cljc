@@ -46,6 +46,8 @@
        :font-weight 200
        :letter-spacing (rem 0.05)}]
 
+  [:span.strike {:text-decoration "line-through"}]
+
   [:.main
    {:flex 1
     :display "flex"}]

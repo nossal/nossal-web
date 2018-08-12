@@ -29,7 +29,7 @@
 
 (defn site-defaults-options [site-defaults]
   (-> site-defaults
-      (assoc-in [:security :ssl-redirect] true)
+      ; (assoc-in [:security :ssl-redirect] true)
       (assoc-in [:security :frame-options] :sameorigin)
       (assoc :proxy true)))
 
@@ -95,15 +95,13 @@
   (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
     (redirect encoded-id))
 
-  (GET "/%3E:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; />:encoded-id
-    (redirect encoded-id))
-
-
-  (ANY "/reviews/*" request
-    (reviews request))
-
+  (context "/reviews" []
+    (ANY "*" request reviews))
 
   (route/resources "/")
+
+  (GET "/:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /:encoded-id
+    (redirect encoded-id))
 
   (ANY "*" []
     (route/not-found (slurp (io/resource "404.html")))))
@@ -111,15 +109,15 @@
 
 (def app
   (-> app-routes
-      ; (wrap-defaults (site-defaults-options site-defaults) )
+      (wrap-defaults (site-defaults-options site-defaults))
       (wrap-json-body {:keywords? true :bigdecimals? true})
       (ignore-trailing-slash)))
 
 (def dev-app
   (-> app-routes
       ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-      (wrap-json-body {:keywords? true :bigdecimals? true})))
-      ; (ignore-trailing-slash)))
+      (wrap-json-body {:keywords? true :bigdecimals? true})
+      (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
