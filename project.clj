@@ -110,7 +110,7 @@
                                 :compiler {:output-to "resources/public/js/app.js"
                                            :output-dir "resources/public/js/app-dev-out"
                                            :main "nossal.app.app"
-                                           :asset-path "js/app-dev-out"
+                                           :asset-path "/js/app-dev-out"
                                            :parallel-build true
                                            :pretty-print true
                                            :language-in :ecmascript5

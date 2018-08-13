@@ -1,4 +1,5 @@
-(ns nossal.app.app)
+(ns nossal.app.app
+  (:require [nossal.app.rev :as rev]))
 
 
 (defn alert-me [what]
@@ -25,3 +26,9 @@
 (online-status nil)
 (.addEventListener js/self "offline" #(online-status %))
 (.addEventListener js/self "online" #(online-status %))
+
+
+(rev/mount-app)
+
+(defn on-jsload []
+  (rev/mount-app))

@@ -1,6 +1,6 @@
 (ns nossal.app
   (:require [compojure.route :as route]
-            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [compojure.core :refer [defroutes context GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
             [ring.middleware.json :refer [wrap-json-body]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
