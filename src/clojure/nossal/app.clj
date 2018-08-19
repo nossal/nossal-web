@@ -2,6 +2,7 @@
   (:require [compojure.route :as route]
             [compojure.core :refer [defroutes context GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
+            [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.json :refer [wrap-json-body]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [ring.adapter.jetty :as jetty]
@@ -115,9 +116,9 @@
 
 (def dev-app
   (-> app-routes
-      ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-      (wrap-json-body {:keywords? true :bigdecimals? true})
-      (ignore-trailing-slash)))
+    ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
+    (wrap-json-body {:keywords? true :bigdecimals? true})
+    (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
