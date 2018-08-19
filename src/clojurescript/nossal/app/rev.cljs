@@ -6,10 +6,7 @@
 (defn appp []
   [:div "minha app"])
 
-
 (defn mount-app []
   (reagent/render
     [appp]
     (js/document.getElementById "app-container")))
-
-

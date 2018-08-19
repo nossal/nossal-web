@@ -36,11 +36,10 @@
      [:meta {:name "twitter:creator" :content "@nossal"}]
      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
      (map (fn [m] [:meta m]) meta)
-     [:title (str title " – NOSSAL")]
+     [:title (str title " – nossal")]
      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
      [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
      (map (fn [l] [:link l]) links)
-     (map (fn [s] [:script s]) scripts)
      (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
      [:noscript
        (map (fn [node] node) (get options :noscript []))]]
@@ -54,8 +53,8 @@
       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
       (a-out "https://clojure.org" "Clojure") " and "
       [:span.heart " "] " at "
-      (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]]))
-
+      (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]
+     (map (fn [s] [:script s]) scripts)]))
 
 (defn base-html
   ([title meta links scripts styles body]
