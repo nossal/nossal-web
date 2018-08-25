@@ -29,7 +29,7 @@
 (defn products []
   [:div [:ul
           (for [p (:products @app-state)]
-            [:li [:a {:on-click ""} (:name p)]])]])
+            [:li [:a {:on-click #()} (:name p)]])]])
 
 
 (defn product [p]
