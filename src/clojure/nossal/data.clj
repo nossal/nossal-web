@@ -53,7 +53,7 @@
     {:vars {:account (env :google-analytics)}
      :triggers {:trackPageview {:on "visible" :request "pageview"}
                 :outboundLinks {:on "click"
-                                :selector "a"
+                                :selector "a.out"
                                 :request "event"
                                 :vars {:eventCategory "outbound"
                                        :eventLabel "${outboundLink}"
