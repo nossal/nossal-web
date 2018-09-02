@@ -21,6 +21,7 @@
                  [hiccup                    "1.0.5"]
 
                  [compojure                 "1.6.1"]
+                 [bidi                      "2.1.3"]
                  [ring/ring-jetty-adapter   "1.6.3"]
                  [ring/ring-defaults        "0.3.2"]
                  [ring/ring-json            "0.4.0"]

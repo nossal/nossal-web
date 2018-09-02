@@ -2,6 +2,10 @@
   (:require [compojure.route :as route]
             [compojure.core :refer [defroutes context GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
+
+            [bidi.bidi :as bidi]
+            [bidi.ring :refer [make-handler resources-maybe]]
+
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.json :refer [wrap-json-body]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
@@ -35,10 +39,12 @@
       (assoc :proxy true)))
 
 
-(defn service-worker [mod]
-  (response/content-type
-    (response/resource-response (str "sw.js" mod) {:root "public/js"})
-    "application/x-javascript; charset=utf-8"))
+(defn service-worker
+  ([] (service-worker ""))
+  ([mod]
+   (response/content-type
+     (response/resource-response (str "sw.js" mod) {:root "public/js"})
+     "application/x-javascript; charset=utf-8")))
 
 
 (defroutes app-routes
@@ -108,6 +114,14 @@
     (route/not-found (slurp (io/resource "404.html")))))
 
 
+(def app-bidi-routes ["/" {;"" (resources-maybe {:prefix "public/"})
+                      ; "" index
+                           "debug" debug
+                           "sw.js.map"  (fn [req] (service-worker ".map"))
+                           "sw.js" (service-worker "")
+                           "manifest.json" pwa-manifest}])
+
+
 (def app
   (-> app-routes
       (wrap-defaults (site-defaults-options site-defaults))
@@ -115,10 +129,11 @@
       (ignore-trailing-slash)))
 
 (def dev-app
-  (-> app-routes
-    ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-    (wrap-json-body {:keywords? true :bigdecimals? true})
-    (ignore-trailing-slash)))
+  (-> app-bidi-routes;app-routes
+      (wrap-json-body {:keywords? true :bigdecimals? true})
+      (make-handler)))
+     ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
+    ;  (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
