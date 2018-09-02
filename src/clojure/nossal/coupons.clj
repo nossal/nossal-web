@@ -65,6 +65,7 @@
                       [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
                     [16 32 48 96 144])
                 [:link {:rel "canonical" :href (core/cannonical-url req)}]
+                [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
                 [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
                 (if (= "true" (env :production))
                   [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
@@ -86,7 +87,7 @@
 
                   [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupom-codes x) :title)) " " [:span (rest ((coupom-codes x) :title))] ]) (keep #(if (not= service %) %) (shuffle (keys coupom-codes))))]]
                 [:footer
-                  [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu ❤️"] " para você."]]
+                  [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu "[:span {:title "coração" :alt "coração"} "❤️"]] " para você."]]
 
                 [:script {:type "application/ld+json"} dat/data-website]
                 [:amp-analytics {:type "googleanalytics"}

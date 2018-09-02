@@ -39,6 +39,7 @@
      [:title (str title " – nossal")]
      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
      [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
+     [:link {:rel "alternate" :href "https://noss.al" :hreflang "en-us"}]
      (map (fn [l] [:link l]) links)
      (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
      [:noscript
