@@ -7,13 +7,13 @@
 
 
 (defstyles app
-  [reset]
+  reset
   [:body
-    {:font-feature-settings "kern"}
-    :direction "ltr"
-    :font-synthesis "none"
-    :background "#efefef"
-    :color "#333"
-    :display "flex"
-    :flex-direction "column"
-    :min-height "100vh"])
+    {:font-feature-settings "kern"
+     :direction "ltr"
+     :font-synthesis "none"
+     :background "#efefef"
+     :color "red"
+     :display "flex"
+     :flex-direction "column"
+     :min-height "100vh"}])

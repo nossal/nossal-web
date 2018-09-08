@@ -4,7 +4,8 @@
             [environ.core :refer [env]]))
 
 (defn reviews [req]
-  (base-html "Reviews" [] []
+  (base-html "Reviews" []
+    [{:rel "stylesheet" :type "text/css" :href "/css/app.css"}]
     [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
-    [{:content (slurp (io/resource "public/css/app.css"))}]
+    []
     [[:div#app-container ""]]))

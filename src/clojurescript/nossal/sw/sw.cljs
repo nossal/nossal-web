@@ -28,7 +28,7 @@
   (-> js/caches
       (.match request)
       (.then (fn [response]
-               (or response (js/Promise.reject (str "no-match: " (.-url request))))))))
+               (or response (.reject js/Promise (str "no-match: " (.-url request))))))))
 
 (defn- fetch [request timeout]
   (-> (js/Promise. (fn [fulfill reject]
@@ -43,14 +43,14 @@
       (.catch (fn [] (from-cache request)))))
 
 (defn- on-install [e]
-  (js/console.log "[ServiceWorker] Installing...")
+  (.log js/console "[ServiceWorker] Installing...")
   (-> js/caches
       (.open app-cache-name)
       (.then (fn [cache]
                (.addAll cache (clj->js files-to-cache))))
       (.then (fn []
                (.skipWaiting js/self)
-               (js/console.log "[ServiceWorker] Successfully Installed")))))
+               (.log js/console "[ServiceWorker] Successfully Installed")))))
 
 (defn- on-fetch [e]
   (let [request (.-request e)]
@@ -61,7 +61,7 @@
 (defn- on-activate [e]
   (.claim (.-clients js/self))
   (purge-old-cache e)
-  (js/console.log "[ServiceWorker] activate"))
+  (.log js/console "[ServiceWorker] activate"))
 
 
 (.addEventListener js/self "install" #(.waitUntil % (on-install %)))

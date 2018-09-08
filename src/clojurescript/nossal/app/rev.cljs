@@ -25,17 +25,14 @@
                  "https://img.staticbg.com/thumb/view/oaupload/banggood/images/91/57/5998560e-e194-469d-8a65-cac4deaed624.jpg"]}]}))
 
 
-
-(defn products []
-  [:div [:ul
-          (for [p (:products @app-state)]
-            [:li [:a {:on-click #()} (:name p)]])]])
-
-
 (defn product [p]
   [:div
-    [:div (:name p)]
-    [:ul (map (fn [x] [:li [:img {:src x}]]) (:images p))]])
+    [:div [:a {:on-click #()} (:name p)]]
+    [:ul (map-indexed (fn [i x] [:li {:key i} [:img {:src x :width 100} ]]) (:images p))]])
+
+
+(defn products []
+  [:div [:ul (map-indexed (fn [i p] [:li {:key i} (product p)]) (:products @app-state))]])
 
 
 (defn appp []

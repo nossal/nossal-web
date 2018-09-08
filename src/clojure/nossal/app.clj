@@ -129,11 +129,11 @@
       (ignore-trailing-slash)))
 
 (def dev-app
-  (-> app-bidi-routes;app-routes
+  (-> app-routes
       (wrap-json-body {:keywords? true :bigdecimals? true})
-      (make-handler)))
+      ; (make-handler)))
      ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-    ;  (ignore-trailing-slash)))
+     (ignore-trailing-slash)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
