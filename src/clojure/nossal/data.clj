@@ -14,7 +14,7 @@
      :theme_color "#747f90"
      :background_color "#747f90"
      :orientation "portrait"
-     :start_url "/#utm_source=web_app_manifest"
+     :start_url "https://noss.al/#utm_source=web_app_manifest"
      :icons (map (fn [s]
                    {:src (str "image/icon-" s ".png") :sizes (str s "x" s) :type "image/png"})
                  (keep #(if (> % 32) %) allowed-image-sizes))}))
