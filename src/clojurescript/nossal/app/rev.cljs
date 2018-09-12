@@ -28,11 +28,14 @@
 (defn product [p]
   [:div
     [:div [:a {:on-click #()} (:name p)]]
-    [:ul (map-indexed (fn [i x] [:li {:key i} [:img {:src x :width 100} ]]) (:images p))]])
+    [:ul (map-indexed (fn [i x]
+                        [:li {:key i}
+                          [:img {:src x :width 100} ]]) (:images p))]])
 
 
 (defn products []
-  [:div [:ul (map-indexed (fn [i p] [:li {:key i} (product p)]) (:products @app-state))]])
+  [:div [:ul (map-indexed (fn [i p]
+                            [:li {:key i} (product p)]) (:products @app-state))]])
 
 
 (defn appp []

@@ -9,20 +9,20 @@
   :dependencies [[org.clojure/clojure       "1.9.0"]
                  [org.clojure/data.json     "0.2.6"]
                  [org.clojure/tools.logging "0.4.1"]
-                 [org.clojure/java.jdbc     "0.7.7"]
                  [org.clojure/core.cache    "0.7.1"]
+                 [org.clojure/java.jdbc     "0.7.8"]
 
                  [org.clojure/clojurescript "1.10.339"]
-                 [bidi                      "2.1.3"]
+                 [bidi                      "2.1.4"]
                  [kibu/pushy                "0.3.8"]
                  [reagent                   "0.8.1"]
-                 [re-frame                  "0.10.5"]
-                 [garden                    "1.3.5"]
+                 [re-frame                  "0.10.6"]
+                 [garden                    "1.3.6"]
                  [hiccup                    "1.0.5"]
 
                  [compojure                 "1.6.1"]
-                 [bidi                      "2.1.3"]
-                 [ring/ring-jetty-adapter   "1.6.3"]
+                 [bidi                      "2.1.4"]
+                 [ring/ring-jetty-adapter   "1.7.0"]
                  [ring/ring-defaults        "0.3.2"]
                  [ring/ring-json            "0.4.0"]
 
@@ -30,9 +30,11 @@
                  [environ                   "1.1.0"]
                  [clj-http                  "3.9.1"]
 
-                 [org.postgresql/postgresql "42.2.4"]
+                 [org.postgresql/postgresql "42.2.5"]
                  [com.layerware/hugsql      "0.4.9"]
-                 [heroku-database-url-to-jdbc "0.2.2"]]
+                 [heroku-database-url-to-jdbc "0.2.2"]
+
+                 [ns-tracker "0.3.0"]]
 
   :jvm-opts ^:replace ["-Xmx1g" "-server"]
 
@@ -43,7 +45,7 @@
             [lein-ancient   "0.6.15"]
             [lein-ring      "0.12.4"]]
 
-  :source-paths ["src/clojure", "src/clojurescript"]
+  :source-paths ["src/clojure", "src/clojurescript" "src/styles"]
   ; :prep-tasks [["garden" "once"]]
   :hooks [leiningen.cljsbuild]
 
