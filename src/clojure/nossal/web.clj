@@ -111,7 +111,7 @@
 
        [:div.divisor]
 
-       [:section "ロドリゴ・ノッサル"]
+      ;  [:section "ロドリゴ・ノッサル"]
 
        [:section#about [:div.end [:span.python "Python"] ", " [:span.java "Java"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Rust, " [:span.strike "Perl"] " on weekends."]]]]]))
 

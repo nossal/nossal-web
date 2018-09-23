@@ -34,7 +34,7 @@
 
 (defn site-defaults-options [site-defaults]
   (-> site-defaults
-      ; (assoc-in [:security :ssl-redirect] true)
+      (assoc-in [:security :ssl-redirect] true)
       (assoc-in [:security :frame-options] :sameorigin)
       (assoc :proxy true)))
 
@@ -102,6 +102,9 @@
   (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
     (redirect encoded-id))
 
+  (GET "/%3E:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; />:encoded-id
+    (redirect encoded-id))
+  
   (context "/reviews" []
     (ANY "*" request reviews))
 
