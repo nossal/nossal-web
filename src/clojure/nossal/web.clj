@@ -46,10 +46,10 @@
        (map (fn [node] node) (get options :noscript []))]]
     [:body
      [:script {:type "application/ld+json"} dat/data-website]
+
      (seq body)
 
      [:a#tnet "π"]
-
      [:footer
       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
       (a-out "https://clojure.org" "Clojure") " and "
@@ -111,7 +111,7 @@
 
        [:div.divisor]
 
-      ;  [:section "ロドリゴ・ノッサル"]
+       [:section "ノッサル・ロドリゴ"]
 
        [:section#about [:div.end [:span.python "Python"] ", " [:span.java "Java"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Rust, " [:span.strike "Perl"] " on weekends."]]]]]))
 

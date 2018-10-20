@@ -22,6 +22,14 @@
         :partner "banggood"
         :images ["https://img.staticbg.com/thumb/view/oaupload/banggood/images/E7/9C/c5a5725b-90e6-49e0-bd91-c861c90eeb15.jpg"
                  "https://img.staticbg.com/thumb/view/upload/2015/12/SKU252598/15.jpg"
+                 "https://img.staticbg.com/thumb/view/oaupload/banggood/images/91/57/5998560e-e194-469d-8a65-cac4deaed624.jpg"]}
+       {:code 3
+        :name "Women Sexy Jacquard Brief"
+        :descr ""
+        :link "https://www.banggood.com/Low-Waist-Sexy-Jacquard-Briefs-Seamless-Thin-Hollow-Breathable-Panties-p-1227228.html"
+        :partner "banggood"
+        :images ["https://img.staticbg.com/thumb/view/oaupload/banggood/images/E7/9C/c5a5725b-90e6-49e0-bd91-c861c90eeb15.jpg"
+                 "https://img.staticbg.com/thumb/view/upload/2015/12/SKU252598/15.jpg"
                  "https://img.staticbg.com/thumb/view/oaupload/banggood/images/91/57/5998560e-e194-469d-8a65-cac4deaed624.jpg"]}]}))
 
 
@@ -39,7 +47,8 @@
 
 
 (defn appp []
-  [:div "minha app."
+  [:div "Minha app."
+    [:div.alert "Teste g"]
     (products)])
 
 
