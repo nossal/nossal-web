@@ -1,5 +1,6 @@
 (ns nossal.data
   (:require [clojure.data.json :as json]
+            [clojure.string :as str]
             [environ.core :refer [env]]))
 
 
@@ -73,3 +74,14 @@
                                   :request "event"
                                   :vars {:eventCategory "ui-components"
                                          :eventAction "PWA Install"}}}}))
+
+(defn breadcrumbs [path]
+  (json/write-str
+    {"@context" "http://schema.org"
+     "@type" "BreadcrumbList"
+     "itemListElement" (map-indexed (fn [idx item]
+                                      {"@type" "ListItem"
+                                       "position" (+ idx 1)
+                                       "name" item
+                                       "item" (str "https://noss.al/" (subs path 0 (str/index-of path item)) item)})
+                                    (str/split path #"\/"))}))
