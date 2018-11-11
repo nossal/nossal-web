@@ -61,8 +61,8 @@
   (GET "/breakout" request
     (breakout request))
 
-  (GET "/miner" request
-    (miner request))
+  ; (GET "/miner" request
+  ;   (miner request))
 
   (GET "/_ah/health" request
     (str "👌"))
@@ -105,7 +105,7 @@
 
 (def app
   (-> app-routes
-      (wrap-defaults (site-defaults-options site-defaults) )
+      (wrap-defaults (site-defaults-options site-defaults))
       (wrap-json-body {:keywords? true :bigdecimals? true})
       (ignore-trailing-slash)))
 
