@@ -1,4 +1,5 @@
-(ns nossal.core)
+(ns nossal.core
+  (:require [clojure.data.json :as json]))
 
 
 (defn requested-url [req]
@@ -11,3 +12,7 @@
 
 (defn cannonical-url [req]
   (apply format "https://%s%s" (rest (requested-url req))))
+
+
+(defn to-json [data]
+  (json/write-str data))

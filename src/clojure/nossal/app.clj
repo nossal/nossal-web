@@ -15,7 +15,8 @@
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
-            [nossal.coupons :refer [coupom]]))
+            [nossal.coupons :refer [coupom]]
+            [nossal.core :as core]))
 
 
 (defn ignore-trailing-slash [handler]
@@ -44,7 +45,7 @@
     (index request))
 
   (GET "/manifest.json" request
-    (pwa-manifest))
+    (core/to-json pwa-manifest))
 
   (GET "/sw.js" [] (service-worker ""))
   (GET "/sw.js.map" [] (service-worker ".map"))

@@ -27,7 +27,7 @@
     (do
       (client/post "https://www.google-analytics.com/collect"
         {:form-params {:v "1"
-                       :tid (env :google-analytics)
+                       :tid (env :ga-tracking-id)
                        :cid "555"
                        :t "pageview"
                        :dh "noss.al"

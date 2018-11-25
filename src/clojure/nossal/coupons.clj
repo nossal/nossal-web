@@ -88,9 +88,9 @@
                 [:footer
                   [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu ❤️"] " para você."]]
 
-                [:script {:type "application/ld+json"} dat/data-website]
-                [:script {:type "application/ld+json"} (dat/breadcrumbs (str "cupons/" service))]
+                [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
+                [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
                 [:amp-analytics {:type "googleanalytics"}
-                  [:script {:type "application/json"} dat/data-analytics]]]])))
+                  [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
     not-found))
 

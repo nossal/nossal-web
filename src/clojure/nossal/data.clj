@@ -1,13 +1,11 @@
 (ns nossal.data
-  (:require [clojure.data.json :as json]
-            [clojure.string :as str]
+  (:require [clojure.string :as str]
             [environ.core :refer [env]]))
 
 
 (def allowed-image-sizes #{16 32 48 72 76 96 120 144 150 152 180 192 196 512 1024})
 
 (def pwa-manifest
-  (json/write-str
     {:name "Nossal, Rodrigo Nossal"
      :short_name "NOSSAL"
      :description "Rodrigo Nossal Personal Website"
@@ -18,7 +16,7 @@
      :start_url "https://noss.al/#utm_source=web_app_manifest"
      :icons (map (fn [s]
                    {:src (str "image/icon-" s ".png") :sizes (str s "x" s) :type "image/png"})
-                 (keep #(if (> % 32) %) allowed-image-sizes))}))
+                 (keep #(if (> % 32) %) allowed-image-sizes))})
 
 (def public-profiles {"Facebook"   "https://facebook.com/nossal"
                       "Twitter"    "https://twitter.com/nossal"
@@ -37,46 +35,44 @@
                       "myspace"    "https://myspace.com/nossal"
                       "Pinterest"  "https://pinterest.com/thenossal"})
 
-(def data-person (json/write-str {"@context" "https://schema.org"
-                                  "@type" "Person"
-                                  :name "Rodrigo Nossal"
-                                  :url "https://noss.al"
-                                  :sameAs (vals public-profiles)}))
+(def data-person {"@context" "https://schema.org"
+                  "@type" "Person"
+                  :name "Rodrigo Nossal"
+                  :url "https://noss.al"
+                  :sameAs (vals public-profiles)})
 
-(def data-website (json/write-str {"@context" "https://schema.org"
-                                   "@type" "WebSite"
-                                   :name "Nossal's"
-                                   :alternateName "Rodrigo Nossal"
-                                   :url "https://noss.al"}))
+(def data-website {"@context" "https://schema.org"
+                   "@type" "WebSite"
+                   :name "Nossal's"
+                   :alternateName "Rodrigo Nossal"
+                   :url "https://noss.al"})
 
 (def data-analytics
-  (json/write-str
-    {:vars {:account (env :google-analytics)}
-     :triggers {:trackPageview {:on "visible" :request "pageview"}
-                :outboundLinks {:on "click"
-                                :selector "a.out"
-                                :request "event"
-                                :vars {:eventCategory "outbound"
-                                       :eventLabel "${outboundLink}"
-                                       :eventAction "click"}}
-                :trackClickOnCoupom {:on "click"
-                                     :selector "#get-coupom"
-                                     :request "event"
-                                     :vars {:eventCategory "ui-components"
-                                            :eventAction "get-coupom"}}
-                :trackClickOnPI {:on "click"
-                                 :selector "a#tnet"
-                                 :request "event"
-                                 :vars {:eventCategory "ui-components"
-                                        :eventAction "the-net"}}
+  {:vars {:gtag_id (env :ga-tracking-id)}
+   :triggers {:trackPageview {:on "visible" :request "pageview"}
+              :outboundLinks {:on "click"
+                              :selector "a.out"
+                              :request "event"
+                              :vars {:eventCategory "outbound"
+                                     :eventLabel "${outboundLink}"
+                                     :eventAction "click"}}
+              :trackClickOnCoupom {:on "click"
+                                   :selector "#get-coupom"
+                                   :request "event"
+                                   :vars {:eventCategory "ui-components"
+                                          :eventAction "get-coupom"}}
+              :trackClickOnPI {:on "click"
+                               :selector "a#tnet"
+                               :request "event"
+                               :vars {:eventCategory "ui-components"
+                                      :eventAction "the-net"}}
 
-                :trackPWAInstall {:on "beforeinstallprompt"
-                                  :request "event"
-                                  :vars {:eventCategory "ui-components"
-                                         :eventAction "PWA Install"}}}}))
+              :trackPWAInstall {:on "beforeinstallprompt"
+                                :request "event"
+                                :vars {:eventCategory "ui-components"
+                                       :eventAction "PWA Install"}}}})
 
 (defn breadcrumbs [path]
-  (json/write-str
     {"@context" "http://schema.org"
      "@type" "BreadcrumbList"
      "itemListElement" (map-indexed (fn [idx item]
@@ -84,4 +80,4 @@
                                        "position" (+ idx 1)
                                        "name" item
                                        "item" (str "https://noss.al/" (subs path 0 (str/index-of path item)) item)})
-                                    (str/split path #"\/"))}))
+                                    (str/split path #"\/"))})
