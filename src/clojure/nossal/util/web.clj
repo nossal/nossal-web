@@ -3,7 +3,9 @@
             [clojure.java.io :as io]
             [image-resizer.core :refer [resize resize-to-width]]
             [image-resizer.format :as format]
-            [nossal.data :as dat]))
+            [nossal.data :as dat]
+            [nossal.core :as core]))
+
 
 (def not-found
   (assoc (response/not-found (slurp (io/resource "404.html"))) :headers {"Content-Type" "text/html; charset=UTF-8"}))
@@ -22,16 +24,19 @@
           (response/header "Cache-Control" "public, max-age=31536000")))
     not-found))
 
+
 (defn pwa-manifest []
   (response/content-type
-    (response/response dat/pwa-manifest)
+    (response/response (core/to-json dat/pwa-manifest))
     "application/manifest+json"))
+
 
 (defn a-out
   ([url text]
    (a-out url nil text))
   ([url attrs text]
    [:a (merge {:href url :data-vars-outbound-link url :target "_blank" :rel "noopener noreferrer"} attrs) text]))
+
 
 (defn favicons-attrs [icon]
   (concat

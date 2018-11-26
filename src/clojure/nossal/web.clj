@@ -67,7 +67,7 @@
   ([title meta links scripts styles body]
    (base-amp title meta links scripts styles body {}))
   ([title meta links scripts styles body options]
-   (base-html
+   (base
      title meta links
      (concat
        [{:async true :src "https://cdn.ampproject.org/v0.js"}]
@@ -77,19 +77,19 @@
      (concat
        [{:attr {:amp-boilerplate true} :content (slurp (io/resource "amp-css.css"))}]
        (map #(assoc % :attr {:amp-custom true}) styles))
-     (into [[:amp-analytics {:type "googleanalytics"}
-             [:script {:type "application/json"} dat/data-analytics]]]
+     (into [[:amp-analytics {:type "gtag"}
+             [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]
            body)
      (merge options {:amp true
                      :noscript [[:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}"]]}))))
 
 
 (defn index [req]
-  (base-amp
+  (base-html
     "Nossal, Rodrigo"
      (let [description "Rodrigo Nossal Personal Website"]
        [{:name "description" :content description}
-        {:name "keywords" :content "Python, Java, Clojure, Scala, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}
+        {:name "keywords" :content "Python, Java, Clojure, Scala, Rust, ES6, JavaScript, ClojureScript, React, ML, programming, functional, HTML, CSS"}
         {:property "og:url" :content (core/cannonical-url req)}
         {:property "og:title" :content "Nossal, Rodrigo Nossal"}
         {:property "og:description" :content description}
@@ -98,11 +98,11 @@
     [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
     [{:content (slurp (io/resource "public/css/screen.css"))}]
 
-    [[:script {:type "application/ld+json"} dat/data-person]
+    [[:script {:type "application/ld+json"} (core/to-json dat/data-person)]
      [:div.main
       [:article
        [:header
-        [:h1 [:span.border [:span.dim "Rodrigo"] " Nossal"]]
+        [:h1 "nossal."]
         [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
 
       ;  [:section#me [:div#tweetwidget]
@@ -113,7 +113,7 @@
 
        [:section "ノッサル・ロドリゴ"]
 
-       [:section#about [:div.end [:span.python "Python"] ", " [:span.java "Java"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Rust, " [:span.strike "Perl"] " on weekends."]]]]]))
+       [:section#about [:div.end [:span.python "Python"] ", " [:span.java "Java"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Rust on weekends."]]]]]))
 
 
 ; [:span.java "Java"] ", " [:span.python "Python"]
@@ -134,7 +134,7 @@
     (do
       (client/post "https://www.google-analytics.com/collect"
         {:form-params {:v "1"}
-                      :tid (env :google-analytics)
+                      :tid (env :ga-tracking-id)
                       :cid "555"
                       :t "pageview"
                       :dh "noss.al"

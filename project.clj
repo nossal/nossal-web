@@ -81,7 +81,7 @@
                                 :pretty-print? false}}]}
 
   :cljsbuild {:builds [{:id "app"
-                        :source-paths ["src/clojurescript/nossal/app"]
+                        :source-paths ["src/clojurescript/nossal/app" "src/clojure/nossal/data"]
                         :compiler {:output-to "resources/public/js/app.js"
                                    :output-dir "resources/public/js/app-out"
                                    :source-map "resources/public/js/app.js.map"
@@ -102,7 +102,7 @@
   :profiles {:production {:env {:dev false :production true}
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
-             :dev {:env {:dev "true", :production "false",
+             :dev {:env {:dev "true" :production "false" :ga-tracking-id "GA_ID_ACCOUNT"
                          :database-url "postgres://nossal:nossal@localhost:5432/nossal"}
                    :prep-tasks [["garden" "once"]]
                    :cljsbuild

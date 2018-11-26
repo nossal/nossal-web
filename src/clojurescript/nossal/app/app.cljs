@@ -1,5 +1,6 @@
 (ns nossal.app.app
-  (:require [nossal.app.rev :as rev]))
+  (:require [nossal.app.rev :as rev]
+            [nossal.data :refer [data-analytics]]))
 
 
 (defn alert-me [what]
@@ -27,8 +28,11 @@
 (.addEventListener js/self "offline" #(online-status %))
 (.addEventListener js/self "online" #(online-status %))
 
-
 (rev/mount-app)
 
 (defn on-jsload []
   (rev/mount-app))
+
+(defn analytics-setup [data])
+
+(js/console.log data-analytics)

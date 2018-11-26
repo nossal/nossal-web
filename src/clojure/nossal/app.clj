@@ -21,7 +21,8 @@
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
             [nossal.coupons :refer [coupom]]
-            [nossal.reviews :refer [reviews]]))
+            [nossal.reviews :refer [reviews]]
+            [nossal.core :as core]))
 
 
 (defn ignore-trailing-slash [handler]
@@ -52,7 +53,7 @@
     (index request))
 
   (GET "/manifest.json" request
-    (pwa-manifest))
+    (core/to-json pwa-manifest))
 
   (GET "/sw.js" [] (service-worker ""))
   (GET "/sw.js.map" [] (service-worker ".map"))
@@ -69,8 +70,8 @@
   (GET "/breakout" request
     (breakout request))
 
-  (GET "/miner" request
-    (miner request))
+  ; (GET "/miner" request
+  ;   (miner request))
 
   (GET "/_ah/health" request
     (str "👌"))
