@@ -1,4 +1,5 @@
-(ns nossal.app)
+(ns nossal.app
+  (:require [nossal.data :refer [data-analytics]]))
 
 
 (defn alert-me [what]
@@ -29,5 +30,4 @@
 
 (defn analytics-setup [data])
 
-
-(js/console.log "//------//")
+(js/console.log data-analytics)

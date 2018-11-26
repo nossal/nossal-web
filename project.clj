@@ -52,7 +52,8 @@
                                     "resources/public/css"
                                     :target-path]
 
-  :cljsbuild {:builds {:app {:source-paths ["src/clojurescript/nossal/app"]
+  :cljsbuild {:builds {:app {:source-paths ["src/clojurescript/nossal/app"
+                                            "src/clojure/nossal/data"]
                               :compiler {:output-to "resources/public/js/app.js"
                                          :pretty-print false
                                          :parallel-build true
@@ -84,10 +85,11 @@
 
   :profiles {:production {:env {:dev false :production true}
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
-             :dev {:env {:dev "true", :production "false", :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
+             :dev {:env {:dev "true", :production "false", :ga-tracking-id "GA_ID_ACCOUNT" :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
                   ;  :prep-tasks [["garden" "once"]]
                    :cljsbuild {:builds
-                               {:app {:source-paths ["src/clojurescript/nossal/app"]
+                               {:app {:source-paths ["src/clojurescript/nossal/app"
+                                                     "src/clojure/nossal/data"]
                                       :figwheel true
                                       :incremental true
                                       :compiler {:output-to "resources/public/js/app.js"
