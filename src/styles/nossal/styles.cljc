@@ -93,6 +93,7 @@
      :line-height (em 1)
      :font-weight 300
      :margin-bottom (em 0.3)
+     :margin-right (em -0.3)
      :text-align "center"
      :color "#ccc"
      :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
