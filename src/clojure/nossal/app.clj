@@ -105,7 +105,7 @@
 
   (GET "/%3E:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; />:encoded-id
     (redirect encoded-id))
-  
+
   (context "/reviews" []
     (ANY "*" request reviews))
 
@@ -132,12 +132,14 @@
       (wrap-json-body {:keywords? true :bigdecimals? true})
       (ignore-trailing-slash)))
 
-(def dev-app
+(def dev-app-old
   (-> app-routes
       (wrap-json-body {:keywords? true :bigdecimals? true})
       ; (make-handler)))
      ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
      (ignore-trailing-slash)))
+
+(def dev-app (wrap-reload (wrap-defaults #'app-routes site-defaults)))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]

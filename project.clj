@@ -103,11 +103,11 @@
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
              :dev {:env {:dev "true" :production "false" :ga-tracking-id "GA_ID_ACCOUNT"
-                         :database-url "postgres://nossal:nossal@localhost:5432/nossal"}
+                         :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
                    :prep-tasks [["garden" "once"]]
                    :cljsbuild
                      {:builds [{:id "dev-app"
-                                :source-paths ["src/clojurescript/nossal/app"]
+                                :source-paths ["src/clojurescript/nossal/app"  "src/clojure/nossal/data"]
                                 :figwheel true
                                 :incremental true
                                 :compiler {:output-to "resources/public/js/app.js"

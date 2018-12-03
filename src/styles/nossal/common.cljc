@@ -60,3 +60,18 @@
             :padding (px 2)
             :right (px 4)
             :bottom (px 20)}])
+
+
+; (defn at-font-face [& {:as kwargs}]
+;   (let [kwargs (->> (select-keys kwargs [:family :weight :style :eot :woff :svg])
+;                     (remove (comp nil? second))
+;                     (into {}))
+;         font-attrs (select-keys kwargs [:family :weight :style])
+;         srcs (select-keys kwargs [:eot :woff :svg])
+;         url (cssfn :url)
+;         format (cssfn :format)]
+;     ["@font-face"
+;      {:font font-attrs}
+;      (when-not (empty? srcs)
+;        {:src (for [[fmt uri] srcs]
+;                [(url uri) (format (name fmt))])})]))

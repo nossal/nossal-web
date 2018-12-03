@@ -54,7 +54,7 @@
                    :url "https://noss.al"})
 
 (def data-analytics
-  {"vars" {:gtag_id (ga-tracking-id)}
+  {:vars {:gtag_id (ga-tracking-id)}
    :triggers {:trackPageview {:on "visible" :request "pageview"}
               :outboundLinks {:on "click"
                               :selector "a.out"

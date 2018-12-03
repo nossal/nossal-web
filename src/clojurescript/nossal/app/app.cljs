@@ -2,6 +2,7 @@
   (:require [nossal.app.rev :as rev]
             [nossal.data :refer [data-analytics]]))
 
+(enable-console-print!)
 
 (defn alert-me [what]
   (.log js/console what))
@@ -28,11 +29,57 @@
 (.addEventListener js/self "offline" #(online-status %))
 (.addEventListener js/self "online" #(online-status %))
 
-(rev/mount-app)
+; (rev/mount-app)
 
-(defn on-jsload []
-  (rev/mount-app))
+; (defn on-jsload []
+  ; (rev/mount-app))
 
-(defn analytics-setup [data])
 
-(js/console.log data-analytics)
+(defn ->Array [array-like]
+  (.call js/Array.prototype.slice array-like))
+
+
+
+; <!-- Global site tag (gtag.js) - Google Analytics -->
+; <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11532471-6"></script>
+; <script>
+;   window.dataLayer = window.dataLayer || [];
+;   function gtag(){dataLayer.push(arguments)};
+;   gtag('js', new Date());
+
+;   gtag('config', 'UA-11532471-6');
+; </script>
+
+
+(set! js/dataLayer (if (exists? js/dataLayer) js/dataLayer (clj->js [])))
+
+(defn gtag [& args]
+  (println args)
+  (.push js/dataLayer (clj->js args)))
+
+
+(defn analytics-setup [data]
+  (gtag "js" (clj->js (js/Date.)))
+  (gtag "config" (:gtag_id (:vars data)))
+  (doseq [event (:triggers data)]
+    (let [[ev conf] event]
+      (condp = (:on conf)
+        "click"
+        (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
+          (doseq [element elements]
+            (.addEventListener element (:on conf) (fn [e] (gtag (:requst conf) (:on conf) (:vars conf))))))
+        "visible" (println ">>>> " (:request conf))
+        (.addEventListener js/document (:on conf) (fn [e] (gtag (:requst conf) (:on conf) (:vars conf))))))))
+      ; (if (= "click" (:on conf))
+      ;   (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
+      ;     (doseq [element elements]
+      ;       (.addEventListener element (:on conf) (fn [e] (println (:vars conf))))))
+      ;   (.addEventListener js/document (:on conf) (fn [e] (println (:request conf))))))))
+        ; (let [element (or (.querySelectorAll js/document (:selector conf))) js/window])))))
+      ;   (do
+      ;    (println element)
+      ;    (.addEventListener element (:on conf) (fn [e] (println e))))))))
+
+
+(.addEventListener js/document "DOMContentLoaded" (fn [] (analytics-setup data-analytics)))
+; (analytics-setup data-analytics)

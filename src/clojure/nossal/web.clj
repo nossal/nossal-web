@@ -20,6 +20,7 @@
 (defn- base [title meta links scripts styles body options]
   (page/html5 {:lang (get options :lang "en") :⚡ (get options :amp false)}
     [:head
+     [:script {:src (str "https://www.googletagmanager.com/gtag/js?id=" (env :ga-tracking-id)) :async true}]
      [:meta {:charset "UTF-8"}]
      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
@@ -43,7 +44,7 @@
      (map (fn [l] [:link l]) links)
      (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
      [:noscript
-       (map (fn [node] node) (get options :noscript []))]]
+      (map (fn [node] node) (get options :noscript []))]]
     [:body
      [:script {:type "application/ld+json"} dat/data-website]
 
