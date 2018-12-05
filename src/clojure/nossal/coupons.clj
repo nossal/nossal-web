@@ -67,8 +67,7 @@
                 [:link {:rel "canonical" :href (core/cannonical-url req)}]
                 [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
                 [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-                (if (= "true" (env :production))
-                  [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
+                [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
                 [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
                 [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
                 [:noscript
@@ -91,7 +90,7 @@
 
                 [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
                 [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
-                [:amp-analytics {:type "gtag"}
+                [:amp-analytics {:type "gtag" :data-credentials "include"}
                   [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
     not-found))
 
