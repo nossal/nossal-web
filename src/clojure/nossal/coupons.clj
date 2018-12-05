@@ -91,7 +91,7 @@
 
                 [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
                 [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
-                [:amp-analytics {:type "googleanalytics"}
+                [:amp-analytics {:type "gtag"}
                   [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
     not-found))
 
