@@ -4,11 +4,12 @@
 
 (enable-console-print!)
 
-(defn alert-me [what]
-  (.log js/console what))
+(defn alert! [what]
+  (do (println what)
+      (.log js/console what)))
 
 (defn online-status [e]
-  (alert-me (if (.-navigator.onLine js/self) "ONLINE!" "OFFLINE!")))
+  (alert! (if (.-navigator.onLine js/self) "ONLINE!" "OFFLINE!")))
 
 
 (defn is-service-worker-supported? []
@@ -54,9 +55,10 @@
 (set! js/dataLayer (if (exists? js/dataLayer) js/dataLayer (clj->js [])))
 
 (defn gtag [& args]
-  (println args)
-  (.push js/dataLayer (clj->js args)))
+  (do (alert! args)
+      (.push js/dataLayer (clj->js args))))
 
+(set! js/gtag gtag)
 
 (defn analytics-setup [data]
   (gtag "js" (clj->js (js/Date.)))
@@ -68,7 +70,7 @@
         (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
           (doseq [element elements]
             (.addEventListener element (:on conf) (fn [e] (gtag (:requst conf) (:on conf) (:vars conf))))))
-        "visible" (println ">>>> " (:request conf))
+        "visible" (alert! ">>>> " (:request conf))
         (.addEventListener js/document (:on conf) (fn [e] (gtag (:requst conf) (:on conf) (:vars conf))))))))
       ; (if (= "click" (:on conf))
       ;   (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
