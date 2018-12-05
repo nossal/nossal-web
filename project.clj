@@ -46,7 +46,7 @@
             [lein-ring      "0.12.4"]]
 
   :source-paths ["src/clojure", "src/clojurescript" "src/styles"]
-  ; :prep-tasks [["garden" "once"]]
+  :prep-tasks [["garden" "once"]]
   :hooks [leiningen.cljsbuild]
 
   :uberjar-name "nossal.jar"
@@ -58,7 +58,6 @@
 
   :figwheel {:ring-handler nossal.app/dev-app
              :css-dirs ["resources/public/css"]}
-
 
   :clean-targets ^{:protect false} ["resources/public/js"
                                     "resources/public/css"
@@ -81,12 +80,13 @@
                                 :pretty-print? false}}]}
 
   :cljsbuild {:builds [{:id "app"
-                        :source-paths ["src/clojurescript/nossal/app" "src/clojure/nossal/data"]
+                        :source-paths ["src/clojurescript/nossal/app"
+                                       "src/clojure/nossal/data"]
                         :compiler {:output-to "resources/public/js/app.js"
                                    :output-dir "resources/public/js/app-out"
                                    :source-map "resources/public/js/app.js.map"
                                    :pretty-print false
-                                   :parallel-build true
+                                  ;  :parallel-build false
                                    :language-in :ecmascript5
                                    :optimizations :advanced}}
                        {:id "sw"
@@ -95,19 +95,20 @@
                                    :output-dir "resources/public/js/sw-out"
                                    :source-map "resources/public/js/sw.js.map"
                                    :pretty-print false
-                                   :parallel-build true
+                                  ;  :parallel-build false
                                    :language-in :ecmascript5
                                    :optimizations :advanced}}]}
 
-  :profiles {:production {:env {:dev false :production true}
+  :profiles {:production {:env {:dev "false" :production "true"}
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
-             :dev {:env {:dev "true" :production "false" :ga-tracking-id "GA_ID_ACCOUNT"
+             :dev {:env {:dev "true" :production "false" :ga-tracking-id "UA-11532471-6"
                          :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
                    :prep-tasks [["garden" "once"]]
                    :cljsbuild
                      {:builds [{:id "dev-app"
-                                :source-paths ["src/clojurescript/nossal/app"  "src/clojure/nossal/data"]
+                                :source-paths ["src/clojurescript/nossal/app"
+                                               "src/clojure/nossal/data"]
                                 :figwheel true
                                 :incremental true
                                 :compiler {:output-to "resources/public/js/app.js"
