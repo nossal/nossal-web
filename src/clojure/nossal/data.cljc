@@ -54,10 +54,9 @@
                    :url "https://noss.al"})
 
 (def data-analytics
-  {:vars {:gtag_id (ga-tracking-id)}
-   (ga-tracking-id) {:config {:groups "default"}}
-   :triggers {;:trackPageview {:on "visible" :request "pageview"}
-              :outboundLinks {:on "click"
+  {:vars {:gtag_id (ga-tracking-id)
+          :config {(ga-tracking-id) {:groups "default"}}}
+   :triggers {:outboundLinks {:on "click"
                               :selector "a.out"
                               :request "event"
                               :vars {:eventCategory "outbound"
