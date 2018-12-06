@@ -99,7 +99,7 @@
                                    :language-in :ecmascript5
                                    :optimizations :advanced}}]}
 
-  :profiles {:production {:env {:dev "false" :production "true"}
+  :profiles {:production {:env {:dev "false" :production "true" :ga-tracking-id "UA-11532471-6"}
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
              :dev {:env {:dev "true" :production "false" :ga-tracking-id "UA-11532471-6"
