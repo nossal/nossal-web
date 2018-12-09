@@ -43,7 +43,7 @@
 
 (defn gtag [& args]
   (do (alert! args)
-      (js/gtag (clj->js args))))
+      (apply js/gtag (clj->js args))))
 
 ; (set! js/gtag gtag)
 
@@ -55,7 +55,7 @@
         (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
           (doseq [element elements]
             (.addEventListener element (:on conf) (fn [e] (gtag (:request conf) (:on conf) (:vars conf))))))
-        "visible" (alert! ">>>> " (:request conf))
+        "visible" (alert! (str ">>>> " (:request conf)))
         (.addEventListener js/document (:on conf) (fn [e] (gtag (:request conf) (:on conf) (:vars conf))))))))
       ; (if (= "click" (:on conf))
       ;   (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
@@ -69,4 +69,4 @@
 
 
 (.addEventListener js/document "DOMContentLoaded" (fn [] (analytics-setup data-analytics)))
-(analytics-setup data-analytics)
+; (analytics-setup data-analytics)
