@@ -41,16 +41,6 @@
 
 
 
-; <!-- Global site tag (gtag.js) - Google Analytics -->
-; <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11532471-6"></script>
-; <script>
-;   window.dataLayer = window.dataLayer || [];
-;   function gtag(){dataLayer.push(arguments)};
-;   gtag('js', new Date());
-
-;   gtag('config', 'UA-11532471-6');
-; </script>
-
 (defn gtag [& args]
   (do (alert! args)
       (js/gtag (clj->js args))))
@@ -64,9 +54,9 @@
         "click"
         (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
           (doseq [element elements]
-            (.addEventListener element (:on conf) (fn [e] (gtag (:requst conf) (:on conf) (:vars conf))))))
+            (.addEventListener element (:on conf) (fn [e] (gtag (:request conf) (:on conf) (:vars conf))))))
         "visible" (alert! ">>>> " (:request conf))
-        (.addEventListener js/document (:on conf) (fn [e] (gtag (:requst conf) (:on conf) (:vars conf))))))))
+        (.addEventListener js/document (:on conf) (fn [e] (gtag (:request conf) (:on conf) (:vars conf))))))))
       ; (if (= "click" (:on conf))
       ;   (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
       ;     (doseq [element elements]
