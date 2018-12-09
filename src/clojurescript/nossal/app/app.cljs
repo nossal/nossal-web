@@ -51,18 +51,13 @@
 ;   gtag('config', 'UA-11532471-6');
 ; </script>
 
-
-(set! js/dataLayer (if (exists? js/dataLayer) js/dataLayer (clj->js [])))
-
 (defn gtag [& args]
   (do (alert! args)
-      (.push js/dataLayer (clj->js args))))
+      (js/gtag (clj->js args))))
 
-(set! js/gtag gtag)
+; (set! js/gtag gtag)
 
 (defn analytics-setup [data]
-  (gtag "js" (clj->js (js/Date.)))
-  (gtag "config" (:gtag_id (:vars data)))
   (doseq [event (:triggers data)]
     (let [[ev conf] event]
       (condp = (:on conf)

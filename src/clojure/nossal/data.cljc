@@ -60,22 +60,24 @@
                               :selector "a.out"
                               :request "event"
                               :vars {:eventCategory "outbound"
-                                     :eventLabel "${outboundLink}"
-                                     :eventAction "click"}}
+                                     :eventAction "click"
+                                     :eventLabel "${outboundLink}"}}
               :trackClickOnCoupom {:on "click"
                                    :selector "#get-coupom"
                                    :request "event"
-                                   :vars {:eventCategory "ui-components"
+                                   :vars {:eventCategory "cupoms"
+                                          :eventLabel "${cupom}"
                                           :eventAction "get-coupom"}}
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"
                                :request "event"
-                               :vars {:eventCategory "ui-components"
-                                      :eventAction "the-net"}}
+                               :vars {:eventCategory "eggs"
+                                      :eventAction "click"
+                                      :eventLabel "the-net"}}
 
               :trackPWAInstall {:on "beforeinstallprompt"
                                 :request "event"
-                                :vars {:eventCategory "ui-components"
+                                :vars {:eventCategory "PWA"
                                        :eventAction "PWA Install"}}}})
 
 #?(:clj (defn breadcrumbs [path]
