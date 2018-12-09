@@ -39,13 +39,9 @@
 (defn ->Array [array-like]
   (.call js/Array.prototype.slice array-like))
 
-
-
 (defn gtag [& args]
   (do (alert! args)
       (apply js/gtag (clj->js args))))
-
-; (set! js/gtag gtag)
 
 (defn analytics-setup [data]
   (doseq [event (:triggers data)]

@@ -86,7 +86,7 @@
 
                   [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupom-codes x) :title)) " " [:span (rest ((coupom-codes x) :title))] ]) (keep #(if (not= service %) %) (shuffle (keys coupom-codes))))]]
                 [:footer
-                  [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu "[:span {:title "coração" :alt "coração"} "❤️"]] " para você."]]
+                  [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu "[:span {:title "coração"} "❤️"]] " para você."]]
 
                 [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
                 [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
