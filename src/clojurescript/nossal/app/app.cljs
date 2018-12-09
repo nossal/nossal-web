@@ -68,5 +68,5 @@
       ;    (.addEventListener element (:on conf) (fn [e] (println e))))))))
 
 
-(.addEventListener js/document "DOMContentLoaded" (fn [] (analytics-setup data-analytics)))
-; (analytics-setup data-analytics)
+; (.addEventListener js/document "DOMContentLoaded" (fn [] (analytics-setup data-analytics)))
+(analytics-setup data-analytics)
