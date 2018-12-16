@@ -65,8 +65,8 @@
               :trackClickOnCoupom {:on "click"
                                    :selector "#get-coupom"
                                    :request "event"
-                                   :vars {:eventCategory "cupoms"
-                                          :eventLabel "${cupom}"
+                                   :vars {:eventCategory "coupons"
+                                          :eventLabel "${coupom}"
                                           :eventAction "get-coupom"}}
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"

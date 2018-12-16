@@ -78,7 +78,7 @@
                   [:h1 "Cupom de desconto " (first (cdata :title)) "."]
                   [:div.intro.text
                     [:p (cdata :text)]]
-                  (a-out (cdata :url) {:id "get-coupom" :data-vars-cupom service :class (str "code" service)} (cdata :code))
+                  (a-out (cdata :url) {:id "get-coupom" :data-vars-coupom service :class (str "code" service)} (cdata :code))
                   [:p.link-description "Clique no código acima e aproveite o seu desconto."]
                   [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
                 [:section.others
