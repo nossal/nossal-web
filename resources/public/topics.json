@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Principais notícias",
+    "description": "O Terra gostaria de enviar notificações das principais notícias para você.",
+    "image": "",
+    "active": false,
+    "topic": "br_breakingnews"
+  },
+  {
+    "title": "Carnaval",
+    "description": "Carnaval do Terra! Receba as melhores matérias, fotos, programação dos blocos e saiba quando vão rolar as lives direto de Salvador.",
+    "image": "",
+    "active": false,
+    "topic": "br_breakingnews"
+  },
+  {
+    "title": "Terra Clube",
+    "description": "Clique aqui e fique por dentro das novidades do <strong>Terra Clube</strong>. Ofertas fresquinhas pra você.",
+    "image": "",
+    "active": false,
+    "topic": "br_breakingnews"
+  },
+  {
+    "title": "Educação",
+    "description": "Quer receber informações e novidades exclusivas sobre educação para se manter atualizado?",
+    "image": "",
+    "active": false,
+    "topic": "br_breakingnews"
+  }
+]
