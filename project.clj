@@ -4,24 +4,23 @@
   :license {:name "Eclipse Public License v1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :min-lein-version "2.8.1"
+  :min-lein-version "2.9.1"
 
-  :dependencies [[org.clojure/clojure       "1.9.0"]
+  :dependencies [[org.clojure/clojure       "1.10.0"]
                  [org.clojure/data.json     "0.2.6"]
                  [org.clojure/tools.logging "0.4.1"]
-                 [org.clojure/core.cache    "0.7.1"]
-                 [org.clojure/java.jdbc     "0.7.8"]
+                 [org.clojure/core.cache    "0.7.2"]
+                 [org.clojure/java.jdbc     "0.7.9"]
 
-                 [org.clojure/clojurescript "1.10.339"]
-                 [bidi                      "2.1.4"]
+                 [org.clojure/clojurescript "1.10.520"]
+                 [bidi                      "2.1.6"]
                  [kibu/pushy                "0.3.8"]
                  [reagent                   "0.8.1"]
                  [re-frame                  "0.10.6"]
-                 [garden                    "1.3.6"]
+                 [garden                    "1.3.9"]
                  [hiccup                    "1.0.5"]
 
                  [compojure                 "1.6.1"]
-                 [bidi                      "2.1.4"]
                  [ring/ring-jetty-adapter   "1.7.0"]
                  [ring/ring-defaults        "0.3.2"]
                  [ring/ring-json            "0.4.0"]
@@ -34,20 +33,20 @@
                  [com.layerware/hugsql      "0.4.9"]
                  [heroku-database-url-to-jdbc "0.2.2"]
 
-                 [ns-tracker "0.3.0"]]
+                 [ns-tracker                "0.3.1"]]
 
   :jvm-opts ^:replace ["-Xmx1g" "-server"]
 
-  :plugins [[lein-environ   "1.1.0"]
+  :plugins [[lein-environ   "1.1.0" :hooks false]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
-            [lein-figwheel  "0.5.16"]
+            ; [lein-figwheel  "0.5.18"]
             [lein-garden    "0.3.0"]
             [lein-ancient   "0.6.15"]
-            [lein-ring      "0.12.4"]]
+            [lein-ring      "0.12.5"]]
 
   :source-paths ["src/clojure", "src/clojurescript" "src/styles"]
   :prep-tasks [["garden" "once"]]
-  :hooks [leiningen.cljsbuild]
+  ; :hooks [leiningen.cljsbuild]
 
   :uberjar-name "nossal.jar"
 
@@ -99,23 +98,28 @@
                                    :language-in :ecmascript5
                                    :optimizations :advanced}}]}
 
+  :aliases {"fig" ["trampoline" "run" "-m" "figwheel.main"]}
+
   :profiles {:production {:env {:dev "false" :production "true" :ga-tracking-id "UA-11532471-6"}
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
              :dev {:env {:dev "true" :production "false" :ga-tracking-id "UA-11532471-6"
                          :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
-                   :prep-tasks [["garden" "once"]]
-                   :cljsbuild
-                     {:builds [{:id "dev-app"
-                                :source-paths ["src/clojurescript/nossal/app"
-                                               "src/clojure/nossal/data"]
-                                :figwheel true
-                                :incremental true
-                                :compiler {:output-to "resources/public/js/app.js"
-                                           :output-dir "resources/public/js/app-dev-out"
-                                           :main "nossal.app.app"
-                                           :asset-path "/js/app-dev-out"
-                                           :parallel-build true
-                                           :pretty-print true
-                                           :language-in :ecmascript5
-                                           :optimizations :none}}]}}})
+                  ;  :prep-tasks [["garden" "once"]]
+
+                   :dependencies [[com.bhauman/figwheel-main         "0.2.0"]
+                                  [com.bhauman/rebel-readline-cljs   "0.1.4"]]}})
+                  ;  :cljsbuild
+                  ;    {:builds [{:id "dev-app"
+                  ;               :source-paths ["src/clojurescript/nossal/app"
+                  ;                              "src/clojure/nossal/data"]
+                  ;               :figwheel true
+                  ;               :incremental true
+                  ;               :compiler {:output-to "resources/public/js/app.js"
+                  ;                          :output-dir "resources/public/js/app-dev-out"
+                  ;                          :main "nossal.app.app"
+                  ;                          :asset-path "/js/app-dev-out"
+                  ;                          :parallel-build true
+                  ;                          :pretty-print true
+                  ;                          :language-in :ecmascript5
+                  ;                          :optimizations :none}}]}}})

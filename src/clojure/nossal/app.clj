@@ -21,7 +21,7 @@
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
             [nossal.coupons :refer [coupom]]
-            [nossal.reviews :refer [reviews]]
+            [nossal.shop.core :refer [shop]]
             [nossal.core :as core]))
 
 
@@ -106,8 +106,8 @@
   (GET "/%3E:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; />:encoded-id
     (redirect encoded-id))
 
-  (context "/reviews" []
-    (ANY "*" request reviews))
+  (context "/shop" []
+    (ANY "*" request shop))
 
   (route/resources "/")
 
