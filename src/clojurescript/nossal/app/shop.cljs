@@ -1,12 +1,9 @@
-(ns nossal.app.rev
+(ns nossal.app.shop
   (:require [reagent.core :as reagent]
-            [re-frame.core :as re-frame]))
+            [re-frame.core :as rf]))
             ; [cljs.spec :as s]))
 
-(def app-state
-  (reagent/atom
-    {:partners [{:name "banggood", :code "?p=GD121317165513201712"}]
-     :products
+(def products
       [{:code 1
         :name "TS100 Soldering Iron"
         :descr ""
@@ -30,8 +27,13 @@
         :partner "banggood"
         :images ["https://img.staticbg.com/thumb/view/oaupload/banggood/images/E7/9C/c5a5725b-90e6-49e0-bd91-c861c90eeb15.jpg"
                  "https://img.staticbg.com/thumb/view/upload/2015/12/SKU252598/15.jpg"
-                 "https://img.staticbg.com/thumb/view/oaupload/banggood/images/91/57/5998560e-e194-469d-8a65-cac4deaed624.jpg"]}]}))
+                 "https://img.staticbg.com/thumb/view/oaupload/banggood/images/91/57/5998560e-e194-469d-8a65-cac4deaed624.jpg"]}])
 
+
+(rf/reg-event-db
+ :initialize
+ (fn [_ _]
+   {:products products}))
 
 (defn product [p]
   [:div
@@ -46,13 +48,8 @@
                             [:li {:key i} (product p)]) (:products @app-state))]])
 
 
-(defn appp []
+(defn app []
   [:div "Minha app."
     [:div.alert "Teste g"]
     (products)])
 
-
-(defn mount-app []
-  (reagent/render
-    [appp]
-    (js/document.getElementById "app-container")))

@@ -29,5 +29,6 @@ pom.xml
 /.lein-failures
 /.nrepl-port
 /.nrepl-history
-
+.rebel_readline_history
 *.stackdump
+.cpcache

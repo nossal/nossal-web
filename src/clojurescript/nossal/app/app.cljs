@@ -1,69 +1,30 @@
 (ns nossal.app.app
-  (:require [nossal.app.rev :as rev]
-            [nossal.data :refer [data-analytics]]))
+  (:require [bidi.bidi :as bidi]
+            [pushy.core :as pushy]
+            [re-frame.core :as rf]
+            [reagent.core :as reagent]
+            [nossal.app.shop :as shop]))
 
 (enable-console-print!)
 
-(defn alert! [what]
-  (do (println what)
-      (.log js/console what)))
-
-(defn online-status [e]
-  (alert! (if (.-navigator.onLine js/self) "ONLINE!" "OFFLINE!")))
+(defn ^:export main
+  []
+  (reagent/render [shop/app]
+                  (.getElementById js/document "app-container")))
 
 
-(defn is-service-worker-supported? []
-  (exists? js/navigator.serviceWorker))
+; (def routes ["/" {""          :home
+;                   ":product"  :product
+;                   "cart"      :cart}])
 
-(defn register-service-worker [path-to-sw scope]
-  (if (is-service-worker-supported?)
-    (-> js/navigator
-        .-serviceWorker
-        (.register path-to-sw {:scope scope})
-        (.then (fn [reg] (.log js/console (str "Service Worker Registered for scope [" (.-scope reg) "]") reg))))
-    (do
-      (.warn js/console "%cShame on you for using a browser which doesn't support service workers." "background: #0986EE); color: #fefefe")
-      (.log js/console "Download Firefox instead: https://www.mozilla.org/firefox/new/"))))
+; (defn- parse-url [url]
+;   (bidi/match-route routes url))
 
-(register-service-worker "sw.js" ".")
-(online-status nil)
-(.addEventListener js/self "offline" #(online-status %))
-(.addEventListener js/self "online" #(online-status %))
+; (defn- dispatch-route [matched-route]
+;   (let [panel-name (keyword (str (name (:handler matched-route)) "-panel"))]
+;     (rf/dispatch [:set-active-panel panel-name])))
 
-; (rev/mount-app)
+; (defn app-routes []
+;   (pushy/start! (pushy/pushy dispatch-route parse-url)))
 
-; (defn on-jsload []
-  ; (rev/mount-app))
-
-
-(defn ->Array [array-like]
-  (.call js/Array.prototype.slice array-like))
-
-(defn gtag [& args]
-  (do (alert! (clj->js args))
-      (apply js/gtag (clj->js args))))
-
-
-(defn addTrackEvent [where event]
-  (.addEventListener where
-                     (:on event)
-                     (fn [e] (gtag (:request event)
-                                   (:eventAction (:vars event))
-                                   (let [ev (:vars event)]
-                                     {:event_category (:eventCategory ev)
-                                      :event_label (:eventLabel ev)
-                                      :value (:value ev)})))))
-
-(defn analytics-setup [data]
-  (doseq [event (:triggers data)]
-    (let [[ev conf] event]
-      (condp = (:on conf)
-        "click"
-        (when-let [elements (not-empty (->Array (.querySelectorAll js/document (:selector conf))))]
-          (doseq [element elements]
-            (addTrackEvent element conf)))
-        "visible" (alert! (str ">>>> " (:request conf)))
-        (addTrackEvent js/document conf)))))
-
-; (.addEventListener js/document "DOMContentLoaded" (fn [] (analytics-setup data-analytics)))
-(analytics-setup data-analytics)
+; (def url-for (partial bidi/path-for routes))
