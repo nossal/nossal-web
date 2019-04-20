@@ -61,7 +61,9 @@
             :right (px 4)
             :bottom (px 20)}])
 
-
+(def defaults
+  [:ul {:padding-left 0
+        :list-style "none"}])
 ; (defn at-font-face [& {:as kwargs}]
 ;   (let [kwargs (->> (select-keys kwargs [:family :weight :style :eot :woff :svg])
 ;                     (remove (comp nil? second))

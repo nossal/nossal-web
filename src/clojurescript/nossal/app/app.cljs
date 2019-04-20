@@ -7,12 +7,15 @@
 
 (enable-console-print!)
 
+
+
 (defn ^:export main
   []
+  (rf/dispatch-sync [:initialise])
   (reagent/render [shop/app]
                   (.getElementById js/document "app-container")))
 
-
+(main)
 ; (def routes ["/" {""          :home
 ;                   ":product"  :product
 ;                   "cart"      :cart}])

@@ -39,7 +39,6 @@
 
   :plugins [[lein-environ   "1.1.0" :hooks false]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
-            ; [lein-figwheel  "0.5.18"]
             [lein-garden    "0.3.0"]
             [lein-ancient   "0.6.15"]
             [lein-ring      "0.12.5"]]
@@ -55,8 +54,7 @@
          :auto-reload? true
          :reload-paths ["src/clojure"]}
 
-  :figwheel {:ring-handler nossal.app/dev-app
-             :css-dirs ["resources/public/css"]}
+  :aliases {"fig" ["trampoline" "run" "-m" "figwheel.main"]}
 
   :clean-targets ^{:protect false} ["resources/public/js"
                                     "resources/public/css"
@@ -75,6 +73,11 @@
                     {:source-paths ["src/styles"]
                      :stylesheet nossal.simple/simple
                      :compiler {:output-to "resources/public/css/simple.css"
+                                :vendors ["moz" "webkit"]
+                                :pretty-print? false}}
+                    {:source-paths ["src/styles"]
+                     :stylesheet nossal.shop/shop
+                     :compiler {:output-to "resources/public/css/shop.css"
                                 :vendors ["moz" "webkit"]
                                 :pretty-print? false}}]}
 
@@ -98,28 +101,10 @@
                                    :language-in :ecmascript5
                                    :optimizations :advanced}}]}
 
-  :aliases {"fig" ["trampoline" "run" "-m" "figwheel.main"]}
-
   :profiles {:production {:env {:dev "false" :production "true" :ga-tracking-id "UA-11532471-6"}
                           :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
 
              :dev {:env {:dev "true" :production "false" :ga-tracking-id "UA-11532471-6"
                          :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
-                  ;  :prep-tasks [["garden" "once"]]
-
                    :dependencies [[com.bhauman/figwheel-main         "0.2.0"]
                                   [com.bhauman/rebel-readline-cljs   "0.1.4"]]}})
-                  ;  :cljsbuild
-                  ;    {:builds [{:id "dev-app"
-                  ;               :source-paths ["src/clojurescript/nossal/app"
-                  ;                              "src/clojure/nossal/data"]
-                  ;               :figwheel true
-                  ;               :incremental true
-                  ;               :compiler {:output-to "resources/public/js/app.js"
-                  ;                          :output-dir "resources/public/js/app-dev-out"
-                  ;                          :main "nossal.app.app"
-                  ;                          :asset-path "/js/app-dev-out"
-                  ;                          :parallel-build true
-                  ;                          :pretty-print true
-                  ;                          :language-in :ecmascript5
-                  ;                          :optimizations :none}}]}}})
