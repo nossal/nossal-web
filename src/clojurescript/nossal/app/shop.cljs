@@ -1,6 +1,6 @@
-(ns nossal.app.rev
+(ns nossal.app.shop
   (:require [reagent.core :as reagent]
-            [re-frame.core :as re-frame]))
+            [re-frame.core :as rf]))
             ; [cljs.spec :as s]))
 
 (def app-state
@@ -33,6 +33,11 @@
                "https://img.staticbg.com/thumb/view/oaupload/banggood/images/91/57/5998560e-e194-469d-8a65-cac4deaed624.jpg"]}]}))
 
 
+(rf/reg-event-db
+ :initialize
+ (fn [_ _]
+   {:products products}))
+
 (defn product [p]
   [:div
    [:div [:a {:on-click #()} (:name p)]]
@@ -46,7 +51,7 @@
                             [:li {:key i} (product p)]) (:products @app-state))]])
 
 
-(defn appp []
+(defn app []
   [:div "Minha app."
    [:div.alert "Teste g"]
    (products)])

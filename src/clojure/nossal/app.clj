@@ -22,7 +22,6 @@
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
-<<<<<<< HEAD
             [nossal.coupons :refer [coupon coupon-index coupon-codes]]
             [nossal.reviews :refer [reviews]]
             [nossal.core :as core]
@@ -32,11 +31,6 @@
 
 (when-let [dsn (env :sentry-dsn)]
   (sentry/init! dsn))
-=======
-            [nossal.coupons :refer [coupom]]
-            [nossal.shop.core :refer [shop]]
-            [nossal.core :as core]))
->>>>>>> 55f8051 (figwheel-main)
 
 
 (defn ignore-trailing-slash [handler]
