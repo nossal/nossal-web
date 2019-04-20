@@ -34,9 +34,9 @@
 
 
 (rf/reg-event-db
- :initialize
+ :initialise
  (fn [_ _]
-   {:products products}))
+   {:products-db products-db}))
 
 (defn product [p]
   [:div
@@ -46,9 +46,9 @@
                         [:img {:src x :width 100}]]) (:images p))]])
 
 
-(defn products []
-  [:div [:ul (map-indexed (fn [i p]
-                            [:li {:key i} (product p)]) (:products @app-state))]])
+; (defn products []
+;   [:div [:ul (map-indexed (fn [i p]
+;                             [:li {:key i} (product p)]) (:products @app-state))]])
 
 
 (defn app []
