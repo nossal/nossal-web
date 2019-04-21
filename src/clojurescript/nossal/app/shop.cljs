@@ -1,7 +1,8 @@
 (ns nossal.app.shop
-  (:require [reagent.core :as reagent]
-            [re-frame.core :as rf]
-            [cljs.spec.alpha :as s]))
+  (:require [clojure.string :as string]
+            [clojure.spec.alpha :as s]
+            [reagent.core :as reagent]
+            [re-frame.core :as rf]))
 
 (def products-db
   [{:code 1
@@ -60,24 +61,28 @@
  (fn [db _]
    (:products-db db)))
 
+(defn price-display [value]
+  [:div.price [:span.currency "R$"] (string/replace (str value) #"\." ",")])
 
 (defn product-card
   []
   (fn [{:keys [code name price images]}]
     [:li.product-card
       [:img {:src (first images)}]
-      [:div.price (str "R$" price)]
+      (price-display price)
       [:div name]]))
 
 
 (defn product-list
   []
   (let [products @(rf/subscribe [:products])]
-    [:section#main
-      [:ul#product-list
-        (for [product products]
-          ^{:key (:code product)} [product-card product])]]))
+    [:ul#product-list
+      (for [product products]
+        ^{:key (:code product)} [product-card product])]))
 
 
 (defn app []
-  [product-list])
+  [:div#app-container
+    [:nav
+      [:input {:type "search"}]]
+    [product-list]])
