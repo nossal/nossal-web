@@ -1,6 +1,6 @@
 (ns nossal.app.analytics
   (:require [nossal.data :refer [data-analytics]]
-            [nossal.app.core :refer [alert!]]))
+            [nossal.app.commons :refer [alert!]]))
 
 
 (defn ->Array [array-like]

@@ -16,22 +16,27 @@
           :overflow "hidden"
           :background "#000"
           :margin 0}]
-  [:.alert {:color "orange"}]
-  [:#app-container {:background "#f1f1f1"
-                    :height "100%"
+
+  [:#app-container {:background "#efece8"
+                    :height "100%",
                     :border-radius (em 2)
                     :overflow "hidden"
                     :scrollbar-width "none"
                     :overflow-y "scroll"}]
+  [:#product-list {:display "flex"
+                   :flex-flow "row wrap"}]
   [:.product-card {:background "white"
+                   :flex-grow 1
+                   :display "inline-block"
                    :color "#444"
                    :margin (em 1)
                    :padding (em 1)
                    :max-width (px 200)
                    :border-radius (em 1)}
     [:img {:width "100%"}]
-    [:.price {:font-size (em 1.5)}]])
-
+    [:.price {:font-size (em 1.5)}
+      [:span.currency {:font-size (em 0.5)
+                       :vertical-align "text-top"}]]])
 
 
 
