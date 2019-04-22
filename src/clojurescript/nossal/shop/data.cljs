@@ -2,6 +2,28 @@
   (:require [clojure.spec.alpha :as s]))
 
 
+
+(s/def ::category string?)
+
+(s/def ::id int?)
+(s/def ::price (s/and float? #(> % 0)))
+(s/def ::title string?)
+(s/def ::description string?)
+(s/def ::stock-count (s/and int? #(>= % 0)))
+(s/def ::available? boolean?)
+(s/def ::images (s/coll-of uri? :kind vector? :distinct true :into []))
+(s/def ::product (s/keys :req-un [::id
+                                  ::price
+                                  ::title
+                                  ::description
+                                  ::images
+                                  ::category
+                                  ::stock-count
+                                  ::available]))
+(s/def ::products (s/and
+                    (s/map-of ::id ::product)
+                    #(instance? PersistentTreeMap %)))
+
 (def products-db
   [{:code 1
     :name "TS100 Soldering Iron"
