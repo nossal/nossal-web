@@ -17,12 +17,12 @@
           :background "#000"
           :margin 0}]
 
-  [:#app-container {:background "#efece8"
-                    :height "100%",
-                    :border-radius (em 2)
-                    :overflow "hidden"
-                    :scrollbar-width "none"
-                    :overflow-y "scroll"}]
+  [:#app {:background "#efece8"
+          :height "100%",
+          :border-radius (em 2)
+          :overflow "hidden"
+          :scrollbar-width "none"
+          :overflow-y "scroll"}]
   [:#product-list {:display "flex"
                    :flex-flow "row wrap"}]
   [:.product-card {:background "white"
@@ -35,8 +35,9 @@
                    :border-radius (em 1)}
     [:img {:width "100%"}]
     [:.price {:font-size (em 1.5)}
-      [:span.currency {:font-size (em 0.5)
-                       :vertical-align "text-top"}]]])
-
+      [:.currency {:font-size (em 0.5)
+                       :vertical-align "text-top"}]
+      [:.cents {:font-size (em 0.5)
+                :color "#aaa"}]]])
 
 
