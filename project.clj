@@ -16,6 +16,7 @@
                  [bidi                      "2.1.6"]
                  [kibu/pushy                "0.3.8"]
                  [reagent                   "0.8.1"]
+                 [reagent-utils             "0.3.2"]
                  [re-frame                  "0.10.6"]
                  [garden                    "1.3.9"]
                  [hiccup                    "1.0.5"]

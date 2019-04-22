@@ -1,8 +1,6 @@
-(ns nossal.app.shop
-  (:require [clojure.string :as string]
-            [clojure.spec.alpha :as s]
-            [reagent.core :as reagent]
-            [re-frame.core :as rf]))
+(ns nossal.shop.data
+  (:require [clojure.spec.alpha :as s]))
+
 
 (def products-db
   [{:code 1
@@ -37,52 +35,3 @@
     :partner "banggood"
     :images ["https://img.staticbg.com/thumb/large/oaupload/banggood/images/18/97/55a957e6-ad5d-411c-a20b-2088279c13f9.jpg.webp"]}])
 
-
-(rf/reg-event-db
- :initialise
- (fn [_ _]
-   {:products-db products-db}))
-
-; (defn product [p]
-;   [:div
-;     [:div [:a {:on-click #()} (:name p)]]
-;     [:ul (map-indexed (fn [i x]
-;                         [:li {:key i}
-;                           [:img {:src x :width 100} ]]) (:images p))]])
-
-
-; (defn products []
-;   [:div [:ul (map-indexed (fn [i p]
-;                             [:li {:key i} (product p)]) (:products @app-state))]])
-
-
-(rf/reg-sub
- :products
- (fn [db _]
-   (:products-db db)))
-
-(defn price-display [value]
-  [:div.price [:span.currency "R$"] (string/replace (str value) #"\." ",")])
-
-(defn product-card
-  []
-  (fn [{:keys [code name price images]}]
-    [:li.product-card
-      [:img {:src (first images)}]
-      (price-display price)
-      [:div name]]))
-
-
-(defn product-list
-  []
-  (let [products @(rf/subscribe [:products])]
-    [:ul#product-list
-      (for [product products]
-        ^{:key (:code product)} [product-card product])]))
-
-
-(defn app []
-  [:div#app-container
-    [:nav
-      [:input {:type "search"}]]
-    [product-list]])

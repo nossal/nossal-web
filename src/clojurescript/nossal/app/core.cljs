@@ -3,7 +3,7 @@
             [pushy.core :as pushy]
             [re-frame.core :as rf]
             [reagent.core :as reagent]
-            [nossal.app.shop :as shop]))
+            [nossal.shop.core :as shop]))
 
 (enable-console-print!)
 
@@ -13,7 +13,7 @@
   []
   (rf/dispatch-sync [:initialise])
   (reagent/render [shop/app]
-                  (first (array-seq (.getElementsByTagName js/document "body")))))
+                  (.getElementById js/document "app")))
 
 (main)
 ; (def routes ["/" {""          :home
