@@ -2,7 +2,6 @@
   (:require [clojure.spec.alpha :as s]))
 
 
-
 (s/def ::category string?)
 
 (s/def ::id int?)
