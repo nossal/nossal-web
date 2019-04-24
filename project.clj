@@ -47,6 +47,7 @@
             [lein-ring      "0.12.5"]]
 
   :source-paths ["src/clojure", "src/clojurescript" "src/styles"]
+  :resource-paths ["resources"]
   :prep-tasks [["garden" "once"]]
 
   :uberjar-name "nossal.jar"
