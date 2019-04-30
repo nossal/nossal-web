@@ -3,6 +3,7 @@
 
 
 (def email-regex #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$")
+(def phone-regex #"^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$")
 
 (s/def ::category string?)
 
@@ -13,7 +14,7 @@
 (s/def ::title string?)
 (s/def ::name string?)
 (s/def ::email (s/and string? #(re-matches email-regex %)))
-(s/def ::phone string?)
+(s/def ::phone (s/and string? #(re-matches phone-regex %)))
 (s/def ::description string?)
 (s/def ::stock-count (s/and int? #(>= % 0)))
 (s/def ::available? boolean?)
