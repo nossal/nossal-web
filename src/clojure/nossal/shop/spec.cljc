@@ -23,7 +23,15 @@
 (s/def ::images (s/coll-of uri? :kind vector? :distinct true :into []))
 (s/def ::characteristics (s/and
                            (s/map-of ::name ::description)
-                           #(instance? PersistentTreeMap %)))
+                           #(instance? PersistentTreeMap %)
+
+(s/def ::variant (s/keys :req [::id
+                               ::name
+                               ::price
+                               ::stock-count
+                               ::available?
+                               ::images]))
+(s/def ::variants (s/coll-of ::variant :kind vector? :distinct true :into []))
 
 (s/def ::product (s/keys :req-un [::id
                                   ::market-price
@@ -34,7 +42,8 @@
                                   ::images
                                   ::category
                                   ::stock-count
-                                  ::available?]))
+                                  ::available?]
+                         :opt-un [::variants]))
 (s/def ::products (s/and
                     (s/map-of ::id ::product)
                     #(instance? PersistentTreeMap %)))
