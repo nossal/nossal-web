@@ -2,35 +2,6 @@
   (:require [clojure.spec.alpha :as s]
             [re-frame.core :refer [reg-event-db reg-event-fx inject-cofx path after]]))
 
-(s/def ::category string?)
-
-(s/def ::id int?)
-(s/def ::quantity (s/and int? #(> % 0)))
-(s/def ::price (s/and float? #(> % 0)))
-(s/def ::market-price (s/and float? #(> % 0)))
-(s/def ::title string?)
-(s/def ::description string?)
-(s/def ::stock-count (s/and int? #(>= % 0)))
-(s/def ::available? boolean?)
-(s/def ::images (s/coll-of uri? :kind vector? :distinct true :into []))
-(s/def ::product (s/keys :req-un [::id
-                                  ::market-price
-                                  ::price
-                                  ::title
-                                  ::description
-                                  ::images
-                                  ::category
-                                  ::stock-count
-                                  ::available?]))
-(s/def ::products (s/and
-                    (s/map-of ::id ::product)
-                    #(instance? PersistentTreeMap %)))
-
-(s/def ::basket-item (s/keys :req-un [::product ::quantity]))
-(s/def ::basket-itens (s/coll-of ::basket-item :kind vector? :distinct true :into []))
-(s/def ::basket (s/keys :req-un [::id ::basket-itens]))
-
-(s/def ::db (s/keys :req-un [::products ::basket]))
 
 (def products-db
   [{:code 1

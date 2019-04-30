@@ -63,7 +63,7 @@
                 [:title "Cupom de Desconto 🤑 " (first (cdata :title)) " - " (s/upper-case (cdata :code))]
                 (map (fn [s]
                       [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
-                    [16 32 48 96 144])
+                     [16 32 48 96 144])
                 [:link {:rel "canonical" :href (core/cannonical-url req)}]
                 [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
                 [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
@@ -84,7 +84,9 @@
                 [:section.others
                   [:p.intro "Quer mais descontos?"]
 
-                  [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupom-codes x) :title)) " " [:span (rest ((coupom-codes x) :title))] ]) (keep #(if (not= service %) %) (shuffle (keys coupom-codes))))]]
+                  [:p (map (fn [x]
+                            [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupom-codes x) :title)) " " [:span (rest ((coupom-codes x) :title))]])
+                           (keep #(if (not= service %) %) (shuffle (keys coupom-codes))))]]
                 [:footer
                   [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu "[:span {:title "coração"} "❤️"]] " para você."]]
 
