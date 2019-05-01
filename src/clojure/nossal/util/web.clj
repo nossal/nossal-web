@@ -6,10 +6,8 @@
             [nossal.data :as dat]
             [nossal.core :as core]))
 
-
 (def not-found
   (assoc (response/not-found (slurp (io/resource "404.html"))) :headers {"Content-Type" "text/html; charset=UTF-8"}))
-
 
 (defn resize-image [image width ext]
   (if (and (contains? dat/allowed-image-sizes width)
@@ -24,12 +22,10 @@
           (response/header "Cache-Control" "public, max-age=31536000")))
     not-found))
 
-
 (defn pwa-manifest []
   (response/content-type
-    (response/response (core/to-json dat/pwa-manifest))
-    "application/manifest+json"))
-
+   (response/response (core/to-json dat/pwa-manifest))
+   "application/manifest+json"))
 
 (defn a-out
   ([url text]
@@ -37,12 +33,11 @@
   ([url attrs text]
    [:a (merge {:href url :class "out" :data-vars-outbound-link url :target "_blank" :rel "noopener noreferrer"} attrs) text]))
 
-
 (defn favicons-attrs [icon]
   (concat
-    (map (fn [size]
-            {:rel "icon" :type "image/png" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
-         [48 96 144 192])
-    (map (fn [size]
-            {:rel "apple-touch-icon" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
-         [76 120 152 180])))
+   (map (fn [size]
+          {:rel "icon" :type "image/png" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
+        [48 96 144 192])
+   (map (fn [size]
+          {:rel "apple-touch-icon" :href (str "/image/" icon "-" size ".png") :sizes (str size "x" size)})
+        [76 120 152 180])))

@@ -2,7 +2,6 @@
   (:require [clojure.spec.alpha :as s]
             [re-frame.core :refer [reg-event-db reg-event-fx inject-cofx path after]]))
 
-
 (def products-db
   [{:code 1
     :name "TS100 Soldering Iron"
@@ -35,7 +34,6 @@
     :link "https://www.banggood.com/MINI-TS100-Digital-OLED-Programmable-Interface-DC-5525-Soldering-Iron-Station-Built-in-STM32-Chip-p-984214.html"
     :partner "banggood"
     :images ["https://img.staticbg.com/thumb/large/oaupload/banggood/images/18/97/55a957e6-ad5d-411c-a20b-2088279c13f9.jpg.webp"]}])
-
 
 (defn check-and-throw
   "Throws an exception if `db` doesn't match the Spec `a-spec`."

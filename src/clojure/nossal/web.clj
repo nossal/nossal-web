@@ -129,7 +129,6 @@
       [:canvas#viewport]]]
     req))
 
-
 (defn dot [req]
   (if (s/includes? (get (:headers req) "user-agent") "curl")
     (do

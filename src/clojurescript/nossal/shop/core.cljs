@@ -5,7 +5,6 @@
             [re-frame.core :as rf]
             [nossal.shop.data :refer [products-db]]))
 
-
 (rf/reg-event-db
  :initialise
  (fn [_ _]
@@ -31,27 +30,25 @@
 
 (defn price-display [value]
   [:div.price [:span.currency "R$"] (let [values (string/split value #"\.")]
-                                       [:span (first values) "," [:span.cents (second values)]])])
+                                      [:span (first values) "," [:span.cents (second values)]])])
 
 (defn product-card
   []
   (fn [{:keys [code name price images]}]
     [:li.product-card
-      [:img {:src (first images)}]
-      (price-display price)
-      [:div name]]))
-
+     [:img {:src (first images)}]
+     (price-display price)
+     [:div name]]))
 
 (defn product-list
   []
   (let [products @(rf/subscribe [:products])]
     [:ul#product-list
-      (for [product products]
-        ^{:key (:code product)} [product-card product])]))
-
+     (for [product products]
+       ^{:key (:code product)} [product-card product])]))
 
 (defn app []
   [:div#app-container
-    [:nav
-      [:input {:type "search"}]]
-    [product-list]])
+   [:nav
+    [:input {:type "search"}]]
+   [product-list]])

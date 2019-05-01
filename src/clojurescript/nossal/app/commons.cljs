@@ -1,13 +1,11 @@
 (ns nossal.app.commons)
 
-
 (defn alert! [what]
   (do (println what)
       (.log js/console what)))
 
 (defn online-status [e]
   (alert! (if (.-navigator.onLine js/self) "ONLINE!" "OFFLINE!")))
-
 
 (defn is-service-worker-supported? []
   (exists? js/navigator.serviceWorker))

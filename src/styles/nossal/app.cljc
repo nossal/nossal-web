@@ -6,24 +6,21 @@
             [nossal.reboot-simple :refer [reset]]
             [nossal.common :refer :all]))
 
-
 (defstyles app
   reset
   body
   egg
   footer
   [:.alert
-    {:display "inline-block"
-     :border-image "linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;"
-     :border-width "5px"
-     :border-style "solid"
-     :background "#fff"
-     :color "#333"
-     :padding "3px 15px 4px"
-     :border-radius (u/em 1)}
-    [:&:before
-      {
-       :content "\"\""
-       :background "#ddd"}]])
-
+   {:display "inline-block"
+    :border-image "linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;"
+    :border-width "5px"
+    :border-style "solid"
+    :background "#fff"
+    :color "#333"
+    :padding "3px 15px 4px"
+    :border-radius (u/em 1)}
+   [:&:before
+    {:content "\"\""
+     :background "#ddd"}]])
 

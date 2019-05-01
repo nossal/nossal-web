@@ -61,52 +61,52 @@
     :width "100%"}]
 
   [:header
-    {:padding-top (em 10)
-     :text-align "center"
-     :background-size "cover"
-     :background-repeat "no-repeat"}
-    [:p.catch {:color "#efc664"
-               :letter-spacing "0.08em"}]]
+   {:padding-top (em 10)
+    :text-align "center"
+    :background-size "cover"
+    :background-repeat "no-repeat"}
+   [:p.catch {:color "#efc664"
+              :letter-spacing "0.08em"}]]
 
   [:section
-    {:text-align "center"}
-    [:.terminal {:display "inline-block"
-                 :margin-top (em 8);
-                 :padding "1em"
-                 :color "#4eb355"
-                 :font-family "monospace"
-                 :background-color "#282b35"}
-      [:.string {:color "#d28e5d"}]
-      [:.normal {:color "#c7c7c7"}]]]
+   {:text-align "center"}
+   [:.terminal {:display "inline-block"
+                :margin-top (em 8);
+                :padding "1em"
+                :color "#4eb355"
+                :font-family "monospace"
+                :background-color "#282b35"}
+    [:.string {:color "#d28e5d"}]
+    [:.normal {:color "#c7c7c7"}]]]
 
   [(> :section :div)
    {:margin "0 1.5em"}]
 
   [:section.weeks
-    {:background "white"
-     :color "#555"}]
+   {:background "white"
+    :color "#555"}]
 
   [:h1
-    {:font-size (em 3.5)
-     :text-transform "uppercase"
-     :letter-spacing (em 0.05)
-     :line-height (em 1)
-     :font-weight 300
-     :margin-bottom (em 0.3)
-     :margin-right (em -0.3)
-     :text-align "center"
-     :color "#ccc"
-     :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
-    [:>span
-      {:background "linear-gradient(270deg,#76778c,#324f81,#961d99,#6f788a,#3b5789,#961d99,#6f788a,#315189,#961d99)"
-       :background-size "700% 200%"
-       :-webkit-text-fill-color "transparent"
-       :-webkit-background-clip "text"
-       :animation [[DEFACTO "120s linear infinite"]]}]
-    [:span.border
-      {:border "0.1em solid #858c9c"
-       :padding "0.3em 0.5em 0.2em"
-       :display "inline-block"}]]
+   {:font-size (em 3.5)
+    :text-transform "uppercase"
+    :letter-spacing (em 0.05)
+    :line-height (em 1)
+    :font-weight 300
+    :margin-bottom (em 0.3)
+    :margin-right (em -0.3)
+    :text-align "center"
+    :color "#ccc"
+    :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
+   [:>span
+    {:background "linear-gradient(270deg,#76778c,#324f81,#961d99,#6f788a,#3b5789,#961d99,#6f788a,#315189,#961d99)"
+     :background-size "700% 200%"
+     :-webkit-text-fill-color "transparent"
+     :-webkit-background-clip "text"
+     :animation [[DEFACTO "120s linear infinite"]]}]
+   [:span.border
+    {:border "0.1em solid #858c9c"
+     :padding "0.3em 0.5em 0.2em"
+     :display "inline-block"}]]
 
   [:.accent {:color "rgba(130, 96, 195, 0.8)"}]
   [:.about-line {:font-size (em 1.1)
@@ -130,11 +130,11 @@
   [:.offline {:animation dismiss-anim}]
 
   (at-media {:max-width (px 736)}
-    [:header {:padding-top (em 3)}]
-    [:h1 {:font-size (em 3) :margin (em 0.5)}])
+            [:header {:padding-top (em 3)}]
+            [:h1 {:font-size (em 3) :margin (em 0.5)}])
 
   (at-media {:max-width (px 383)}
-    [:header {:padding-top (em 1.5)}]
-    [:h1 {:font-size (em 2.5)}]
-    [:footer [:.made [:a {:display :none}]]]))
+            [:header {:padding-top (em 1.5)}]
+            [:h1 {:font-size (em 2.5)}]
+            [:footer [:.made [:a {:display :none}]]]))
 

@@ -5,8 +5,7 @@
 
 (defn shop [req]
   (base-html "SHOP" []
-    [{:rel "stylesheet" :type "text/css" :href "/css/app.css"}]
-    [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
-    []
-    [[:div#app-container ""]]))
-
+             [{:rel "stylesheet" :type "text/css" :href "/css/app.css"}]
+             [{:async (true? (= "true" (env :production))) :charset "utf-8" :src "/js/app.js"}]
+             []
+             [[:div#app-container ""]]))

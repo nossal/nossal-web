@@ -24,7 +24,6 @@
             [nossal.shop.core :refer [shop]]
             [nossal.core :as core]))
 
-
 (defn ignore-trailing-slash [handler]
   (fn [request]
     (let [uri (:uri request)]
@@ -39,14 +38,12 @@
       (assoc-in [:security :frame-options] :sameorigin)
       (assoc :proxy true)))
 
-
 (defn service-worker
   ([] (service-worker ""))
   ([mod]
    (response/content-type
-     (response/resource-response (str "sw.js" mod) {:root "public/js"})
-     "application/x-javascript; charset=utf-8")))
-
+    (response/resource-response (str "sw.js" mod) {:root "public/js"})
+    "application/x-javascript; charset=utf-8")))
 
 (defroutes app-routes
   (GET "/" request
@@ -77,25 +74,16 @@
     (str "👌"))
 
   (GET "/image/:name{[a-z_-]+}-:size{[0-9]+}.:ext" [name size ext]
-    (resize-image name (int (read-string size)) ext))
-
-
-  (GET "/cupons" []
-    (response/redirect "/cupons/cabify"))
+    (resize-image name (int (read-string size)) ext)) (GET "/cupons" []
+                                                        (response/redirect "/cupons/cabify"))
 
   (GET "/cupons/:service" [service :as request]
-    (coupom service request))
-
-
-  (POST "/debug" request
-    (debug request))
+    (coupom service request)) (POST "/debug" request
+                                (debug request))
 
   (GET "/demo" request
-    (iframe-demo request))
-
-
-  (POST "/short/create-db" []
-    (create-database))
+    (iframe-demo request)) (POST "/short/create-db" []
+                             (create-database))
 
   (POST "/short/new/:url" [url]
     (new-url url))
@@ -117,14 +105,12 @@
   (ANY "*" []
     (route/not-found (slurp (io/resource "404.html")))))
 
-
 (def app-bidi-routes ["/" {;"" (resources-maybe {:prefix "public/"})
                       ; "" index
                            "debug" debug
                            "sw.js.map"  (fn [req] (service-worker ".map"))
                            "sw.js" (service-worker "")
                            "manifest.json" pwa-manifest}])
-
 
 (def app
   (-> app-routes
@@ -137,7 +123,7 @@
       (wrap-json-body {:keywords? true :bigdecimals? true})
       ; (make-handler)))
      ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-     (ignore-trailing-slash)))
+      (ignore-trailing-slash)))
 
 (def dev-app (wrap-reload (wrap-defaults #'app-routes site-defaults)))
 

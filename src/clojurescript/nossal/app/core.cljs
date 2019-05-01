@@ -7,8 +7,6 @@
 
 (enable-console-print!)
 
-
-
 (defn ^:export main
   []
   (rf/dispatch-sync [:initialise])
