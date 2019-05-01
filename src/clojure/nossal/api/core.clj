@@ -4,7 +4,6 @@
             [clojure.data.json :as json]
             [ring.util.response :as res]))
 
-
 (defn debug [request]
   (json/pprint (get request :body))
 

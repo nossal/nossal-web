@@ -1,6 +1,5 @@
 (ns nossal.sw.sw)
 
-
 (def app-cache-name "nossal-app-cache")
 (def files-to-cache ["/js/app.js" "/"])
 
@@ -62,7 +61,6 @@
   (.claim (.-clients js/self))
   (purge-old-cache e)
   (.log js/console "[ServiceWorker] activate"))
-
 
 (.addEventListener js/self "install" #(.waitUntil % (on-install %)))
 (.addEventListener js/self "fetch" #(.respondWith % (on-fetch %)))

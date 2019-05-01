@@ -33,11 +33,10 @@
                    :padding (em 1)
                    :max-width (px 200)
                    :border-radius (em 1)}
-    [:img {:width "100%"}]
-    [:.price {:font-size (em 1.5)}
-      [:.currency {:font-size (em 0.5)
-                       :vertical-align "text-top"}]
-      [:.cents {:font-size (em 0.5)
-                :color "#aaa"}]]])
-
+   [:img {:width "100%"}]
+   [:.price {:font-size (em 1.5)}
+    [:.currency {:font-size (em 0.5)
+                 :vertical-align "text-top"}]
+    [:.cents {:font-size (em 0.5)
+              :color "#aaa"}]]])
 

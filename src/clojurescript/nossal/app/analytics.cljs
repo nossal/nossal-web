@@ -2,15 +2,12 @@
   (:require [nossal.data :refer [data-analytics]]
             [nossal.app.commons :refer [alert!]]))
 
-
 (defn ->Array [array-like]
   (.call js/Array.prototype.slice array-like))
-
 
 (defn gtag [& args]
   (do (alert! (clj->js args))
       (apply js/gtag (clj->js args))))
-
 
 (defn addTrackEvent [where event]
   (.addEventListener where

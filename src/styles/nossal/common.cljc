@@ -2,7 +2,6 @@
   (:require [nossal.colors :refer [bgcolor]]
             [garden.units :as gu :refer [px em percent]]))
 
-
 (def body
   [:body
    {:background bgcolor

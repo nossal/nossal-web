@@ -11,16 +11,13 @@
             [nossal.db :as data]
             [nossal.db :refer [db]]))
 
-
 (defn create-database []
   (-> (res/response (json/write-str (data/create-urls-table db)))
       (res/content-type "text/plain")))
 
-
 (defn new-url [url]
   (-> (res/response (json/write-str (encode (:id (first (data/insert-url db {:url url}))))))
       (res/content-type "text/plain")))
-
 
 (defn redirect [encoded-id]
   (if-let [url (:url (data/get-data data/url-by-id {:id (decode encoded-id)}))]

@@ -6,7 +6,6 @@
             [nossal.reboot-simple :refer [reset]]
             [nossal.common :refer :all]))
 
-
 (defstyles app
   reset
   body
@@ -24,5 +23,3 @@
    [:&:before
     {:content "\"\""
      :background "#ddd"}]])
-
-

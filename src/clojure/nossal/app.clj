@@ -32,7 +32,6 @@
 (when-let [dsn (env :sentry-dsn)]
   (sentry/init! dsn))
 
-
 (defn ignore-trailing-slash [handler]
   (fn [request]
     (let [uri (:uri request)]
@@ -119,11 +118,8 @@
     (debug request))
 
   (GET "/demo" request
-    (iframe-demo request))
-
-
-  (POST "/short/create-db" []
-    (create-database))
+    (iframe-demo request)) (POST "/short/create-db" []
+                             (create-database))
 
   (POST "/short/new/:url" [url]
     (new-url url))
@@ -145,14 +141,12 @@
   (ANY "*" []
     (route/not-found (slurp (io/resource "404.html")))))
 
-
 (def app-bidi-routes ["/" {;"" (resources-maybe {:prefix "public/"})
                       ; "" index
                            "debug" debug
                            "sw.js.map"  (fn [req] (service-worker ".map"))
                            "sw.js" (service-worker "")
                            "manifest.json" pwa-manifest}])
-
 
 (def app
   (-> app-routes
