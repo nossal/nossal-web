@@ -58,7 +58,8 @@
 (s/def ::cep (s/def (s/and string? #(re-matches cep-regex %))))
 (s/def ::street-address (s/keys :req [::street ::number]
                                 :opt [::complement]))
-(s/def ::country #{:brazil})
+(s/def ::country #{:brazil :usa})
+(s/def ::currency #{:BRL :USD :MXN :COP :CLP :ARS :PEN :EUR :PYN :UYU :VEB :VEF :GBP})
 (s/def ::address (s/keys :req [::cep
                                ::country
                                ::state
@@ -86,6 +87,8 @@
 (s/def ::payment-type #{:creadit-card :debit-card :boleto})
 (s/def ::payment (s/keys :req-un [::payment-type
                                   ::amount
+                                  ::currency
+                                  ::country
                                   ::installments
                                   ::soft-descriptor]))
 
