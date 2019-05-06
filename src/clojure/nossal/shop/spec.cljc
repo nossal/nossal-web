@@ -31,6 +31,8 @@
                                ::available?
                                ::images]))
 (s/def ::variants (s/coll-of ::variant :kind vector? :distinct true :into []))
+(s/def ::product-condition #{:used :brand-new :almost-new})
+(s/def ::stock-location #{:brazil :china :usa :sweden :switzerland :local})
 
 (s/def ::product (s/keys :req-un [::id
                                   ::market-price
@@ -41,6 +43,8 @@
                                   ::images
                                   ::category
                                   ::stock-count
+                                  ::product-condition
+                                  ::stock-location
                                   ::available?]
                          :opt-un [::variants]))
 (s/def ::products (s/and
@@ -53,8 +57,7 @@
 
 (s/def ::cep (s/def (s/and string? #(re-matches cep-regex %))))
 (s/def ::street-address (s/keys :req [::street ::number]
-                                :opt [::building ::apt]))
-
+                                :opt [::complement]))
 (s/def ::country #{:brazil})
 (s/def ::address (s/keys :req [::cep
                                ::country
@@ -62,22 +65,39 @@
                                ::city
                                ::street-address]))
 
-(s/def ::shipping-tracker string?)
+
+(s/def ::shipping-tracking string?)
 
 (s/def ::order (s/keys :req-un [::id
                                 ::basket
-                                ::costumer
+                                ::customer
                                 ::status
                                 ::payment
-                                ::shipping-tracker
+                                ::shipping-tracking
                                 ::address
                                 ::creation-time]))
+(s/def ::creadit-card (s/keys :req [::card-number
+                                    ::holder
+                                    ::expiration-date
+                                    ::security-code
+                                    ::brand
+                                    ::save-card]))
+
+(s/def ::payment-type #{:creadit-card :debit-card :boleto})
+(s/def ::payment (s/keys :req-un [::payment-type
+                                  ::amount
+                                  ::installments
+                                  ::soft-descriptor]))
+
+
 (s/def ::name (s/keys :req [::first-name ::last-name]))
-(s/def ::costumer (s/keys :req [::id
+(s/def ::customer (s/keys :req [::id
                                 ::name
                                 ::email
                                 ::address]
                           :opt [::phone
+                                ::birthdate
                                 ::cpf]))
 
 (s/def ::db (s/keys :req-un [::products ::basket]))
+
