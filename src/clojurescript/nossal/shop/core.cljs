@@ -47,8 +47,16 @@
      (for [product products]
        ^{:key (:code product)} [product-card product])]))
 
+(defn creditcard-input
+  []
+  [:div.creditcard
+    [:input {:type "text"}]])
+
+
 (defn app []
   [:div#app-container
    [:nav
-    [:input {:type "search"}]]
+    [:input {:type "search"}]
+    [creditcard-input]]
    [product-list]])
+
