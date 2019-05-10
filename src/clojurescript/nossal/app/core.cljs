@@ -1,31 +1,21 @@
 (ns nossal.app.core
-  (:require [bidi.bidi :as bidi]
-            [pushy.core :as pushy]
+  (:require [reagent.core :as reagent]
             [re-frame.core :as rf]
-            [reagent.core :as reagent]
-            [nossal.shop.core :as shop]))
+            [nossal.shop.core]
+            [nossal.shop.routes :refer [app-routes]]
+            [nossal.shop.views :as views]))
 
 (enable-console-print!)
 
-(defn ^:export main
-  []
-  (rf/dispatch-sync [:initialise])
-  (reagent/render [shop/app]
+
+(defn mount-root []
+  (reagent/render [views/main-panel]
                   (.getElementById js/document "app")))
 
-(main)
-; (def routes ["/" {""          :home
-;                   ":product"  :product
-;                   "cart"      :cart}])
+(defn ^:export init []
+  (rf/dispatch-sync [:initialise])
+  (app-routes)
+  (mount-root))
 
-; (defn- parse-url [url]
-;   (bidi/match-route routes url))
 
-; (defn- dispatch-route [matched-route]
-;   (let [panel-name (keyword (str (name (:handler matched-route)) "-panel"))]
-;     (rf/dispatch [:set-active-panel panel-name])))
-
-; (defn app-routes []
-;   (pushy/start! (pushy/pushy dispatch-route parse-url)))
-
-; (def url-for (partial bidi/path-for routes))
+(init)

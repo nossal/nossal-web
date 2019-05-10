@@ -1,4 +1,5 @@
 (ns nossal.shop.core
+  (:require-macros [reagent.ratom :refer [reaction]])
   (:require [clojure.string :as string]
             [reagent.core :as reagent]
             [reagent.format :as format]
@@ -8,7 +9,31 @@
 (rf/reg-event-db
  :initialise
  (fn [_ _]
-   {:products-db products-db}))
+   {:products-db products-db
+    :name "re-frame"}))
+
+
+(rf/reg-event-db
+ :set-active-panel
+ (fn [db [_ active-panel]]
+   (assoc db :active-panel active-panel)))
+
+
+(rf/reg-sub
+ :products
+ (fn [db _]
+   (:products-db db)))
+
+(rf/reg-sub-raw
+ :name
+ (fn [db]
+   (reaction (:name @db))))
+
+(rf/reg-sub-raw
+ :active-panel
+ (fn [db _]
+   (reaction (:active-panel @db))))
+
 
 ; (defn product [p]
 ;   [:div
@@ -21,42 +46,3 @@
 ; (defn products []
 ;   [:div [:ul (map-indexed (fn [i p]
 ;                             [:li {:key i} (product p)]) (:products @app-state))]])
-
-
-(rf/reg-sub
- :products
- (fn [db _]
-   (:products-db db)))
-
-(defn price-display [value]
-  [:div.price [:span.currency "R$"] (let [values (string/split value #"\.")]
-                                      [:span (first values) "," [:span.cents (second values)]])])
-
-(defn product-card
-  []
-  (fn [{:keys [code name price images]}]
-    [:li.product-card
-     [:img {:src (first images)}]
-     (price-display price)
-     [:div name]]))
-
-(defn product-list
-  []
-  (let [products @(rf/subscribe [:products])]
-    [:ul#product-list
-     (for [product products]
-       ^{:key (:code product)} [product-card product])]))
-
-(defn creditcard-input
-  []
-  [:div.creditcard
-    [:input {:type "text"}]])
-
-
-(defn app []
-  [:div#app-container
-   [:nav
-    [:input {:type "search"}]
-    [creditcard-input]]
-   [product-list]])
-
