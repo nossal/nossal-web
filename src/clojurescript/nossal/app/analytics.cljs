@@ -12,12 +12,13 @@
 (defn addTrackEvent [where event]
   (.addEventListener where
                      (:on event)
-                     (fn [e] (gtag (:request event)
-                                   (:eventAction (:vars event))
-                                   (let [ev (:vars event)]
-                                     {:event_category (:eventCategory ev)
-                                      :event_label (:eventLabel ev)
-                                      :value (:value ev)})))))
+                     (fn [e]
+                       (gtag (:request event)
+                             (:eventAction (:vars event))
+                             (let [ev (:vars event)]
+                               {:event_category (:eventCategory ev)
+                                :event_label (:eventLabel ev)
+                                :value (:value ev)})))))
 
 (defn analytics-setup [data]
   (doseq [event (:triggers data)]

@@ -104,3 +104,17 @@
 
 (s/def ::db (s/keys :req-un [::products ::basket]))
 
+
+(defn valid-luhn? [pan]
+  (letfn [(char->int [c] (- (int c) (int \0)))
+          (mod-10? [n] (zero? (mod n 10)))
+          (sum-luhn-pair [[m n]]
+            (+ m
+               ([0 2 4 6 8 1 3 5 7 9] (or n 0))))]
+    (->> pan
+         reverse
+         (map char->int)
+         (partition-all 2)
+         (map sum-luhn-pair)
+         (apply +)
+         mod-10?)))
