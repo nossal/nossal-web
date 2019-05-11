@@ -10,14 +10,23 @@
  :initialise
  (fn [_ _]
    {:products-db products-db
-    :name "re-frame"}))
+    :name "re-frame"
+    :card-number "00000000000"}))
 
+(rf/reg-event-db
+ :set-card-number
+ (fn [db [_ card-number]]
+    (assoc db :card-number card-number)))
 
 (rf/reg-event-db
  :set-active-panel
  (fn [db [_ active-panel]]
    (assoc db :active-panel active-panel)))
 
+(rf/reg-sub
+ :card-number
+ (fn [db _]
+   (:card-number db)))
 
 (rf/reg-sub
  :products

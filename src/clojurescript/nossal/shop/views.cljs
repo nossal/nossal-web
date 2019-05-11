@@ -1,6 +1,8 @@
 (ns nossal.shop.views
   (:require [clojure.string :as string]
             [re-frame.core :as rf]
+            [clojure.spec.alpha :as s]
+            [nossal.shop.spec :as spec]
             [nossal.shop.routes :as routes]))
 
 
@@ -23,20 +25,29 @@
      (for [product products]
        ^{:key (:code product)} [product-card product])]))
 
-(defn creditcard-input
-  []
-  [:div.creditcard
-   [:input {:type "text"}]])
-
+(defn creditcard-input []
+  (let [card-number-value @(rf/subscribe [:card-number])
+        card-valid? (s/valid? ::spec/card-number card-number-value)]
+   [:div.creditcard
+     [:p (str "card: " card-number-value)]
+     [:input {:type "text"
+              :value card-number-value
+              :on-change #(rf/dispatch [:set-card-number (-> % .-target .-value)])}]
+     (when-not card-valid?
+      [:p "Error"])]))
 
 (defn admin-panel []
-  [:h1 "Admin"])
+  [:div#app-container
+   [:h1 "Admin!"]
+   [:form
+    [:label "Credit Card"]
+    [creditcard-input]]])
 
 (defn home-panel []
   [:div#app-container
    [:nav
     [:input {:type "search"}]
-    [creditcard-input]
+
     [:a {:href (routes/url-for :admin)} "admin"]]
    [product-list]])
 
