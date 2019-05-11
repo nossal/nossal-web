@@ -1,12 +1,27 @@
 (ns nossal.shop.spec
   (:require [clojure.spec.alpha :as s]))
 
+(defn valid-luhn? [pan]
+  (letfn [(char->int [c] (- (int c) (int \0)))
+          (mod-10? [n] (zero? (mod n 10)))
+          (sum-luhn-pair [[m n]]
+            (+ m
+               ([0 2 4 6 8 1 3 5 7 9] (or n 0))))]
+    (->> pan
+         reverse
+         (map char->int)
+         (partition-all 2)
+         (map sum-luhn-pair)
+         (apply +)
+         mod-10?)))
+
+
 (def email-regex #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$")
 (def phone-regex #"^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$")
 (def cep-regex #"^[0-9]{5}-[0-9]{3}$")
 
 (s/def ::category string?)
-(s/def ::categories (s/col-of ::category :distinct true :into []))
+(s/def ::categories (s/coll-of ::category :distinct true :into []))
 
 (s/def ::id int?)
 (s/def ::quantity (s/and int? #(> % 0)))
@@ -55,7 +70,7 @@
 (s/def ::basket-itens (s/coll-of ::basket-item :kind vector? :distinct true :into []))
 (s/def ::basket (s/keys :req-un [::id ::basket-itens]))
 
-(s/def ::cep (s/def (s/and string? #(re-matches cep-regex %))))
+(s/def ::cep (s/and string? #(re-matches cep-regex %)))
 (s/def ::street-address (s/keys :req [::street ::number]
                                 :opt [::complement]))
 (s/def ::country #{:brazil :usa})
@@ -77,6 +92,7 @@
                                 ::shipping-tracking
                                 ::address
                                 ::creation-time]))
+(s/def ::card-number (s/and string? valid-luhn?))
 (s/def ::creadit-card (s/keys :req [::card-number
                                     ::holder
                                     ::expiration-date
@@ -103,18 +119,3 @@
                                 ::cpf]))
 
 (s/def ::db (s/keys :req-un [::products ::basket]))
-
-
-(defn valid-luhn? [pan]
-  (letfn [(char->int [c] (- (int c) (int \0)))
-          (mod-10? [n] (zero? (mod n 10)))
-          (sum-luhn-pair [[m n]]
-            (+ m
-               ([0 2 4 6 8 1 3 5 7 9] (or n 0))))]
-    (->> pan
-         reverse
-         (map char->int)
-         (partition-all 2)
-         (map sum-luhn-pair)
-         (apply +)
-         mod-10?)))
