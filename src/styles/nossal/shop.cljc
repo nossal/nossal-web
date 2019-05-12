@@ -38,5 +38,14 @@
     [:.currency {:font-size (em 0.5)
                  :vertical-align "text-top"}]
     [:.cents {:font-size (em 0.5)
-              :color "#aaa"}]]])
-
+              :color "#aaa"}]]]
+  [:.emoji [:svg {:width (px 32) :vertical-align "top"}]]
+  [:.highlight {:background "linear-gradient(to right, #fce4ed, #ffe8cc)"
+                :padding "2px 6px"
+                :border-radius (px 2)
+                :color "#505050"}]
+  [:.colorfull-text {:background "linear-gradient(to right, #ff8a00, #da1b60)"
+                     :background-clip "text"
+                     :display "inline-block"
+                     :text-fill-color "transparent"
+                     :box-decoration-break "clone"}])

@@ -81,6 +81,7 @@
                      :stylesheet nossal.shop/shop
                      :compiler {:output-to "resources/public/css/shop.css"
                                 :vendors ["moz" "webkit"]
+                                :auto-prefix #{:background-clip :text-fill-color}
                                 :pretty-print? false}}]}
 
   :cljsbuild {:builds [{:id "app"
