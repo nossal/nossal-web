@@ -70,7 +70,10 @@
                                    :vars {:eventCategory "coupons"
                                           :eventLabel "${coupon}"
                                           :eventAction "get-coupon"
-                                          :event_name "coupons"
+                                          :event_category "coupons"`
+                                          :event_name "get-coupon"
+                                          :event_label "${coupon}"
+                                          :event_value "${coupon}"
                                           :method "${coupon}"}}
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"
