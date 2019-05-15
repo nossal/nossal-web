@@ -60,14 +60,18 @@
                               :selector "a.out"
                               :request "event"
                               :vars {:eventCategory "outbound"
-                                     :eventAction "click"
-                                     :eventLabel "${outboundLink}"}}
-              :trackClickOnCoupom {:on "click"
-                                   :selector "#get-coupom"
+                                     :eventAction "link"
+                                     :eventLabel "${outboundLink}"
+                                     :event_name "outbound"
+                                     :method ${outboundLink}}}
+              :trackClickOnCoupon {:on "click"
+                                   :selector "#get-coupon"
                                    :request "event"
                                    :vars {:eventCategory "coupons"
-                                          :eventLabel "${coupom}"
-                                          :eventAction "get-coupom"}}
+                                          :eventLabel "${coupon}"
+                                          :eventAction "get-coupon"
+                                          :event_name "coupons"
+                                          :method "${coupon}"}}
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"
                                :request "event"

@@ -45,7 +45,7 @@
   [:p.call-to-action
     {:font-size (em 1.2)
      :margin-top (em 1.5)}]
-  [:#get-coupom
+  [:#get-coupon
     {:border "1px solid"
      :border-radius (px 2)
      :max-width (px 360)
@@ -104,6 +104,6 @@
 
   (at-media {:max-width (px 383)}
     [:section {:padding (em 1) :padding-bottom (em 2.5)}]
-    [:#get-coupom.code99 {:font-size (em 2)}]
-    [:#get-coupom.code99pop {:font-size (em 2)}]))
+    [:#get-coupon.code99 {:font-size (em 2)}]
+    [:#get-coupon.code99pop {:font-size (em 2)}]))
 
