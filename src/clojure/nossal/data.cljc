@@ -63,7 +63,7 @@
                                      :eventAction "link"
                                      :eventLabel "${outboundLink}"
                                      :event_name "outbound"
-                                     :method ${outboundLink}}}
+                                     :method "${outboundLink}"}}
               :trackClickOnCoupon {:on "click"
                                    :selector "#get-coupon"
                                    :request "event"
