@@ -5,6 +5,7 @@
 resources/public/css
 resources/public/js
 /.vscode
+__*
 
 # Generic
 *.log
@@ -12,6 +13,8 @@ Thumbs.db
 .DS_Store
 
 # Java/Scala/Clojure
+pom.xml
+bin
 build/
 target/
 .settings/

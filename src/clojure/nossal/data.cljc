@@ -64,6 +64,7 @@
               :trackClickOnCoupon {:on "click"
                                    :selector "#coupon-code"
                                    :request "event"
+<<<<<<< HEAD
                                    :vars {:event_category "coupons"
                                           :event_name "get-coupon"
                                           :event_label "${coupon}"
@@ -74,6 +75,11 @@
                                       :vars {:event_name "conversion"
                                              :send_to "AW-988737553/5qf0CO-OmAQQkeC71wM"}}
 
+=======
+                                   :vars {:eventCategory "coupons"
+                                          :eventLabel "${coupon}"
+                                          :eventAction "get-coupon"}}
+>>>>>>> afa527b (typo fix)
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"
                                :request "event"
