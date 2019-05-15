@@ -63,7 +63,7 @@
                                    :selector "#get-coupon"
                                    :request "event"
                                    :vars {:eventCategory "coupons"
-                                          :eventLabel "${coupom}"
+                                          :eventLabel "${coupon}"
                                           :eventAction "get-coupon"}}
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"

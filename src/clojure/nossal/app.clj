@@ -20,7 +20,7 @@
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
-            [nossal.coupons :refer [coupom]]
+            [nossal.coupons :refer [coupon]]
             [nossal.shop.core :refer [shop]]
             [nossal.core :as core]))
 
@@ -78,7 +78,7 @@
                                                         (response/redirect "/cupons/cabify"))
 
   (GET "/cupons/:service" [service :as request]
-    (coupom service request)) (POST "/debug" request
+    (coupon service request)) (POST "/debug" request
                                 (debug request))
 
   (GET "/demo" request
