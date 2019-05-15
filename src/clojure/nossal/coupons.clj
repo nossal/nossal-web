@@ -40,7 +40,8 @@
              :url "https://d.99app.com/rZy8mU5EEiu13?shareChannel=more"
              :description "💲 Ganhe R$10,00 de desconto na primeira corrida 99 (99POP também)! ✅"
              :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
-                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
+                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]
+                     [:p.warn [:span "Seja rápido!"] " você tem " [:strong "até 15 dias"] "para fazer a sua primeira viagem antes do cupom expirar. 😨"]]}
    "picpay" {:code "PKTA9D"
              :title ["PicPay"]
              :url "http://www.picpay.com/convite?!PKTA9D"
