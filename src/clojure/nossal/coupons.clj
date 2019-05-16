@@ -34,12 +34,13 @@
              :description "💲 Ganhe R$10,00 de desconto em 2 primeiras viagens! ✅"
              :text [:p "Ganhe " [:span.value "R$10,00"] " de desconto nas suas " [:strong "2 primeiras"] " corridas! " [:ruby "🎉 " [:rt "ta-da!"]]
                     [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
-   "99"     {:code "qlP3zJuETY3Ar"
+   "99"     {:code "BRE747Z4"
              :title ["99"]
-             :url "https://d.didiglobal.com/qlP3zJuETY3Ar?t=copyLink"
+             :url "https://d.99app.com/rZy8mU5EEiu13?shareChannel=more"
              :description "💲 Ganhe R$10,00 de desconto na primeira corrida 99 (99POP também)! ✅"
-             :text [:p "Ganhe " [:span.value "R$10,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
-                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
+             :text [:p "Ganhe " [:span.value "R$10,00"]" de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
+                     [:small"Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]
+                     [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]}
    "picpay" {:code "PKTA9D"
              :title ["PicPay"]
              :url "http://www.picpay.com/convite?!PKTA9D"
