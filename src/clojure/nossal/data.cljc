@@ -73,7 +73,7 @@
                                           :event_category "coupons"`
                                           :event_name "get-coupon"
                                           :event_label "${coupon}"
-                                          :event_value "${coupon}"
+                                          :event_value "${coupon-value}"
                                           :method "${coupon}"}}
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"
