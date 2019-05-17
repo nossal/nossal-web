@@ -56,18 +56,15 @@
    :triggers {:outboundLinks {:on "click"
                               :selector "a.out"
                               :request "event"
-                              :vars {:eventCategory "outbound"
-                                     :eventAction "link"
-                                     :eventLabel "${outboundLink}"
+                              :vars {:event_category "outbound"
+                                     :event_action "link"
+                                     :event_label "${outboundLink}"
                                      :event_name "outbound"
                                      :method "${outboundLink}"}}
               :trackClickOnCoupon {:on "click"
                                    :selector "#get-coupon"
                                    :request "event"
-                                   :vars {:eventCategory "coupons"
-                                          :eventLabel "${coupon}"
-                                          :eventAction "get-coupon"
-                                          :event_category "coupons"`
+                                   :vars {:event_category "coupons"
                                           :event_name "get-coupon"
                                           :event_label "${coupon}"
                                           :event_value "${coupon}"
@@ -75,14 +72,14 @@
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"
                                :request "event"
-                               :vars {:eventCategory "eggs"
-                                      :eventAction "click"
-                                      :eventLabel "the-net"}}
+                               :vars {:event_category "eggs"
+                                      :event_action "click"
+                                      :event_label "the-net"}}
 
               :trackPWAInstall {:on "beforeinstallprompt"
                                 :request "event"
-                                :vars {:eventCategory "PWA"
-                                       :eventAction "PWA Install"}}}})
+                                :vars {:event_category "PWA"
+                                       :event_action "PWA Install"}}}})
 
 #?(:clj (defn breadcrumbs [path]
           {"@context" "http://schema.org"
