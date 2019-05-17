@@ -27,12 +27,12 @@
     (do
       (log/info url)
       (client/post "https://www.google-analytics.com/collect"
-        {:form-params {:v "1"
-                       :tid (env :ga-tracking-id)
-                       :cid "555"
-                       :t "pageview"
-                       :dh "noss.al"
-                       :dp (str "/sht/" encoded-id)
-                       :dt (str "Page " (decode encoded-id))}})
+                   {:form-params {:v "1"
+                                  :tid (env :ga-tracking-id)
+                                  :cid "555"
+                                  :t "pageview"
+                                  :dh "noss.al"
+                                  :dp (str "/sht/" encoded-id)
+                                  :dt (str "Page " (decode encoded-id))}})
       (res/redirect url))
     not-found))

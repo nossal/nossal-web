@@ -44,8 +44,8 @@
   ([] (service-worker ""))
   ([mod]
    (response/content-type
-     (response/resource-response (str "sw.js" mod) {:root "public/js"})
-     "application/x-javascript; charset=utf-8")))
+    (response/resource-response (str "sw.js" mod) {:root "public/js"})
+    "application/x-javascript; charset=utf-8")))
 
 
 (defroutes app-routes
@@ -137,7 +137,7 @@
       (wrap-json-body {:keywords? true :bigdecimals? true})
       ; (make-handler)))
      ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-     (ignore-trailing-slash)))
+      (ignore-trailing-slash)))
 
 (def dev-app (wrap-reload (wrap-defaults #'app-routes site-defaults)))
 

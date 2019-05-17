@@ -12,17 +12,17 @@
 
 
 (def pwa-manifest
-    {:name "Nossal, Rodrigo Nossal"
-     :short_name "NOSSAL"
-     :description "Rodrigo Nossal Personal Website"
-     :display "fullscreen"
-     :theme_color "#747f90"
-     :background_color "#747f90"
-     :orientation "portrait"
-     :start_url "https://noss.al/#utm_source=web_app_manifest"
-     :icons (map (fn [s]
-                   {:src (str "image/icon-" s ".png") :sizes (str s "x" s) :type "image/png"})
-                 (keep #(if (> % 32) %) allowed-image-sizes))})
+  {:name "Nossal, Rodrigo Nossal"
+   :short_name "NOSSAL"
+   :description "Rodrigo Nossal Personal Website"
+   :display "fullscreen"
+   :theme_color "#747f90"
+   :background_color "#747f90"
+   :orientation "portrait"
+   :start_url "https://noss.al/#utm_source=web_app_manifest"
+   :icons (map (fn [s]
+                 {:src (str "image/icon-" s ".png") :sizes (str s "x" s) :type "image/png"})
+               (keep #(if (> % 32) %) allowed-image-sizes))})
 
 (def public-profiles {"Facebook"   "https://facebook.com/nossal"
                       "Twitter"    "https://twitter.com/nossal"
@@ -67,8 +67,7 @@
               :trackClickOnCoupon {:on "click"
                                    :selector "#get-coupon"
                                    :request "event"
-                                   :vars {:event_category "coupons"`
-                                          :event_name "get-coupon"
+                                   :vars {:event_category "coupons" `:event_name "get-coupon"
                                           :event_label "${coupon}"
                                           :value "${couponvalue}"
                                           :method "${coupon}"}}
@@ -88,8 +87,8 @@
           {"@context" "http://schema.org"
            "@type" "BreadcrumbList"
            "itemListElement" (map-indexed (fn [idx item]
-                                           {"@type" "ListItem"
-                                            "position" (+ idx 1)
-                                            "name" item
-                                            "item" (str "https://noss.al/" (subs path 0 (str/index-of path item)) item)})
+                                            {"@type" "ListItem"
+                                             "position" (+ idx 1)
+                                             "name" item
+                                             "item" (str "https://noss.al/" (subs path 0 (str/index-of path item)) item)})
                                           (str/split path #"\/"))}))
