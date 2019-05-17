@@ -65,6 +65,9 @@
                                    :selector "#coupon-code"
                                    :request "event"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 80c3c7e (fix)
                                    :vars {:event_category "coupons"
                                           :event_name "get-coupon"
                                           :event_label "${coupon}"
