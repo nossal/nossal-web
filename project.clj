@@ -6,35 +6,35 @@
 
   :min-lein-version "2.8.1"
 
-  :dependencies [[org.clojure/clojure       "1.9.0"]
+  :dependencies [[org.clojure/clojure       "1.10.0"]
                  [org.clojure/data.json     "0.2.6"]
-                 [org.clojure/tools.logging "0.4.1"]
-                 [org.clojure/core.cache    "0.7.1"]
-                 [org.clojure/java.jdbc     "0.7.8"]
+                 [org.clojure/tools.logging "0.5.0-alpha.1"]
+                 [org.clojure/core.cache    "0.7.2"]
+                 [org.clojure/java.jdbc     "0.7.9"]
 
-                 [org.clojure/clojurescript "1.10.339"]
+                 [org.clojure/clojurescript "1.10.520"]
                  [bidi                      "2.1.4"]
                  [kibu/pushy                "0.3.8"]
                  [reagent                   "0.8.1"]
                  [re-frame                  "0.10.6"]
-                 [garden                    "1.3.6"]
+                 [garden                    "1.3.9"]
                  [hiccup                    "1.0.5"]
 
                  [compojure                 "1.6.1"]
-                 [bidi                      "2.1.4"]
-                 [ring/ring-jetty-adapter   "1.7.0"]
+                 [bidi                      "2.1.6"]
+                 [ring/ring-jetty-adapter   "1.7.1"]
                  [ring/ring-defaults        "0.3.2"]
                  [ring/ring-json            "0.4.0"]
 
                  [image-resizer             "0.1.10"]
                  [environ                   "1.1.0"]
-                 [clj-http                  "3.9.1"]
+                 [clj-http                  "3.10.0"]
 
                  [org.postgresql/postgresql "42.2.5"]
                  [com.layerware/hugsql      "0.4.9"]
                  [heroku-database-url-to-jdbc "0.2.2"]
 
-                 [ns-tracker "0.3.0"]]
+                 [ns-tracker                "0.3.1"]]
 
   :jvm-opts ^:replace ["-Xmx1g" "-server"]
 
@@ -43,7 +43,7 @@
             [lein-figwheel  "0.5.16"]
             [lein-garden    "0.3.0"]
             [lein-ancient   "0.6.15"]
-            [lein-ring      "0.12.4"]]
+            [lein-ring      "0.12.5"]]
 
   :source-paths ["src/clojure", "src/clojurescript" "src/styles"]
   :prep-tasks [["garden" "once"]]
