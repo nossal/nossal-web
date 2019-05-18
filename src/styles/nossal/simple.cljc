@@ -92,12 +92,15 @@
     :text-align "center"
     :font-size (em 0.7)}
    [:a {:color "#570084" :text-decoration "none"}
-    [:&:hover {:text-decoration "underline"}]]] (at-media {:max-width (px 736)}
-                                                          [:.text {:text-align "justify"}]
-                                                          [:section {:padding (em 1) :padding-bottom (em 3)}]
-                                                          [:h1 {:font-size (em 2.3)}]
-                                                          [:footer {:margin-top (em 1)}]
-                                                          [:.call-button {:margin-top (em 0.5)}])
+    [:&:hover {:text-decoration "underline"}]]]
+
+
+  (at-media {:max-width (px 736)}
+            [:.text {:text-align "justify"}]
+            [:section {:padding (em 1) :padding-bottom (em 3)}]
+            [:h1 {:font-size (em 2.3)}]
+            [:footer {:margin-top (em 1)}]
+            [:.call-button {:margin-top (em 0.5)}])
 
   (at-media {:max-width (px 383)}
             [:section {:padding (em 1) :padding-bottom (em 2.5)}]
