@@ -4,6 +4,7 @@
             [reagent.core :as reagent]
             [clojure.spec.alpha :as s]
             [nossal.shop.spec :as spec]
+            [nossal.shop.components :refer [number-display]]
             [nossal.shop.routes :as routes]))
 
 (def thinking
@@ -49,7 +50,7 @@
   (let [card-number-value @(rf/subscribe [:card-number])
         card-valid? (s/valid? ::spec/card-number card-number-value)]
    [:div.creditcard
-     [:p "card: " [:span.colorfull-text  card-number-value]]
+     [:div "card: " [:span.colorfull-text (number-display card-number-value)]]
      [:input {:type "text"
               :value card-number-value
               :on-change #(rf/dispatch [:set-card-number (-> % .-target .-value)])}]
