@@ -11,64 +11,43 @@
   (* number 1.5 -1))
 
 (defn number-start-margin [number]
-  (number-margin (- 4 number)))
+  (+ (number-margin number) (* 4 1.5)))
 
-(defmacro number-anim [number]
-   [:from {:margin-top (em (number-start-margin number))}]
-   [:to   {:margin-top (em (number-margin number))}])
+(defn force-em [value]
+ (let [str-value (str value)]
+  (str
+   (if (= \0 (last str-value))
+    (apply str (butlast (butlast str-value)))
+    str-value)
+   "em")))
+
+(defn number-anim [number]
+ [[:from {:margin-top (force-em (number-start-margin number))}]
+
+  [:to   {:margin-top (force-em (number-margin number))}]])
+
 
 (defkeyframes number-0
  (number-anim 0))
 (defkeyframes number-1
  (number-anim 1))
 (defkeyframes number-2
-  (number-anim 2))
+ (number-anim 2))
 (defkeyframes number-3
-  (number-anim 3))
+ (number-anim 3))
 (defkeyframes number-4
-  (number-anim 4))
+ (number-anim 4))
 (defkeyframes number-5
-  (number-anim 5))
+ (number-anim 5))
 (defkeyframes number-6
-  (number-anim 6))
+ (number-anim 6))
 (defkeyframes number-7
-  (number-anim 7))
+ (number-anim 7))
 (defkeyframes number-8
-  (number-anim 8))
+ (number-anim 8))
 (defkeyframes number-9
-  (number-anim 9))
+ (number-anim 9))
 
-
-; (defkeyframes number-0
-;  [:from {:margin-top "1.5em"}]
-;  [:to   {:margin-top "0"}])
-; (defkeyframes number-1
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-1.5em"}])
-; (defkeyframes number-2
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-3em"}])
-; (defkeyframes number-3
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-4.5em"}])
-; (defkeyframes number-4
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-6em"}])
-; (defkeyframes number-5
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-7.5em"}])
-; (defkeyframes number-6
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-9em"}])
-; (defkeyframes number-7
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-10.5em"}])
-; (defkeyframes number-8
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-12em"}])
-; (defkeyframes number-9
-;   [:from {:margin-top "1.5em"}]
-;   [:to   {:margin-top "-13.5em"}])
 
 (defstyles shop
   reset
