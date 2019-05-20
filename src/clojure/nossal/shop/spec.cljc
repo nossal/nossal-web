@@ -2,6 +2,7 @@
   (:require [clojure.spec.alpha :as s]))
 
 (defn valid-luhn? [pan]
+  "https://en.wikipedia.org/wiki/Luhn_algorithm#Clojure"
   (letfn [(char->int [c] (- (int c) (int \0)))
           (mod-10? [n] (zero? (mod n 10)))
           (sum-luhn-pair [[m n]]
@@ -15,6 +16,8 @@
          (apply +)
          mod-10?)))
 
+(defn valid-creditcard? [number]
+  (and (= 16 (count number)) (valid-luhn? number)))
 
 (def email-regex #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$")
 (def phone-regex #"^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$")
@@ -92,7 +95,7 @@
                                 ::shipping-tracking
                                 ::address
                                 ::creation-time]))
-(s/def ::card-number (s/and string? valid-luhn?))
+(s/def ::card-number (s/and string? valid-creditcard?))
 (s/def ::creadit-card (s/keys :req [::card-number
                                     ::holder
                                     ::expiration-date
