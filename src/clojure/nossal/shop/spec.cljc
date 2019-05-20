@@ -40,7 +40,7 @@
 (s/def ::images (s/coll-of uri? :kind vector? :distinct true :into []))
 (s/def ::characteristics (s/and
                           (s/map-of ::name ::description)
-                          #(instance? PersistentTreeMap %)))
+                          #(instance? clojure.lang.PersistentTreeMap %)))
 
 (s/def ::variant (s/keys :req [::id
                                ::name
@@ -67,7 +67,7 @@
                          :opt-un [::variants]))
 (s/def ::products (s/and
                    (s/map-of ::id ::product)
-                   #(instance? PersistentTreeMap %)))
+                   #(instance? clojure.lang.PersistentTreeMap %)))
 
 (s/def ::basket-item (s/keys :req-un [::product ::quantity]))
 (s/def ::basket-itens (s/coll-of ::basket-item :kind vector? :distinct true :into []))
