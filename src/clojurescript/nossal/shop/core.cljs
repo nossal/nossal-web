@@ -11,7 +11,7 @@
  (fn [_ _]
    {:products-db products-db
     :name "re-frame"
-    :card-number "1234"}))
+    :card-number "6060714127170025"}))
 
 (rf/reg-event-db
  :set-card-number
