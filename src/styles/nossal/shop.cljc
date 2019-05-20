@@ -11,7 +11,7 @@
   (* number 1.5 -1))
 
 (defn number-start-margin [number]
-  (+ (number-margin number) (* 4 1.5)))
+  (+ (number-margin number) (* 2 1.5)))
 
 (defn force-em [value]
  (let [str-value (str value)]
