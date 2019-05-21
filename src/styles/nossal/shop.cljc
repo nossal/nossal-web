@@ -14,39 +14,39 @@
   (+ (number-margin number) (* 2 1.5)))
 
 (defn force-em [value]
- (let [str-value (str value)]
-  (str
-   (if (= \0 (last str-value))
-    (apply str (butlast (butlast str-value)))
-    str-value)
-   "em")))
+  (let [str-value (str value)]
+    (str
+     (if (= \0 (last str-value))
+       (apply str (butlast (butlast str-value)))
+       str-value)
+     "em")))
 
 (defn number-anim [number]
- [[:from {:margin-top (force-em (number-start-margin number))}]
+  [[:from {:margin-top (force-em (number-start-margin number))}]
 
-  [:to   {:margin-top (force-em (number-margin number))}]])
+   [:to   {:margin-top (force-em (number-margin number))}]])
 
 
 (defkeyframes number-0
- (number-anim 0))
+  (number-anim 0))
 (defkeyframes number-1
- (number-anim 1))
+  (number-anim 1))
 (defkeyframes number-2
- (number-anim 2))
+  (number-anim 2))
 (defkeyframes number-3
- (number-anim 3))
+  (number-anim 3))
 (defkeyframes number-4
- (number-anim 4))
+  (number-anim 4))
 (defkeyframes number-5
- (number-anim 5))
+  (number-anim 5))
 (defkeyframes number-6
- (number-anim 6))
+  (number-anim 6))
 (defkeyframes number-7
- (number-anim 7))
+  (number-anim 7))
 (defkeyframes number-8
- (number-anim 8))
+  (number-anim 8))
 (defkeyframes number-9
- (number-anim 9))
+  (number-anim 9))
 
 
 (defstyles shop
@@ -62,7 +62,7 @@
           :margin 0}]
 
   [:#app {:background "#efece8"
-          :height "100%",
+          :height "100%"
           :border-radius (em 2)
           :overflow "hidden"
           :scrollbar-width "none"
@@ -92,4 +92,14 @@
                      :background-clip "text"
                      :display "inline-block"
                      :text-fill-color "transparent"
-                     :box-decoration-break "clone"}])
+                     :box-decoration-break "clone"}]
+  [:.used-to-be {:position "relative"
+                 :color "#fd854f"}
+   [:&:before {:position "absolute"
+               :content "\"\""
+               :left 0
+               :top (percent 45)
+               :right 0
+               :transform "rotate(-20deg)"
+               :border-top "2px solid"
+               :border-color "inherit"}]])
