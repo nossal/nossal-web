@@ -41,10 +41,11 @@
 (s/def ::characteristics (s/and
                           (s/map-of ::name ::description)
                           #(instance? clojure.lang.PersistentTreeMap %)))
-
+(s/def ::variant-type #{:color :size})
 (s/def ::variant (s/keys :req [::id
                                ::name
                                ::price
+                               ::variant-type
                                ::stock-count
                                ::available?
                                ::images]))
