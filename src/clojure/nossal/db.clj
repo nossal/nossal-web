@@ -6,7 +6,6 @@
             [environ.core :refer [env]]
             [heroku-database-url-to-jdbc.core :as hdu]))
 
-
 (def db
   (pool/make-datasource-spec
     {:classname "org.postgresql.Driver"
