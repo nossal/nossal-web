@@ -2,12 +2,15 @@
   (:require [hugsql.core :as hugsql]
             [clojure.string :as s]
             [clojure.core.cache :as cache]
+            [jdbc.pool.c3p0 :as pool]
             [environ.core :refer [env]]
             [heroku-database-url-to-jdbc.core :as hdu]))
 
-(def db {:classname "org.postgresql.Driver"
-         :subprotocol "postgresql"
-         :connection-uri (hdu/jdbc-connection-string (env :database-url))})
+(def db
+  (pool/make-datasource-spec
+    {:classname "org.postgresql.Driver"
+     :subprotocol "postgresql"
+     :connection-uri (hdu/jdbc-connection-string (env :database-url))}))
 
 (hugsql/def-db-fns "sql/schema.sql")
 

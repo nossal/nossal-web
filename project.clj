@@ -30,9 +30,10 @@
                  [environ                   "1.1.0"]
                  [clj-http                  "3.9.1"]
 
-                 [org.postgresql/postgresql "42.2.5"]
-                 [com.layerware/hugsql      "0.4.9"]
-                 [heroku-database-url-to-jdbc "0.2.2"]
+                 [org.postgresql/postgresql      "42.2.5"]
+                 [com.layerware/hugsql           "0.4.9"]
+                 [heroku-database-url-to-jdbc    "0.2.2"]
+                 [clojure.jdbc/clojure.jdbc-c3p0 "0.3.3"]
 
                  [ns-tracker                "0.3.1"]]
 
