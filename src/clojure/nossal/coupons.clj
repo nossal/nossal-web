@@ -82,6 +82,7 @@
                          [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
                          [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
                          [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
+                     ;     [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]   
                          [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
                          [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
                          [:noscript
@@ -92,9 +93,9 @@
                           [:h1 "Cupom de desconto " (first (cdata :title)) "."]
                           [:div.intro.text
                            [:p (cdata :text)]]
-                          (a-out (cdata :url) {:id "get-coupon" :data-vars-couponvalue 10 :data-vars-coupon service :class (str "code" service)} (cdata :code))
-                          [:p.link-description "Clique no código acima e aproveite o seu desconto."]
-                          [:p.call-to-action "Faça seu cadastro e ganhe já! &#x1F381; "]]
+                          [:span {:id "get-coupon" :data-vars-couponvalue 10 :data-vars-coupon service :class (str "code" service)} (cdata :code)]
+                          [:p.link-description "Copie o código acima e aproveite o seu desconto."]
+                          (a-out (cdata :url) {:class "call-to-action"} "Faça aqui seu cadastro e ganhe já! &#x1F381; ")]
                          [:section.others
                           [:p.intro "Quer mais descontos?"]
 
