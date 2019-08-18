@@ -17,6 +17,12 @@
              :description "💲 Ganhe R$20,00 de desconto na sua primeira viagem! ✅"
              :text [:p "Ganhe " [:span.value "R$20,00"] " de desconto na sua primeira corrida! " [:ruby "🎉 " [:rt "ta-da!"]]
                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira viagem. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}
+   "ifood"  {:code "119VK2SYX2"
+             :title ["iFood"]
+             :url "https://ifoodbr.onelink.me/F4X4/mgm?mgm_code=119VK2SYX2"
+             :description "💲 Ganhe R$15,00 na sua primeira compra! ✅"
+             :text [:p "Ganhe " [:span.value "R$15,00"] " de desconto na " [:strong "sua primeira"] " compra! " [:ruby "🎉 " [:rt "ta-da!"]]
+                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, na sua primeira compra. São " [:span.value "R$15,00"] " de desconto pra você aproveitar."]]}
    "uber"   {:code "ubernossal"
              :title ["Uber" "#1"]
              :url "https://www.uber.com/invite/ubernossal"
@@ -37,18 +43,25 @@
                     [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
    "99"     {:code "BRE747Z4"
              :title ["99"]
+             :url "https://d.99app.com/rZyaefmfuRv6p?shareChannel=more"
+             :description "💲 Ganhe R$10,00 de desconto na primeira corrida 99 (99POP também)! ✅"
+             :text [:p "Ganhe " [:span.value "R$10,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
+                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."
+                     [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]]}
+   "99-1"   {:code "GMKH2MST"
+             :title ["99" "#1"]
              :url "https://d.99app.com/rZy8mU5EEiu13?shareChannel=more"
              :description "💲 Ganhe R$10,00 de desconto na primeira corrida 99 (99POP também)! ✅"
              :text [:p "Ganhe " [:span.value "R$10,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
-                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]
-                    [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]}
+                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."
+                     [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]]}
    "picpay" {:code "PKTA9D"
              :title ["PicPay"]
              :url "http://www.picpay.com/convite?!PKTA9D"
              :description "💲 Ganhe de volta os primeiros R$10,00 que você gastar! ✅"
              :text [:p "Crie sua conta com meu código e ganhe de volta os primeiros " [:span.value "R$10,00"] " que você " [:strong "gastar"] "! " [:ruby "🎉 " [:rt "ta-da!"]]
                     [:small "Com o PicPay você pode pagar seus " [:strong "amigos, boletos, recarregar o celular, Steam"] " e muito mais."]
-                    [:p.warn [:span "Mas atenção"] ", você só ganha se fizer um pagamento em " [:strong "até 7 dias depois do seu cadastro."]]]}})
+                    [:p.warn [:span "Seja rápido"] ", você só ganha se fizer um pagamento em " [:strong "até 7 dias depois do seu cadastro."]]]}})
 
 
 (defn coupon [service req]
