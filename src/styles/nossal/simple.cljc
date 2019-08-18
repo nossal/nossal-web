@@ -46,7 +46,7 @@
    {:font-size (em 1.2)
     :margin-top (em 1.5)}]
   [:#get-coupon
-   {:border "1px solid #c349fd"
+   {:border "1px solid #d9bbe8"
     :border-radius (px 2)
     :max-width (px 360)
     :padding ".2em .4em"
