@@ -46,11 +46,11 @@
    {:font-size (em 1.2)
     :margin-top (em 1.5)}]
   [:#get-coupon
-   {:border "1px solid"
+   {:border "1px solid #d9bbe8"
     :border-radius (px 2)
     :max-width (px 360)
     :padding ".2em .4em"
-    :color "#0070c9"
+    :color "#454246"
     :text-decoration "none"
     :font-size (em 3)}]
   [:p.link-description
@@ -74,7 +74,7 @@
      :background "#fffde1"
      :font-size (em 0.8)
      :line-height (em 1.3)}
-
+    [:small {:margin-top 0}]
     [:span {:font-weight "bold"
             :color "#f00"
             :text-transform "uppercase"}]]
@@ -103,7 +103,6 @@
             [:.call-button {:margin-top (em 0.5)}])
 
   (at-media {:max-width (px 383)}
-            [:section {:padding (em 1) :padding-bottom (em 2.5)}]
-            [:#get-coupon.code99 {:font-size (em 2)}]
-            [:#get-coupon.code99pop {:font-size (em 2)}]))
+            [:section {:padding (em 1) :padding-bottom (em 2.5)}]))
+
 

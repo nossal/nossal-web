@@ -52,7 +52,8 @@
 
 (def data-analytics
   {:vars {:gtag_id (ga-tracking-id)
-          :config {(ga-tracking-id) {:groups "default"}}}
+          :config {(ga-tracking-id) {:groups "default"}
+                   :AW-988737553 {:groups "default"}}}
    :triggers {:outboundLinks {:on "click"
                               :selector "a.out"
                               :request "event"
@@ -67,6 +68,12 @@
                                           :event_name "get-coupon"
                                           :event_label "${coupon}"
                                           :value "${couponvalue}"}}
+              :trackCouponConversion {:on "click"
+                                      :selector "#get-coupon"
+                                      :request "event"
+                                      :vars {:event_name "conversion"
+                                             :send_to "AW-988737553/5qf0CO-OmAQQkeC71wM"}}
+
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"
                                :request "event"
