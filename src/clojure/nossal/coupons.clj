@@ -20,9 +20,9 @@
    "ifood"  {:code "119VK2SYX2"
              :title ["iFood"]
              :url "https://ifoodbr.onelink.me/F4X4/mgm?mgm_code=119VK2SYX2"
-             :description "💲 Ganhe R$15,00 na sua primeira compra! ✅"
-             :text [:p "Ganhe " [:span.value "R$15,00"] " de desconto na " [:strong "sua primeira"] " compra! " [:ruby "🎉 " [:rt "ta-da!"]]
-                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, na sua primeira compra. São " [:span.value "R$15,00"] " de desconto pra você aproveitar."]]}
+             :description "💲 Ganhe R$20,00 na sua primeira compra! ✅"
+             :text [:p "Ganhe " [:span.value "R$20,00"] " de desconto na " [:strong "sua primeira"] " compra! " [:ruby "🎉 " [:rt "ta-da!"]]
+                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, na sua primeira compra. São " [:span.value "R$20,00"] " de desconto pra você aproveitar."]]}
    "uber"   {:code "ubernossal"
              :title ["Uber" "#1"]
              :url "https://www.uber.com/invite/ubernossal"
@@ -82,7 +82,7 @@
                          [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
                          [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
                          [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
-                     ;     [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]   
+                     ;     [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]
                          [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
                          [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
                          [:noscript
@@ -108,4 +108,3 @@
                          [:amp-analytics {:type "gtag" :data-credentials "include"}
                           [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
     not-found))
-
