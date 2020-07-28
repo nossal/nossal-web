@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 1024 1024"
+   viewBox="0 0 512 512"
    id="logo-terra"
    version="1.1"
    sodipodi:docname="terra.svg"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   width="1024"
-   height="1024">
+   width="512"
+   height="512">
   <metadata
      id="metadata3774">
     <rdf:RDF>
@@ -47,30 +47,30 @@
      inkscape:window-x="371"
      inkscape:window-y="91"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer3"
      inkscape:pagecheckerboard="true" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="background"
      style="display:inline"
-     transform="translate(0,1007)">
+     transform="translate(0,495)">
     <rect
-       style="fill:#ff7212;fill-opacity:1;stroke-width:55.08984756"
+       style="fill:#ff7212;fill-opacity:1;stroke-width:27.54492188"
        id="rect4643"
-       width="1024"
-       height="1024"
+       width="512"
+       height="512"
        x="0"
-       y="-1007" />
+       y="-495" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="logo"
      style="display:inline"
-     transform="translate(0,1007)">
+     transform="translate(0,495)">
     <g
-       transform="matrix(43.744612,0,0,-43.492243,-1373.2463,432.16687)"
+       transform="matrix(21.872306,0,0,-21.746121,-686.62315,224.58343)"
        id="g3767">
       <path
          d="m 49.567,25.308 c -0.354,0.749 -0.785,1.329 -1.26,1.568 -0.276,0.147 -0.636,0.268 -1.058,0.364 a 12.84,12.84 0 0 0 0.675,-1.983 c 0.576,0 1.104,0.047 1.643,0.05"
