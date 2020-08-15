@@ -37,8 +37,6 @@
 
                  [ns-tracker                "0.3.1"]]
 
-  :jvm-opts ^:replace ["-Xmx1g" "-server"]
-
   :plugins [[lein-environ   "1.1.0" :hooks false]
             [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]
             [lein-garden    "0.3.0"]
