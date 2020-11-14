@@ -18,45 +18,46 @@
 
 
 (defn- base [title meta links scripts styles body options]
-  (page/html5 {:lang (get options :lang "en") :⚡ (get options :amp false)}
-              [:head
-               (seq (slurp (io/resource "gtag.html")))
-               [:meta {:charset "UTF-8"}]
-               [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-               [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-               [:meta {:name "author" :content "Rodrigo Nossal"}]
-               [:meta {:name "mobile-web-app-capable" :content "yes"}]
-               [:meta {:name "application-name" :content "NOSSAL"}]
-               [:meta {:name "apple-mobile-web-app-title" :content "NOSSAL"}]
-               [:meta {:name "apple-mobile-web-app-capable" :content "yes"}]
-               [:meta {:name "apple-mobile-web-app-status-bar-style" :content "black-translucent"}]
-               [:meta {:name "format-detection" :content "telephone=no"}]
-               [:meta {:name "theme-color" :content "#747f90"}]
-               [:meta {:name "msapplication-TileColor" :content "#747f90"}]
-               [:meta {:name "twitter:card" :content "summary"}]
-               [:meta {:name "twitter:creator" :content "@nossal"}]
-               [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
-               (map (fn [m] [:meta m]) meta)
-               [:title (str title " – nossal")]
-               [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
-               [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
-               [:link {:rel "alternate" :href "https://noss.al" :hreflang "en-us"}]
-               (map (fn [l] [:link l]) links)
-               (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
-               [:noscript
-                (map (fn [node] node) (get options :noscript []))]]
-              [:body
-               [:script {:type "application/ld+json"} dat/data-website]
+  (page/html5
+    {:lang (get options :lang "en") :⚡ (get options :amp false)}
+    [:head
+      (seq (slurp (io/resource "gtag.html")))
+      [:meta {:charset "UTF-8"}]
+      [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
+      [:meta {:name "author" :content "Rodrigo Nossal"}]
+      [:meta {:name "mobile-web-app-capable" :content "yes"}]
+      [:meta {:name "application-name" :content "NOSSAL"}]
+      [:meta {:name "apple-mobile-web-app-title" :content "NOSSAL"}]
+      [:meta {:name "apple-mobile-web-app-capable" :content "yes"}]
+      [:meta {:name "apple-mobile-web-app-status-bar-style" :content "black-translucent"}]
+      [:meta {:name "format-detection" :content "telephone=no"}]
+      [:meta {:name "theme-color" :content "#747f90"}]
+      [:meta {:name "msapplication-TileColor" :content "#747f90"}]
+      [:meta {:name "twitter:card" :content "summary"}]
+      [:meta {:name "twitter:creator" :content "@nossal"}]
+      [:meta {:name "p:domain_verify" :content "edd280e116c041e49ff00170c956141a"}]
+      (map (fn [m] [:meta m]) meta)
+      [:title (str title " – nossal")]
+      [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
+      [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
+      [:link {:rel "alternate" :href "https://noss.al" :hreflang "en-us"}]
+      (map (fn [l] [:link l]) links)
+      (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
+      [:noscript
+      (map (fn [node] node) (get options :noscript []))]]
+    [:body
+      [:script {:type "application/ld+json"} dat/data-website]
 
-               (seq body)
+      (seq body)
 
-               [:a#tnet "π"]
-               [:footer
-                [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
-                (a-out "https://clojure.org" "Clojure") " and "
-                [:span.heart " "] " at "
-                (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]
-               (map (fn [s] [:script s]) scripts)]))
+      [:a#tnet "π"]
+      [:footer
+      [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
+      (a-out "https://clojure.org" "Clojure") " and "
+      [:span.heart " "] " at "
+      (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]
+      (map (fn [s] [:script s]) scripts)]))
 
 (defn base-html
   ([title meta links scripts styles body]

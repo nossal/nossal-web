@@ -21,8 +21,8 @@
              :title ["iFood"]
              :url "https://ifoodbr.onelink.me/F4X4/mgm?mgm_code=119VK2SYX2"
              :description "💲 Ganhe R$20,00 na sua primeira compra! ✅"
-             :text [:p "Ganhe " [:span.value "R$20,00"] " de desconto na " [:strong "sua primeira"] " compra! " [:ruby "🎉 " [:rt "ta-da!"]]
-                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, na sua primeira compra. São " [:span.value "R$20,00"] " de desconto pra você aproveitar."]]}
+             :text [:p "Ganhe " [:span.value "R$15,00"] " de desconto na " [:strong "sua primeira"] " compra! " [:ruby "🎉 " [:rt "ta-da!"]]
+                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, na sua primeira compra. São " [:span.value "R$15,00"] " de desconto pra você aproveitar."]]}
    "uber"   {:code "ubernossal"
              :title ["Uber" "#1"]
              :url "https://www.uber.com/invite/ubernossal"
@@ -66,45 +66,46 @@
 
 (defn coupon [service req]
   (if-not (nil? (coupon-codes service))
-    (page/html5 {:⚡ true :lang "pt-br"}
-                (let [cdata (coupon-codes service)]
-                  (seq [[:head
-                         [:meta {:charset "UTF-8"}]
-                         [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
-                         [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
-                         [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, 99, viagem, corrida, cupom, coupon, código de desconto"}]
-                         [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (first (cdata :title)) (cdata :description))}]
-                         [:title "Cupom de Desconto 🤑 " (first (cdata :title)) " - " (s/upper-case (cdata :code))]
-                         (map (fn [s]
-                                [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
-                              [16 32 48 96 144])
-                         [:link {:rel "canonical" :href (core/cannonical-url req)}]
-                         [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
-                         [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
-                         [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
-                     ;     [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]
-                         [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
-                         [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
-                         [:noscript
-                          [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
-                        [:body.coupon
-                         [:section
-                          [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (first (cdata :title)))) :alt (str (first (cdata :title)) " logo") :height "100" :width "265"}]
-                          [:h1 "Cupom de desconto " (first (cdata :title)) "."]
-                          [:div.intro.text
-                           [:p (cdata :text)]]
-                          [:span {:id "get-coupon" :data-vars-couponvalue 10 :data-vars-coupon service :class (str "code" service)} (cdata :code)]
-                          [:p.link-description "Copie o código acima e aproveite o seu desconto."]
-                          (a-out (cdata :url) {:class "call-to-action"} "Faça aqui seu cadastro e ganhe já! &#x1F381; ")]
-                         [:section.others
-                          [:p.intro "Quer mais descontos?"]
+    (page/html5
+       {:⚡ true :lang "pt-br"}
+       (let [cdata (coupon-codes service)]
+       (seq [[:head
+              [:meta {:charset "UTF-8"}]
+              [:meta {:http-equiv "X-UA-Compatible" :content "IE=edge,chrome=1"}]
+              [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0"}]
+              [:meta {:name "keywords" :content "desconto, grátis, promoção, uber, cabify, 99, viagem, corrida, cupom, coupon, código de desconto"}]
+              [:meta {:name "description" :content (format "🎁 Cupom de desconto %s da %s %s" (s/upper-case (cdata :code)) (first (cdata :title)) (cdata :description))}]
+              [:title "Cupom de Desconto 🤑 " (first (cdata :title)) " - " (s/upper-case (cdata :code))]
+              (map (fn [s]
+                     [:link {:rel "icon" :type "image/png" :href (s/join ["/image/" "gift-" s ".png"]) :sizes (s/join [s "x" s])}])
+                     [16 32 48 96 144])
+              [:link {:rel "canonical" :href (core/cannonical-url req)}]
+              [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
+              [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
+              [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
+       ;     [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]
+              [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
+              [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
+              [:noscript
+              [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
+              [:body.coupon
+              [:section
+              [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (first (cdata :title)))) :alt (str (first (cdata :title)) " logo") :height "100" :width "265"}]
+              [:h1 "Cupom de desconto " (first (cdata :title)) "."]
+              [:div.intro.text
+              [:p (cdata :text)]]
+              [:span {:id "get-coupon" :data-vars-couponvalue 10 :data-vars-coupon service :class (str "code" service)} (cdata :code)]
+              [:p.link-description "Copie o código acima e aproveite o seu desconto."]
+              (a-out (cdata :url) {:class "call-to-action"} "Faça aqui seu cadastro e ganhe já! &#x1F381; ")]
+              [:section.others
+              [:p.intro "Quer mais descontos?"]
 
-                          [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupon-codes x) :title)) " " [:span (rest ((coupon-codes x) :title))]]) (keep #(if (not= service %) %) (shuffle (keys coupon-codes))))]]
-                         [:footer
-                          [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu " [:span {:title "coração"} "❤️"]] " para você."]]
+              [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupon-codes x) :title)) " " [:span (rest ((coupon-codes x) :title))]]) (keep #(if (not= service %) %) (shuffle (keys coupon-codes))))]]
+              [:footer
+              [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu " [:span {:title "coração"} "❤️"]] " para você."]]
 
-                         [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
-                         [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
-                         [:amp-analytics {:type "gtag" :data-credentials "include"}
-                          [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
+              [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
+              [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
+              [:amp-analytics {:type "gtag" :data-credentials "include"}
+              [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
     not-found))

@@ -39,6 +39,10 @@
       (assoc-in [:security :frame-options] :sameorigin)
       (assoc :proxy true)))
 
+(defn wrap-cache-control [handler]
+  (fn [request]
+    (let [response (handler request)]
+      (assoc-in response [:headers "cache-control"] "max-age=120, stale-while-revalidate=60, stale-if-error=3600"))))
 
 (defn service-worker
   ([] (service-worker ""))
@@ -130,6 +134,7 @@
   (-> app-routes
       (wrap-defaults (site-defaults-options site-defaults))
       (wrap-json-body {:keywords? true :bigdecimals? true})
+      (wrap-cache-control)
       (ignore-trailing-slash)))
 
 (def dev-app-old
