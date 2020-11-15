@@ -83,29 +83,35 @@
               [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
               [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
               [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
-       ;     [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]
+              [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]
               [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
               [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
               [:noscript
               [:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none} "]]]
               [:body.coupon
-              [:section
-              [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (first (cdata :title)))) :alt (str (first (cdata :title)) " logo") :height "100" :width "265"}]
-              [:h1 "Cupom de desconto " (first (cdata :title)) "."]
-              [:div.intro.text
-              [:p (cdata :text)]]
-              [:span {:id "get-coupon" :data-vars-couponvalue 10 :data-vars-coupon service :class (str "code" service)} (cdata :code)]
-              [:p.link-description "Copie o código acima e aproveite o seu desconto."]
-              (a-out (cdata :url) {:class "call-to-action"} "Faça aqui seu cadastro e ganhe já! &#x1F381; ")]
-              [:section.others
-              [:p.intro "Quer mais descontos?"]
+               [:section
+                [:amp-img {:src (format "/images/%s_logo.png" (s/lower-case (first (cdata :title)))) :alt (str (first (cdata :title)) " logo") :height "100" :width "265"}]
+                [:h1 "Cupom de desconto " (first (cdata :title)) "."]
+                [:div.intro.text
+                 [:p (cdata :text)]]
+                [:amp-iframe {:id "coupon-code"
+                              :sandbox "allow-scripts"
+                              :layout "flex-item"
+                              :frameborder 0
+                              :src (str "/copy-button.html#" (cdata :code) "," service)
+                              :class (str "code-" service)}
+                 [:button {:class "get-coupon" :disabled true :placeholder true} (cdata :code)]]
+                [:p.link-description "Clique / toque no código acima para copiar, e aproveite o seu desconto."]
+                (a-out (cdata :url) {:class "call-to-action"} "Faça aqui seu cadastro e ganhe já! &#x1F381; ")]
+               [:section.others
+                [:p.intro "Quer mais descontos?"]
 
-              [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupon-codes x) :title)) " " [:span (rest ((coupon-codes x) :title))]]) (keep #(if (not= service %) %) (shuffle (keys coupon-codes))))]]
-              [:footer
-              [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu " [:span {:title "coração"} "❤️"]] " para você."]]
+                [:p (map (fn [x] [:a {:href (str "/cupons/" x)} "Cupom " (first ((coupon-codes x) :title)) " " [:span (rest ((coupon-codes x) :title))]]) (keep #(if (not= service %) %) (shuffle (keys coupon-codes))))]]
+               [:footer
+                [:p "Este é um presente do fundo " [:a {:href "https://noss.al/"} "do meu " [:span {:title "coração"} "❤️"]] " para você."]]
 
-              [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
-              [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
-              [:amp-analytics {:type "gtag" :data-credentials "include"}
-              [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
+               [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
+               [:script {:type "application/ld+json"} (core/to-json (dat/breadcrumbs (str "cupons/" service)))]
+               [:amp-analytics {:type "gtag" :data-credentials "include"}
+                [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]])))
     not-found))

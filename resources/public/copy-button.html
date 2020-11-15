@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Sans-Serif;
+      text-align: center;
+    }
+    button#copy{
+      border: none;
+      background: #f7f7f7;
+      border-radius: 0.3em;
+      max-width: 360px;
+      padding: .2em .4em;
+      color: #454246;
+      text-decoration: none;
+      font-size: 3em;
+      cursor: copy;
+      width: 100vw;
+      height: 100vh;
+    }
+    small {
+      display: block;
+      font-size: .25em;
+      letter-spacing: .03em;
+      color: #949494;
+      margin-top: .7em;
+    }
+    .ok {
+      color: #32e632 !important;
+    }
+  </style>
+</head>
+<body>
+  <button id="copy" class="get-coupon"
+    data-vars-couponvalue="10"
+    data-vars-coupon="">
+    Copy
+  </button>
+  <input type="text" id="_i" hidden />
+  <script>
+    var data = window.location.hash.substr(1).split(',');
+    var text = data[0];
+
+    function setButtonText() {
+      copy.innerHTML = text + '<small>Copiar código</small>';
+    }
+    setButtonText();
+
+    copy.onclick = function() {
+      copy.innerHTML = text + '<small class="ok">Código copiado</small>';
+      setTimeout(setButtonText, 4000);
+
+      _i.value = window.decodeURIComponent(text);
+      _i.hidden = false;
+      _i.select();
+      _i.focus();
+      document.execCommand('copy');
+      _i.hidden = true;
+      _i.value = '';
+    };
+  </script>
+</body>

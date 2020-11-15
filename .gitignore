@@ -29,6 +29,7 @@ pom.xml
 /.lein-failures
 /.nrepl-port
 /.nrepl-history
+.calva
 
 *.stackdump
 .cpcache/

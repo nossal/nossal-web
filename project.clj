@@ -6,7 +6,7 @@
 
   :min-lein-version "2.8.1"
 
-  :dependencies [[org.clojure/clojure       "1.10.0"]
+  :dependencies [[org.clojure/clojure       "1.10.1"]
                  [org.clojure/data.json     "0.2.6"]
                  [org.clojure/tools.logging "0.4.1"]
                  [org.clojure/core.cache    "0.7.2"]

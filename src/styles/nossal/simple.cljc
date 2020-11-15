@@ -45,9 +45,13 @@
   [:p.call-to-action
    {:font-size (em 1.2)
     :margin-top (em 1.5)}]
-  [:#get-coupon
-   {:border "1px solid #d9bbe8"
-    :border-radius (px 2)
+  [:#coupon-code
+   {:border 0
+    :height (em 6)
+    }]
+  [:.get-coupon
+   {:border :none
+    :border-radius (em 3)
     :max-width (px 360)
     :padding ".2em .4em"
     :color "#454246"
@@ -104,5 +108,3 @@
 
   (at-media {:max-width (px 383)}
             [:section {:padding (em 1) :padding-bottom (em 2.5)}]))
-
-
