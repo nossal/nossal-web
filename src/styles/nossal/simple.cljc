@@ -48,10 +48,11 @@
   [:#coupon-code
    {:border 0
     :height (em 6)
+    :text-align "center"
     }]
   [:.get-coupon
    {:border :none
-    :border-radius (em 3)
+    :background "#f7f7f7"
     :max-width (px 360)
     :padding ".2em .4em"
     :color "#454246"

@@ -39,27 +39,36 @@
     data-vars-coupon="">
     Copy
   </button>
-  <input type="text" id="_i" hidden />
+
   <script>
     var data = window.location.hash.substr(1).split(',');
     var text = data[0];
+
+    function copyText (text) {
+      const input = document.createElement('input')
+      input.hidden = false
+      input.value = text
+      input.style = 'position: absolute; left: -1000px; top: -1000px'
+
+      document.body.appendChild(input)
+
+      input.select()
+
+      document.execCommand('copy')
+
+      input.remove()
+    }
 
     function setButtonText() {
       copy.innerHTML = text + '<small>Copiar código</small>';
     }
     setButtonText();
 
+
     copy.onclick = function() {
       copy.innerHTML = text + '<small class="ok">Código copiado</small>';
       setTimeout(setButtonText, 4000);
-
-      _i.value = window.decodeURIComponent(text);
-      _i.hidden = false;
-      _i.select();
-      _i.focus();
-      document.execCommand('copy');
-      _i.hidden = true;
-      _i.value = '';
+      copyText(window.decodeURIComponent(text));
     };
   </script>
 </body>
