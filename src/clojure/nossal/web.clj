@@ -47,7 +47,7 @@
       [:noscript
       (map (fn [node] node) (get options :noscript []))]]
     [:body
-      [:script {:type "application/ld+json"} dat/data-website]
+      [:script {:type "application/ld+json"} (core/to-json dat/data-website)]
 
       (seq body)
 
