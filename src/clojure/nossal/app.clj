@@ -57,7 +57,7 @@
     (index request))
 
   (GET "/manifest.json" request
-    (core/to-json pwa-manifest))
+    (pwa-manifest))
 
   (GET "/sw.js" [] (service-worker ""))
   (GET "/sw.js.map" [] (service-worker ".map"))
