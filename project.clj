@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License v1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :min-lein-version "2.8.1"
+  :min-lein-version "2.9.0"
 
   :dependencies [[org.clojure/clojure       "1.10.1"]
                  [org.clojure/data.json     "1.0.0"]
@@ -30,6 +30,8 @@
                  [environ                   "1.2.0"]
                  [clj-http                  "3.11.0"]
 
+                 [sitemap                   "0.4.0"]
+
                  [org.postgresql/postgresql      "42.2.18"]
                  [com.layerware/hugsql           "0.5.1"]
                  [heroku-database-url-to-jdbc    "0.2.2"]
@@ -44,7 +46,7 @@
             [lein-ring      "0.12.5"]]
 
   :source-paths ["src/clojure", "src/clojurescript" "src/styles"]
-  :prep-tasks [["garden" "once"]]
+  ;; :prep-tasks [["garden" "once"]]
 
   :uberjar-name "nossal.jar"
 
@@ -97,7 +99,8 @@
                                    :optimizations :advanced}}]}
 
   :profiles {:production {:env {:dev "false" :production "true" :ga-tracking-id "UA-11532471-6"}
-                          :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]}
+                          :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]
+                          }
 
              :dev {:env {:dev "true" :production "false" :ga-tracking-id "UA-11532471-6"
                          :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}

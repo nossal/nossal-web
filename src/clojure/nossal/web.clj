@@ -102,10 +102,11 @@
 
    [[:script {:type "application/ld+json"} (core/to-json dat/data-person)]
     [:div.main
+     [:nav [:ul.inline [:li [:a {:href "/cupons"} "goodies"]]]]
      [:article
       [:header
        [:h1 "nossal."]
-       [:p.about-line [:span.accent {:title "Not Realy"} "\"Full-Stack\""] " Web Developer"]]
+       [:p.about-line [:span.accent {:title "Fool Stack"} "\"Full-Stack\""] " Web Developer"]]
 
       ;  [:section#me [:div#tweetwidget]
       ;   [:a.start {:href "#" :title "start"}
@@ -115,8 +116,19 @@
 
       ;  [:section "ノッサル・ロドリゴ"]
 
-      [:section#about [:div.end [:span.python "Python"] ", " [:span.java "Java"] ", " [:span.js "JavaScript"] ", " [:span.swift "Swift"] " on weekdays and Clojure, ES6, Scala, Rust on weekends."]]]]]))
 
+      [:section#about
+       [:div.end
+        [:span.java "Java"] ", "
+        [:span.python "Python"] ", "
+        [:span.js "JavaScript"] ", "
+        [:span.swift "Swift"] " on weekdays and "
+        [:span.clojure "Clojure/Script"] ", "
+        [:span.rust "Rust"] " on weekends."]]
+
+      [:section.foot
+       [:a {:href "mailto:rodrigo@noss.al"} "rodrigo@noss.al"]
+       (a-out (get dat/public-profiles "Twitter") "twitter")]]]]))
 
 ; [:span.java "Java"] ", " [:span.python "Python"]
 (defn breakout [req]

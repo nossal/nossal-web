@@ -20,7 +20,7 @@
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
-            [nossal.coupons :refer [coupon]]
+            [nossal.coupons :refer [coupon coupon-index]]
             [nossal.reviews :refer [reviews]]
             [nossal.core :as core]))
 
@@ -84,8 +84,8 @@
     (resize-image name (int (read-string size)) ext))
 
 
-  (GET "/cupons" []
-    (response/redirect "/cupons/cabify"))
+  (GET "/cupons" request
+    (coupon-index request))
 
   (GET "/cupons/:service" [service :as request]
     (coupon service request))

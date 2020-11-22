@@ -1,7 +1,7 @@
 (ns nossal.reboot-simple
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.selectors :refer [attr attr= abbr a audio input button before after defselector defpseudoclass defpseudoelement html not svg]]
-            [garden.units :as gu :refer [px em rem percent]]))
+            [garden.units :as gu :refer [px em percent]]))
 
 (defpseudoelement -moz-focus-inner)
 (defselector *)
@@ -26,7 +26,7 @@
     :font-feature-settings "kern"
     :direction "ltr"
     :font-synthesis "none"
-    :font-size (rem 1)
+    :font-size (em 1)
     :font-weight "normal"
     :line-height 1.5
     :color "#212529"
@@ -44,11 +44,11 @@
 
   [:h1 :h2 :h3 :h4 :h5 :h6
    {:margin-top 0
-    :margin-bottom (rem 0.5)}]
+    :margin-bottom (em 0.5)}]
 
   [:p
    {:margin-top 0
-    :margin-bottom (rem 1)}]
+    :margin-bottom (em 1)}]
 
   [(abbr (attr :title)) (abbr (attr :data-original-title))
    {:text-decoration "underline dotted"
@@ -57,10 +57,10 @@
 
   [:ol :ul :dl
    {:margin-top 0
-    :margin-bottom (rem 1)}]
+    :margin-bottom (em 1)}]
 
   [:blockquote
-   {:margin "0 0 1rem"}]
+   {:margin "0 0 1em"}]
 
   [:dfn
    {:font-style "italic"}]
@@ -100,12 +100,12 @@
 
   [:pre
    {:margin-top 0
-    :margin-bottom (rem 1)
+    :margin-bottom (em 1)
     :overflow "auto"
     :-ms-overflow-style "scrollbar"}]
 
   [:figure
-   {:margin "0 0 1rem"}]
+   {:margin "0 0 1em"}]
 
   [:img
    {:vertical-align "middle"
@@ -128,7 +128,7 @@
 
   [:label
    {:display "inline-block"
-    :margin-bottom (rem 0.5)}]
+    :margin-bottom (em 0.5)}]
 
   [:button
    {:border-radius 0}]

@@ -1,7 +1,7 @@
 (ns nossal.reboot
   (:require [garden.def :refer [defstylesheet defstyles]]
             [garden.selectors :refer [attr attr= abbr a audio input button before after defselector defpseudoclass defpseudoelement html not svg]]
-            [garden.units :as gu :refer [px em rem percent]]))
+            [garden.units :as gu :refer [px em percent]]))
 
 (defpseudoelement -moz-focus-inner)
 (defpseudoelement -webkit-inner-spin-button)
@@ -31,7 +31,7 @@
   [:body
    {:margin 0
     :font-family "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""
-    :font-size (rem 1)
+    :font-size (em 1)
     :font-weight "normal"
     :line-height 1.5
     :color "#212529"
@@ -49,11 +49,11 @@
 
   [:h1 :h2 :h3 :h4 :h5 :h6
    {:margin-top 0
-    :margin-bottom (rem 0.5)}]
+    :margin-bottom (em 0.5)}]
 
   [:p
    {:margin-top 0
-    :margin-bottom (rem 1)}]
+    :margin-bottom (em 1)}]
 
   [(abbr (attr :title)) (abbr (attr :data-original-title))
    {:text-decoration "underline dotted"
@@ -61,13 +61,13 @@
     :border-bottom 0}]
 
   [:address
-   {:margin-bottom "1rem"
+   {:margin-bottom "1em"
     :font-style "normal"
     :line-height "inherit"}]
 
   [:ol :ul :dl
    {:margin-top 0
-    :margin-bottom (rem 1)}]
+    :margin-bottom (em 1)}]
 
   [:ol
    [:ol
@@ -86,11 +86,11 @@
    {:font-weight "bold"}]
 
   [:dd
-   {:margin-bottom (rem 0.5)
+   {:margin-bottom (em 0.5)
     :margin-left 0}]
 
   [:blockquote
-   {:margin "0 0 1rem"}]
+   {:margin "0 0 1em"}]
 
   [:dfn
    {:font-style "italic"}]
@@ -142,12 +142,12 @@
 
   [:pre
    {:margin-top 0
-    :margin-bottom (rem 1)
+    :margin-bottom (em 1)
     :overflow "auto"
     :-ms-overflow-style "scrollbar"}]
 
   [:figure
-   {:margin "0 0 1rem"}]
+   {:margin "0 0 1em"}]
 
   [:img
    {:vertical-align "middle"
@@ -166,8 +166,8 @@
    {:border-collapse "collapse"}]
 
   [:caption
-   {:padding-top (rem 0.75)
-    :padding-bottom (rem 0.75)
+   {:padding-top (em 0.75)
+    :padding-bottom (em 0.75)
     :color "#868e96"
     :text-align "left"
     :caption-side "bottom"}]
@@ -177,7 +177,7 @@
 
   [:label
    {:display "inline-block"
-    :margin-bottom (rem 0.5)}]
+    :margin-bottom (em 0.5)}]
 
   [:button
    {:border-radius 0}]
@@ -236,8 +236,8 @@
     :width "100%"
     :max-width "100%"
     :padding 0
-    :margin-bottom (rem 0.5)
-    :font-size (rem 1.5)
+    :margin-bottom (em 0.5)
+    :font-size (em 1.5)
     :line-height "inherit"
     :color "inherit"
     :white-space "normal"}]

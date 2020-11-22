@@ -34,6 +34,52 @@
      :padding "0.3em 0.6em"}
     [:&:after {:content "'🚀'" :padding-left (em 0.3)}]]]
 
+  [:ul.column {:margin 0 :padding 0 :display "block"}
+   [:li {:list-style-type "none"}]]
+
+  [:li
+   {:padding (em 0.7)
+    :z-index 1
+    :background "transparent"
+    :border-radius (em 3)
+    :margin-bottom (em 1)
+    :position "relative"}
+   [:a
+    {:font-size (em 1.6)}
+    [:&:after
+    {:position "absolute"
+     :top 0
+     :right 0
+     :bottom 0
+     :left 0
+     :z-index 1
+     :pointer-events "auto"
+     :content "''"
+     :background-color "rgba(0,0,0,0)"}]]
+   [:&:before
+    {:content "' '"
+     :position "absolute"
+     :display "block"
+     :width "calc(100% - 2px)"
+     :height "calc(100% - 2px)"
+     :border-radius (em 3)
+     :top (px 1)
+     :left (px 1)
+     :z-index -1
+     :background "#fff"}]
+   [:&:after
+    {:content "' '"
+     :display "block"
+     :border-radius (em 3)
+     :position "absolute"
+     :width (percent 100)
+     :height (percent 100)
+     :top 0
+     :left 0
+     :z-index -3
+     :transition "opacity .3s ease-in-out"
+     :background "linear-gradient(269.16deg, #FFE580 -15.83%, #FF7571 -4.97%, #FF7270 15.69%, #EA5DAD 32.43%, #C2A0FD 50.09%, #9867F0 67.47%, #3BF0E4 84.13%, #33CE43 105.13%, #B2F4B6 123.24%)"}]]
+
   [:strong {:font-weight "bold"}]
   [:h1
    {:font-size (em 3)

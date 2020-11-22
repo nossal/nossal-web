@@ -1,6 +1,6 @@
 (ns nossal.common
   (:require [nossal.colors :refer [bgcolor]]
-            [garden.units :as gu :refer [px em rem percent]]))
+            [garden.units :as gu :refer [px em percent]]))
 
 
 (def body
@@ -52,19 +52,20 @@
                 :border-radius "0 3px 3px 0"}]]])
 
 (def egg
-  [:a#tnet {:color "#4d5661"
+  [:a#tnet {:color "#000"
+            :opacity 0.25
             :font-size "11px"
             :display "block"
             :position "absolute"
             :cursor "default"
             :padding (px 2)
-            :right (px 4)
-            :bottom (px 20)}])
+            :left (px 4)
+            :top (px 4)}])
 
 
 ; (defn at-font-face [& {:as kwargs}]
 ;   (let [kwargs (->> (select-keys kwargs [:family :weight :style :eot :woff :svg])
-;                     (remove (comp nil? second))
+;                     (emove (comp nil? second))
 ;                     (into {}))
 ;         font-attrs (select-keys kwargs [:family :weight :style])
 ;         srcs (select-keys kwargs [:eot :woff :svg])
