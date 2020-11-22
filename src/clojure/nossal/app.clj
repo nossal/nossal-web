@@ -16,11 +16,13 @@
             [clojure.java.io :as io]
             [clojure.string :refer [ends-with?]]
 
+            [sitemap.core :refer [generate-sitemap]]
+
             [nossal.web :refer [index dot log breakout miner iframe-demo]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
-            [nossal.coupons :refer [coupon coupon-index]]
+            [nossal.coupons :refer [coupon coupon-index coupon-codes]]
             [nossal.reviews :refer [reviews]]
             [nossal.core :as core]))
 
@@ -52,12 +54,28 @@
     "application/x-javascript; charset=utf-8")))
 
 
+(defn gen-paths [paths]
+  (map (fn [name]
+         {:loc (str "https://noss.al/" name)
+          :priority 1})
+       paths))
+
+
 (defroutes app-routes
   (GET "/" request
     (index request))
 
-  (GET "/manifest.json" request
+  (GET "/manifest.json" []
     (pwa-manifest))
+
+  (GET "/sitemap.xml" []
+    (response/content-type
+     (response/response
+      (generate-sitemap
+       (concat
+        (gen-paths (map #(str "cupons/" %) (keys coupon-codes)))
+        (gen-paths ["" "cupons"]))))
+     "text/xml"))
 
   (GET "/sw.js" [] (service-worker ""))
   (GET "/sw.js.map" [] (service-worker ".map"))
