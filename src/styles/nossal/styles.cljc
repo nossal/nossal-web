@@ -103,7 +103,7 @@
     :color "#555"}]
 
   [:h1
-   {:font-family "impact"
+   {:font-family "Impacto, Impact, sans-serif"
     :font-size (em 5)
     :text-transform "uppercase"
     :letter-spacing (em 0.15)

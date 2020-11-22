@@ -39,14 +39,14 @@
 
                  [ns-tracker                "0.4.0"]]
 
-  :plugins [[lein-environ   "1.2.0" :hooks false]
+  :plugins [[lein-environ   "1.2.0"]
             [lein-cljsbuild "1.1.8" :exclusions [org.clojure/clojure]]
             [lein-garden    "0.3.0"]
             [lein-ancient   "0.6.15"]
             [lein-ring      "0.12.5"]]
 
   :source-paths ["src/clojure", "src/clojurescript" "src/styles"]
-  ;; :prep-tasks [["garden" "once"]]
+  :prep-tasks [["garden" "once"]]
 
   :uberjar-name "nossal.jar"
 
@@ -98,24 +98,28 @@
                                    :language-out :ecmascript5
                                    :optimizations :advanced}}]}
 
-  :profiles {:production {:env {:dev "false" :production "true" :ga-tracking-id "UA-11532471-6"}
-                          :prep-tasks [["cljsbuild" "once" "app" "sw"] ["garden" "once"]]
-                          }
+  :aliases {"watch" ["with-profile" "dev" "ring" "server-headless"]}
 
-             :dev {:env {:dev "true" :production "false" :ga-tracking-id "UA-11532471-6"
+  :profiles {:production {:env {:dev "false"
+                                :production "true"
+                                :ga-tracking-id "UA-11532471-6"}
+                          :prep-tasks [["cljsbuild" "once" "app" "sw"]]}
+
+             :dev {:env {:dev "true"
+                         :production "false"
+                         :ga-tracking-id "UA-11532471-6"
                          :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
-                   :prep-tasks [["garden" "once"]]
                    :cljsbuild
-                     {:builds [{:id "dev-app"
-                                :source-paths ["src/clojurescript/nossal/app"
-                                               "src/clojure/nossal/data"]
-                                :figwheel true
-                                :incremental true
-                                :compiler {:output-to "resources/public/js/app.js"
-                                           :output-dir "resources/public/js/app-dev-out"
-                                           :main "nossal.app.app"
-                                           :asset-path "/js/app-dev-out"
-                                           :parallel-build true
-                                           :pretty-print true
-                                           :language-in :ecmascript5
-                                           :optimizations :none}}]}}})
+                   {:builds [{:id "dev-app"
+                              :source-paths ["src/clojurescript/nossal/app"
+                                             "src/clojure/nossal/data"]
+                              :figwheel true
+                              :incremental true
+                              :compiler {:output-to "resources/public/js/app.js"
+                                         :output-dir "resources/public/js/app-dev-out"
+                                         :main "nossal.app.app"
+                                         :asset-path "/js/app-dev-out"
+                                         :parallel-build true
+                                         :pretty-print true
+                                         :language-in :ecmascript5
+                                         :optimizations :none}}]}}})

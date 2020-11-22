@@ -44,16 +44,16 @@
                     [:small "Este cupom pode ser utilizado duas vezes por pessoa, nas suas primeiras viagens. São " [:span.value "R$20,00"] " de desconto em duas viagens."]]}
    "99"     {:code "BRE747Z4"
              :title ["99" "#1"]
-             :url "https://d.99app.com/rZyaefmfuRv6p?shareChannel=more"
+             :url "https://d.99app.com/0Yw8Gq2?shareChannel=more"
              :description "💲 Ganhe R$10,00 de desconto na primeira corrida 99 (99POP também)! ✅"
-             :text [:p "Ganhe " [:span.value "R$10,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
+             :text [:p "Ganhe " [:span.value "R$18,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."
                      [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]]}
    "99-1"   {:code "GMKH2MST"
              :title ["99" "#2"]
-             :url "https://d.99app.com/rZy8mU5EEiu13?shareChannel=more"
+             :url "https://d.99app.com/tQj2VoR?shareChannel=more"
              :description "💲 Ganhe R$10,00 de desconto na primeira corrida 99 (99POP também)! ✅"
-             :text [:p "Ganhe " [:span.value "R$10,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
+             :text [:p "Ganhe " [:span.value "R$18,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."
                      [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]]}
    "cabify" {:code "rodrigon361"
