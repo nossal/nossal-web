@@ -103,7 +103,7 @@
     :color "#555"}]
 
   [:h1
-   {:font-family "Impacto, Impact, sans-serif"
+   {:font-family "'Anton', Impact, sans-serif"
     :font-size (em 5)
     :text-transform "uppercase"
     :letter-spacing (em 0.15)
@@ -124,7 +124,7 @@
      :padding "0.3em 0.5em 0.2em"
      :display "inline-block"}]]
 
-  [:.accent {:color "rgba(130, 96, 195, 0.8)"}]
+  [:.accent {:color "rgba(195, 96, 148, 0.8)"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
                  :margin-top (rem 1)
@@ -132,7 +132,8 @@
                  :display "inline-block"
                  :padding "0.5em 1em"
                  :text-shadow "1px 4px 4px #96a0a9, 0 0 0 #000, 1px 4px 6px #96a0a9"
-                 :background "#96a0a9"}]
+                 :background-color "#96a0a9"
+                 :background "linear-gradient(137deg, rgba(150,160,169,1) 0%, rgba(165,178,189,1) 35%, rgba(141,153,163,1) 100%)"}]
   [:.end {:color "#d4d4d4"
           :text-shadow "1px 1px 3px rgba(0,0,0,0.2)"}]
 

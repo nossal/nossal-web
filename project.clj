@@ -62,64 +62,66 @@
                                     "resources/public/css"
                                     :target-path]
 
-  :garden {:builds [{:source-paths ["src/styles"]
-                     :stylesheet nossal.styles/screen
-                     :compiler {:output-to "resources/public/css/screen.css"
-                                :vendors ["moz" "webkit"]
-                                :pretty-print? false}}
-                    {:source-paths ["src/styles"]
-                     :stylesheet nossal.app/app
-                     :compiler {:output-to "resources/public/css/app.css"
-                                :vendors ["moz" "webkit"]
-                                :pretty-print? false}}
-                    {:source-paths ["src/styles"]
-                     :stylesheet nossal.simple/simple
-                     :compiler {:output-to "resources/public/css/simple.css"
-                                :vendors ["moz" "webkit"]
-                                :pretty-print? false}}]}
+  :garden {:builds
+           [{:source-paths ["src/styles"]
+             :stylesheet nossal.styles/screen
+             :compiler {:output-to "resources/public/css/screen.css"
+                        :vendors ["moz" "webkit"]
+                        :pretty-print? false}}
+            {:source-paths ["src/styles"]
+             :stylesheet nossal.app/app
+             :compiler {:output-to "resources/public/css/app.css"
+                        :vendors ["moz" "webkit"]
+                        :pretty-print? false}}
+            {:source-paths ["src/styles"]
+             :stylesheet nossal.simple/simple
+             :compiler {:output-to "resources/public/css/simple.css"
+                        :vendors ["moz" "webkit"]
+                        :pretty-print? false}}]}
 
-  :cljsbuild {:builds [{:id "app"
-                        :source-paths ["src/clojurescript/nossal/app"
-                                       "src/clojure/nossal/data"]
-                        :compiler {:output-to "resources/public/js/app.js"
-                                   :output-dir "resources/public/js/app-out"
-                                   :source-map "resources/public/js/app.js.map"
-                                   :pretty-print false
+  :cljsbuild {:builds
+              [{:id "app"
+                :source-paths ["src/clojurescript/nossal/app"
+                               "src/clojure/nossal/data"]
+                :compiler {:output-to "resources/public/js/app.js"
+                           :output-dir "resources/public/js/app-out"
+                           :source-map "resources/public/js/app.js.map"
+                           :pretty-print false
                                   ;  :parallel-build false
-                                   :language-out :ecmascript5
-                                   :optimizations :advanced}}
-                       {:id "sw"
-                        :source-paths ["src/clojurescript/nossal/sw"]
-                        :compiler {:output-to "resources/public/js/sw.js"
-                                   :output-dir "resources/public/js/sw-out"
-                                   :source-map "resources/public/js/sw.js.map"
-                                   :pretty-print false
+                           :language-out :ecmascript5
+                           :optimizations :advanced}}
+               {:id "sw"
+                :source-paths ["src/clojurescript/nossal/sw"]
+                :compiler {:output-to "resources/public/js/sw.js"
+                           :output-dir "resources/public/js/sw-out"
+                           :source-map "resources/public/js/sw.js.map"
+                           :pretty-print false
                                   ;  :parallel-build false
-                                   :language-out :ecmascript5
-                                   :optimizations :advanced}}]}
+                           :language-out :ecmascript5
+                           :optimizations :advanced}}]}
 
   :aliases {"watch" ["with-profile" "dev" "ring" "server-headless"]}
 
-  :profiles {:production {:env {:dev "false"
-                                :production "true"
-                                :ga-tracking-id "UA-11532471-6"}
-                          :prep-tasks [["cljsbuild" "once" "app" "sw"]]}
+  :profiles
+  {:production {:env {:dev "false"
+                      :production "true"
+                      :ga-tracking-id "UA-11532471-6"}
+                :prep-tasks [["cljsbuild" "once"]]}
 
-             :dev {:env {:dev "true"
-                         :production "false"
-                         :ga-tracking-id "UA-11532471-6"
-                         :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
-                   :cljsbuild
-                   {:builds [{:id "dev-app"
-                              :source-paths ["src/clojurescript/nossal/app"
-                                             "src/clojure/nossal/data"]
-                              :figwheel true
-                              :incremental true
-                              :compiler {:output-to "resources/public/js/app.js"
-                                         :output-dir "resources/public/js/app-dev-out"
-                                         :main "nossal.app.app"
-                                         :asset-path "/js/app-dev-out"
-                                         :parallel-build true
-                                         :pretty-print true
-                                         :language-in :ecmascript5
-                                         :optimizations :none}}]}}})
+   :dev {:env {:dev "true"
+               :production "false"
+               :ga-tracking-id "UA-11532471-6"
+               :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
+         :cljsbuild {:builds
+                     [{:id "dev-app"
+                       :source-paths ["src/clojurescript/nossal/app"
+                                      "src/clojure/nossal/data"]
+                       :incremental true
+                       :compiler {:output-to "resources/public/js/app.js"
+                                  :output-dir "resources/public/js/app-dev-out"
+                                  :main "nossal.app.app"
+                                  :asset-path "/js/app-dev-out"
+                                  :parallel-build true
+                                  :pretty-print true
+                                  :language-out :ecmascript5
+                                  :optimizations :none}}]}}})

@@ -42,6 +42,8 @@
       [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
       [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
       [:link {:rel "alternate" :href "https://noss.al" :hreflang "en-us"}]
+      [:link {:rel "preconnect" :href "https://fonts.gstatic.com"}]
+      [:lunk {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Anton&display=swap"}]
       (map (fn [l] [:link l]) links)
       (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
       [:noscript
@@ -56,7 +58,7 @@
       [:span.made "Handmade " (a-out "https://github.com/nossal/noss.al" "entirely") " with "]
       (a-out "https://clojure.org" "Clojure") " and "
       [:span.heart " "] " at "
-      (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos.")]
+      (a-out "https://pt.wikipedia.org/wiki/Gravata%C3%AD" "Aldeia dos Anjos. 🇧🇷")]
       (map (fn [s] [:script s]) scripts)]))
 
 (defn base-html
@@ -115,7 +117,6 @@
       [:div.divisor]
 
       ;  [:section "ノッサル・ロドリゴ"]
-
 
       [:section#about
        [:div.end
