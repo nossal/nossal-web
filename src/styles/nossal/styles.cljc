@@ -68,7 +68,7 @@
     :margin "1em 0 0"
     :padding ".5em 1em"
     :width "97vw"
-    :margin-top (em 6)
+    :margin-top "calc(25vh - 7em)"
     :margin-left "auto"
     :margin-right "auto"}
    [:header
@@ -124,7 +124,7 @@
      :padding "0.3em 0.5em 0.2em"
      :display "inline-block"}]]
 
-  [:.accent {:color "rgba(195, 96, 148, 0.8)"}]
+  [:.accent {:color "rgba(156, 24, 224 , 0.8)"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
                  :margin-top (rem 1)
@@ -149,9 +149,9 @@
 
   (at-media {:max-width (px 736)}
             [:article [:header {:padding-top (em 3)}]]
-            [:h1 {:font-size (em 3)}])
+            [:h1 {:font-size (em 4)}])
 
   (at-media {:max-width (px 383)}
             [:article [:header {:padding-top (em 1.5)}]]
-            [:h1 {:font-size (em 4)}]
+            [:h1 {:font-size (em 3)}]
             [:footer [:.made [:a {:display :none}]]]))

@@ -55,9 +55,6 @@
          :auto-reload? true
          :reload-paths ["src/clojure"]}
 
-  :figwheel {:ring-handler nossal.app/dev-app
-             :css-dirs ["resources/public/css"]}
-
   :clean-targets ^{:protect false} ["resources/public/js"
                                     "resources/public/css"
                                     :target-path]
@@ -100,7 +97,8 @@
                            :language-out :ecmascript5
                            :optimizations :advanced}}]}
 
-  :aliases {"watch" ["with-profile" "dev" "ring" "server-headless"]}
+  :aliases {"watch"   ["with-profile" "dev" "ring" "server-headless"]
+            "release" ["with-profile" "production" "ring" "uberjar"]}
 
   :profiles
   {:production {:env {:dev "false"

@@ -17,6 +17,12 @@
              :description "💲 Ganhe R$20,00 na sua primeira compra! ✅"
              :text [:p "Ganhe " [:span.value "R$15,00"] " de desconto na " [:strong "sua primeira"] " compra! " [:ruby "🎉 " [:rt "ta-da!"]]
                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, na sua primeira compra. São " [:span.value "R$15,00"] " de desconto pra você aproveitar."]]}
+   "netflix" {:code "https://www.netflix.com/n/06f1f35b-799e-41af-8cf5-e2d82c479048"
+              :title ["Netflix"]
+              :url "https://www.netflix.com/n/06f1f35b-799e-41af-8cf5-e2d82c479048"
+              :description "💲 Ganhe R$20,00 na sua primeira compra! ✅"
+              :text [:p "Ganhe " [:span.value "R$15,00"] " de desconto na " [:strong "sua primeira"] " compra! " [:ruby "🎉 " [:rt "ta-da!"]]
+                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, na sua primeira compra. São " [:span.value "R$15,00"] " de desconto pra você aproveitar."]]}
    "picpay" {:code "PKTA9D"
              :title ["PicPay"]
              :url "http://www.picpay.com/convite?!PKTA9D"
@@ -65,7 +71,7 @@
 
 
 (defn coupon-name [{title :title :as coupon}]
-  [:span "Cupom " (first title) " " [:span (rest title)]])
+  [:span "Cupom " (first title) " " (when-let [sub (next title)] [:sup sub])])
 
 (defn coupon-base [req service page]
   (page/html5
@@ -102,12 +108,12 @@
 (defn coupon-index [req]
   (coupon-base
    req ""
-   {:title "Cupons"
-    :description "cupons"
-    :body [:section [:h1 "🎁 CUPONS"]
+   {:title "Cupons de Desconto"
+    :description "cupons desconto promoção uber ifood 99 cabify picpay netflix"
+    :body [:section [:div {:style "font-size: 4em"} "🎁"] [:h1 "Cupons"]
            [:div.intro.text
-            [:p "Confira abaixo uma lista de cupons que podem ser úteis pra você."]]
-           [:ul.column
+            [:p "Confira abaixo uma lista de cupons que podem ser úteis pra você. " [:ruby "🎉 " [:rt "ta-da!"]]]]
+           [:ul.column.grid
             (map (fn [name]
                    [:li [:a {:href (str "/cupons/" name)}
                          (coupon-name (coupon-codes name))]])
@@ -126,6 +132,8 @@
               [:div.intro.text
                [:p (service-data :text)]]
               [:amp-iframe {:id "coupon-code"
+                            :data-vars-couponvalue 10
+                            :data-vars-coupon service
                             :sandbox "allow-scripts"
                             :layout "flex-item"
                             :frameborder 0
@@ -137,7 +145,7 @@
              [:section.others
               [:p.intro "Quer mais descontos?"]
 
-              [:p (map (fn [name]
+              [:div.grid (map (fn [name]
                          [:a {:href (str "/cupons/" name)}
                           (coupon-name (coupon-codes name))])
                        (keep #(when (not= service %) %) (shuffle (keys coupon-codes))))]]]})

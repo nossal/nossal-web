@@ -65,7 +65,7 @@
                                      :event_action "link"
                                      :event_label "${outboundLink}"}}
               :trackClickOnCoupon {:on "click"
-                                   :selector ".get-coupon"
+                                   :selector "#coupon-code"
                                    :request "event"
                                    :vars {:event_category "coupons"
                                           :event_name "get-coupon"
