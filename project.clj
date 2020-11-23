@@ -37,7 +37,8 @@
                  [heroku-database-url-to-jdbc    "0.2.2"]
                  [clojure.jdbc/clojure.jdbc-c3p0 "0.3.3"]
 
-                 [ns-tracker                "0.4.0"]]
+                 [ns-tracker                "0.4.0"]
+                 [io.sentry/sentry-clj      "3.1.130"]]
 
   :plugins [[lein-environ   "1.2.0"]
             [lein-cljsbuild "1.1.8" :exclusions [org.clojure/clojure]]

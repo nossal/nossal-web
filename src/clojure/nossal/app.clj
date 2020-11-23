@@ -24,7 +24,13 @@
             [nossal.api.shortner :refer [create-database new-url redirect]]
             [nossal.coupons :refer [coupon coupon-index coupon-codes]]
             [nossal.reviews :refer [reviews]]
-            [nossal.core :as core]))
+            [nossal.core :as core]
+            [sentry-clj.core :as sentry]))
+
+
+
+(when-let [dsn (env :sentry-dsn)]
+  (sentry/init! dsn))
 
 
 (defn ignore-trailing-slash [handler]
