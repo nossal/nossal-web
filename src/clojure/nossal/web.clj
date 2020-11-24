@@ -43,7 +43,7 @@
       [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
       [:link {:rel "alternate" :href "https://noss.al" :hreflang "en-us"}]
       [:link {:rel "preconnect" :href "https://fonts.gstatic.com"}]
-      [:lunk {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Anton&display=swap"}]
+      [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Anton&display=swap"}]
       (map (fn [l] [:link l]) links)
       (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
       [:noscript
