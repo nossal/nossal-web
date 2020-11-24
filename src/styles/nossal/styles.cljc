@@ -110,10 +110,11 @@
     :line-height (em 1)
     :font-weight 300
     :margin-bottom (em 0.2)
-    :margin-right (em -0.4)
     :text-align "center"
     :color "#f7f7f7"
     :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
+   [:svg {:max-width (px 300) :height (em 1)}
+    [:path {:fill "#f5f5f5a3"}]]
    [:>span
     {:background "linear-gradient(270deg,#76778c,#324f81,#961d99,#6f788a,#3b5789,#961d99,#6f788a,#315189,#961d99)"
      :background-size "700% 200%"
@@ -127,13 +128,12 @@
   [:.accent {:color "rgba(156, 24, 224 , 0.8)"}]
   [:.about-line {:font-size (em 1.1)
                  :font-weight 300
-                 :margin-top (rem 1)
                  :color "rgba(119, 122, 147, 0.8)"
                  :display "inline-block"
                  :padding "0.5em 1em"
                  :text-shadow "1px 4px 4px #96a0a9, 0 0 0 #000, 1px 4px 6px #96a0a9"
                  :background-color "#96a0a9"
-                 :background "linear-gradient(137deg, rgba(150,160,169,1) 0%, rgba(165,178,189,1) 35%, rgba(141,153,163,1) 100%)"}]
+                 :background "linear-gradient(137deg,rgb(150 160 169 / 66%) 0%,rgba(165,178,189,1) 35%,rgb(141 153 163 / 84%) 100%)"}]
   [:.end {:color "#d4d4d4"
           :text-shadow "1px 1px 3px rgba(0,0,0,0.2)"}]
 
@@ -148,10 +148,8 @@
   [:.offline {:animation dismiss-anim}]
 
   (at-media {:max-width (px 736)}
-            [:article [:header {:padding-top (em 3)}]]
-            [:h1 {:font-size (em 4)}])
+            [:article [:header {:padding-top (em 3)}]])
 
   (at-media {:max-width (px 383)}
             [:article [:header {:padding-top (em 1.5)}]]
-            [:h1 {:font-size (em 3)}]
             [:footer [:.made [:a {:display :none}]]]))

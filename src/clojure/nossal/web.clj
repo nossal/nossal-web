@@ -13,7 +13,7 @@
             ; [nossal.styles :refer [bgcolor]]
             [nossal.db :refer [db]]
             [nossal.db :as data]
-            [nossal.svg :refer [all-icons chevron-down]]))
+            [nossal.svg :refer [all-icons chevron-down nossal]]))
 
 
 
@@ -42,8 +42,6 @@
       [:link {:rel "manifest" :href (get options :manifest "/manifest.json")}]
       [:link {:rel "mask-icon" :href "/safari-pinned-tab.svg" :color "#747f90"}]
       [:link {:rel "alternate" :href "https://noss.al" :hreflang "en-us"}]
-      [:link {:rel "preconnect" :href "https://fonts.gstatic.com"}]
-      [:lunk {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Anton&display=swap"}]
       (map (fn [l] [:link l]) links)
       (map (fn [styl] [:style (styl :attr) (styl :content)]) styles)
       [:noscript
@@ -107,7 +105,7 @@
      [:nav [:ul.inline [:li [:a {:href "/cupons"} "goodies"]]]]
      [:article
       [:header
-       [:h1 "nossal."]
+       [:h1 nossal]
        [:p.about-line [:span.accent {:title "Fool Stack"} "\"Full-Stack\""] " Web Developer"]]
 
       ;  [:section#me [:div#tweetwidget]
