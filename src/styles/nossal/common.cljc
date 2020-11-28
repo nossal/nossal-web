@@ -21,7 +21,7 @@
     :letter-spacing (em 0.07)
     :font-size (px 9)
     :color "#bbb"
-    :background-color "rgba(255, 255, 255, 0.1)"
+    :background-color "rgba(255, 255, 255, 0.05)"
     :line-height (px 20)
     :text-shadow "1px 1px 3px rgba(0, 0, 0, 0.2)"
     :width (percent 100)}

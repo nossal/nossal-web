@@ -113,8 +113,8 @@
     :text-align "center"
     :color "#f7f7f7"
     :text-shadow "0 1px 5px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.20)"}
-   [:svg {:max-width (px 300) :height (em 1)}
-    [:path {:fill "#f5f5f5a3"}]]
+   [:svg {:max-width (px 500)}
+    [:path {:fill "#fffefecf"}]]
    [:>span
     {:background "linear-gradient(270deg,#76778c,#324f81,#961d99,#6f788a,#3b5789,#961d99,#6f788a,#315189,#961d99)"
      :background-size "700% 200%"
