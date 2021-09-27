@@ -31,6 +31,9 @@ pom.xml
 /.nrepl-history
 .calva
 
+.clj-kondo/
+.lsp/
+
 *.stackdump
 .cpcache/
 .rebel_readline_history
