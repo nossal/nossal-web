@@ -1,10 +1,6 @@
 (ns nossal.common
   (:require [nossal.colors :refer [bgcolor]]
-<<<<<<< HEAD
             [garden.units :as gu :refer [px em percent]]))
-=======
-            [garden.units :as gu :refer [px em rem percent]]))
->>>>>>> c472ac5433837c05847f542fa6a49e03a3f590b7
 
 (def body
   [:body

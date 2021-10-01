@@ -2,13 +2,9 @@
   (:require [compojure.route :as route]
             [compojure.core :refer [defroutes context GET PUT POST DELETE ANY]]
             [compojure.handler :refer [site]]
-
-            [bidi.bidi :as bidi]
-            [bidi.ring :refer [make-handler resources-maybe]]
-
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.json :refer [wrap-json-body]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.adapter.jetty :as jetty]
             [ring.util.response :as response]
 
@@ -18,13 +14,11 @@
 
             [sitemap.core :refer [generate-sitemap]]
 
-            [nossal.web :refer [index dot log breakout miner iframe-demo]]
+            [nossal.web :refer [index dot log breakout iframe-demo]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
             [nossal.coupons :refer [coupon coupon-index coupon-codes]]
-            [nossal.reviews :refer [reviews]]
-            [nossal.core :as core]
             [sentry-clj.core :as sentry]))
 
 
@@ -126,9 +120,6 @@
 
   (GET "/%3E:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; />:encoded-id
     (redirect encoded-id))
-
-  (context "/shop" []
-    (ANY "*" request shop))
 
   (route/resources "/")
 
