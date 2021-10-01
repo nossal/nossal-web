@@ -6,8 +6,8 @@
   (.call js/Array.prototype.slice array-like))
 
 (defn gtag [& args]
-  (do (alert! (clj->js args))
-      (apply js/gtag (clj->js args))))
+  ((alert! (clj->js args))
+   (apply js/gtag (clj->js args))))
 
 (defn addTrackEvent [where event]
   (.addEventListener where

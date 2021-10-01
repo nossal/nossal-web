@@ -1,13 +1,10 @@
 (ns nossal.coupons
   (:require [clojure.java.io :as io]
             [clojure.string :as s]
-            [ring.util.response :as res]
-            [environ.core :refer [env]]
-            [hiccup.core :as h]
             [hiccup.page :as page]
             [nossal.data :as dat]
             [nossal.core :as core]
-            [nossal.util.web :refer [not-found a-out]]))
+            [nossal.util.web :refer [a-out]]))
 
 
 (def coupon-codes
@@ -61,13 +58,7 @@
              :description "💲 Ganhe R$10,00 de desconto na primeira corrida 99 (99POP também)! ✅"
              :text [:p "Ganhe " [:span.value "R$18,00"] " de desconto na sua " [:strong "primeira"] " viagem no 99! " [:ruby "🎉 " [:rt "ta-da!"]]
                     [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira corrida. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."
-                     [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]]}
-   "cabify" {:code "rodrigon361"
-             :title ["Cabify"]
-             :url "https://cabify.com/i/rodrigon361"
-             :description "💲 Ganhe R$20,00 de desconto na sua primeira viagem! ✅"
-             :text [:p "Ganhe " [:span.value "R$20,00"] " de desconto na sua primeira corrida! " [:ruby "🎉 " [:rt "ta-da!"]]
-                    [:small "Este cupom pode ser utilizado apenas uma vez por pessoa, em sua primeira viagem. Ganhe até " [:span.value "100%"] " de desconto na sua viagem."]]}})
+                     [:p.warn [:span "Seja rápido!"] " Você tem " [:strong "até 15 dias"] " para fazer a sua primeira viagem antes do cupom expirar. 😨"]]]}})
 
 
 (defn coupon-name [{title :title :as coupon}]

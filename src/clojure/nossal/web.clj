@@ -129,18 +129,6 @@
        [:a {:href "mailto:rodrigo@noss.al"} "rodrigo@noss.al"]
        (a-out (get dat/public-profiles "Twitter") "twitter")]]]]))
 
-; [:span.java "Java"] ", " [:span.python "Python"]
-(defn breakout [req]
-  (base "Breakout"
-        {:keywords "game, breakout, arkanoid"
-         :description "That's Breakout!"
-         :manifest "breakout-manifest"
-         :icon "bkt-icon"}
-        ""
-        [[:div.container
-          [:canvas#viewport]]]
-        req))
-
 (defn dot [req]
   (if (s/includes? (get (:headers req) "user-agent") "curl")
     (do
@@ -211,28 +199,6 @@
             [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
             [:div "JAMES M SNELL"]
             [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] req))
-
-
-(defn miner [req]
-  (base-amp "Miner"
-            [{:name "keywords" :content "crypto money miner coin"}
-             {:name "description" :content "Miner"}]
-            (concat [{:rel "canonical" :href (core/cannonical-url req)}] (favicons-attrs "icon"))
-            []
-            [{:content (slurp (io/resource "public/css/screen.css"))}]
-
-            [[:script {:async true :src "https://coinhive.com/lib/miner.min.js"}]
-             [:div.coinhive-miner {:style "width: 550px; height: 100px; margin: auto"
-                                   :data-key (env :chive-key)
-                                   :data-autostart "true"
-                                   :data-background "#444"
-                                   :data-text "#eee"
-                                   :data-action "#0f0"
-                                   :data-graph "#555"
-                                   :data-threads 4
-                                   :data-whitelabel false}
-              [:em "Please disable Adblock"]]]))
-
 
 (defn iframe-demo [req]
   (base-html "IFRAME" [] [] [] []
