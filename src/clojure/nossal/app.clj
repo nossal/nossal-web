@@ -14,7 +14,7 @@
 
             [sitemap.core :refer [generate-sitemap]]
 
-            [nossal.web :refer [index dot log breakout iframe-demo]]
+            [nossal.web :refer [index dot log iframe-demo]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
@@ -87,9 +87,6 @@
 
   (GET "/log" request
     (log request))
-
-  (GET "/breakout" request
-    (breakout request))
 
   ; (GET "/miner" request
   ;   (miner request))
