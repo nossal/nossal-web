@@ -1,21 +1,12 @@
 (ns nossal.app.core
-  (:require [reagent.core :as reagent]
-            [re-frame.core :as rf]
-            [nossal.shop.core]
-            [nossal.shop.routes :refer [app-routes]]
-            [nossal.shop.views :as views]))
+  (:require [nossal.app.commons :refer [online-status register-service-worker]]
+            [nossal.app.analytics :refer [analytics-setup]]
+            [nossal.data :refer [data-analytics]]))
 
-(enable-console-print!)
+(register-service-worker "sw.js" ".")
 
+(online-status nil)
+(.addEventListener js/self "offline" #(online-status %))
+(.addEventListener js/self "online" #(online-status %))
 
-(defn mount-root []
-  (reagent/render [views/main-panel]
-                  (.getElementById js/document "app")))
-
-(defn ^:export init []
-  (rf/dispatch-sync [:initialise])
-  (app-routes)
-  (mount-root))
-
-
-(init)
+(analytics-setup data-analytics)

@@ -1,6 +1,5 @@
 (ns nossal.app.analytics
-  (:require [nossal.data :refer [data-analytics]]
-            [nossal.app.commons :refer [alert!]]))
+  (:require [nossal.app.commons :refer [alert!]]))
 
 (defn ->Array [array-like]
   (.call js/Array.prototype.slice array-like))
@@ -32,4 +31,3 @@
         (addTrackEvent js/document conf)))))
 
 ; (.addEventListener js/document "DOMContentLoaded" (fn [] (analytics-setup data-analytics)))
-(analytics-setup data-analytics)
