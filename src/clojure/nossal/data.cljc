@@ -58,9 +58,9 @@
                               :selector "a.out"
                               :request "event"
                               :vars {:event_category "outbound"
-                                     :event_name "outbound"
                                      :event_action "link"
-                                     :event_label "${outboundLink}"}}
+                                     :event_label "${outboundLink}"
+                                     :event_name "outbound"}}
               :trackClickOnCoupon {:on "click"
                                    :selector "#coupon-code"
                                    :request "event"

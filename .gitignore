@@ -40,3 +40,5 @@ pom.xml
 *.stackdump
 .cpcache/
 .rebel_readline_history
+*.stackdump
+.cpcache

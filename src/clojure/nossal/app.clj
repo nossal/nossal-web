@@ -111,11 +111,8 @@
     (coupon-index request))
 
   (GET "/cupons/:service" [service :as request]
-    (coupon service request))
-
-
-  (POST "/debug" request
-    (debug request))
+    (coupon service request)) (POST "/debug" request
+                                (debug request))
 
   (GET "/demo" request
     (iframe-demo request)) (POST "/short/create-db" []
