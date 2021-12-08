@@ -14,7 +14,7 @@
 
             [sitemap.core :refer [generate-sitemap]]
 
-            [nossal.web :refer [index dot log iframe-demo]]
+            [nossal.web :refer [index dot]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
@@ -85,9 +85,6 @@
   (GET "/dot" request
     (dot request))
 
-  (GET "/log" request
-    (log request))
-
   ; (GET "/miner" request
   ;   (miner request))
 
@@ -104,10 +101,6 @@
   (GET "/cupons/:service" [service :as request]
     (coupon service request)) (POST "/debug" request
                                 (debug request))
-
-  (GET "/demo" request
-    (iframe-demo request)) (POST "/short/create-db" []
-                             (create-database))
 
   (POST "/short/new/:url" [url]
     (new-url url))
