@@ -17,11 +17,9 @@
   (-> (res/response (json/write-str (data/create-urls-table data/db)))
       (res/content-type "text/plain")))
 
-(defn new-url [request]
-  (let [{:keys [params uri]} request
-        param-url (get params "url")]
-    (-> (res/response (json/write-str (encode (:id (first (data/insert-url data/db {:url param-url}))))))
-        (res/content-type "text/plain"))))
+(defn new-url [params]
+    (-> (res/response (json/write-str (encode (:id (first (data/insert-url data/db {:url (:url params)}))))))
+        (res/content-type "text/plain")))
 
 (defn new-url-form [request]
   (page/html5

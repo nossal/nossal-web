@@ -107,8 +107,12 @@
   (GET "/short" request
     (new-url-form request))
 
-  (POST "/short" [request]
-    (new-url request))
+  (POST "/short" [& params]
+    (new-url params))
+
+
+  ;; (POST "/short" [request]
+  ;;   (new-url request))
 
   (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
     (redirect encoded-id))
