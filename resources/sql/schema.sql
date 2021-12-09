@@ -5,6 +5,8 @@
 CREATE TABLE "urls" (
     "id" serial,
     "url" text,
+    "name" text,
+    "tags" text,
     "created_at" TIMESTAMP DEFAULT now(),
     PRIMARY KEY ("id")
 );
@@ -14,8 +16,8 @@ DROP TABLE IF EXISTS "urls" CASCADE;
 
 -- :name insert-url :<!
 -- :doc Insert a single url
-INSERT INTO "urls" ("url")
-VALUES (:url) RETURNING "id"
+INSERT INTO "urls" ("name", "tag", "url")
+VALUES (:name, :tag, :url) RETURNING "id"
 
 -- :name all-urls :? :*
 SELECT "id", "url", "created_at" FROM "urls"

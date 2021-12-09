@@ -14,32 +14,38 @@
             [nossal.db :as data]))
 
 (defn create-database []
+  (data/drop-urls-table data/db)
   (-> (res/response (json/write-str (data/create-urls-table data/db)))
       (res/content-type "text/plain")))
 
 (defn new-url [params]
-    (-> (res/response (json/write-str (encode (:id (first (data/insert-url data/db {:url (:url params)}))))))
+    (-> (res/response (json/write-str (encode (:id (first (data/insert-url data/db {:name (:name params)
+                                                                                    :tag (:tag params)
+                                                                                    :url (:url params)}))))))
         (res/content-type "text/plain")))
 
 (defn new-url-form [request]
   (page/html5
    [:div (form/form-to {:enctype "multipart/form-data"}
                        [:post "/short"]
-                       (form/text-field "url")
                        (anti-forgery-field)
-                       (form/submit-button "Submit"))]))
+                       [:p (form/text-field {:placeholder "Name"} "name")]
+                       [:p (form/text-field {:placeholder "Tag"} "tag")]
+                       [:p (form/text-field {:placeholder "URL"} "url")]
+                       [:p (form/submit-button "Submit")])]))
 
 (defn redirect [encoded-id]
-  (if-let [url (:url (data/get-data data/url-by-id {:id (decode encoded-id)}))]
+  (if-let [url (data/get-data data/url-by-id {:id (decode encoded-id)})]
     (do
       (log/info url)
       (client/post "https://www.google-analytics.com/collect"
                    {:form-params {:v "1"
-                                  :tid (env :ga-tracking-id)
+                                  :tid (:tag url (env :ga-tracking-id))
                                   :cid "555"
                                   :t "pageview"
                                   :dh "noss.al"
-                                  :dp (str "/sht/" encoded-id)
-                                  :dt (str "Page " (decode encoded-id))}})
-      (res/redirect url))
+                                  :dp (:name url (str "/go/" encoded-id))
+                                  :dt (str "Page " (decode encoded-id) (:name url))}
+                    :async? true})
+      (res/redirect (:url url)))
     not-found))
