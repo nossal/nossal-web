@@ -106,8 +106,10 @@
                                 (debug request))
 
   (GET "/demo" request
-    (iframe-demo request)) (POST "/short/create-db" []
-                             (create-database))
+    (iframe-demo request))
+
+  (GET "/short/create-db" []
+    (create-database))
 
   (POST "/short/new/:url" [url]
     (new-url url))
@@ -126,12 +128,6 @@
   (ANY "*" []
     (route/not-found (slurp (io/resource "404.html")))))
 
-(def app-bidi-routes ["/" {;"" (resources-maybe {:prefix "public/"})
-                      ; "" index
-                           "debug" debug
-                           "sw.js.map"  (fn [req] (service-worker ".map"))
-                           "sw.js" (service-worker "")
-                           "manifest.json" pwa-manifest}])
 
 (def app
   (-> app-routes
@@ -151,4 +147,4 @@
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 3000))]
-    (jetty/run-jetty (site #'app) {:port port :join? false})))
+    (jetty/run-jetty #'app {:port port :join? false})))
