@@ -46,6 +46,8 @@
                                   :dh "noss.al"
                                   :dp (:name url (str "/go/" encoded-id))
                                   :dt (str "Page " (decode encoded-id) (:name url))}
-                    :async? true})
+                    :async? true}
+                   (fn [response] (println "response is:" response))
+                   (fn [exception] (println "exception message is: " (.getMessage exception))))
       (res/redirect (:url url)))
     not-found))
