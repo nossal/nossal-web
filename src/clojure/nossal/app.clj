@@ -1,7 +1,6 @@
 (ns nossal.app
   (:require [compojure.route :as route]
-            [compojure.core :refer [defroutes context GET PUT POST DELETE ANY]]
-            [compojure.handler :refer [site]]
+            [compojure.core :refer [defroutes GET POST ANY]]
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.json :refer [wrap-json-body]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
@@ -14,7 +13,7 @@
 
             [sitemap.core :refer [generate-sitemap]]
 
-            [nossal.web :refer [index dot log iframe-demo]]
+            [nossal.web :refer [index dot]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
             [nossal.api.shortner :refer [create-database new-url redirect]]
@@ -85,9 +84,6 @@
   (GET "/dot" request
     (dot request))
 
-  (GET "/log" request
-    (log request))
-
   ; (GET "/miner" request
   ;   (miner request))
 
@@ -104,10 +100,6 @@
   (GET "/cupons/:service" [service :as request]
     (coupon service request)) (POST "/debug" request
                                 (debug request))
-
-  (GET "/demo" request
-    (iframe-demo request))
-
   (GET "/short/create-db" []
     (create-database))
 
@@ -136,12 +128,6 @@
       (wrap-cache-control)
       (ignore-trailing-slash)))
 
-(def dev-app-old
-  (-> app-routes
-      (wrap-json-body {:keywords? true :bigdecimals? true})
-      ; (make-handler)))
-     ; (wrap-defaults (site-defaults-options site-defaults) api-defaults)
-      (ignore-trailing-slash)))
 
 (def dev-app (wrap-reload (wrap-defaults #'app-routes site-defaults)))
 

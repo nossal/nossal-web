@@ -6,39 +6,39 @@
 
   :min-lein-version "2.9.0"
 
-  :dependencies [[org.clojure/clojure       "1.10.1"]
-                 [org.clojure/data.json     "1.0.0"]
+  :dependencies [[org.clojure/clojure       "1.10.3"]
+                 [org.clojure/data.json     "2.4.0"]
                  [org.clojure/tools.logging "1.1.0"]
-                 [org.clojure/core.cache    "1.0.207"]
-                 [org.clojure/java.jdbc     "0.7.11"]
+                 [org.clojure/core.cache    "1.0.217"]
+                 [org.clojure/java.jdbc     "0.7.12"]
 
-                 [org.clojure/clojurescript "1.10.773"]
+                 [org.clojure/clojurescript "1.10.893"]
                  [bidi                      "2.1.6"]
                  [kibu/pushy                "0.3.8"]
-                 [reagent                   "0.10.0"]
-                 [reagent-utils             "0.3.3"]
-                 [re-frame                  "1.1.2"]
+                 [reagent                   "1.1.0"]
+                 [reagent-utils             "0.3.4"]
+                 [re-frame                  "1.2.0"]
                  [garden                    "1.3.10"]
                  [hiccup                    "1.0.5"]
 
                  [compojure                 "1.6.2"]
-                 [ring/ring-jetty-adapter   "1.8.2"]
-                 [ring/ring-defaults        "0.3.2"]
-                 [ring/ring-json            "0.5.0"]
+                 [ring/ring-jetty-adapter   "1.9.4"]
+                 [ring/ring-defaults        "0.3.3"]
+                 [ring/ring-json            "0.5.1"]
 
                  [image-resizer             "0.1.10"]
                  [environ                   "1.2.0"]
-                 [clj-http                  "3.11.0"]
+                 [clj-http                  "3.12.3"]
 
                  [sitemap                   "0.4.0"]
 
-                 [org.postgresql/postgresql      "42.2.18"]
+                 [org.postgresql/postgresql      "42.3.1"]
                  [com.layerware/hugsql           "0.5.1"]
                  [heroku-database-url-to-jdbc    "0.2.2"]
                  [clojure.jdbc/clojure.jdbc-c3p0 "0.3.3"]
 
                  [ns-tracker                "0.4.0"]
-                 [io.sentry/sentry-clj      "3.1.130"]]
+                 [io.sentry/sentry-clj      "5.3.159"]]
 
   :plugins [[lein-environ   "1.2.0"]
             [lein-cljsbuild "1.1.8" :exclusions [org.clojure/clojure]]

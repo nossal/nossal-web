@@ -102,18 +102,31 @@
   [:p.call-to-action
    {:font-size (em 1.2)
     :margin-top (em 1.5)}]
+
   [:#coupon-code
    {:border 0
     :height (em 6)
-    :text-align "center"}]
+    :text-align "center"
+    }]
+
   [:.get-coupon
    {:border :none
     :background "#f7f7f7"
+    :border-radius (em 0.3)
     :max-width (px 360)
     :padding ".2em .4em"
     :color "#454246"
-    :text-decoration "none"
-    :font-size (em 3)}]
+    :text-decoration :none
+    :font-size (em 3)
+    :text-align "center"}
+   [:small
+    {:display "block"
+     :font-size (em 0.25)
+     :letter-spacing (em 0.03)
+     :color "#949494"}]
+   [:.copied
+    {:color "#32e632 !important"}]]
+
   [:p.link-description
    {:font-size (em 0.8)
     :margin-top (em 1.5)
@@ -146,6 +159,7 @@
     {:display "block"
      :margin-top (em 1)
      :font-size (em 0.8)}]]
+
   [:footer
    {:margin-top (em 2)
     :color "#868c8c"
@@ -154,7 +168,6 @@
     :font-size (em 0.7)}
    [:a {:color "#4894d6" :text-decoration "none"}
     [:&:hover {:text-decoration "underline"}]]]
-
 
   (at-media {:max-width (px 736)}
             [:.text {:text-align "justify"}]

@@ -61,17 +61,12 @@
                                      :event_action "link"
                                      :event_label "${outboundLink}"
                                      :event_name "outbound"}}
-              :trackClickOnCoupon {:on "click"
-                                   :selector "#coupon-code"
-                                   :request "event"
-                                   :vars {:event_category "coupons"
-                                          :event_name "get-coupon"
-                                          :event_label "${coupon}"
-                                          :value "${couponvalue}"}}
               :trackCouponConversion {:on "click"
                                       :selector ".get-coupon"
                                       :request "event"
                                       :vars {:event_name "conversion"
+                                             :event_label "${coupon}"
+                                             :value "${couponvalue}"
                                              :send_to "AW-988737553/5qf0CO-OmAQQkeC71wM"}}
               :trackClickOnPI {:on "click"
                                :selector "a#tnet"

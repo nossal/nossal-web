@@ -81,7 +81,6 @@
     [:link {:rel "alternate" :href (str "https://noss.al/cupons/" service)  :hreflang "pt-br"}]
     [:script {:async true :src "https://cdn.ampproject.org/v0.js"}]
     [:script {:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}]
-    [:script {:async true :custom-element "amp-iframe" :src "https://cdn.ampproject.org/v0/amp-iframe-0.1.js"}]
     [:style {:amp-custom true} (slurp (io/resource "public/css/simple.css"))]
     [:style {:amp-boilerplate true} (slurp (io/resource "amp-css.css"))]
     [:noscript
@@ -122,15 +121,14 @@
               [:h1 "Cupom de desconto " (first (service-data :title)) "."]
               [:div.intro.text
                [:p (service-data :text)]]
-              [:amp-iframe {:id "coupon-code"
-                            :data-vars-couponvalue 10
-                            :data-vars-coupon service
-                            :sandbox "allow-scripts"
-                            :layout "flex-item"
-                            :frameborder 0
-                            :src (str "/copy-button.html#" (service-data :code) "," service)
-                            :class (str "code-" service)}
-               [:button {:class "get-coupon" :disabled true :placeholder true} (service-data :code)]]
+
+              [:input {:type "text"
+                       :class "get-coupon"
+                       :id "copy"
+                       :data-vars-couponvalue "10"
+                       :data-vars-coupon (service-data :code)
+                       :value (service-data :code)}]
+
               [:p.link-description "Clique / toque no código acima para copiar, e aproveite o seu desconto."]
               (a-out (service-data :url) {:class "call-to-action"} "Faça aqui seu cadastro e ganhe já! &#x1F381; ")]
              [:section.others

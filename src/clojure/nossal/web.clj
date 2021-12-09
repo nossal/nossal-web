@@ -65,26 +65,6 @@
   ([title meta links scripts styles body options]
    (base title meta links scripts styles body options)))
 
-(defn- base-amp
-  ([title meta links scripts styles body]
-   (base-amp title meta links scripts styles body {}))
-  ([title meta links scripts styles body options]
-   (base
-    title meta links
-    (concat
-     [{:async true :src "https://cdn.ampproject.org/v0.js"}]
-     (when (= "true" (env :production))
-       [{:async true :custom-element "amp-analytics" :src "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"}])
-     scripts)
-    (concat
-     [{:attr {:amp-boilerplate true} :content (slurp (io/resource "amp-css.css"))}]
-     (map #(assoc % :attr {:amp-custom true}) styles))
-    (into [[:amp-analytics {:type "gtag"}
-            [:script {:type "application/json"} (core/to-json dat/data-analytics)]]]
-          body)
-    (merge options {:amp true
-                    :noscript [[:style {:amp-boilerplate true} "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}"]]}))))
-
 
 (defn index [req]
   (base-html
@@ -129,6 +109,7 @@
        [:a {:href "mailto:rodrigo@noss.al"} "rodrigo@noss.al"]
        (a-out (get dat/public-profiles "Twitter") "twitter")]]]]))
 
+
 (defn dot [req]
   (if (s/includes? (get (:headers req) "user-agent") "curl")
     (do
@@ -141,65 +122,7 @@
                     :dp "/dot"
                     :dt "dotfiles-install"})
       (res/redirect "https://raw.githubusercontent.com/nossal/dotfiles/master/bin/dot"))
-    (base "dotfiles" ""
+    (base-html "dotfiles" ""
           [[:header [:h1 "dotfiles"]
             [:p.catch "ZSH terminal presets"]]
            [:section [:div.terminal "zsh " [:span.normal "<(curl -sL noss.al/dot)"]]]] req)))
-
-
-; [title meta links scripts styles options body]
-(defn log [req]
-  (base "LOG" [] [] [] [] []
-        [[:article
-          [:h1 "header 1"]
-          [:h2 "header 2"]
-          [:h3 "header 3"]
-          [:h4 "header 4"]
-          [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-          [:p "A simgle line of text"]]
-         [:article
-          [:p "Another article"]]]))
-
-
-
-(defn weekly [req]
-  (base "Weekly" ""
-        [[:header
-          [:h1 "Weekly"]]
-         [:section.weeks
-          [:h2 "Week 7, 2017"]
-          [:ul
-           [:li
-            [:h3 "JavaScript Without Loops"]
-            [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-            [:div "JAMES M SNELL"]
-            [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
-           [:li
-            [:h3 "JavaScript Without Loops"]
-            [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-            [:div "JAMES M SNELL"]
-            [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
-           [:li
-            [:h3 "JavaScript Without Loops"]
-            [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-            [:div "JAMES M SNELL"]
-            [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
-           [:li
-            [:h3 "JavaScript Without Loops"]
-            [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-            [:div "JAMES M SNELL"]
-            [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
-           [:li
-            [:h3 "JavaScript Without Loops"]
-            [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-            [:div "JAMES M SNELL"]
-            [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]
-           [:li
-            [:h3 "JavaScript Without Loops"]
-            [:p "If you find yourself reaching for while or for, think again - maybe map, reduce, filter, or find could result in more elegant, less complex code."]
-            [:div "JAMES M SNELL"]
-            [:a.from {:href "http://sasd.com"} "JavaScript Weekly"]]]]] req))
-
-(defn iframe-demo [req]
-  (base-html "IFRAME" [] [] [] []
-             [[:iframe {:src "https://nossal.github.io/iframe.html?b" :width "100%" :height "600px"}]]))
