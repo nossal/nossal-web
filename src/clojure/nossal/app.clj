@@ -16,7 +16,7 @@
             [nossal.web :refer [index dot]]
             [nossal.util.web :refer [resize-image pwa-manifest]]
             [nossal.api.core :refer [debug]]
-            [nossal.api.shortner :refer [create-database new-url redirect]]
+            [nossal.api.shortner :refer [create-database new-url new-url-form redirect]]
             [nossal.coupons :refer [coupon coupon-index coupon-codes]]
             [sentry-clj.core :as sentry]))
 
@@ -103,8 +103,12 @@
   (GET "/short/create-db" []
     (create-database))
 
-  (POST "/short/new/:url" [url]
-    (new-url url))
+
+  (GET "/short" request
+    (new-url-form request))
+
+  (POST "/short" [request]
+    (new-url request))
 
   (GET "/%F0%9F%91%89:encoded-id{[a-zA-Z0-9]+}" [encoded-id] ; /👉:encoded-id
     (redirect encoded-id))
