@@ -111,7 +111,7 @@
    :dev {:env {:dev "true"
                :production "false"
                :ga-tracking-id "UA-11532471-6"
-               :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}
+               :database-url "postgres://nossal:nossal@192.168.1.154:5432/nossal"}
          :cljsbuild {:builds
                      [{:id "dev-app"
                        :source-paths ["src/clojurescript/nossal/app"
