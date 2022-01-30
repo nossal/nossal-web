@@ -124,6 +124,7 @@
 
               [:input {:type "text"
                        :class "get-coupon"
+                       :readonly true
                        :id "copy"
                        :data-vars-couponvalue "10"
                        :data-vars-coupon (service-data :code)
