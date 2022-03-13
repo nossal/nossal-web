@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.state.navigation
+(ns nossal.state.navigation
   (:require [re-frame.core :as rf]))
 
 

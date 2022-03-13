@@ -1,8 +1,8 @@
-(ns shadow-clj-fullstack.routes
+(ns nossal.routes
   (:require [bidi.bidi :as bidi]
             [pushy.core :as pushy]
             [re-frame.core :as rf]
-            [shadow-clj-fullstack.state.navigation :as navigation]))
+            [nossal.state.navigation :as navigation]))
 
 
 (def routes ["/app" {""         ::landing

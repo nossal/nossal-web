@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.http-api
+(ns nossal.http-api
   (:require [geheimtur.util.auth :as auth]
             [taoensso.timbre :as log]))
 

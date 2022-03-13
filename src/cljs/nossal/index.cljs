@@ -1,10 +1,10 @@
-(ns shadow-clj-fullstack.index
+(ns nossal.index
   (:require [shadow.dom :as dom]
             [reagent.core :as r]
             [re-frame.core :as rf]
-            [shadow-clj-fullstack.routes :as routes]
-            [shadow-clj-fullstack.components.root :refer [root]]
-            [shadow-clj-fullstack.state.global]))
+            [nossal.routes :as routes]
+            [nossal.components.root :refer [root]]
+            [nossal.state.global]))
 
 
 ;; initialise re-frame by broadcasting event
@@ -27,4 +27,3 @@
 
 
 (main!)
-

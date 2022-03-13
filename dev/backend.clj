@@ -1,7 +1,7 @@
 (ns backend
   (:require [io.pedestal.http :as http]
             [mount.core :as mount]
-            [shadow-clj-fullstack.http-server :as http-server]))
+            [nossal.http-server :as http-server]))
 
 
 (defn create-dev-http-server []

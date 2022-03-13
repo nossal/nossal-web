@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.auth
+(ns nossal.auth
   (:require [wrench.core :as cfg]
             [geheimtur.interceptor :as security]
             [geheimtur.util.auth :as auth]

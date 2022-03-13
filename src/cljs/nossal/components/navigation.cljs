@@ -1,9 +1,9 @@
-(ns shadow-clj-fullstack.components.navigation
+(ns nossal.components.navigation
   (:require ["@blueprintjs/core" :as bp]
-            [shadow-clj-fullstack.components.pages :as pages]
-            [shadow-clj-fullstack.state.navigation :as nav]
-            [shadow-clj-fullstack.state.user-info :as user]
-            [shadow-clj-fullstack.routes :as routes]
+            [nossal.components.pages :as pages]
+            [nossal.state.navigation :as nav]
+            [nossal.state.user-info :as user]
+            [nossal.routes :as routes]
             [re-frame.core :as rf]))
 
 

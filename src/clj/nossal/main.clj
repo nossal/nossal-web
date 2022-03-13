@@ -1,11 +1,11 @@
-(ns shadow-clj-fullstack.main
+(ns nossal.main
   "JAR entrypoint"
   (:gen-class)
   (:require [clojure.core.async :as a]
             [mount.core :as mount]
             [taoensso.timbre :as log]
             [wrench.core :as cfg]
-            [shadow-clj-fullstack.http-server]))
+            [nossal.http-server]))
 
 
 (defonce running (a/chan))

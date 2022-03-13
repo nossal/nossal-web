@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.styles
+(ns nossal.styles
   (:require [garden.def :refer [defstyles]]
             [garden.color :refer [rgba]]))
 

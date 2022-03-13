@@ -16,3 +16,6 @@ resources/public/css
 
 .shadow-cljs
 node_modules
+
+.clj-kondo/
+.lsp/

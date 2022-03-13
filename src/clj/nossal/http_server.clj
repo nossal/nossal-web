@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.http-server
+(ns nossal.http-server
   (:require [mount.core :as mount]
             [wrench.core :as cfg]
 
@@ -7,9 +7,9 @@
             [ring.middleware.session.cookie :as cookie]
             [geheimtur.impl.oauth2 :as oauth]
 
-            [shadow-clj-fullstack.auth :as auth]
-            [shadow-clj-fullstack.html-pages :as pages]
-            [shadow-clj-fullstack.http-api :as api]))
+            [nossal.auth :as auth]
+            [nossal.html-pages :as pages]
+            [nossal.http-api :as api]))
 
 
 (cfg/def port {:name "HTTP_PORT" :spec int? :default 8080})

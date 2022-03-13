@@ -1,6 +1,6 @@
-(ns shadow-clj-fullstack.core-test
+(ns nossal.core-test
   (:require [clojure.test :refer :all]
-            [shadow-clj-fullstack.main :refer :all]))
+            [nossal.main :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

@@ -1,9 +1,9 @@
 {
-  "name": "vigilante",
+  "name": "nossal",
   "version": "1.0.0",
-  "description": "Example of full-stack Clojure/Script project",
-  "repository": "https://github.com/Otann/shadow-cljs-fullstack",
-  "author": "Anton Chebotaev",
+  "description": "nossals site",
+  "repository": "https://github.com/nossal/noss.al",
+  "author": "Rodrigo Nossal",
   "license": "EPL",
   "main": "index.js",
   "scripts": {

@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.html-pages
+(ns nossal.html-pages
   (:require [hiccup.page :as h]
             [ring.util.response :as r]))
 

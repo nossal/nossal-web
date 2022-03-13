@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.components.pages
+(ns nossal.components.pages
   (:require ["@blueprintjs/core" :as bp]
             [reagent.core :as r]))
 

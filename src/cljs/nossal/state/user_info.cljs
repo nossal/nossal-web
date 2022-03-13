@@ -1,4 +1,4 @@
-(ns shadow-clj-fullstack.state.user-info
+(ns nossal.state.user-info
   (:require [re-frame.core :as rf]
             [ajax.core :as ajax]))
 

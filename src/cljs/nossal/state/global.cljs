@@ -1,8 +1,8 @@
-(ns shadow-clj-fullstack.state.global
+(ns nossal.state.global
   (:require [re-frame.core :as rf]
             [day8.re-frame.http-fx]
-            [shadow-clj-fullstack.state.navigation]
-            [shadow-clj-fullstack.state.user-info :as user-info]))
+            [nossal.state.navigation]
+            [nossal.state.user-info :as user-info]))
 
 
 (rf/reg-event-fx :initialize
