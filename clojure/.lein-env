@@ -1,0 +1,1 @@
+{:dev "true", :production "false", :ga-tracking-id "UA-11532471-6", :database-url "postgres://nossal:nossal@mr-nas.local:5432/nossal"}

@@ -42,3 +42,8 @@ pom.xml
 .rebel_readline_history
 *.stackdump
 .cpcache
+
+
+# Added by cargo
+
+/target
