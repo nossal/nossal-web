@@ -6,3 +6,4 @@
 .lein-env
 .DS_Store
 README.md
+!resources
