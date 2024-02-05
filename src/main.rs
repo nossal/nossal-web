@@ -2,7 +2,7 @@ use std::{env, path::PathBuf};
 use askama_actix::Template;
 use fs::NamedFile;
 use log::info;
-use actix_web::{get, web, App, HttpServer };
+use actix_web::{get, web, App, HttpResponse, HttpServer, Responder };
 use actix_web::middleware::Logger;
 use env_logger::Env;
 use actix_files as fs;
@@ -17,6 +17,11 @@ struct HelloTemplate<'a> {
 async fn hello() -> HelloTemplate<'static> {
     info!("hello world");
     HelloTemplate { name: "Rust" }
+}
+
+#[get("/healthz")]
+async fn healthz() -> impl Responder {
+    HttpResponse::Ok().body("Alive")
 }
 
 #[actix_web::main]
@@ -35,6 +40,7 @@ async fn main() -> std::io::Result<()> {
                 let file = fs::NamedFile::open(path).expect("favicon not found");
                 Ok::<NamedFile, std::io::Error>(file)
             }))
+            .service(healthz)
             .service(fs::Files::new("/static", "resources/public"))
             .service(hello)
     })
