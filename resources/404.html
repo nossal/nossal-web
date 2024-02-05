@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html ⚡>
+<head>
+  <title>Not Found  ¯\_(ツ)_/¯</title>
+  <script type="text/javascript" charset="utf-8"></script>
+  <style>
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      background: linear-gradient(45deg, #868798, #fff);
+      height: 100%;
+    }
+    /*
+      http://bennettfeely.com/csscreatures
+      https://github.com/bennettfeely/csscreatures
+    */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ol, ul { list-style: none; margin: 0; padding: 0;}
+
+    .creatures {
+      text-align: center;
+      list-style: none; margin: 15px 0;
+      -webkit-transition: opacity .3s;
+              transition: opacity .3s;
+      -webkit-animation: enter .7s .2s both;
+              animation: enter .7s .2s both;
+      -webkit-transform-origin: center top;
+              transform-origin: center top;
+    }
+
+    @-webkit-keyframes enter {
+      0% {
+        -webkit-transform: translateY(50px) scale(.8);
+                transform: translateY(50px) scale(.8);
+        opacity: 0;
+      }
+      100% {
+        -webkit-transform: none;
+                transform: none;
+      }
+    }
+
+    @keyframes enter {
+      0% {
+        -webkit-transform: translateY(50px) scale(.8);
+                transform: translateY(50px) scale(.8);
+        opacity: 0;
+      }
+      100% {
+        -webkit-transform: none;
+                transform: none;
+      }
+    }
+    .creatures li {
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      width: 360px;
+      list-style: none;
+      margin: 0 auto;
+      padding: 15px 30px;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+    }
+
+    figure {
+      width: 300px;
+      height: 300px;
+      padding: 40px;
+      box-shadow: inset -10px -30px rgba(0,0,0,.06);
+      border-radius: 50%;
+      -webkit-animation: bobble 5s ease-in-out infinite;
+              animation: bobble 5s ease-in-out infinite;
+      -webkit-transform-origin: center bottom;
+      -webkit-transition: padding .3s, bottom .3s;
+      text-align: center;
+      background: #dc3c3c;
+    }
+    @-webkit-keyframes bobble {
+      33% {
+        -webkit-transform: rotate(5deg);
+                transform: rotate(5deg);
+      }
+      66% {
+        -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+      }
+    }
+    @keyframes bobble {
+      33% {
+        -webkit-transform: rotate(5deg);
+                transform: rotate(5deg);
+      }
+      66% {
+        -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+      }
+    }
+
+    li:hover figure {
+      padding: 30px 40px;
+    }
+    li:hover .click-anim {
+      -webkit-transform: translateY(-6px);
+              transform: translateY(-6px);
+    }
+
+    .click-anim {
+      -webkit-transition:.3s cubic-bezier(.15,.60,.30,1.9);
+              transition:.3s cubic-bezier(.15,.60,.30,1.9);
+      -webkit-transform-origin: center bottom;
+              transform-origin: center bottom;
+    }
+    li:active .click-anim {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+
+    .shadow {
+      height: 20px;
+      background: rgba(0,0,0,.1);
+      width: 60%;
+      border-radius: 100%;
+      margin:-15px 0 0 30%;
+      -webkit-transition:.3s;
+      transition:.3s;
+    }
+    li:hover .shadow { background: rgba(0,0,0,.05); }
+    li:active .shadow { background: rgba(0,0,0,.08); width: 70%; }
+
+
+    .eye {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0 25px 25px;
+      background: rgba(255,255,255,.9);
+      border-radius: 100% 50% 50% 50%;
+      -webkit-animation: blink 5s ease-in-out infinite;
+              animation: blink 5s ease-in-out infinite;
+    }
+    .l {border-radius: 100% 50% 50% 50%;}
+    .r {border-radius: 50% 100% 50% 50%;}
+
+    .eye span {
+      background: #000;
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin-top: 10px;
+      -webkit-animation: look 4s ease-in-out infinite;
+              animation: look 4s ease-in-out infinite;
+    }
+
+    @-webkit-keyframes blink {
+      90% {
+        -webkit-transform: none;
+                transform: none;
+      }
+      95% {
+        -webkit-transform: rotateX(90deg);
+                transform: rotateX(90deg);
+      }
+    }
+    @keyframes blink {
+      90% {
+        -webkit-transform: none;
+                transform: none;
+      }
+      95% {
+        -webkit-transform: rotateX(90deg);
+                transform: rotateX(90deg);
+      }
+    }
+
+    @-webkit-keyframes look {
+      90% {
+        -webkit-transform: none;
+                transform: none;
+      }
+      95% {
+        margin-left: 15px;
+      }
+    }
+    @keyframes look {
+      90% {
+        -webkit-transform: none;
+                transform: none;
+      }
+      95% {
+        margin-left: 15px;
+      }
+    }
+
+    .mouth {
+      display: block;
+      width: 100%;
+      height: 20px;
+      margin: 5px auto 0;
+      background: rgba(0,0,0,.9);
+      overflow: hidden;
+      line-height: 0;
+      /*border-radius: 10px 10px 100px 100px; */
+      border-radius: 50% 50% 10px 10px;
+      -webkit-transition: border-radius .5s, height .5s cubic-bezier(.15,.60,.30,1.9);
+              transition: border-radius .5s, height .5s cubic-bezier(.15,.60,.30,1.9);
+
+      -webkit-transform-origin: center top;
+              transform-origin: center top;
+    }
+    .sad .mouth {
+      height: 80px;
+      border-radius: 50% 50% 20px 20px;
+    }
+    figcaption {
+      margin-top: 15px;
+      font-size: 28px;
+      font-family: "Sans";
+      color: #192763;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <ul id="creatures" class="creatures">
+    <li>
+      <div class="click-anim">
+        <a href="https://noss.al/">
+          <figure class="sad">
+            <div class="eye l"><span/></div>
+            <div class="eye r"><span/></div>
+            <div class="mouth "></div>
+          </figure>
+        </a>
+      </div>
+      <div class="shadow"></div>
+      <figcaption>Oh shit, I'm so sorry.</figcaption>
+    </li>
+  </ul>
+</body>
+</html>

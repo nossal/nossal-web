@@ -1,28 +1,45 @@
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use std::{env, path::PathBuf};
+use askama_actix::Template;
+use fs::NamedFile;
+use log::info;
+use actix_web::{get, web, App, HttpServer };
+use actix_web::middleware::Logger;
+use env_logger::Env;
+use actix_files as fs;
+
+#[derive(Template)]
+#[template(path = "hello.html")]
+struct HelloTemplate<'a> {
+    name: &'a str,
+}
 
 #[get("/")]
-async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hello world!")
-}
-
-#[post("/echo")]
-async fn echo(req_body: String) -> impl Responder {
-    HttpResponse::Ok().body(req_body)
-}
-
-async fn manual_hello() -> impl Responder {
-    HttpResponse::Ok().body("Hey there!")
+async fn hello() -> HelloTemplate<'static> {
+    info!("hello world");
+    HelloTemplate { name: "Rust" }
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    env_logger::init_from_env(Env::default().default_filter_or("info"));
+
+    let port = env::var("PORT").unwrap_or("8080".to_string());
+    let port = port.parse::<u16>().expect("Invalid port given");
+
     HttpServer::new(|| {
         App::new()
+            .wrap(Logger::default())
+            .wrap(Logger::new("%a %{User-Agent}i"))
+            .route("/favicon.ico", web::get().to(|| async {
+                let path: PathBuf = PathBuf::from(r"resources/public/favicon.ico");
+                let file = fs::NamedFile::open(path).expect("favicon not found");
+                Ok::<NamedFile, std::io::Error>(file)
+            }))
+            .service(fs::Files::new("/static", "resources/public"))
             .service(hello)
-            .service(echo)
-            .route("/hey", web::get().to(manual_hello))
     })
-    .bind(("127.0.0.1", 8080))?
+    .workers(4)
+    .bind(("0.0.0.0", port))?
     .run()
     .await
 }
