@@ -41,6 +41,7 @@ async fn main() -> std::io::Result<()> {
                 Ok::<NamedFile, std::io::Error>(file)
             }))
             .service(healthz)
+            .service(fs::Files::new("/files", ".").show_files_listing())
             .service(fs::Files::new("/static", "resources/public"))
             .service(hello)
     })
