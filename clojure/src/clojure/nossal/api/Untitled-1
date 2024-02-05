@@ -1,8 +1,0 @@
-<!-- Event snippet for Page view conversion page -->
-<script>
-  gtag('event', 'conversion', {
-      'send_to': 'AW-988737553/_GqaCKS5mYkDEJHgu9cD',
-      'value': 1.0,
-      'currency': 'BRL'
-  });
-</script>
