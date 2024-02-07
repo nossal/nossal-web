@@ -2,7 +2,7 @@ use std::{env, path::PathBuf};
 use askama_actix::Template;
 use fs::NamedFile;
 use log::info;
-use actix_web::{get, web, App, HttpResponse, HttpServer, Responder };
+use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder };
 use actix_web::middleware::Logger;
 use env_logger::Env;
 use actix_files as fs;
@@ -35,6 +35,8 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
+            .wrap(middleware::DefaultHeaders::new()
+                .add(("cache-control", "max-age=120, stale-while-revalidate=60, stale-if-error=3600")))
             .route("/favicon.ico", web::get().to(|| async {
                 let path: PathBuf = PathBuf::from(r"resources/public/favicon.ico");
                 let file = fs::NamedFile::open(path).expect("favicon not found");
