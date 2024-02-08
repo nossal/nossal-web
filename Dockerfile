@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.3-labs
-FROM rust:1.75 AS builder
+FROM rust:1.75.0 AS builder
 
-RUN apt install -y musl-tools
+RUN apt update && apt install -y musl-tools
 RUN rustup target add x86_64-unknown-linux-musl
 
 WORKDIR app
