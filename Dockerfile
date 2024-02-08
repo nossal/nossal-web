@@ -1,10 +1,12 @@
 # syntax=docker/dockerfile:1.3-labs
 FROM rust:1.75 AS builder
 
-WORKDIR app
-
-COPY . /app/
+RUN apt install -y musl-gcc
 RUN rustup target add x86_64-unknown-linux-musl
+
+WORKDIR app
+COPY . /app/
+
 RUN cargo build --release --target x86_64-unknown-linux-musl
 
 FROM alpine AS app
