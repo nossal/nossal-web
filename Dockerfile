@@ -11,7 +11,8 @@ RUN cargo build --release --target x86_64-unknown-linux-musl
 
 FROM alpine AS app
 
-COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/nossal /app/nossal
-COPY --from=builder /app/resources /resources
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/nossal /app/bin/nossal
+COPY --from=builder /app/resources /app/resources
 
-CMD ["/app/nossal"]
+WORKDIR /app
+CMD ["bin/nossal"]
