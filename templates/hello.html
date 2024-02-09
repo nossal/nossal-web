@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DTKNSGV5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-N4DTKNSGV5');
+    </script>
     <meta charset="UTF-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
@@ -622,14 +631,6 @@
 </head>
 
 <body>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4DTKNSGV5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-N4DTKNSGV5');
-    </script>
     <script
         type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"WebSite","name":"Nossal's","alternateName":"Rodrigo Nossal","url":"https:\/\/noss.al"}</script>
     <script
@@ -661,17 +662,26 @@
                     </svg></h1>
                 <p class="about-line"><span class="accent" title="Fool Stack">"Full-Stack"</span> Web Developer</p>
             </header>
+
             <div class="divisor"></div>
             <section id="about">
                 <div class="end"><span class="java">Java</span>, <span class="python">Python</span>, <span
                         class="js">JavaScript</span>, <span class="swift">Swift</span> on weekdays and <span
                         class="clojure">Clojure/Script</span>, <span class="rust">{{ name }}</span> on weekends.</div>
             </section>
+            <section>
+                <ul id="navigation">
+                    {% for article in articles %}
+                        <li><a href="{{ article.path }}"> {{ article.name }} //// {{ article.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
             <section class="foot"><a href="mailto:rodrigo@noss.al">rodrigo@noss.al</a><a class="out"
                     data-vars-outbound-link="https://twitter.com/nossal" href="https://twitter.com/nossal"
                     rel="noopener noreferrer" target="_blank">twitter</a></section>
         </article>
-    </div><a id="tnet">π</a>
+    </div>
+    <a id="tnet">π</a>
     <footer><span class="made">Handmade <a class="out" data-vars-outbound-link="https://github.com/nossal/noss.al"
                 href="https://github.com/nossal/noss.al" rel="noopener noreferrer" target="_blank">entirely</a> with
         </span><a class="out" data-vars-outbound-link="https://clojure.org" href="https://clojure.org"

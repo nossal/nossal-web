@@ -1,24 +1,109 @@
-use std::{env, path::PathBuf};
+use actix_files as fs;
+use actix_web::middleware::Logger;
+use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
 use askama_actix::Template;
+use env_logger::Env;
 use fs::NamedFile;
 use log::info;
-use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder };
-use actix_web::middleware::Logger;
-use env_logger::Env;
-use actix_files as fs;
+use pulldown_cmark::Event;
+use pulldown_cmark::Tag;
+use pulldown_cmark::{HeadingLevel, Parser};
+use std::fs::File;
+use std::io::{self, BufRead, BufReader};
+use std::{env, path::PathBuf};
 
 #[derive(Template)]
 #[template(path = "hello.html")]
 struct HelloTemplate<'a> {
     name: &'a str,
+    articles:  Vec<Article>
+}
+
+#[derive(Debug)]
+struct Article {
+    title: String,
+    name: Box<str>,
+    path: String,
+}
+
+fn read_first_10_lines(file_path: &PathBuf) -> io::Result<String> {
+    let file = File::open(file_path)?;
+    let reader = BufReader::new(file);
+
+    let mut result = String::new();
+    for line in reader.lines().take(10) {
+        let line = line?;
+        result.push_str(&line);
+        result.push('\n');
+    }
+
+    Ok(result)
+}
+
+fn get_title(file_path: &PathBuf) -> Option<String> {
+    let markdown = read_first_10_lines(file_path).expect("dasdasd");
+    let mut title: Option<String> = None;
+    let parser = Parser::new(&markdown);
+    // println!("{}", markdown);
+
+    let mut found = false;
+    for event in parser {
+        match event {
+            Event::Start(Tag::Heading { level: HeadingLevel::H1, .. }) => { found = true; }
+            Event::Text(text) if found => {
+                title = Some(text.to_string());
+                break;
+            }
+            _ => {}
+        }
+    }
+
+    title
+}
+
+fn get_articles_from() -> Vec<Article> {
+    let mut articles: Vec<Article> = vec![];
+
+    for entry in std::fs::read_dir("./resources/contents").expect("error") {
+        let entry = entry.expect("error entry");
+        let path = entry.path();
+
+        let title = match get_title(&path) {
+            Some(expr) => expr,
+            None => "-----".into(),
+        };
+
+        // let extension = match path.extension() {
+        //     Some(expr) => expr.to_str(),
+        //     None => "--".into(),
+        // };
+
+        let name = match path.file_name() {
+            Some(expr) => expr.to_str(),
+            None => "--".into(),
+        };
+
+        let a = Article {
+            name: name.unwrap().into(),
+            title,
+            path: path.into_os_string().into_string().unwrap(),
+        };
+        articles.push(a);
+    }
+
+    articles
 }
 
 #[get("/")]
 async fn hello() -> HelloTemplate<'static> {
     info!("hello world");
-    HelloTemplate { name: "Rust" }
-}
+    let articles = get_articles_from();
+    for art in &articles {
+        info!("file: {:?} ", art);
+    }
 
+    HelloTemplate { name: "Rust", articles }
+}
 #[get("/healthz")]
 async fn healthz() -> impl Responder {
     HttpResponse::Ok().body("Alive")
@@ -35,13 +120,18 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
-            .wrap(middleware::DefaultHeaders::new()
-                .add(("cache-control", "max-age=120, stale-while-revalidate=60, stale-if-error=3600")))
-            .route("/favicon.ico", web::get().to(|| async {
-                let path: PathBuf = PathBuf::from(r"resources/public/favicon.ico");
-                let file = fs::NamedFile::open(path).expect("favicon not found");
-                Ok::<NamedFile, std::io::Error>(file)
-            }))
+            .wrap(middleware::DefaultHeaders::new().add((
+                "cache-control",
+                "max-age=120, stale-while-revalidate=60, stale-if-error=3600",
+            )))
+            .route(
+                "/favicon.ico",
+                web::get().to(|| async {
+                    let path: PathBuf = PathBuf::from(r"resources/public/favicon.ico");
+                    let file = fs::NamedFile::open(path).expect("favicon not found");
+                    Ok::<NamedFile, std::io::Error>(file)
+                }),
+            )
             .service(healthz)
             .service(fs::Files::new("/static", "resources/public/"))
             .service(hello)
