@@ -1,0 +1,15 @@
+
+            <section>
+                <ul id="navigation">
+                    {% for article in articles %}
+                    <li>
+                        <div>
+                            {{ article.date_created }} {{ article.date_modified }} <a href="/content/{{ article.name }}"> {{ article.title }}</a>
+                        </div>
+                        <div>
+                            {{ article.path }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
