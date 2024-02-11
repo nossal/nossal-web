@@ -10,6 +10,9 @@ use pulldown_cmark::Tag;
 use pulldown_cmark::{HeadingLevel, Parser};
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
+#[cfg(target_os = "macos")]
+use std::os::macos::fs::MetadataExt;
+#[cfg(target_os = "linux")]
 use std::os::linux::fs::MetadataExt;
 use std::{env, path::PathBuf};
 

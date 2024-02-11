@@ -1,4 +1,6 @@
-* , *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -8,18 +10,25 @@
     min-width: 0;
     font: inherit;
 }
+
 html {
     hanging-punctuation: first last;
     font-size: 16px;
 }
+
 body {
     min-height: 100svh;
     font-family: system-ui, sans-serif;
 }
-img, picture, svg, video {
+
+img,
+picture,
+svg,
+video {
     display: block;
     max-width: 100%;
 }
+
 img {
     height: auto;
     vertical-align: middle;
@@ -29,24 +38,35 @@ img {
     background-size: cover;
     shape-margin: 1rem;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     text-wrap: balance;
     font-weight: bold;
+    margin-bottom: 0.8rem;
+    margin-top: 1rem;
 }
 
 p {
     max-width: 75ch;
     text-wrap: pretty;
+    margin-bottom: 1rem;
 }
 
-input, select, textarea {
-  font-family: inherit;
-  font-size: inherit;
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
