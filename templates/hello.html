@@ -10,6 +10,7 @@
         gtag('js', new Date());
         gtag('config', 'G-N4DTKNSGV5');
     </script>
+    <script src="https://js.sentry-cdn.com/81e5e251aab7dd51d899d6005b54e5a1.min.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
@@ -672,7 +673,7 @@
             <section>
                 <ul id="navigation">
                     {% for article in articles %}
-                        <li><a href="{{ article.path }}"> {{ article.name }} //// {{ article.title }}</a></li>
+                    <li><a href="{{ article.path }}"> {{ article.name }} //// {{ article.title }}</a></li>
                     {% endfor %}
                 </ul>
             </section>
