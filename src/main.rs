@@ -5,16 +5,33 @@ use askama_actix::Template;
 use env_logger::Env;
 use fs::NamedFile;
 use log::info;
-use pulldown_cmark::Event;
+use pulldown_cmark::{html, Event};
 use pulldown_cmark::Tag;
 use pulldown_cmark::{HeadingLevel, Parser};
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
+#[cfg(target_os = "macos")]
+use std::os::macos::fs::MetadataExt;
+#[cfg(target_os = "linux")]
+use std::os::linux::fs::MetadataExt;
 use std::{env, path::PathBuf};
 
 #[derive(Template)]
 #[template(path = "hello.html")]
 struct HelloTemplate<'a> {
+    name: &'a str,
+}
+
+#[derive(Template)]
+#[template(path = "content.html")]
+struct ContentTemplate {
+    name: String,
+    content: String
+}
+
+#[derive(Template)]
+#[template(path = "contents.html")]
+struct ContentsTemplate<'a> {
     name: &'a str,
     articles:  Vec<Article>
 }
@@ -24,6 +41,8 @@ struct Article {
     title: String,
     name: Box<str>,
     path: String,
+    date_modified: i64,
+    date_created: i64
 }
 
 fn read_first_10_lines(file_path: &PathBuf) -> io::Result<String> {
@@ -61,12 +80,31 @@ fn get_title(file_path: &PathBuf) -> Option<String> {
     title
 }
 
+fn get_article_from(name: &str) -> io::Result<String> {
+    let mut path = String::from("./resources/contents/");
+    path.push_str(&name);
+
+    let markdown_content = std::fs::read_to_string(path)?;
+      // Create a parser
+    let parser = Parser::new(&markdown_content);
+
+    // Generate HTML
+    let mut html_output = String::new();
+    html::push_html(&mut html_output, parser);
+
+    Ok(html_output)
+}
+
 fn get_articles_from() -> Vec<Article> {
     let mut articles: Vec<Article> = vec![];
 
     for entry in std::fs::read_dir("./resources/contents").expect("error") {
         let entry = entry.expect("error entry");
         let path = entry.path();
+        let meta = entry.metadata().unwrap();
+
+        let date_modified = meta.to_owned().st_mtime();
+        let date_created = meta.to_owned().st_ctime();
 
         let title = match get_title(&path) {
             Some(expr) => expr,
@@ -87,6 +125,8 @@ fn get_articles_from() -> Vec<Article> {
             name: name.unwrap().into(),
             title,
             path: path.into_os_string().into_string().unwrap(),
+            date_modified,
+            date_created
         };
         articles.push(a);
     }
@@ -94,15 +134,29 @@ fn get_articles_from() -> Vec<Article> {
     articles
 }
 
-#[get("/")]
-async fn hello() -> HelloTemplate<'static> {
-    info!("hello world");
+#[get("/content/{name}")]
+async fn content(path: web::Path<String>) -> ContentTemplate {
+    let name = path.into_inner();
+
+    let content = get_article_from(&name).expect("no article");
+
+    ContentTemplate { name, content }
+}
+
+#[get("/contents")]
+async fn contents() -> ContentsTemplate<'static> {
     let articles = get_articles_from();
     for art in &articles {
         info!("file: {:?} ", art);
     }
 
-    HelloTemplate { name: "Rust", articles }
+    ContentsTemplate { name: "Rust", articles }
+}
+
+#[get("/")]
+async fn hello() -> HelloTemplate<'static> {
+    info!("hello world");
+    HelloTemplate { name: "Rust" }
 }
 #[get("/healthz")]
 async fn healthz() -> impl Responder {
@@ -120,6 +174,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
+            .wrap(middleware::Compress::default())
             .wrap(middleware::DefaultHeaders::new().add((
                 "cache-control",
                 "max-age=120, stale-while-revalidate=60, stale-if-error=3600",
@@ -132,6 +187,8 @@ async fn main() -> std::io::Result<()> {
                     Ok::<NamedFile, std::io::Error>(file)
                 }),
             )
+            .service(contents)
+            .service(content)
             .service(healthz)
             .service(fs::Files::new("/static", "resources/public/"))
             .service(hello)
