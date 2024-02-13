@@ -47,14 +47,14 @@ h5,
 h6 {
     text-wrap: balance;
     font-weight: bold;
-    margin-bottom: 0.8rem;
-    margin-top: 1rem;
+    margin-bottom: 0.666666em;
+    margin-top: 1.8em;
 }
 
 p {
-    max-width: 75ch;
+    max-width: 45ch;
     text-wrap: pretty;
-    margin-bottom: 1rem;
+    margin-top: 1.3em;
 }
 
 input,
