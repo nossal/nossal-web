@@ -1,6 +1,16 @@
-# Título do Artigo
+---
+Title: Título do Artigo
+Author: Rodrigo Nossal
+Date: February 13, 2024
+---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris vitae ultricies leo integer malesuada nunc vel risus. Tempus urna et pharetra pharetra massa massa ultricies mi. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Quam vulputate dignissim suspendisse in est ante in nibh mauris. Mi ipsum faucibus vitae aliquet nec ullamcorper sit. Eget nullam non nisi est sit amet facilisis. Eu ultrices vitae auctor eu augue. Porttitor rhoncus dolor purus non enim. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Massa enim nec dui nunc mattis enim.
+# Título do Artigo #
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Mauris vitae ultricies leo integer malesuada nunc vel risus.
+Tempus urna et pharetra pharetra massa massa ultricies mi. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Quam vulputate dignissim suspendisse in est ante in nibh mauris.
+
+Mi ipsum faucibus vitae aliquet nec ullamcorper sit. Eget nullam non nisi est sit amet facilisis. Eu ultrices vitae auctor eu augue. Porttitor rhoncus dolor purus non enim. Semper feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Massa enim nec dui nunc mattis enim.
 
 Aliquam faucibus purus in massa tempor nec feugiat nisl. Porttitor leo a diam sollicitudin tempor id eu nisl. Purus in mollis nunc sed. Lorem ipsum dolor sit amet consectetur. Mi bibendum neque egestas congue quisque egestas diam. Arcu odio ut sem nulla pharetra diam sit amet. Ipsum dolor sit amet consectetur adipiscing elit. Amet consectetur adipiscing elit duis. Nisl condimentum id venenatis a condimentum vitae sapien. Felis eget nunc lobortis mattis aliquam faucibus purus in massa. Porta non pulvinar neque laoreet suspendisse interdum. Donec ultrices tincidunt arcu non sodales. Ut lectus arcu bibendum at. Egestas diam in arcu cursus. Sed velit dignissim sodales ut eu sem.
 

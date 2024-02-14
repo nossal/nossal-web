@@ -2,18 +2,18 @@ use actix_files as fs;
 use actix_web::middleware::Logger;
 use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
 use askama_actix::Template;
-use env_logger::Env;
+use env_logger::{Builder, Env};
 use fs::NamedFile;
 use log::info;
-use pulldown_cmark::{html, Event};
 use pulldown_cmark::Tag;
+use pulldown_cmark::{html, Event, Options};
 use pulldown_cmark::{HeadingLevel, Parser};
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
-#[cfg(target_os = "macos")]
-use std::os::macos::fs::MetadataExt;
 #[cfg(target_os = "linux")]
 use std::os::linux::fs::MetadataExt;
+#[cfg(target_os = "macos")]
+use std::os::macos::fs::MetadataExt;
 use std::{env, path::PathBuf};
 
 #[derive(Template)]
@@ -26,14 +26,14 @@ struct HelloTemplate<'a> {
 #[template(path = "content.html")]
 struct ContentTemplate {
     name: String,
-    content: String
+    content: String,
 }
 
 #[derive(Template)]
 #[template(path = "contents.html")]
 struct ContentsTemplate<'a> {
     name: &'a str,
-    articles:  Vec<Article>
+    articles: Vec<Article>,
 }
 
 #[derive(Debug)]
@@ -42,7 +42,7 @@ struct Article {
     name: Box<str>,
     path: String,
     date_modified: i64,
-    date_created: i64
+    date_created: i64,
 }
 
 fn read_first_10_lines(file_path: &PathBuf) -> io::Result<String> {
@@ -62,13 +62,24 @@ fn read_first_10_lines(file_path: &PathBuf) -> io::Result<String> {
 fn get_title(file_path: &PathBuf) -> Option<String> {
     let markdown = read_first_10_lines(file_path).expect("dasdasd");
     let mut title: Option<String> = None;
-    let parser = Parser::new(&markdown);
+    let mut options = Options::empty();
+    options.insert(Options::ENABLE_YAML_STYLE_METADATA_BLOCKS);
+    options.insert(Options::ENABLE_TABLES);
+    options.insert(Options::ENABLE_FOOTNOTES);
+    options.insert(Options::ENABLE_STRIKETHROUGH);
+
+    let parser = Parser::new_ext(&markdown, options);
     // println!("{}", markdown);
 
     let mut found = false;
     for event in parser {
         match event {
-            Event::Start(Tag::Heading { level: HeadingLevel::H1, .. }) => { found = true; }
+            Event::Start(Tag::Heading {
+                level: HeadingLevel::H1,
+                ..
+            }) => {
+                found = true;
+            }
             Event::Text(text) if found => {
                 title = Some(text.to_string());
                 break;
@@ -85,8 +96,13 @@ fn get_article_from(name: &str) -> io::Result<String> {
     path.push_str(&name);
 
     let markdown_content = std::fs::read_to_string(path)?;
-      // Create a parser
-    let parser = Parser::new(&markdown_content);
+    // Create a parser
+    let mut options = Options::empty();
+    options.insert(Options::ENABLE_YAML_STYLE_METADATA_BLOCKS);
+    options.insert(Options::ENABLE_TABLES);
+    options.insert(Options::ENABLE_FOOTNOTES);
+    options.insert(Options::ENABLE_STRIKETHROUGH);
+    let parser = Parser::new_ext(&markdown_content, options);
 
     // Generate HTML
     let mut html_output = String::new();
@@ -126,7 +142,7 @@ fn get_articles_from() -> Vec<Article> {
             title,
             path: path.into_os_string().into_string().unwrap(),
             date_modified,
-            date_created
+            date_created,
         };
         articles.push(a);
     }
@@ -140,6 +156,8 @@ async fn content(path: web::Path<String>) -> ContentTemplate {
 
     let content = get_article_from(&name).expect("no article");
 
+    info!("Article: {:?}", name);
+
     ContentTemplate { name, content }
 }
 
@@ -150,7 +168,10 @@ async fn contents() -> ContentsTemplate<'static> {
         info!("file: {:?} ", art);
     }
 
-    ContentsTemplate { name: "Rust", articles }
+    ContentsTemplate {
+        name: "Rust",
+        articles,
+    }
 }
 
 #[get("/")]
@@ -165,7 +186,42 @@ async fn healthz() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    env_logger::init_from_env(Env::default().default_filter_or("info"));
+    fn init_logger() {
+        use std::io::Write;
+
+        let env = Env::default()
+            .default_filter_or("info");
+            // .filter("MY_LOG_LEVEL")
+            // .write_style("MY_LOG_STYLE");
+
+        fn where_info(target: & str, file: Option<& str>, line: Option<u32>) -> String {
+            // println!("{} {:?} {:?}", target, file, line);
+            let is_actix = target.starts_with("actix");
+
+            let target = if is_actix { "actix" } else { target };
+            let file = if !is_actix { format!(" ({}:{})", file.expect(""), line.expect("")) } else { "".to_string() };
+           return format!("{}{}", target, file);
+        }
+        Builder::from_env(env)
+            .format(|buf, record| {
+                // We are reusing `anstyle` but there are `anstyle-*` crates to adapt it to your
+                // preferred styling crate.
+                let level_style = buf.default_level_style(record.level());
+                let timestamp = buf.timestamp();
+                let where_str = where_info(record.target(), record.file(), record.line());
+
+                writeln!(
+                    buf,
+                    "{timestamp} {level_style}{}{level_style:#} {} - {}",
+                    record.level(),
+                    where_str,
+                    record.args()
+                )
+            })
+            .init();
+    }
+    // env_logger::init_from_env(Env::default().default_filter_or("info"));
+    init_logger();
 
     let port = env::var("PORT").unwrap_or("8080".to_string());
     let port = port.parse::<u16>().expect("Invalid port given");
@@ -173,7 +229,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .wrap(Logger::default())
-            .wrap(Logger::new("%a %{User-Agent}i"))
+            // .wrap(Logger::new("%a %{User-Agent}i"))
             .wrap(middleware::Compress::default())
             .wrap(middleware::DefaultHeaders::new().add((
                 "cache-control",
