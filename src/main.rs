@@ -189,19 +189,21 @@ async fn main() -> std::io::Result<()> {
     fn init_logger() {
         use std::io::Write;
 
-        let env = Env::default()
-            .default_filter_or("info");
-            // .filter("MY_LOG_LEVEL")
-            // .write_style("MY_LOG_STYLE");
+        let env = Env::default().default_filter_or("info");
 
-        fn where_info(target: & str, file: Option<& str>, line: Option<u32>) -> String {
+        fn where_info(target: &str, file: Option<&str>, line: Option<u32>) -> String {
             // println!("{} {:?} {:?}", target, file, line);
             let is_actix = target.starts_with("actix");
 
             let target = if is_actix { "actix" } else { target };
-            let file = if !is_actix { format!(" ({}:{})", file.expect(""), line.expect("")) } else { "".to_string() };
-           return format!("{}{}", target, file);
+            let file = if !is_actix {
+                format!(" ({}:{})", file.expect(""), line.expect(""))
+            } else {
+                "".to_string()
+            };
+            return format!("{}{}", target, file);
         }
+
         Builder::from_env(env)
             .format(|buf, record| {
                 // We are reusing `anstyle` but there are `anstyle-*` crates to adapt it to your
