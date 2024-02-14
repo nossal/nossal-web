@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1.3-labs
 FROM rust:1.75.0 AS builder
 
-RUN apt update && apt install -y musl-tools node
-RUN rustup target add x86_64-unknown-linux-musl nodejs npm
+RUN apt update && apt install -y musl-tools nodejs npm
+RUN rustup target add x86_64-unknown-linux-musl
 
 WORKDIR app
 COPY . /app/
