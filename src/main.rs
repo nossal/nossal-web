@@ -151,14 +151,14 @@ fn get_articles_from() -> Vec<Article> {
 }
 
 #[get("/content/{name}")]
-async fn content(path: web::Path<String>) -> ContentTemplate {
+async fn content(path: web::Path<String>) -> io::Result<ContentTemplate>{
     let name = path.into_inner();
 
-    let content = get_article_from(&name).expect("no article");
+    let content = get_article_from(&name)?;
 
     info!("Article: {:?}", name);
 
-    ContentTemplate { name, content }
+    Ok(ContentTemplate { name, content })
 }
 
 #[get("/contents")]
@@ -179,9 +179,14 @@ async fn hello() -> HelloTemplate<'static> {
     info!("hello world");
     HelloTemplate { name: "Rust" }
 }
+
 #[get("/healthz")]
 async fn healthz() -> impl Responder {
     HttpResponse::Ok().body("Alive")
+}
+
+async fn not_found() -> impl Responder {
+    "404"
 }
 
 #[actix_web::main]
@@ -250,6 +255,7 @@ async fn main() -> std::io::Result<()> {
             .service(healthz)
             .service(fs::Files::new("/static", "resources/public/"))
             .service(hello)
+            .default_service(web::to(not_found))
     })
     .workers(4)
     .bind(("0.0.0.0", port))?
