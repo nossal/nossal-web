@@ -1,7 +1,8 @@
 use actix_files as fs;
 use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
 use actix_web_middleware_slogger::SLogger;
-use askama_actix::Template;
+use askama::Template;
+use askama_web::WebTemplate;
 use fs::NamedFile;
 use log::info;
 use pulldown_cmark::Tag;
@@ -19,20 +20,20 @@ use std::os::linux::fs::MetadataExt;
 #[cfg(target_os = "macos")]
 use std::os::macos::fs::MetadataExt;
 
-#[derive(Template)]
+#[derive(Template, WebTemplate)]
 #[template(path = "hello.html")]
 struct HelloTemplate<'a> {
     name: &'a str,
 }
 
-#[derive(Template)]
+#[derive(Template, WebTemplate)]
 #[template(path = "content.html")]
 struct ContentTemplate {
     name: String,
     content: String,
 }
 
-#[derive(Template)]
+#[derive(Template, WebTemplate)]
 #[template(path = "contents.html")]
 struct ContentsTemplate<'a> {
     name: &'a str,
