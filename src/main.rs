@@ -1,8 +1,7 @@
 use actix_files as fs;
-use actix_web::middleware::Logger;
 use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
+use actix_web_middleware_slogger::SLogger;
 use askama_actix::Template;
-use env_logger::{Builder, Env};
 use fs::NamedFile;
 use log::info;
 use pulldown_cmark::Tag;
@@ -10,11 +9,15 @@ use pulldown_cmark::{html, Event, Options};
 use pulldown_cmark::{HeadingLevel, Parser};
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
+use std::{env, path::PathBuf};
+use structured_logger::{Builder, async_json::new_writer, unix_ms};
+use tracing_actix_web::TracingLogger;
+
 #[cfg(target_os = "linux")]
 use std::os::linux::fs::MetadataExt;
+
 #[cfg(target_os = "macos")]
 use std::os::macos::fs::MetadataExt;
-use std::{env, path::PathBuf};
 
 #[derive(Template)]
 #[template(path = "hello.html")]
@@ -93,7 +96,7 @@ fn get_title(file_path: &PathBuf) -> Option<String> {
 
 fn get_article_from(name: &str) -> io::Result<String> {
     let mut path = String::from("./resources/contents/");
-    path.push_str(&name);
+    path.push_str(name);
 
     let markdown_content = std::fs::read_to_string(path)?;
     // Create a parser
@@ -151,7 +154,7 @@ fn get_articles_from() -> Vec<Article> {
 }
 
 #[get("/content/{name}")]
-async fn content(path: web::Path<String>) -> io::Result<ContentTemplate>{
+async fn content(path: web::Path<String>) -> io::Result<ContentTemplate> {
     let name = path.into_inner();
 
     let content = get_article_from(&name)?;
@@ -191,51 +194,16 @@ async fn not_found() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    fn init_logger() {
-        use std::io::Write;
-
-        let env = Env::default().default_filter_or("info");
-
-        fn where_info(target: &str, file: Option<&str>, line: Option<u32>) -> String {
-            // println!("{} {:?} {:?}", target, file, line);
-            let is_actix = target.starts_with("actix");
-
-            let target = if is_actix { "actix" } else { target };
-            let file = if !is_actix {
-                format!(" ({}:{})", file.expect(""), line.expect(""))
-            } else {
-                "".to_string()
-            };
-            return format!("{}{}", target, file);
-        }
-
-        Builder::from_env(env)
-            .format(|buf, record| {
-                // We are reusing `anstyle` but there are `anstyle-*` crates to adapt it to your
-                // preferred styling crate.
-                let level_style = buf.default_level_style(record.level());
-                let timestamp = buf.timestamp();
-                let where_str = where_info(record.target(), record.file(), record.line());
-
-                writeln!(
-                    buf,
-                    "{timestamp} {level_style}{}{level_style:#} {} - {}",
-                    record.level(),
-                    where_str,
-                    record.args()
-                )
-            })
-            .init();
-    }
-    // env_logger::init_from_env(Env::default().default_filter_or("info"));
-    init_logger();
-
     let port = env::var("PORT").unwrap_or("8080".to_string());
     let port = port.parse::<u16>().expect("Invalid port given");
 
+    Builder::new()
+        .with_target_writer("*", new_writer(tokio::io::stdout()))
+        .init();
+
     HttpServer::new(|| {
         App::new()
-            .wrap(Logger::default())
+            .wrap(SLogger::default())
             // .wrap(Logger::new("%a %{User-Agent}i"))
             .wrap(middleware::Compress::default())
             .wrap(middleware::DefaultHeaders::new().add((
