@@ -18,5 +18,3 @@ structured-logger = "1.0.4"
 tracing-actix-web = "0.7.18"
 tokio = "1.45.0"
 
-[dev-dependencies]
-cargo-watch = "8.5.3"
