@@ -1,5 +1,5 @@
 use actix_files as fs;
-use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, middleware, web, App, HttpRequest, HttpResponse, HttpServer, Responder};
 use actix_web_middleware_slogger::SLogger;
 use askama::Template;
 use askama_web::WebTemplate;
@@ -189,13 +189,28 @@ async fn healthz() -> impl Responder {
     HttpResponse::Ok().body("Alive")
 }
 
+#[get("/dot")]
+async fn dot(req: HttpRequest) -> impl Responder {
+    let user_agent = req.headers().get("user-agent").unwrap();
+
+    if let Ok(user_agent_str) = user_agent.to_str() {
+        if user_agent_str.contains("curl") {
+            return HttpResponse::TemporaryRedirect()
+                .insert_header(("Location", "https://raw.githubusercontent.com/nossal/dotfiles/refs/heads/main/bin/dot"))
+                .finish()
+        }
+    }
+
+    HttpResponse::Ok().body("This is the Dot")
+}
+
 async fn not_found() -> impl Responder {
     "404"
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let port = env::var("PORT").unwrap_or("8080".to_string());
+    let port = env::var("PORT").unwrap_or("3080".to_string());
     let port = port.parse::<u16>().expect("Invalid port given");
 
     Builder::new()
@@ -221,6 +236,7 @@ async fn main() -> std::io::Result<()> {
             )
             .service(contents)
             .service(content)
+            .service(dot)
             .service(healthz)
             .service(fs::Files::new("/static", "resources/public/"))
             .service(hello)
