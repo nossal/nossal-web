@@ -3,7 +3,7 @@
 FROM ocaml/opam:alpine AS build
 
 # Install system dependencies
-RUN sudo apk add --update libev-dev openssl-dev;
+RUN sudo apk add --update gmp-dev libev-dev openssl-dev;
 
 WORKDIR /home/opam
 
