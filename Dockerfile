@@ -23,4 +23,4 @@ RUN apk add --update libev; \
 
 COPY --from=build /home/opam/_build/default/bin/nossal.exe /bin/app
 
-RUN /bin/app
+CMD [ "/bin/app" ]
