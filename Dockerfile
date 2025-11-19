@@ -1,20 +1,26 @@
-# syntax=docker/dockerfile:1.3-labs
-FROM rust:1.86.0 AS builder
+# vi: ft=dockerfile
+# ----- build stage -----
+FROM ocaml/opam:alpine AS build
 
-RUN apt update && apt install -y musl-tools nodejs npm
-RUN rustup target add x86_64-unknown-linux-musl
+# Install system dependencies
+RUN sudo apk add --update libev-dev openssl-dev;
 
-WORKDIR app
-COPY . /app/
+WORKDIR /home/opam
 
-RUN cargo build --release --target x86_64-unknown-linux-musl
-RUN npm -g install lightningcss-cli
-RUN lightningcss --minify --bundle resources/css/common.css -o resources/public/css/style.css
+# Install dependencies
+COPY nossal.opam nossal.opam
+RUN opam install . --deps-only --yes;
 
-FROM alpine AS app
+# Build project
+COPY . .
+RUN opam exec -- dune build;
 
-COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/nossal /app/bin/nossal
-COPY --from=builder /app/resources /app/resources
+# ----- running stage -----
+FROM alpine:3.18.4 AS run
 
-WORKDIR /app
-CMD ["bin/nossal"]
+RUN apk add --update libev; \
+    apk cache clean;
+
+COPY --from=build /home/opam/_build/default/bin/nossal.exe /bin/app
+
+RUN /bin/app

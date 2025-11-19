@@ -4,47 +4,40 @@
 # Specific
 resources/public/css
 resources/public/js
-/.vscode
-__*
 
-# Generic
-*.log
-Thumbs.db
-.DS_Store
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmxs
+*.cmxa
 
-# Java/Scala/Clojure
-pom.xml
-bin
-build/
-target/
-.settings/
-pom.xml
-.classpath
-.project
-*.class
-*.jar
-*.war
-/.gradle
-/.env
-/.lein-env
-/.lein-repl-history
-/.lein-deps-sum
-/.lein-failures
-/.nrepl-port
-/.nrepl-history
-.calva
+# Files containing detailed information about the compilation (generated
+# by `ocamlc`/`ocamlopt` when invoked using the option `-bin-annot`).
+# These files are typically useful for code inspection tools
+# (e.g. Merlin).
+*.cmt
+*.cmti
 
-.clj-kondo/
-.lsp/
+# ocamlbuild and Dune default working directory
+_build/
 
-*.stackdump
-.cpcache/
-.rebel_readline_history
-*.stackdump
-.cpcache
+# ocamlbuild targets
+*.byte
+*.native
 
+# oasis generated files
+setup.data
+setup.log
 
-# Added by cargo
+# Merlin configuring file for Vim and Emacs
+.merlin
 
-/target
-.aider*
+# Dune generated files
+*.install
+
+# Local OPAM switch
+_opam/
