@@ -12,5 +12,5 @@
  (name nossal)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dream reason))
+ (depends ocaml dream ))
 
