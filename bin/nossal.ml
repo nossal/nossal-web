@@ -7,6 +7,7 @@ let () =
       | None -> 3080)
   @@ Dream.logger
   @@ Dream.router [
+        Dream.get "/healthz" @@ (fun _ -> Dream.html "Alive");
         Dream.get "/static/**" @@ Dream.static "resources/public";
         Dream.get "/favicon.ico" (Dream.from_filesystem "resources/public" "favicon.ico");
         Dream.get "/" (fun _ ->
