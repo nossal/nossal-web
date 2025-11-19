@@ -1,10 +1,6 @@
 !.gitignore
 !.editorconfig
 
-# Specific
-resources/public/css
-resources/public/js
-
 *.annot
 *.cmo
 *.cma
