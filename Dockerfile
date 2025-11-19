@@ -14,7 +14,7 @@ RUN opam install . --deps-only --yes;
 # Build project
 COPY . .
 RUN opam exec -- dune build --profile=release && \
-    strip _build/default/bin/nossal.exe;
+    sudo strip _build/default/bin/nossal.exe;
 
 # ----- running stage -----
 FROM alpine:3.18
@@ -26,4 +26,5 @@ ENV OCAMLRUNPARAM="s=524288,minor_heap_size=512k"
 
 COPY --from=build /home/opam/_build/default/bin/nossal.exe /bin/app
 
-CMD [ "/bin/app" ]
+CMD ["/bin/app"]
+
