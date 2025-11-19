@@ -24,6 +24,7 @@ RUN apk add --update --no-cache libev;
 ENV OCAMLRUNPARAM="s=524288,minor_heap_size=512k"
 # ENV OCAMLRUNPARAM="s=1048576,i=32,minor_heap_size=1M"
 
+COPY --from=build /home/opam/resources /resources
 COPY --from=build /home/opam/_build/default/bin/nossal.exe /bin/app
 
 CMD ["/bin/app"]
