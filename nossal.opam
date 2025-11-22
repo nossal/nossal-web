@@ -9,7 +9,9 @@ homepage: "https://github.com/nossal/nossal-web"
 bug-reports: "https://github.com/nossal/nossal-web/issues"
 depends: [
   "dune" {>= "3.20"}
-  "ocaml"
+  "ocaml-lsp-server" {build}
+  "ocamlformat" {build}
+  "ocaml" {>= "5.4"}
   "dream"
   "odoc" {with-doc}
 ]

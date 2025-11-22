@@ -8,7 +8,7 @@ let () =
   @@ Dream.logger
   @@ Dream.router
        [ Dream.get "/healthz" (fun _ ->
-            Dream.respond ~headers:[("Content-Type", "text/plain")] "Alive!")
+           Dream.respond ~headers:[ "Content-Type", "text/plain" ] "Alive!")
        ; Dream.get "/static/**" @@ Dream.static "resources/public"
        ; Dream.get "/favicon.ico" (Dream.from_filesystem "resources/public" "favicon.ico")
        ; Dream.get "/" (fun _ -> Dream.html Home.render)
