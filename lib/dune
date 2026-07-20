@@ -1,0 +1,3 @@
+(library
+ (name blog_lib)
+ (libraries dream lwt lwt.unix cmarkit yaml digestif digestif.ocaml))

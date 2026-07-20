@@ -1,0 +1,11 @@
+(executable
+ (name nossal)
+ (public_name nossal)
+ (libraries dream))
+
+(rule
+ (targets home.ml)
+ (deps home.eml.html)
+ (action (run dream_eml %{deps} --workspace %{workspace_root} )))
+
+(data_only_dirs lib node_modules)

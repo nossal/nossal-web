@@ -3,3 +3,8 @@
   (flags (:standard -w +42)))
  (release
   (ocamlopt_flags (:standard -O3))))
+
+(rule
+ (alias run)
+ (action
+  (run ./bin/nossal.exe )))

@@ -1,4 +1,4 @@
-(lang dune 3.20)
+(lang dune 3.0)
 
 (name nossal)
 (source
@@ -12,5 +12,5 @@
  (name nossal)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dream ))
+ (depends ocaml dream lwt cmarkit yaml digestif ))
 
