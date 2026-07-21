@@ -34,6 +34,7 @@ let is_markdown_file (name : string) : bool = Filename.check_suffix name ".md"
    and sorts newest-first by date string (works for ISO 8601 dates). *)
 let build (content_dir : string) : Post.t list =
   let entries = try Sys.readdir content_dir with Sys_error _ -> [||] in
-  entries |> Array.to_list |> List.filter is_markdown_file
+  entries |> Array.to_list
+  |> List.filter is_markdown_file
   |> List.filter_map (load_post content_dir)
   |> List.sort (fun a b -> compare b.Post.date a.Post.date)

@@ -9,15 +9,20 @@ let post_handler (config : Config.t) (request : Dream.request) :
     Dream.response Lwt.t =
   let slug = Dream.param request "slug" in
   match Content_store.by_slug slug with
-  | Some p -> Dream.html (Templates.post_page ~site_title:config.Config.site_title p)
+  | Some p ->
+      Dream.html (Templates.post_page ~site_title:config.Config.site_title p)
   | None ->
-    Dream.html ~status:`Not_Found (Templates.not_found ~site_title:config.Config.site_title)
+      Dream.html ~status:`Not_Found
+        (Templates.not_found ~site_title:config.Config.site_title)
 
 let webhook_handler (config : Config.t) (request : Dream.request) :
     Dream.response Lwt.t =
   Dream.body request >>= fun body ->
   let signature_header = Dream.header request "X-Hub-Signature-256" in
-  if not (Webhook.verify ~secret:config.Config.webhook_secret ~body ~signature_header)
+  if
+    not
+      (Webhook.verify ~secret:config.Config.webhook_secret ~body
+         ~signature_header)
   then Dream.respond ~status:`Unauthorized "invalid signature"
   else
     Deploy.pull_and_rebuild ~config >>= function

@@ -3,4 +3,4 @@
 
 let to_html (md : string) : string =
   let doc = Cmarkit.Doc.of_string md in
-  Cmarkit_html.of_doc doc
+  Cmarkit_html.of_doc ~safe:false doc
