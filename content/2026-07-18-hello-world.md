@@ -3,6 +3,7 @@ title: Hello, World
 date: 2026-07-18
 tags: [meta, first-post]
 draft: false
+slug: hello
 ---
 This is the first post on the new site. It's just a plain Markdown
 file living in a private git repo — no admin panel, no database.
