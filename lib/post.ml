@@ -4,8 +4,8 @@ type t = {
   date : string;
   tags : string list;
   draft : bool;
-  html : string;
-  filename : string;
+  original_filename : Filename.type;
+  output_filename : string;
 }
 
 let is_digit c = c >= '0' && c <= '9'

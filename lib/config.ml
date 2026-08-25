@@ -5,6 +5,7 @@ type t = {
   port : int;
   webhook_secret : string;
   repo_path : string;   (* local clone of the content repo, on disk *)
+  data_path : string;
   repo_url : string;    (* remote git URL, e.g. git@github.com:you/blog-content.git *)
   site_title : string;
 }
@@ -24,6 +25,7 @@ let load () : t =
     port = int_of_string (getenv_default "BLOG_PORT" "8080");
     webhook_secret = getenv_required "BLOG_WEBHOOK_SECRET";
     repo_path = getenv_default "BLOG_REPO_PATH" "./content";
+    data_path = getenv_default "BLOG_DATA_PATH" "./data";
     repo_url = getenv_required "BLOG_REPO_URL";
     site_title = getenv_default "BLOG_SITE_TITLE" "My Blog";
   }
